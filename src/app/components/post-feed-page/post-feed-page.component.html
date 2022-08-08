@@ -1,0 +1,36 @@
+<app-navbar></app-navbar>
+
+<div class="sidebyside">
+    <app-user-card></app-user-card>
+</div>
+
+<div [ngClass]="['sidebyside', 'post-feed-container']">
+    <form class="form" *ngIf="!createPost; else createPostTemplate">
+        <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Something on your mind?</mat-label>
+            <input matInput (focus)="toggleCreatePost()">
+        </mat-form-field>
+    </form>
+
+    <ng-template #createPostTemplate>
+        <form class="form" [formGroup]="postForm" (ngSubmit)="submitPost($event)">
+            <mat-form-field class="full-width" appearance="fill">
+                <mat-label>Make a Post</mat-label>
+                <textarea matInput autofocus formControlName="text"></textarea>
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="fill">
+                <mat-label>Add an Image?</mat-label>
+                <input matInput formControlName="imageUrl">
+            </mat-form-field>
+            <div align="end">
+                <button mat-raised-button color="warn" (click)="toggleCreatePost()">Cancel</button>
+                <button mat-raised-button color="primary" (click)="submitPost($event)">Post</button>
+            </div>
+
+        </form>
+    </ng-template>
+
+    <div id="post-feed" *ngFor="let post of posts">
+        <app-post [post]="post"></app-post>
+    </div>
+</div>
