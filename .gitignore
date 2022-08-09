@@ -19,13 +19,12 @@
 *.tar.gz
 *.rar
 
+# node modules
+node_modules/
+
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
-<<<<<<< Updated upstream
-node_modules/
-.angular
-=======
 node_modules
 .angular
 
@@ -36,7 +35,6 @@ node_modules
   
 # dependencies  
 /node_modules  
-.angular
   
 # IDEs and editors  
 /.idea  
@@ -67,4 +65,3 @@ testem.log
 # System Files  
 .DS_Store  
 Thumbs.db 
->>>>>>> Stashed changes
