@@ -26,7 +26,8 @@ export class AuthService {
   }
 
   logout(): void{
-    this.http.post(`${this.authUrl}/logout`, null).subscribe();
+      this.http.post(`${this.authUrl}/logout`, null).subscribe();
+      sessionStorage.removeItem("user");
   }
 
   register(firstName: string, lastName: string, email: string, password: string, username: string): Observable<any> {

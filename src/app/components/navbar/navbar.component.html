@@ -2,6 +2,17 @@
     <mat-toolbar>
         <span [routerLink]="['/post-feed']">Revature Social Media</span>
         <span class="spacer"></span>
-        <button mat-button (click)="logout();">Logout</button>
+        <div id="navLoginDiv">
+            <div class="navLogBtn">
+                <button mat-button (click)="login();">Login</button>
+            </div>
+        </div>
+        <div id="navUserDiv">
+            <div class="navLogBtn">
+                <button mat-button (click)="logout();">Logout</button>
+            </div>
+            <div class="nav-user-img" id="navProfileDiv" [routerLink]="['/user-settings']"></div>
+            <div id="navUsernameDiv"></div>
+        </div>
     </mat-toolbar>
 </p>
