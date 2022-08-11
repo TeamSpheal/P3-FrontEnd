@@ -1,7 +1,8 @@
 <p>
-    <mat-toolbar>
+    <mat-toolbar class="spheal">
         <span [routerLink]="['/post-feed']">Revature Social Media</span>
         <span class="spacer"></span>
+        <label for="dm">Dark Mode Test <input id="dm" type="checkbox" name="test" (change)="toggleDark($event)" /></label>
         <button mat-button (click)="logout();">Logout</button>
     </mat-toolbar>
 </p>
