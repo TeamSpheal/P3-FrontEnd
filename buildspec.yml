@@ -7,7 +7,8 @@ phases:
       - yum install gcc-c++ make
   pre_build:
     commands:
-      - npm install --force
+     - npm i -g @angular/cli
+     - npm install --force
   build:
     commands:
       - ng build
