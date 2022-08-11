@@ -27,8 +27,8 @@ export class AuthService {
     this.http.post(`${this.authUrl}/logout`, null).subscribe();
   }
 
-  register(firstName: string, lastName: string, email: string, password: string): Observable<any> {
-    const payload = {firstName: firstName, lastName: lastName, email: email, password: password};
+  register(firstName: string, lastName: string, email: string, password: string, username: string): Observable<any> {
+      const payload = { firstName: firstName, lastName: lastName, email: email, password: password, username: username, profileImg: "https://th.bing.com/th/id/OIP.61ajO7xnq1UZK2GVzHymEQAAAA?w=145&h=150&c=7&r=0&o=5&pid=1.7"};
     return this.http.post<any>(`${this.authUrl}/register`, payload, {headers: environment.headers});
   }
 }
