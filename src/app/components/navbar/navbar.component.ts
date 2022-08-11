@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
@@ -22,5 +23,26 @@ export class NavbarComponent implements OnInit{
     this.authService.logout();
     this.router.navigate(['login']);
   }
+
+  
+  onChange(ob: MatCheckboxChange) {
+    console.log("PQR checked: " + ob.checked);
+
+    if(ob.checked){
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }else{
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+  } 
+
+  
+  setAll(event: any){
+  console.log(event.target.checked);
+  if(event.target.checked){
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }else{
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+}
 
 }
