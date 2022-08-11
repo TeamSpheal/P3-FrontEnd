@@ -8,7 +8,7 @@
     --bg-color: #e2e2e2;
     --secondary-color: #ededed;
     --input-color: #a6a6a600;
-    --input-font-color: #4f4f4f;
+    --input-font-color: #3F51B5;
     --caret-color: #4C6CBC;
 }
 
@@ -20,7 +20,7 @@
     --bg-color: #181818;
     --secondary-color: #282828;
     --input-color: #4f4f4f;
-    --input-font-color: #ededed;
+    --input-font-color: #d6d6d6;
     --caret-color: #D1E0FF;
 }
 
@@ -35,6 +35,26 @@ body {
     min-height: 100vh;
     color: var(--font-color);
     background: var(--bg-color);
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-label {
+    color: var(--input-font-color);
+}
+
+mat-label {
+    color: var(--input-font-color);
+}
+
+.mat-focused .mat-form-field-label {
+    color: var(--input-font-color) !important;
+}
+
+.mat-form-field-ripple {
+    background-color: var(--input-font-color) !important;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline-thick {
+    color: white;
 }
 
 .mat-checkbox-layout .mat-checkbox-label {
