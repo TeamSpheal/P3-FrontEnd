@@ -17,8 +17,10 @@ export class AuthService {
   login(email: string, password: string): Observable<any> {
     const payload = {email:email, password:password};
     const res = this.http.post<any>(`${this.authUrl}/login`, payload, {headers: environment.headers, withCredentials: environment.withCredentials});
-    res.subscribe((data) => {
-      this.currentUser = data
+    res.subscribe((data : any) => {
+        this.currentUser = data
+        console.log(data);
+        sessionStorage.setItem("user", JSON.stringify(this.currentUser));
     })
     return res;
   }
