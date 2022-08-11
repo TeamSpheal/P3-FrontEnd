@@ -1,19 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
 
 :root {
+    color-scheme: light;
     --spheal-color: #4C6CBC;
     --spheal-font-color: #D1E0FF;
     --font-color: #424242;
     --bg-color: #e2e2e2;
     --secondary-color: #ededed;
+    --input-color: #a6a6a600;
+    --input-font-color: #4f4f4f;
+    --caret-color: #4C6CBC;
 }
 
 [data-theme="dark"] {
-    --spheal-color: #3C4C7C;
-    --spheal-font-color: #c7cbd4;
+    color-scheme: dark;
+    --spheal-color: #4C6CBC;
+    --spheal-font-color: #D1E0FF;
     --font-color: #e1e1ff;
     --bg-color: #181818;
     --secondary-color: #282828;
+    --input-color: #4f4f4f;
+    --input-font-color: #ededed;
+    --caret-color: #D1E0FF;
 }
 
 html,
@@ -27,6 +35,41 @@ body {
     min-height: 100vh;
     color: var(--font-color);
     background: var(--bg-color);
+}
+
+.mat-checkbox-layout .mat-checkbox-label {
+    line-height: 24px;
+    margin-right: 1em;
+    font-size: 1rem;
+}
+
+.mat-checkbox-checked.mat-accent .mat-checkbox-background {
+    background-color: black !important;
+}
+
+.mat-flat-button.mat-warn,
+.mat-raised-button.mat-warn,
+.mat-fab.mat-warn,
+.mat-mini-fab.mat-warn {
+    margin-right: 1em;
+}
+
+.mat-input-element {
+    caret-color: var(--caret-color);
+}
+
+.form {
+    margin-bottom: 1em;
+    background: var(--secondary-color);
+    padding: 1em;
+}
+
+textarea.mat-input-element {
+    color: var(--input-font-color);
+}
+
+.mat-form-field-appearance-fill .mat-form-field-flex {
+    background: var(--input-color);
 }
 
 .mat-card,
@@ -57,6 +100,11 @@ body {
 .positronx {
     text-decoration: none;
     color: #ffffff;
+}
+
+.logout {
+    background: #779eff;
+    margin-left: 2em;
 }
 
 .box {
