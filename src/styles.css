@@ -24,18 +24,6 @@
     --caret-color: #D1E0FF;
 }
 
-[data-theme="dark"] {
-    color-scheme: dark;
-    --spheal-color: #4C6CBC;
-    --spheal-font-color: #D1E0FF;
-    --font-color: #e1e1ff;
-    --bg-color: #181818;
-    --secondary-color: #282828;
-    --input-color: #4f4f4f;
-    --input-font-color: #d6d6d6;
-    --caret-color: #D1E0FF;
-}
-
 html,
 body {
       height: 100%;
@@ -137,12 +125,6 @@ textarea.mat-input-element {
       text-decoration: none;
       color: #ffffff;
 }
-
-.logout {
-    background: #779eff;
-    margin-left: 2em;
-}
-
 
 .logout {
     background: #779eff;
@@ -314,11 +296,6 @@ textarea.mat-input-element {
 .comment-reply {
     cursor: pointer;
     text-decoration: underline;
-}
-
-.spacer {
-    flex: 1 1 auto;
-  margin-left: 1em;
 }
 
 .comment-author {
