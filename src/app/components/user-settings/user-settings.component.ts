@@ -2,6 +2,7 @@ import { environment } from './../../../environments/environment';
 import { Component, OnInit } from '@angular/core';
 import User from '../../models/User';
 import { Router } from '@angular/router';
+import { UserSettingsService } from '../../services/user-settings.service';
 
 @Component({
     selector: 'app-user-settings',
@@ -18,9 +19,8 @@ export class UserSettingsComponent implements OnInit {
     newPWText: HTMLInputElement;
     confirmPWText: HTMLInputElement;
     loggedIn: User;
-    imageURLInput = "";
 
-    constructor(private router: Router) { }
+    constructor(private userSettingsService: UserSettingsService, private router: Router) { }
 
     ngOnInit(): void {
         this.profileImg = <HTMLImageElement>document.getElementById("profileImg");
@@ -32,7 +32,7 @@ export class UserSettingsComponent implements OnInit {
         this.newPWText = <HTMLInputElement>document.getElementById("newPWText");
         this.confirmPWText = <HTMLInputElement>document.getElementById("confirmPWText");
         this.loggedIn = JSON.parse(<string>sessionStorage.getItem("user"));
-                
+
         if (this.loggedIn == undefined) {
             this.profileImg.src = "https://th.bing.com/th/id/OIP.61ajO7xnq1UZK2GVzHymEQAAAA?w=145&h=150&c=7&r=0&o=5&pid=1.7";
             this.imgUrlText.value = "";
@@ -49,20 +49,81 @@ export class UserSettingsComponent implements OnInit {
             this.fNameText.value = this.loggedIn.firstName;
             this.lNameText.value = this.loggedIn.lastName;
         }
-  }
-  // When user clicks the update button, the image URL changes to
-  // set their pfp with a new one.
-  updateImage(){
-    this.imageURLInput = (<HTMLInputElement>document.getElementById("imgUrlText")).value;
-    let img = document.getElementById("profileImg") as HTMLImageElement;
-    img.src = this.imageURLInput;
-  }
+    }
+    // When user clicks the update button, the image URL changes to
+    // set their pfp with a new one.
+    updateImage() {
+        this.profileImg.src = this.imgUrlText.value;
+    }
 
-  updateProfile(){
+    updateProfile() {
+        let updatedUser: User;
+        let newEmail: string = this.emailText.value;
+        let newUN: string = this.usernameText.value;
+        let newFN: string = this.fNameText.value;
+        let newLN: string = this.lNameText.value;
+        let UNregex = /^[a-zA-Z0-9_\-]+$/;
+        let EMregex = /^[a-z0-9_\-]{1,63}[@][a-z]{1,30}[.][a-z]{2,5}$/i
+        let response: string| undefined = undefined;
 
-  }
+        //Validate Input
+        //Validate username
+        if (UNregex.test(newUN)) {//Username is valid
+            //Validate email
+            if (EMregex.test(newEmail)) {//Email is valid
+                updatedUser = new User(this.loggedIn.id, newEmail, newFN, newLN, newUN, this.loggedIn.profileImg);
+                response = this.userSettingsService.updateProfile(updatedUser);
+            } else {//Email is invalid
+                alert(
+                    "The email you entered is invalid. Please try again"
+                );
+            }
+        } else {//Username is invalid
+            alert(
+                "The username you entered is invalid. Please try again"
+            );
+        }
 
-  updatePassword(){
-    
-  }
+        //Update loggedIn object if necessary
+        if (response != undefined) {
+            this.loggedIn.username = newUN;
+            this.loggedIn.email = newEmail;
+            this.loggedIn.firstName = newFN;
+            this.loggedIn.lastName = newLN;
+            sessionStorage.setItem("user", JSON.stringify(this.loggedIn));
+        } else {
+            alert(
+                "The server failed to update your account"
+            );
+        }
+    }
+
+    updatePassword() {
+        let pass1 = this.newPWText.value;
+        let pass2 = this.confirmPWText.value;
+        let PWregex = /^[0-9a-zA-Z\-\.]{4,100}$/
+        let response: string | undefined = undefined;
+
+        //Validate passwords
+        if (PWregex.test(pass1)) {//Password is valid
+            if (pass1 == pass2) {//Passwords match
+                response = this.userSettingsService.updatePassword(pass1, this.loggedIn);
+            } else {//Passwords do not match
+                alert(
+                    "Passwords must match. Please try again"
+                );
+            }
+        } else {//Password is invalid
+            alert(
+                "The password you entered is invalid. Please try again"
+            );
+        }
+
+        //Alert user for failed requests
+        if (response == undefined) {
+            alert(
+                "The server failed to update your account"
+            );
+        }
+    }
 }
