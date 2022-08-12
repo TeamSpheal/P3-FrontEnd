@@ -12,7 +12,7 @@ export class UserSettingsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-
+    // Not currently in use.
   }
 
   // When user clicks the update button, the image URL changes to
@@ -29,5 +29,9 @@ export class UserSettingsComponent implements OnInit {
 
   updatePassword(){
     
+  }
+
+  updatePassword() {
+      // This is in the process of being written.
   }
 }
