@@ -1,7 +1,8 @@
 <p>
-    <mat-toolbar>
+    <mat-toolbar class="spheal">
         <span [routerLink]="['/post-feed']">Revature Social Media</span>
         <span class="spacer"></span>
+        <mat-checkbox id="dmToggle" [checked]="checkedStatus" (change)="onChange($event)"> Dark Mode </mat-checkbox>
         <div id="navLoginDiv">
             <div class="navLogBtn">
                 <button mat-button (click)="login();">Login</button>
