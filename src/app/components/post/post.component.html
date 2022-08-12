@@ -16,6 +16,23 @@
             </div>
         </mat-card-content>
         <mat-card-actions align="end">
+          
+            <div id="left">
+                <div id="heartone">
+                    <div id="heart"></div>
+                </div>
+                <div id ="hearttwo">
+                    <div id="heart2"></div>
+                </div>
+
+            </div>
+            <div class="heart-btn">
+                <div class="content" (click)="heartContent($event)" #content>
+                    <span class="heart" #heart></span>
+                    <span class="like">      </span>
+                    <span class="numb" #numb>     </span>
+                </div>
+            </div>
             <button mat-raised-button color="primary" (click)="toggleReplyToPost()">Reply</button>
         </mat-card-actions>
         <form class="form" *ngIf="replyToPost" [formGroup]="commentForm" (ngSubmit)="submitReply($event)">

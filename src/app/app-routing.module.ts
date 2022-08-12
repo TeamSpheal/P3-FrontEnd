@@ -5,7 +5,8 @@ import { PostFeedPageComponent } from './components/post-feed-page/post-feed-pag
 import { RegisterComponent } from './components/register/register.component';
 
 const routes: Routes = [
-  { path: "", redirectTo: "/login", pathMatch: "full" },
+  //{ path: "", redirectTo: "/login", pathMatch: "full" },
+  { path: "", redirectTo: "/post-feed", pathMatch: "full" },
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
   { path: "post-feed", component: PostFeedPageComponent},
