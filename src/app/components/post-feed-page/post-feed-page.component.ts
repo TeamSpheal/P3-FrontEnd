@@ -25,7 +25,7 @@ export class PostFeedPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.postService.getAllPosts().subscribe(
-      (response) => {
+      (response : any) => {
         this.posts = response
       }
     )
@@ -39,7 +39,7 @@ export class PostFeedPageComponent implements OnInit {
     e.preventDefault();
     this.postService.upsertPost(new Post(0, this.postForm.value.text || "", this.postForm.value.imageUrl || "", this.authService.currentUser, [], []))
       .subscribe(
-        (response) => {
+        (response : any) => {
           this.posts = [response, ...this.posts]
           this.toggleCreatePost()
         }
