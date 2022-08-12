@@ -1,17 +1,29 @@
 # Deploying the Application
 
-The application can currently be built manually for testing or with AWS
+The application can currently be built locally for testing or with AWS
 CodePipeline.
 
-## Manual Deployment
+## Local Deployment
 
 Prerequisites:
-- npm
-- Angular CLI
 - A running instance of the 
   [P3-BackEnd](https://github.com/TeamSpheal/P3-BackEnd).
+- npm
+- Angular CLI
 
 1) Clone the repo.
+2) If the back end is not running at "http://localhost:8080", edit the file
+   src\environments\environment.ts to change environment object to point
+   to the correct URL. It currently looks like this:
+   ```
+   export const environment = {
+       production: false,
+       withCredentials: true,
+       baseUrl: "http://localhost:8080",
+       headers: {
+        ....
+   ```
+   The value for `baseUrl` should be changed to the correct URL.
 2) In the repo's root folder, execute the following commands:
     ```
     npm install
@@ -19,7 +31,7 @@ Prerequisites:
     ```
 
 That application can be viewed in a web browser at
-http://localhost:4200/
+[http://localhost:4200/](http://localhost:4200/)
 
 ## Automated Deployment
 
@@ -30,7 +42,7 @@ P3-BackEnd.
 #### Initial steps
 1) Configure an S3 bucket and configure it to serve as a static website.
 2) Edit the file src\environments\environment.prod.ts
-    - Change "baseUrl" to be the URL of the running backend intance.
+    - Change "baseUrl" to be the URL of the running backend instance.
     - Change the value for the Access-Control-Allow-Origin in the headers
       object to be the URL of the S3 bucket.
 
@@ -62,10 +74,10 @@ P3-BackEnd.
 		```
 		
 2) Create a AWS CodePipeline.
-	- Set the GitHub (Version 2) as the source provider
-	- Set the Codebuild project from step 3 as the connection.
+	- Set the `GitHub (Version 2)` as the source provider
+	- Set the Codebuild project from step 1 as the connection.
 3) You can either chose to start the pipeline on changes to the repo or to start
-manually. If you chose to start on changes, push a change to the repo. Otherwise
-press the "Create pipeline" button.
+manually. To start a manual deployment operation, press the "Create pipeline" 
+button.
 4) Once the pipeline completes, the application will be available at the URL of
 the S3 bucket.
