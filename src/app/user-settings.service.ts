@@ -15,7 +15,7 @@ export class UserSettingsService {
     this.imageURLInput = (<HTMLInputElement>document.getElementById("imgUrlText")).value;
     let img = document.getElementById("profileImg") as HTMLImageElement;
     img.src = this.imageURLInput;
-    this.HttpClient.post
+    //this.HttpClient.post
   }
 
   // When user clicks the middle update button, their current information changes
