@@ -1,3 +1,5 @@
+import { ElementRef } from '@angular/core';
+import { ViewChild } from '@angular/core';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import Post from 'src/app/models/Post';
@@ -10,6 +12,15 @@ import { PostService } from 'src/app/services/post.service';
   styleUrls: ['./post.component.css']
 })
 export class PostComponent implements OnInit {
+
+  @ViewChild("content")
+  divContent: ElementRef;
+
+  @ViewChild("numb")
+  divNumb: ElementRef;
+
+  @ViewChild("heart")
+  divHeart: ElementRef;
 
   commentForm = new FormGroup({
     text: new FormControl(''),
@@ -37,5 +48,15 @@ export class PostComponent implements OnInit {
           this.toggleReplyToPost()
         }
       )
+  }
+
+  heartContent(event: any) {
+    this.divContent.nativeElement.classList.toggle("heart-active");
+    this.divNumb.nativeElement.classList.toggle("heart-active");
+    this.divHeart.nativeElement.classList.toggle("heart-active");
+    /*$('.content').toggleClass("heart-active")
+
+    $('.numb').toggleClass("heart-active")
+    $('.heart').toggleClass("heart-active")*/
   }
 }
