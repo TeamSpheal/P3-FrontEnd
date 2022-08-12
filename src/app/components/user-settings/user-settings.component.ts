@@ -18,4 +18,8 @@ export class UserSettingsComponent implements OnInit {
   uploadImage(){
     document.getElementById("imageUrlText");
   }
+
+  updatePassword() {
+      
+  }
 }
