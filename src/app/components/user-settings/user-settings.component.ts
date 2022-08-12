@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import { Component, OnInit } from '@angular/core';
 import User from '../../models/User';
 import { Router } from '@angular/router';
@@ -17,6 +18,7 @@ export class UserSettingsComponent implements OnInit {
     newPWText: HTMLInputElement;
     confirmPWText: HTMLInputElement;
     loggedIn: User;
+    imageURLInput = "";
 
     constructor(private router: Router) { }
 
@@ -30,7 +32,7 @@ export class UserSettingsComponent implements OnInit {
         this.newPWText = <HTMLInputElement>document.getElementById("newPWText");
         this.confirmPWText = <HTMLInputElement>document.getElementById("confirmPWText");
         this.loggedIn = JSON.parse(<string>sessionStorage.getItem("user"));
-
+                
         if (this.loggedIn == undefined) {
             this.profileImg.src = "https://th.bing.com/th/id/OIP.61ajO7xnq1UZK2GVzHymEQAAAA?w=145&h=150&c=7&r=0&o=5&pid=1.7";
             this.imgUrlText.value = "";
@@ -47,15 +49,20 @@ export class UserSettingsComponent implements OnInit {
             this.fNameText.value = this.loggedIn.firstName;
             this.lNameText.value = this.loggedIn.lastName;
         }
-    }
+  }
+  // When user clicks the update button, the image URL changes to
+  // set their pfp with a new one.
+  updateImage(){
+    this.imageURLInput = (<HTMLInputElement>document.getElementById("imgUrlText")).value;
+    let img = document.getElementById("profileImg") as HTMLImageElement;
+    img.src = this.imageURLInput;
+  }
 
-    // When user clicks the update button, the image URL changes to
-    // set their pfp with a new one.
-    uploadImage() {
-        document.getElementById("imageUrlText");
-    }
+  updateProfile(){
 
-    updatePassword() {
+  }
 
-    }
+  updatePassword(){
+    
+  }
 }
