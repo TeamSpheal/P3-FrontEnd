@@ -8,7 +8,6 @@ import { Router } from '@angular/router';
     styleUrls: ['./user-settings.component.css']
 })
 export class UserSettingsComponent implements OnInit {
-
     profileImg: HTMLImageElement;
     imgUrlText: HTMLInputElement;
     usernameText: HTMLInputElement;
