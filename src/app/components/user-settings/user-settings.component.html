@@ -6,7 +6,7 @@
             <input class="textUserSettings" id="imgUrlText" type="text" placeholder="images/spheal.png">
         </div>
         <div class="divUserButton" id="userUpdateImgDiv">
-            <button (click) ="uploadImage()" class="buttonUserSettings" id="userUpdateImgBtn" type="submit">Update</button>
+            <button (click) ="updateImage()" class="buttonUserSettings" id="userUpdateImgBtn" type="submit">Update</button>
         </div>
         <div class="divUserDetails" id="usernameDiv">
             <label class="labelUserSettings" id="usernameLabel" for="usernameText">Username:</label>
@@ -25,7 +25,7 @@
             <input class="textUserSettings" id="lNameText" type="text" placeholder="Mous">
         </div>
         <div class="divUserButton" id="userUpdateInfoDiv">
-            <button class="buttonUserSettings" id="userUpdateInfoBtn" type="submit">Update</button>
+            <button (click) ="updateProfile()" class="buttonUserSettings" id="userUpdateInfoBtn" type="submit">Update</button>
         </div>
         <div class="divUserDetails" id="passwordDiv">
             <div class="divPassword" id="newPWDiv">
@@ -38,7 +38,7 @@
             </div>
         </div>
         <div class="divUserButton" id="userUpdatePWDiv">
-            <button class="buttonUserSettings" id="userUpdatePWBtn" type="submit">Update</button>
+            <button (click) = "updatePassword()" class="buttonUserSettings" id="userUpdatePWBtn" type="submit">Update</button>
         </div>
     </div>
 </div>

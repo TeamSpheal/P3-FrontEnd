@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-settings.component.css']
 })
 export class UserSettingsComponent implements OnInit {
-
+  imageURLInput = "";
+  
   constructor() { }
 
   ngOnInit(): void {
@@ -15,7 +17,17 @@ export class UserSettingsComponent implements OnInit {
 
   // When user clicks the update button, the image URL changes to
   // set their pfp with a new one.
-  uploadImage(){
-    document.getElementById("imageUrlText");
+  updateImage(){
+    this.imageURLInput = (<HTMLInputElement>document.getElementById("imgUrlText")).value;
+    let img = document.getElementById("profileImg") as HTMLImageElement;
+    img.src = this.imageURLInput;
+  }
+
+  updateProfile(){
+
+  }
+
+  updatePassword(){
+    
   }
 }
