@@ -16,7 +16,16 @@
             </div>
         </mat-card-content>
         <mat-card-actions align="end">
-            <button mat-raised-button color="primary" (click)="toggleReplyToPost()">Reply</button>
+
+                <div class="heart-btn" [class.highlight]="isActive" (click)="like()">
+                  <div id="content">
+                    <span id="heart"></span>
+                    <span class="text">Like</span>
+                    <span class="numb">{{likeCount}}</span>
+                  </div>
+                </div>
+           
+                 <button mat-raised-button color="primary" (click)="toggleReplyToPost()">Reply</button>
         </mat-card-actions>
         <form class="form" *ngIf="replyToPost" [formGroup]="commentForm" (ngSubmit)="submitReply($event)">
             <mat-form-field class="full-width" appearance="fill">
@@ -30,3 +39,5 @@
         </form>
     </mat-card>
 </div>
+         
+            
