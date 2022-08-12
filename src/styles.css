@@ -24,18 +24,6 @@
     --caret-color: #D1E0FF;
 }
 
-:root {
-    color-scheme: light;
-    --spheal-color: #4C6CBC;
-    --spheal-font-color: #D1E0FF;
-    --font-color: #424242;
-    --bg-color: #e2e2e2;
-    --secondary-color: #ededed;
-    --input-color: #a6a6a600;
-    --input-font-color: #3F51B5;
-    --caret-color: #4C6CBC;
-}
-
 [data-theme="dark"] {
     color-scheme: dark;
     --spheal-color: #4C6CBC;
