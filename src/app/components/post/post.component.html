@@ -1,15 +1,15 @@
 <div class="post-card">
     <mat-card>
-        <mat-card-header>
-            <div mat-card-avatar class="header-image"></div>
-            <mat-card-title>{{post.author.firstName}} {{post.author.lastName}}</mat-card-title>
-            <mat-card-subtitle>{{post.author.email}}</mat-card-subtitle>
+        <mat-card-header class="post-header">
+            <div mat-card-avatar class="header-image" *ngIf="post.author.profileImg" style="background-image: URL('{{post.author.profileImg}}')"></div>
+            <mat-card-title class="post-author">{{post.author.username}}</mat-card-title>
         </mat-card-header>
         <img mat-card-image *ngIf="post.imageUrl" src="{{ post.imageUrl }}" alt="Post Image">
         <mat-card-content>
-            <p>
+            <p class="post-content">
                 {{post.text}}
             </p>
+            <p>Comments:</p>
             <div *ngFor="let comment of post.comments" class="comment-container">
                 <mat-divider></mat-divider>
                 <app-comment [comment]="comment"></app-comment>
