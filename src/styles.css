@@ -106,22 +106,18 @@ body {
 }
 
 .user-circle {
-  width:10em;
-  height: 10em;
-  border-radius: 7em;
-      
-  border: 1px solid #888080;
-     
-  margin-bottom: 1em;
-
-  background-image: url('./assets/images/favicon.png');
-  background-size: cover;
+    width: 10em;
+    height: 10em;
+    border-radius: 7em;
+    border: 1px solid #888080;
+    margin-bottom: 1em;
+    background-size: cover;
 }
 
 .user-card {
-  width: 10em;
+  width: 10%;
   text-align: center;
-  margin: 1em;
+  margin: 1%;
 }
 
 .sidebyside {
@@ -130,24 +126,34 @@ body {
 }
 
 .post-feed-container {
-  width: 80%;
-  margin-top: 1em;
+    width: 80%;
+    margin-top: 1em;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 
 .full-width {
   width: 100%
 }
 
-.header-image {
-  background-image: url('./assets/images/favicon.png');
-  background-size: cover;
-
-  border: 1px solid #888080;
+.header-image, .nav-user-img {
+    background-size: cover;
+    border: 1px solid #888080;
 }
 
 #post-feed {
-  width: 60%;
+  width: 100%;
   align-content: center;
+}
+
+.post-author {
+    margin-top: 0.6em;
+}
+
+.post-header, .post-content {
+    margin-bottom: 0.3em;
+    border-bottom: solid 0.2em #000000;
+    padding-bottom: 0.3em;
 }
 
 .post-card {
@@ -159,14 +165,32 @@ body {
 }
 
 .comment-container {
-  margin-left: 2em;
+  margin-left: 1em;
 }
 
-.comment-reply {
-  cursor: pointer;
+.comment-author {
   text-decoration: underline;
 }
 
 .spacer {
   flex: 1 1 auto;
+}
+
+#navUsernameDiv, .navLogBtn {
+    float: right;
+    font-size: 20px;
+    margin-top: 10px;
+    vertical-align: middle;
+}
+
+#navProfileDiv {
+    cursor: pointer;
+    float:right;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+}
+
+#navUsernameDiv {
+    margin-right: 10px;
 }
