@@ -25,9 +25,10 @@ export class LoginComponent implements OnInit {
     e.preventDefault()
     this.authService.login(this.loginForm.value.email || "", this.loginForm.value.password || "")
       .subscribe(
-        (response) => {
-          this.authService.currentUser = response
-          this.router.navigate(['post-feed'])
+        (response : any) => {
+            this.authService.currentUser = response
+            sessionStorage.setItem("user", JSON.stringify(response));
+            this.router.navigate(['post-feed'])
         }
       )
   }
