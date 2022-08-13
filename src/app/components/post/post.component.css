@@ -34,8 +34,7 @@
   color: grey;
   font-family: 'Montserrat',sans-serif;
 }
-.numb:before{
-  content: '12';
+.numb{
   font-size: 21px;
   margin-left: 7px;
   font-weight: 600;
