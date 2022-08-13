@@ -23,24 +23,24 @@ export class SearchComponent implements OnInit{
 
     async getUsers() {
         
-        let resp = await fetch('http://localhost:8080/search/' + this.input);
-        if(resp.ok){
-            this.users = await resp.json();
-            console.log(resp);
+        // let resp = await fetch('http://localhost:8080/search/' + this.input);
+        // if(resp.ok){
+        //     this.users = await resp.json();
+        //     console.log(resp);
 
-            angular.forEach(this.users, function (value, key) {
-                $scope.names.push(value.name);
-            });
-
-
+        //     angular.forEach(this.users, function (value, key) {
+        //         $scope.names.push(value.name);
+        //     });
 
 
 
-            this.first = this.users[0].firstName;
-            this.last = this.users[0].lastName;
-            console.log(this.users);
-            console.log(this.last);
-        }
+
+
+        //     this.first = this.users[0].firstName;
+        //     this.last = this.users[0].lastName;
+        //     console.log(this.users);
+        //     console.log(this.last);
+        // }
     }
 }
 
