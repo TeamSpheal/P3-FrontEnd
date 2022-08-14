@@ -14,11 +14,13 @@ export class UserSettingsService {
 
     // When user clicks the top update button, the image URL changes to
     // set their pfp with a new one.
-    updateImage() {
-        this.imageURLInput = (<HTMLInputElement>document.getElementById("imgUrlText")).value;
-        let img = document.getElementById("profileImg") as HTMLImageElement;
-        img.src = this.imageURLInput;
-        //this.HttpClient.post
+    updateImage(currentUser: User) {
+        let response: string | undefined = undefined;
+        const res = this.http.post(this.userUpdateURL, currentUser, { headers: environment.headers });
+        res.subscribe((data: any) => {
+            response = JSON.stringify(data);
+        });
+        return response;
     }
 
     // When user clicks the middle update button, their current information changes

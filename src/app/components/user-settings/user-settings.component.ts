@@ -53,7 +53,10 @@ export class UserSettingsComponent implements OnInit {
     // When user clicks the update button, the image URL changes to
     // set their pfp with a new one.
     updateImage() {
-        this.profileImg.src = this.imgUrlText.value;
+      let updatedUser: User;  
+      this.profileImg.src = this.imgUrlText.value;
+      updatedUser = this.loggedIn;
+      updatedUser.profileImg = this.imgUrlText.value;
     }
 
     updateProfile() {
