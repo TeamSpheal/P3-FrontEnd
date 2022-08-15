@@ -29,7 +29,7 @@ export class PostComponent implements OnInit {
 
   submitReply = (e: any) => {
     e.preventDefault()
-    let newComment = new Post(0, this.commentForm.value.text || "", "", JSON.parse(<string>sessionStorage.getItem("user")), [])
+    let newComment = new Post(0, this.commentForm.value.text || "", "", JSON.parse(<string>sessionStorage.getItem("user")), [], [])
     this.postService.upsertPost({...this.post, comments: [...this.post.comments, newComment]})
       .subscribe(
         (response : any) => {

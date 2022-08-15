@@ -53,16 +53,33 @@ export class UserSettingsComponent implements OnInit {
 
     // When user clicks the update button, the image URL changes to
     // set their pfp with a new one.
-    updateImage() {
-      let updatedUser: User;  
-      this.profileImg.src = this.imgUrlText.value;
-      updatedUser = this.loggedIn;
-      updatedUser.profileImg = this.imgUrlText.value;
+    async updateImage() {
+        let updatedUser: User;
+        let response: User | undefined;
+        updatedUser = this.loggedIn;
+        updatedUser.profileImg = this.imgUrlText.value;
+
+        await this.userSettingsService.updateProfile(updatedUser).subscribe((data: any) => {
+            response = JSON.parse(JSON.stringify(data));
+
+            if (response != undefined) {
+                this.loggedIn.profileImg = response.profileImg;
+                this.displayInfo(this.loggedIn);
+                sessionStorage.setItem("user", JSON.stringify(this.loggedIn));
+                alert(
+                    "Your profile image was updated successfully"
+                );
+            } else {
+                alert(
+                    "The server failed to update your profile image"
+                );
+            }
+        });
+
     }
 
     async updateProfile() {
         let updatedUser: User;
-        let respObj: User;
         let newEmail: string = this.emailText.value;
         let newUN: string = this.usernameText.value;
         let newFN: string = this.fNameText.value;
@@ -87,6 +104,9 @@ export class UserSettingsComponent implements OnInit {
                         this.loggedIn.lastName = response.lastName;
                         this.displayInfo(this.loggedIn);
                         sessionStorage.setItem("user", JSON.stringify(this.loggedIn));
+                        alert(
+                            "Your information was updated successfully"
+                        );
                     } else {
                         alert(
                             "The server failed to update your profile"
@@ -114,7 +134,7 @@ export class UserSettingsComponent implements OnInit {
         //Validate passwords
         if (PWregex.test(pass1)) {//Password is valid
             if (pass1 == pass2) {//Passwords match
-                await this.userSettingsService.updatePassword(pass1, this.loggedIn).subscribe((data : any) => {
+                await this.userSettingsService.updatePassword(pass1, this.loggedIn).subscribe((data: any) => {
                     response = JSON.stringify(data);
                     if (response != undefined) {
                         alert(
@@ -141,7 +161,7 @@ export class UserSettingsComponent implements OnInit {
         this.confirmPWText.value = "";
     }
 
-    redirect() : EventListener {
+    redirect(): EventListener {
         return (event) => {
             this.router.navigate(["post-feed"]);
         }
