@@ -17,6 +17,7 @@ import { UserInitialsPipe } from './pipes/user-initials.pipe';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SearchComponent } from './components/user-search/user-search.component';
 import { UserSettingsComponent } from './components/user-settings/user-settings.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { UserSettingsComponent } from './components/user-settings/user-settings.
     UserInitialsPipe,
     SearchComponent,
     UserSettingsComponent,
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule,
