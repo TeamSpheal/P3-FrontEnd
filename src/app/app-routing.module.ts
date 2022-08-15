@@ -5,6 +5,7 @@ import { PostFeedPageComponent } from './components/post-feed-page/post-feed-pag
 import { RegisterComponent } from './components/register/register.component';
 import { SearchComponent } from './components/user-search/user-search.component';
 import { UserSettingsComponent } from './components/user-settings/user-settings.component'
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 const routes: Routes = [
   //{ path: "", redirectTo: "/login", pathMatch: "full" },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: "post-feed", component: PostFeedPageComponent},
   { path: "search", component: SearchComponent},
   { path: "post-feed", component: PostFeedPageComponent },
+  { path: "user-profile", component: UserProfileComponent},
   { path: "user-settings", component: UserSettingsComponent },
 ];
 
