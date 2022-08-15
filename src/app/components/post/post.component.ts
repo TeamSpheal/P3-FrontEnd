@@ -33,6 +33,7 @@ export class PostComponent implements OnInit {
   replyToPost: boolean = false
   @Input() likeCount: number;
   @Input() isActive: boolean;
+  @Input() isNotActive: boolean = false;
 
   constructor(private postService: PostService, private authService: AuthService) {
    }

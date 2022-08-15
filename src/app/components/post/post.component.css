@@ -24,7 +24,7 @@
   height: 30px;
   width: 90px;
   top: 49%;
-  left: 15%;
+  left: 16%;
   bottom: 20%;
   transform: translate(-50%,-50%);
 }
@@ -58,19 +58,7 @@
   100%{
     background-position: right;
   }
-}  
-
-
-
-
-
-
-
-
-
-
-
-
+} 
 
 
 #heart {
@@ -107,7 +95,7 @@
 #heartone{
   position:absolute;
   left:25px;
-  margin-top: -13px;
+  margin-top: -10px;
 }
 #hearttwo{
   position:absolute;
