@@ -15,7 +15,7 @@
     />
     <mat-card-content>
       <p>
-        {{ post.text }}
+        {{ post.text }} 
       </p>
       <div *ngFor="let comment of post.comments" class="comment-container">
         <mat-divider></mat-divider>
@@ -27,7 +27,7 @@
         Reply
       </button>
       <!-- added by follower team -->
-      <app-follow></app-follow>
+      <app-follow [authorId]="post.author.id"></app-follow>
     </mat-card-actions>
     <form
       class="form"
@@ -41,12 +41,11 @@
       </mat-form-field>
       <div align="end">
         <!-- follow component-Team follower -->
-        
+
         <button mat-raised-button color="warn" (click)="toggleReplyToPost()">
           Cancel
         </button>
         <button mat-raised-button color="primary" type="submit">Post</button>
-        
       </div>
     </form>
   </mat-card>

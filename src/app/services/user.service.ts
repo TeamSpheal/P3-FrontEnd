@@ -11,9 +11,12 @@ export class UserService {
   userUpadatedUrl: string; 
 
   constructor(private http: HttpClient) { }
+
+
   addFollower(followedId: number, followerId:number): Observable<any> {
-  this.userUpadatedUrl = `${this.userUrl}/${followedId}/follower/${followerId}`;
-  return this.http.post(`${this.userUpadatedUrl}`, {headers: environment.headers, withCredentials: environment.withCredentials})
+    this.userUpadatedUrl = `${this.userUrl}/${followedId}/follower/${followerId}`;
+    return this.http.post(`${this.userUpadatedUrl}`, null,
+      { headers: environment.headers, withCredentials: environment.withCredentials });
 }
 
 }
