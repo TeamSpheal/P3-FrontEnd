@@ -15,26 +15,19 @@ export class UserSettingsService {
 
     // When user clicks the top update button, the image URL changes to
     // set their pfp with a new one.
-    updateImage(currentUser: User) {
-        let response: string | undefined = undefined;
-        const res = this.http.post(this.userUpdateURL, currentUser, { headers: environment.headers });
-        res.subscribe((data: any) => {
-            response = JSON.stringify(data);
-        });
-        return response;
+    updateImage(currentUser: User): Observable<any> {
+        return this.http.post(this.userUpdateURL + "/profile", currentUser, { headers: environment.headers });
     }
 
     // When user clicks the middle update button, their current information changes
     // to new information.
     updateProfile(updatedUser: User): Observable<any> {
-        let response: string | undefined = undefined;
         return this.http.post(this.userUpdateURL + "/profile", JSON.stringify(updatedUser), { headers: environment.headers });
     }
 
     // When user clicks the bottom update button, their current password changes to
     // new password through authentication and validation.
     updatePassword(newPW: string, currentUser: User): Observable<any> {
-        let response: string | undefined = undefined;
         const payload = {
             id: currentUser.id,
             firstName: currentUser.firstName,
