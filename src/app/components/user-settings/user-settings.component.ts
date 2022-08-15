@@ -10,6 +10,8 @@ import { UserSettingsService } from '../../services/user-settings.service';
     styleUrls: ['./user-settings.component.css']
 })
 export class UserSettingsComponent implements OnInit {
+    logoutBtn: HTMLButtonElement | null;
+    userSettingsDiv: HTMLDivElement;
     profileImg: HTMLImageElement;
     imgUrlText: HTMLInputElement;
     usernameText: HTMLInputElement;
@@ -23,6 +25,7 @@ export class UserSettingsComponent implements OnInit {
     constructor(private userSettingsService: UserSettingsService, private router: Router) { }
 
     ngOnInit(): void {
+        this.logoutBtn = <HTMLButtonElement>document.getElementById("logoutBtn");
         this.profileImg = <HTMLImageElement>document.getElementById("profileImg");
         this.imgUrlText = <HTMLInputElement>document.getElementById("imgUrlText");
         this.usernameText = <HTMLInputElement>document.getElementById("usernameText");
@@ -31,7 +34,10 @@ export class UserSettingsComponent implements OnInit {
         this.lNameText = <HTMLInputElement>document.getElementById("lNameText");
         this.newPWText = <HTMLInputElement>document.getElementById("newPWText");
         this.confirmPWText = <HTMLInputElement>document.getElementById("confirmPWText");
-        this.loggedIn = JSON.parse(<string>sessionStorage.getItem("user"));
+
+        this.logoutBtn?.addEventListener("click", this.redirect()); this.loggedIn = JSON.parse(<string>sessionStorage.getItem("user"));
+
+        console.log(sessionStorage.getItem("user"))
 
         if (this.loggedIn == undefined) {
             this.profileImg.src = "https://th.bing.com/th/id/OIP.61ajO7xnq1UZK2GVzHymEQAAAA?w=145&h=150&c=7&r=0&o=5&pid=1.7";
@@ -40,39 +46,50 @@ export class UserSettingsComponent implements OnInit {
             this.emailText.value = "";
             this.fNameText.value = "";
             this.lNameText.value = "";
-            this.router.navigate(["post-feed"])
         } else {
-            this.profileImg.src = this.loggedIn.profileImg;
-            this.imgUrlText.value = this.loggedIn.profileImg;
-            this.usernameText.value = this.loggedIn.username
-            this.emailText.value = this.loggedIn.email;
-            this.fNameText.value = this.loggedIn.firstName;
-            this.lNameText.value = this.loggedIn.lastName;
+            this.displayInfo(this.loggedIn)
         }
     }
+
     // When user clicks the update button, the image URL changes to
     // set their pfp with a new one.
     updateImage() {
         this.profileImg.src = this.imgUrlText.value;
     }
 
-    updateProfile() {
+    async updateProfile() {
         let updatedUser: User;
+        let respObj: User;
         let newEmail: string = this.emailText.value;
         let newUN: string = this.usernameText.value;
         let newFN: string = this.fNameText.value;
         let newLN: string = this.lNameText.value;
         let UNregex = /^[a-zA-Z0-9_\-]+$/;
         let EMregex = /^[a-z0-9_\-]{1,63}[@][a-z]{1,30}[.][a-z]{2,5}$/i
-        let response: string| undefined = undefined;
+        let response: User | undefined;
 
         //Validate Input
         //Validate username
         if (UNregex.test(newUN)) {//Username is valid
             //Validate email
             if (EMregex.test(newEmail)) {//Email is valid
-                updatedUser = new User(this.loggedIn.id, newEmail, newFN, newLN, newUN, this.loggedIn.profileImg);
-                response = this.userSettingsService.updateProfile(updatedUser);
+                updatedUser = new User(this.loggedIn.id, newEmail, newFN, newLN, newUN, this.loggedIn.profileImg, this.loggedIn.followers, this.loggedIn.followings);
+                await this.userSettingsService.updateProfile(updatedUser).subscribe((data: any) => {
+                    response = JSON.parse(data);
+
+                    if (response != undefined) {
+                        this.loggedIn.email = response.email;
+                        this.loggedIn.username = response.username;
+                        this.loggedIn.firstName = response.firstName;
+                        this.loggedIn.lastName = response.lastName;
+                        this.displayInfo(this.loggedIn);
+                        sessionStorage.setItem("user", JSON.stringify(this.loggedIn));
+                    } else {
+                        alert(
+                            "The server failed to update your profile"
+                        );
+                    }
+                });
             } else {//Email is invalid
                 alert(
                     "The email you entered is invalid. Please try again"
@@ -83,31 +100,29 @@ export class UserSettingsComponent implements OnInit {
                 "The username you entered is invalid. Please try again"
             );
         }
-
-        //Update loggedIn object if necessary
-        if (response != undefined) {
-            this.loggedIn.username = newUN;
-            this.loggedIn.email = newEmail;
-            this.loggedIn.firstName = newFN;
-            this.loggedIn.lastName = newLN;
-            sessionStorage.setItem("user", JSON.stringify(this.loggedIn));
-        } else {
-            alert(
-                "The server failed to update your account"
-            );
-        }
     }
 
-    updatePassword() {
+    async updatePassword() {
         let pass1 = this.newPWText.value;
         let pass2 = this.confirmPWText.value;
         let PWregex = /^[0-9a-zA-Z\-\.]{4,100}$/
-        let response: string | undefined = undefined;
+        let response: string | undefined;
 
         //Validate passwords
         if (PWregex.test(pass1)) {//Password is valid
             if (pass1 == pass2) {//Passwords match
-                response = this.userSettingsService.updatePassword(pass1, this.loggedIn);
+                await this.userSettingsService.updatePassword(pass1, this.loggedIn).subscribe((data : any) => {
+                    response = JSON.stringify(data);
+                    if (response != undefined) {
+                        alert(
+                            "Your password was updated successfully"
+                        );
+                    } else {
+                        alert(
+                            "The server failed to update your password"
+                        );
+                    }
+                });
             } else {//Passwords do not match
                 alert(
                     "Passwords must match. Please try again"
@@ -119,11 +134,24 @@ export class UserSettingsComponent implements OnInit {
             );
         }
 
-        //Alert user for failed requests
-        if (response == undefined) {
-            alert(
-                "The server failed to update your account"
-            );
+        this.newPWText.value = "";
+        this.confirmPWText.value = "";
+    }
+
+    redirect() : EventListener {
+        return (event) => {
+            this.router.navigate(["post-feed"]);
         }
+    }
+
+    displayInfo(displayUser: User) {
+        this.profileImg.src = displayUser.profileImg;
+        this.imgUrlText.value = displayUser.profileImg;
+        this.usernameText.value = displayUser.username;
+        this.emailText.value = displayUser.email;
+        this.fNameText.value = displayUser.firstName;
+        this.lNameText.value = displayUser.lastName;
+        this.newPWText.value = "";
+        this.confirmPWText.value = "";
     }
 }
