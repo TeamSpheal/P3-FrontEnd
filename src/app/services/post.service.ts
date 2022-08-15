@@ -9,9 +9,9 @@ import Post from '../models/Post';
 })
 export class PostService {
 
-  postUrl: string = `${environment.baseUrl}/post`
-  postLikeUrl: string = `${environment.baseUrl}/post/like`
-  postUnlikeUrl: string = `${environment.baseUrl}/post/unlike`
+  postUrl = `${environment.baseUrl}/post`
+  postLikeUrl = `${environment.baseUrl}/post/like`
+  postUnlikeUrl = `${environment.baseUrl}/post/unlike`
 
 
   constructor(private http: HttpClient) { }
