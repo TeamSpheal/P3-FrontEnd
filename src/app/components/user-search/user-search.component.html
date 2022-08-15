@@ -4,8 +4,15 @@
     <button type="button" (click)="getUsers()">Search</button>
 </div>
 <div ng-controller="info">
-    <mat-card class="userInfo" ng-repeat="user in users">
-        <mat-card-title>{{first}} {{last}}</mat-card-title>
-
-    </mat-card>
+    <ul class="Users">
+        <li *ngFor="let user of users">
+            <mat-card>
+                <mat-card-title>{{user.firstName}} {{user.lastName}}</mat-card-title>
+                <mat-card-actions align="end">
+                    <button [routerLink]="['/user-settings']" mat-button>Go to Profile</button>
+                </mat-card-actions>
+            </mat-card>
+            <br>
+        </li>
+    </ul>
 </div>
