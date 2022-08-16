@@ -68,32 +68,39 @@ export class UserSettingsComponent implements OnInit {
      */
     async updateImage() {
         /*Local Variables*/
-        let updatedUser: User;
+        let updatedUser: User = this.loggedIn;
+        let newImgURL: string = this.imgUrlText.value;
         let response: User | undefined;
 
-        /*Setup User Object*/
-        updatedUser = this.loggedIn;
-        updatedUser.profileImg = this.imgUrlText.value;
+    /*Validate Data*/
+        if (newImgURL.length <= 255) {//Image URL is 255 characters or less
+            /*Setup User Object*/
+            updatedUser.profileImg = newImgURL;
 
-        /*Send request*/
-        await this.userSettingsService.updateProfile(updatedUser).subscribe((data: any) => {
-            //Parse data
-            response = JSON.parse(JSON.stringify(data));
+            /*Send request*/
+            await this.userSettingsService.updateProfile(updatedUser).subscribe((data: any) => {
+                //Parse data
+                response = JSON.parse(JSON.stringify(data));
 
-            //Process data
-            if (response != undefined) { //Data is defined. The return from the response should contain a user object
-                this.loggedIn.profileImg = response.profileImg;
-                this.displayInfo(this.loggedIn);
-                sessionStorage.setItem("user", JSON.stringify(this.loggedIn));
-                alert(
-                    "Your profile image was updated successfully"
-                );
-            } else { //Data is undefined, meaning the request failed
-                alert(
-                    "The server failed to update your profile image"
-                );
-            }
-        });
+                //Process data
+                if (response != undefined) { //Data is defined. The return from the response should contain a user object
+                    this.loggedIn.profileImg = response.profileImg;
+                    this.displayInfo(this.loggedIn);
+                    sessionStorage.setItem("user", JSON.stringify(this.loggedIn));
+                    alert(
+                        "Your profile image was updated successfully"
+                    );
+                } else { //Data is undefined, meaning the request failed
+                    alert(
+                        "The server failed to update your profile image"
+                    );
+                }
+            });
+        } else {//Image URL has more than 255 characters
+            alert(
+                "Please limit your image url to 255 characters or less"
+            );
+        }
 
     }
 
