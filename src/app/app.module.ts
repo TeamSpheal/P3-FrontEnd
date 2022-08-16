@@ -15,7 +15,6 @@ import { CommentComponent } from './components/comment/comment.component';
 import { UserCardComponent } from './components/user-card/user-card.component';
 import { UserInitialsPipe } from './pipes/user-initials.pipe';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { SearchComponent } from './components/user-search/user-search.component';
 import { UserSettingsComponent } from './components/user-settings/user-settings.component';
 
 @NgModule({
@@ -29,7 +28,6 @@ import { UserSettingsComponent } from './components/user-settings/user-settings.
     UserCardComponent,
     NavbarComponent,
     UserInitialsPipe,
-    SearchComponent,
     UserSettingsComponent,
   ],
   imports: [
