@@ -25,7 +25,6 @@ export class SearchComponent implements OnInit{
         if(resp.ok){
             this.users = await resp.json();
             console.log(this.users);
-
         }
     }
 }
