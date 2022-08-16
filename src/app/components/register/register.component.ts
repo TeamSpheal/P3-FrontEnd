@@ -22,6 +22,7 @@ export class RegisterComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
+    // Init to be filled in later
   }
   
   onSubmit(e: any): void {
