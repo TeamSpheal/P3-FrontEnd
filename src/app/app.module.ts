@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { AngularMaterialModule } from './modules/angular-material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { PostFeedPageComponent } from './components/post-feed-page/post-feed-page.component';
@@ -42,6 +43,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     BrowserAnimationsModule,
     AngularMaterialModule,
     FormsModule,
+    FlexLayoutModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
