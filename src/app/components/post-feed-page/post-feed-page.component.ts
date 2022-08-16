@@ -19,7 +19,7 @@ export class PostFeedPageComponent implements OnInit {
   })
 
   posts: Post[] = [];
-  createPost:boolean = false;
+  createPost = false;
 
   constructor(private postService: PostService, private authService: AuthService) { }
 

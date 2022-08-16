@@ -8,14 +8,10 @@ import { Component, OnInit } from "@angular/core";
 })
 
 export class SearchComponent implements OnInit{
-    input: string = '';
+    input = '';
     users: any;
-    first: string = '';
-    last: string = '';
-
-    constructor() {}
-
-
+    first = '';
+    last = '';
 
     ngOnInit(): void {
         this.getUsers();

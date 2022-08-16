@@ -9,7 +9,7 @@ import User from '../models/User';
 })
 export class AuthService {
 
-  authUrl: string = `${environment.baseUrl}/auth`;
+  authUrl = `${environment.baseUrl}/auth`;
   currentUser: User
 
   constructor(private http: HttpClient) { }
