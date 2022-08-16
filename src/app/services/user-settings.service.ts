@@ -13,21 +13,28 @@ export class UserSettingsService {
 
     constructor(private http: HttpClient) { }
 
-    // When user clicks the top update button, the image URL changes to
-    // set their pfp with a new one.
+    /**Updates the user's stored image based on the given user object
+     * @param currentUser
+     */
     updateImage(currentUser: User): Observable<any> {
+        /*Return request*/
         return this.http.post(this.userUpdateURL + "/profile", currentUser, { headers: environment.headers });
     }
 
-    // When user clicks the middle update button, their current information changes
-    // to new information.
+    /**Updates the user's personal details based on the given user object
+     * @param updatedUser
+     */
     updateProfile(updatedUser: User): Observable<any> {
+        /*Return request*/
         return this.http.post(this.userUpdateURL + "/profile", JSON.stringify(updatedUser), { headers: environment.headers });
     }
 
-    // When user clicks the bottom update button, their current password changes to
-    // new password through authentication and validation.
+    /**Updates the user's password based on the given password and user object 
+     * @param newPW
+     * @param currentUser
+     */
     updatePassword(newPW: string, currentUser: User): Observable<any> {
+        /*Construct body of request*/
         const payload = {
             id: currentUser.id,
             firstName: currentUser.firstName,
@@ -38,6 +45,7 @@ export class UserSettingsService {
             profileImg: currentUser.profileImg
         };
 
+        /*Return request*/
         return this.http.post(this.userUpdateURL + "/password", JSON.stringify(payload), { headers: environment.headers, withCredentials: environment.withCredentials });
     }
 }
