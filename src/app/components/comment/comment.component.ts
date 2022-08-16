@@ -30,11 +30,7 @@ export class CommentComponent implements OnInit {
 
   submitReply = (e: any) => {
     e.preventDefault()
-<<<<<<< HEAD
-    let newComment = new Post(0, this.commentForm.value.text || "", "", this.authService.currentUser, [], [])
-=======
     const newComment = new Post(0, this.commentForm.value.text || "", "", this.authService.currentUser, [], [])
->>>>>>> 4f47a9f548787317991eff700b6beb54176429ef
     this.postService.upsertPost({...this.inputComment, comments: [...this.inputComment.comments, newComment]})
       .subscribe(
         (response : any) => {
