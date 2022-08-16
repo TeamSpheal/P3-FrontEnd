@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { HttpResponse } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -23,11 +25,13 @@ export class LoginComponent implements OnInit {
   
   onSubmit(e: any): void {
     e.preventDefault()
-    this.authService.login(this.loginForm.value.email || "", this.loginForm.value.password || "")
+      this.authService.login(this.loginForm.value.email || "", this.loginForm.value.password || "")
       .subscribe(
-        (response : any) => {
-            this.authService.currentUser = response
-            sessionStorage.setItem("user", JSON.stringify(response));
+          (response: HttpResponse<any>) => {
+            this.authService.currentUser = response.body
+              sessionStorage.setItem("user", JSON.stringify(response.body));
+              sessionStorage.setItem("JWT", <string>response.headers.get("Auth"));
+              environment.headers.Auth = <string>sessionStorage.getItem("JWT");
             this.router.navigate(['post-feed'])
         }
       )

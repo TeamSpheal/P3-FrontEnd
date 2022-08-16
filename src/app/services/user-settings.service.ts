@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import User from '../models/User';
+import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -8,36 +9,25 @@ import { environment } from '../../environments/environment';
 })
 export class UserSettingsService {
     imageURLInput: string = "";
-    userUpdateURL: string = `${environment.baseUrl}/user`;
+    userUpdateURL: string = `${environment.baseUrl}/user/update`;
 
     constructor(private http: HttpClient) { }
 
     // When user clicks the top update button, the image URL changes to
     // set their pfp with a new one.
-    updateImage(currentUser: User) {
-        let response: string | undefined = undefined;
-        const res = this.http.post(this.userUpdateURL, currentUser, { headers: environment.headers });
-        res.subscribe((data: any) => {
-            response = JSON.stringify(data);
-        });
-        return response;
+    updateImage(currentUser: User): Observable<any> {
+        return this.http.post(this.userUpdateURL + "/profile", currentUser, { headers: environment.headers });
     }
 
     // When user clicks the middle update button, their current information changes
     // to new information.
-    updateProfile(updatedUser: User): string | undefined {
-        let response: string | undefined = undefined;
-        const res = this.http.post(this.userUpdateURL, updatedUser, { headers: environment.headers });
-        res.subscribe((data: any) => {
-            response = JSON.stringify(data);
-        });
-        return response;
+    updateProfile(updatedUser: User): Observable<any> {
+        return this.http.post(this.userUpdateURL + "/profile", JSON.stringify(updatedUser), { headers: environment.headers });
     }
 
     // When user clicks the bottom update button, their current password changes to
     // new password through authentication and validation.
-    updatePassword(newPW: string, currentUser: User): string | undefined {
-        let response: string | undefined = undefined;
+    updatePassword(newPW: string, currentUser: User): Observable<any> {
         const payload = {
             id: currentUser.id,
             firstName: currentUser.firstName,
@@ -48,10 +38,6 @@ export class UserSettingsService {
             profileImg: currentUser.profileImg
         };
 
-        const res = this.http.post(this.userUpdateURL, payload, { headers: environment.headers });
-        res.subscribe((data: any) => {
-            response = JSON.stringify(data);
-        });
-        return response;
+        return this.http.post(this.userUpdateURL + "/password", JSON.stringify(payload), { headers: environment.headers, withCredentials: environment.withCredentials });
     }
 }
