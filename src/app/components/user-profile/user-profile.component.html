@@ -1,4 +1,22 @@
+<app-navbar></app-navbar>
+
 <div id="profile">
-  <div class="user-circle" id="user-circle"></div>
-  <p id="p-username" style="padding-top: 1em; font-weight: bold;"></p>
+  <div mat-card id="profile-header">
+    <div mat-card-header>
+      <mat-card-avatar class="user-circle" id="user-circle"></mat-card-avatar>
+      <mat-flat-button id="p-username" style="padding: 1em; font-weight: bold;"></mat-flat-button>
+      <div *ngIf="!usersPage">
+        <!-- make a variable that displays either follow or following based on if a user has already followed that person in the ts -->
+        <mat-raised-button id="profile-follow" style="padding: 1em; font-weight: bold;">Follow</mat-raised-button>
+      </div>
+      <div *ngIf="usersPage">
+        <mat-raised-button id="profile-follow" style="padding: 1em; font-weight: bold;">Edit</mat-raised-button>
+        <mat-icon>edit</mat-icon>
+        <!-- link to user settings edit page -->
+      </div>
+    </div>
+  </div>
+  <div id="profile-posts" *ngFor="let post of posts">
+    <!-- display posts only created by the displayed user -->
+  </div>
 </div>
