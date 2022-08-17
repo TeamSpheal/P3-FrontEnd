@@ -17,6 +17,7 @@ export class UserService {
     this.userUpadatedUrl = `${this.userUrl}/${followedId}/follower/${followerId}`;
     return this.http.post(`${this.userUpadatedUrl}`, null,
       { headers: environment.headers, withCredentials: environment.withCredentials });
+    
 }
 
 }
