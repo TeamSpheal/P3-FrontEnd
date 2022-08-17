@@ -1,26 +1,87 @@
 import { Component, OnInit } from '@angular/core';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
+import User from 'src/app/models/User';
 
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+    selector: 'app-navbar',
+    templateUrl: './navbar.component.html',
+    styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent implements OnInit{
+export class NavbarComponent implements OnInit {
 
-  constructor(private authService: AuthService, private router: Router) { }
-  
-  ngOnInit(): void {
-  }
+    checkedStatus: boolean;
+    navUserDiv: HTMLDivElement;
+    navLoginDiv: HTMLDivElement;
+    navUsernameDiv: HTMLDivElement;
+    navProfileDiv: HTMLDivElement;
+    loggedIn: User;
 
-  ngOnDestroy() {
-  }
+    constructor(private authService: AuthService, private router: Router) { }
 
-  logout() {
-    this.authService.logout();
-    this.router.navigate(['login']);
-  }
+    ngOnInit(): void {
+        this.navUserDiv = <HTMLDivElement>document.getElementById("navUserDiv");
+        this.navLoginDiv = <HTMLDivElement>document.getElementById("navLoginDiv");
+        this.navUsernameDiv = <HTMLDivElement>document.getElementById("navUsernameDiv")
+        this.navProfileDiv = <HTMLDivElement>document.getElementById("navProfileDiv");
+        const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+        const isDark = localStorage.getItem('checkbox') ? localStorage.getItem('checkbox') : null;
+
+        if (currentTheme) {
+            document.documentElement.setAttribute('data-theme', currentTheme);
+
+            if (isDark === 'true') {
+                this.checkedStatus = true
+            } else {
+                this.checkedStatus = false;
+            }
+
+        }
+
+        this.loggedIn = JSON.parse(<string>sessionStorage.getItem("user"));
+        console.log(this.loggedIn);
+        if (this.loggedIn == undefined) {
+            this.navUserDiv.hidden = true;
+            this.navLoginDiv.hidden = false;
+        } else {
+            this.navUserDiv.hidden = false;
+            this.navLoginDiv.hidden = true;
+            this.navProfileDiv.style.backgroundImage = "URL('" + this.loggedIn.profileImg + "')";
+            this.navUsernameDiv.innerHTML = this.loggedIn.username;
+        }
+    }
+
+    ngOnDestroy() {
+        this.authService.logout();
+    }
+
+    logout() {
+        this.navUserDiv.hidden = true;
+        this.navLoginDiv.hidden = false;
+        this.navProfileDiv.style.backgroundImage = "";
+        this.navUsernameDiv.innerHTML = "";
+        document.documentElement.setAttribute('data-theme', 'light');
+        this.authService.logout();
+    }
+
+    login() {
+        this.router.navigate(['login']);
+    }
+
+
+    onChange(ob: MatCheckboxChange) {
+
+        if (ob.checked) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            localStorage.setItem('checkbox', 'true');
+            localStorage.setItem('theme', 'dark')
+        } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+            localStorage.setItem('checkbox', 'false');
+            localStorage.setItem('theme', 'light')
+        }
+    }
 
 }

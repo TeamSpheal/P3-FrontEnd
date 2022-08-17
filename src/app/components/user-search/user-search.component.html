@@ -1,0 +1,23 @@
+
+<div>
+    <input [(ngModel)]="input">
+    <button type="button" (click)="getUsers()">Search</button>
+</div>
+<div ng-controller="info">
+    <ul class="Users">
+        <li *ngFor="let user of users">
+            <mat-card>
+
+                <mat-card-header>
+                    <img mat-card-avatar src={{user.profileImg}}>
+                    <mat-card-title>{{user.firstName}} {{user.lastName}}</mat-card-title>
+                </mat-card-header>
+
+                <mat-card-actions align="end">
+                    <button [routerLink]="['/user-settings']" mat-button>Go to Profile</button>
+                </mat-card-actions>
+            </mat-card>
+            <br>
+        </li>
+    </ul>
+</div>
