@@ -2,22 +2,20 @@
 
 :root {
     color-scheme: light;
-    --rev-color: #ef773b;
-    --rev-font-color: #D1E0FF;
-    --rev-secondary: #FCB414;
+    --spheal-color: #4C6CBC;
+    --spheal-font-color: #D1E0FF;
     --font-color: #424242;
     --bg-color: #e2e2e2;
     --secondary-color: #ededed;
-    --input-color: #f9f4f49d;
-    --input-font-color: #424242;
-    --caret-color: #F26925;
+    --input-color: #a6a6a600;
+    --input-font-color: #3F51B5;
+    --caret-color: #4C6CBC;
 }
 
 [data-theme="dark"] {
     color-scheme: dark;
-    --rev-color: #ef773b;
-    --rev-font-color: #D1E0FF;
-    --rev-secondary: #FCB414;
+    --spheal-color: #4C6CBC;
+    --spheal-font-color: #D1E0FF;
     --font-color: #e1e1ff;
     --bg-color: #181818;
     --secondary-color: #282828;
@@ -37,20 +35,6 @@ body {
     min-height: 100vh;
     color: var(--font-color);
     background: var(--bg-color);
-}
-
-.mat-flat-button.mat-primary,
-.mat-raised-button.mat-primary,
-.mat-fab.mat-primary,
-.mat-mini-fab.mat-primary {
-    background-color: var(--rev-color);
-}
-
-.mat-flat-button.mat-warn,
-.mat-raised-button.mat-warn,
-.mat-fab.mat-warn,
-.mat-mini-fab.mat-warn {
-    background-color: var(--rev-secondary);
 }
 
 .mat-form-field-appearance-legacy .mat-form-field-label {
@@ -102,14 +86,6 @@ mat-slide-toggle {
     caret-color: var(--caret-color);
 }
 
-.formPost {
-    width: 50vw;
-    background: var(--secondary-color);
-    padding: 1em;
-    margin: auto;
-    margin-bottom: 2em;
-}
-
 .form {
     margin-bottom: 1em;
     background: var(--secondary-color);
@@ -131,8 +107,8 @@ textarea.mat-input-element {
 }
 
 .spheal {
-    background-color: var(--rev-color);
-    color: var(--rev-font-color);
+    background-color: var(--spheal-color);
+    color: var(--spheal-font-color);
 }
 
 .app-header {
@@ -154,8 +130,9 @@ textarea.mat-input-element {
     color: #ffffff;
 }
 
-mat-divider {
-    background: var(--input-font-color);
+.logout {
+    background: #779eff;
+    margin-left: 2em;
 }
 
 .box {
@@ -172,17 +149,6 @@ mat-divider {
     -ms-transform: scale(1);
     z-index: 5;
     max-width: 330px;
-}
-
-.comment-reply {
-    cursor: pointer;
-    color: var(--rev-secondary);
-    text-decoration: none;
-    margin: 0.3em;
-}
-
-.likeBtn {
-    margin-right: 2em;
 }
 
 .box.back {
@@ -296,30 +262,13 @@ mat-divider {
     border: 1px solid #888080;
 }
 
-.mat-button.mat-primary,
-.mat-icon-button.mat-primary,
-.mat-stroked-button.mat-primary {
-    background-color: var(--rev-secondary);
-    color: var(--rev-color);
-    margin-right: 1.4em;
-}
-
 #post-feed {
-    width: 50vw;
-    margin: auto;
+    width: 100%;
     align-content: center;
 }
 
 .post-author {
     margin-top: 0.6em;
-}
-
-.navLoginBtn {
-    float: right;
-    font-size: 20px;
-    margin-top: unset !important;
-    margin-left: 10px;
-    vertical-align: middle;
 }
 
 .post-header,
@@ -341,6 +290,11 @@ mat-divider {
     margin-left: 2em;
 }
 
+.comment-reply {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
 .comment-author {
     text-decoration: underline;
 }
@@ -354,7 +308,6 @@ mat-divider {
     float: right;
     font-size: 20px;
     margin-top: 10px;
-    margin-left: 10px;
     vertical-align: middle;
 }
 
@@ -368,9 +321,4 @@ mat-divider {
 
 #navUsernameDiv {
     margin-right: 10px;
-}
-
-.mat-badge-accent .mat-badge-content {
-    background: #474C55;
-    color: #fff;
 }
