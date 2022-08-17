@@ -33,10 +33,7 @@ export class PostComponent implements OnInit {
   @Input() likeCount: number;
   @Input() isActive: boolean;
 
-  constructor(private postService: PostService, private authService: AuthService) {
-   }
-
-   
+  constructor(private postService: PostService, private authService: AuthService) {}
 
   ngOnInit(): void {
     // Init to be filled in later
@@ -65,9 +62,6 @@ export class PostComponent implements OnInit {
     }
     
   }
-
-
-
 
   toggleReplyToPost = () => {
     this.replyToPost = !this.replyToPost
