@@ -1,10 +1,6 @@
 .mat-button.mat-primary,
 .mat-icon-button.mat-primary,
 .mat-stroked-button.mat-primary {
-    margin-right: 1.2em;
-}
-
-.mat-card>.mat-card-actions:last-child {
-    margin-bottom: unset !important;
-    padding-bottom: 0;
+    color: #ef773b;
+    background: transparent;
 }

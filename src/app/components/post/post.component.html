@@ -17,7 +17,7 @@
         </mat-card-content>
         <mat-card-actions align="end">
             <button id="hbutton" mat-raised-button color="primary" (click)="toggleReplyToPost()">Reply</button>
-            <button class="likeBtn" mat-icon-button color="primary" (click)="like()" matBadge="{{likeCount}}" matBadgePosition="after" matBadgeColor="accent">
+            <button id="likeBtn-{{post.id}}" class="btnIcon" mat-icon-button color="primary" (click)="like()" matBadge="{{likeCount}}" matBadgePosition="after" matBadgeColor="accent">
                 <mat-icon>thumb_up</mat-icon>
           </button>
         </mat-card-actions>

@@ -16,7 +16,7 @@ import { PostService } from 'src/app/services/post.service';
   styleUrls: ['./post.component.css']
 })
 export class PostComponent implements OnInit {
-
+  
   @ViewChild("content")
   divContent: ElementRef;
 
@@ -33,6 +33,7 @@ export class PostComponent implements OnInit {
   @Input('post') post: Post
   users: User[];
   replyToPost = false
+  
   @Input() likeCount: number;
   @Input() isActive: boolean;
   @Input() isNotActive: boolean = false;
@@ -41,10 +42,12 @@ export class PostComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
     this.isLiked();
   }
   
   isLiked(){
+    
     this.postService.getPost(this.post)?.subscribe(
       ( resp : { users: string | any[]; }) => {
         this.likeCount = resp.users.length;
@@ -52,10 +55,13 @@ export class PostComponent implements OnInit {
 
           if (likedUsers.id == this.authService.currentUser.id) {
             this.isActive = true;
+            const button = document.getElementById('likeBtn-' + this.post.id);
+            button?.style.setProperty('color','#ef773b');
+            button?.style.setProperty('background','#FCB414');
+            
           }
         }
         if(this.isActive) {
-          let button = document.getElementById('hbutton');
 
           // this.heartContent();
         } 
@@ -65,15 +71,14 @@ export class PostComponent implements OnInit {
   }
 
   like(){  
-
-    // const button = document.getElementById('hbutton');
+    const button = document.getElementById('likeBtn-' + this.post.id);
     if(!this.isActive) {
       this.postService.likePost(this.authService.currentUser.id,this.post.id)?.subscribe(
         (      resp: { users: string | any[]; }) => {
           this.likeCount = resp.users.length;
           this.isActive = true;
-
-          // button?.style.setProperty('border-color','#F9B9C4');
+          button?.style.setProperty('color','#ef773b');
+          button?.style.setProperty('background','#FCB414');
           // button?.style.setProperty('background','#FBD0D8');
         }
       )
@@ -82,7 +87,8 @@ export class PostComponent implements OnInit {
         (      resp: { users: string | any[]; }) => {
           this.likeCount = resp.users.length;
           this.isActive = false;
-          
+          button?.style.setProperty('color','#ef773b');
+          button?.style.setProperty('background','transparent');
           // button?.style.setProperty('border-color','#EAE2E1');
           // button?.style.setProperty('background','#ededed');
         }
