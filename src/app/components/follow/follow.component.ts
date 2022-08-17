@@ -36,8 +36,7 @@ export class FollowComponent implements OnInit {
 
   changeBtn() {
     this.text = "unfollow"; 
-    // let btn: HTMLButtonElement = document.getElementById("follow") as HTMLButtonElement; 
-    let btn: HTMLButtonElement = 
+    let btn: HTMLButtonElement = document.getElementById("follow") as HTMLButtonElement; 
     btn.innerText = this.text; 
     btn.style.backgroundColor = "gray"; 
   }
