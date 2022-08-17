@@ -1,6 +1,6 @@
 <p>
     <mat-toolbar class="spheal" class="spheal">
-        <img src="assets/images/4Asset 5@2x.png" width="56px">
+        <img src="assets/images/4Asset 5@2x.png" width="56px" alt="Revasphere logo">
         <span [routerLink]="['/post-feed']">Revature Social Media</span>
         <button [routerLink]="['/search']">search users</button>
         <span class="spacer"></span>
@@ -13,7 +13,7 @@
 
         <div id="navUserDiv">
             <div class="navLogBtn">
-                <button color="primary" mat-button (click)="logout();">Logout</button>
+              <button id="logoutBtn" color="primary" mat-button (click)="logout();">Logout</button>
             </div>
             <div class="nav-user-img" id="navProfileDiv" [routerLink]="['/user-settings']"></div>
             <div id="navUsernameDiv"></div>
