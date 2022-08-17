@@ -31,7 +31,7 @@ export class UserProfileComponent implements OnInit {
   ngOnInit(): void {
 
     this.user = JSON.parse(<string>sessionStorage.getItem("user"));
-    this.usersPageId = JSON.parse(<string>sessionStorage.getItem("usersPageId"));
+    //this.usersPageId = JSON.parse(<string>sessionStorage.getItem("usersPageId"));
     console.log(this.user);
     this.profileImg = <HTMLDivElement>document.getElementById("user-circle");
     this.usernameDisplay = <HTMLParagraphElement>document.getElementById("p-username");
