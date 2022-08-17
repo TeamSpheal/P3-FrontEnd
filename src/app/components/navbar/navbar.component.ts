@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatCheckboxChange } from '@angular/material/checkbox';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
@@ -12,6 +12,7 @@ import User from 'src/app/models/User';
 })
 export class NavbarComponent implements OnInit {
 
+    lightStatus: string;
     checkedStatus: boolean;
     navUserDiv: HTMLDivElement;
     navLoginDiv: HTMLDivElement;
@@ -27,17 +28,18 @@ export class NavbarComponent implements OnInit {
         this.navUsernameDiv = <HTMLDivElement>document.getElementById("navUsernameDiv")
         this.navProfileDiv = <HTMLDivElement>document.getElementById("navProfileDiv");
         const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
-        const isDark = localStorage.getItem('checkbox') ? localStorage.getItem('checkbox') : null;
 
         if (currentTheme) {
             document.documentElement.setAttribute('data-theme', currentTheme);
-
-            if (isDark === 'true') {
-                this.checkedStatus = true
-            } else {
-                this.checkedStatus = false;
+    
+            if (currentTheme === 'dark') {
+              this.checkedStatus = true
+              this.lightStatus = "Dark"
+            }else{
+              this.checkedStatus = false;
+              this.lightStatus = "Light"
             }
-
+            
         }
 
         this.loggedIn = JSON.parse(<string>sessionStorage.getItem("user"));
@@ -58,7 +60,6 @@ export class NavbarComponent implements OnInit {
         this.navLoginDiv.hidden = false;
         this.navProfileDiv.style.backgroundImage = "";
         this.navUsernameDiv.innerHTML = "";
-        document.documentElement.setAttribute('data-theme', 'light');
         this.authService.logout();
     }
 
@@ -67,16 +68,15 @@ export class NavbarComponent implements OnInit {
     }
 
 
-    onChange(ob: MatCheckboxChange) {
-
-        if (ob.checked) {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            localStorage.setItem('checkbox', 'true');
-            localStorage.setItem('theme', 'dark')
-        } else {
-            document.documentElement.setAttribute('data-theme', 'light');
-            localStorage.setItem('checkbox', 'false');
-            localStorage.setItem('theme', 'light')
+    onChange(ob: MatSlideToggleChange) {
+        if(ob.checked){
+          this.lightStatus = "Dark"
+          document.documentElement.setAttribute('data-theme', 'dark');
+          localStorage.setItem('theme', 'dark')
+        }else{
+          this.lightStatus = "Light"
+          document.documentElement.setAttribute('data-theme', 'light');
+          localStorage.setItem('theme', 'light')
         }
-    }
+    } 
 }

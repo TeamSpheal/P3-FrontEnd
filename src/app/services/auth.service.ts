@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -9,20 +9,14 @@ import User from '../models/User';
 })
 export class AuthService {
 
-  authUrl: string = `${environment.baseUrl}/auth`;
-  currentUser: User
+  authUrl = `${environment.baseUrl}/auth`;
+  currentUser: User;
 
   constructor(private http: HttpClient) { }
 
-  login(email: string, password: string): Observable<any> {
+  login(email: string, password: string): Observable<HttpResponse<User>> {
     const payload = {email:email, password:password};
-    const res = this.http.post<any>(`${this.authUrl}/login`, payload, {headers: environment.headers, withCredentials: environment.withCredentials});
-    res.subscribe((data : any) => {
-        this.currentUser = data
-        console.log(data);
-        sessionStorage.setItem("user", JSON.stringify(this.currentUser));
-    })
-    return res;
+    return this.http.post<User>(`${this.authUrl}/login`, payload, {observe: 'response', headers: environment.headers, withCredentials: environment.withCredentials});
   }
 
   logout(): void{
