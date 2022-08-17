@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class UserService {
+  
   userUrl: string = `${environment.baseUrl}/user`
   userUpadatedUrl: string; 
 
@@ -17,8 +18,13 @@ export class UserService {
     this.userUpadatedUrl = `${this.userUrl}/${followedId}/follower/${followerId}`;
     return this.http.post(`${this.userUpadatedUrl}`, null,
       { headers: environment.headers, withCredentials: environment.withCredentials });
-    
-}
+  }
+
+  removeFollower(followedId: number, followerId: number): Observable<any> {
+    this.userUpadatedUrl = `${this.userUrl}/${followedId}/unfollow/${followerId}`; 
+    return this.http.delete(this.userUpadatedUrl, { headers: environment.headers, withCredentials: environment.withCredentials });
+
+  }
 
 }
 
