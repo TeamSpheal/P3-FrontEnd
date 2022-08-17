@@ -1,4 +1,3 @@
-import { environment } from './../../../environments/environment';
 import { Component, OnInit } from '@angular/core';
 import User from '../../models/User';
 import { Router } from '@angular/router';
