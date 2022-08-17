@@ -79,4 +79,4 @@ export class NavbarComponent implements OnInit {
           localStorage.setItem('theme', 'light')
         }
     }
-}
+} 

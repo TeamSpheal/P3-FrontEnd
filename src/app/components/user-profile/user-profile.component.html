@@ -8,15 +8,15 @@
     <mat-card-header>
       <img mat-card-avatar class="user-circle" id="user-circle" />
       <button mat-flat-button id="p-username" style="padding: 1em; font-weight: bold;"></button>
-      <div *ngIf="!usersPage">
-        <!-- make a variable that displays either follow or following based on if a user has already followed that person in the ts -->
+      <!-- <div *ngIf="!usersPage">
+         make a variable that displays either follow or following based on if a user has already followed that person in the ts
         <button mat-raised-button id="profile-follow">Follow</button>
       </div>
       <div *ngIf="usersPage">
         <button mat-raised-button id="profile-follow" (click)="openPopover()">Edit</button>
         <mat-icon>edit</mat-icon>
-        <!-- link to user settings edit page -->
-      </div>
+         link to user settings edit page
+      </div> -->
     </mat-card-header>
   </mat-card>
   <div id="profile-posts" *ngFor="let post of posts">
