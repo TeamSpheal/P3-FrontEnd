@@ -107,7 +107,7 @@ export class UserSettingsComponent implements OnInit {
      */
     async updateProfile() {
         /*Local Variables*/
-        const updatedUser: User;
+        let updatedUser: User;
         const newEmail: string = this.emailText.value;
         const newUN: string = this.usernameText.value;
         const newFN: string = this.fNameText.value;
