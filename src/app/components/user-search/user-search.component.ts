@@ -20,12 +20,24 @@ export class SearchComponent implements OnInit{
     }
 
     async getUsers() {
-        
-        let resp = await fetch('http://localhost:8080/search/' + this.input);
-        if(resp.ok){
-            this.users = await resp.json();
-            console.log(this.users);
+        const input = this.input.split(" ");
 
+     
+    if(this.input){
+
+        let upperCasedNames = input.map((name) => { 
+            return name[0].toUpperCase() + name.substring(1); 
+        }).join(" ").replace(/ /g,"_");
+   
+       console.log(upperCasedNames)
+       console.log('FETCH: http://localhost:8080/search/' + upperCasedNames );
+
+        let resp = await fetch('http://localhost:8080/search/' + upperCasedNames);
+            if(resp.ok){
+            this.users = await resp.json();
+        
+            console.log(this.users);
         }
     }
+}
 }
