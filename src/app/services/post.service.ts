@@ -9,9 +9,10 @@ import Post from '../models/Post';
 })
 export class PostService {
 
-  postUrl: string = `${environment.baseUrl}/post`
-  postLikeUrl: string = `${environment.baseUrl}/post/like`
-  postUnlikeUrl: string = `${environment.baseUrl}/post/unlike`
+  postUrl = `${environment.baseUrl}/post`
+  postLikeUrl = `${environment.baseUrl}/post/like`
+  postUnlikeUrl = `${environment.baseUrl}/post/unlike`
+  postGetLikesUrl = `${environment.baseUrl}/post`
 
 
   constructor(private http: HttpClient) { }
@@ -33,6 +34,11 @@ export class PostService {
 
   return this.http.put<Post>(`${this.postUnlikeUrl}`, {postId, userId}, {headers: environment.headers, withCredentials: environment.withCredentials})
 
+  }
+
+  getPost( post: Post): Observable<Post>{
+ 
+    return this.http.get<Post>(`${this.postGetLikesUrl}/${post.id}`, {headers: environment.headers, withCredentials: environment.withCredentials})
   }
 
   
