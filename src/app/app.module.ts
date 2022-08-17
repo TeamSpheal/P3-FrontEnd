@@ -30,7 +30,7 @@ import { ResetPwComponent } from './components/reset-pw/reset-pw.component';
         UserCardComponent,
         NavbarComponent,
         UserInitialsPipe,
-    SearchComponent,
+        SearchComponent,
         UserSettingsComponent,
         ResetPwComponent,
     ],
