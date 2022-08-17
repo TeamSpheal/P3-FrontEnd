@@ -55,10 +55,6 @@ export class NavbarComponent implements OnInit {
         }
     }
 
-    ngOnDestroy() {
-        this.authService.logout();
-    }
-
     logout() {
         this.navUserDiv.hidden = true;
         this.navLoginDiv.hidden = false;
@@ -82,6 +78,5 @@ export class NavbarComponent implements OnInit {
           document.documentElement.setAttribute('data-theme', 'light');
           localStorage.setItem('theme', 'light')
         }
-      } 
-
+    } 
 }
