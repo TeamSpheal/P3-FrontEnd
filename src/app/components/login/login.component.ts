@@ -30,9 +30,9 @@ export class LoginComponent implements OnInit {
       .subscribe(
           (response: HttpResponse<any>) => {
             this.authService.currentUser = response.body
-              sessionStorage.setItem("user", JSON.stringify(response.body));
-              sessionStorage.setItem("JWT", <string>response.headers.get("Auth"));
-              environment.headers.Auth = <string>sessionStorage.getItem("JWT");
+            sessionStorage.setItem("user", JSON.stringify(response.body));
+            sessionStorage.setItem("JWT", <string>response.headers.get("Auth"));
+            environment.headers.Auth = <string>sessionStorage.getItem("JWT");
             this.router.navigate(['post-feed'])
         }
       )
