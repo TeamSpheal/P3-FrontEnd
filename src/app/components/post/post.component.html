@@ -55,7 +55,12 @@
       <button mat-raised-button color="primary" (click)="toggleReplyToPost()">
         Reply
       </button>
-      <app-follow [authorId]="post.author.id"></app-follow>
+      <!-- added by follower team color="{{ isFollow ? 'gray' : 'accent' }}"
+        text="{{ isFollow ? 'unfollow' : 'follow' }}" (btnClick)="toggleFollower()" -->
+      <app-follow
+        [authorId]="post.author.id" 
+      ></app-follow>
+
     </mat-card-actions>
 
     <form

@@ -14,6 +14,7 @@ import { PostService } from 'src/app/services/post.service';
 })
 export class PostComponent implements OnInit {
 
+
   @ViewChild("content")
   divContent: ElementRef;
 
@@ -23,6 +24,11 @@ export class PostComponent implements OnInit {
   @ViewChild("heart")
   divHeart: ElementRef;
 
+  @Input('post') post: Post; 
+  replyToPost: boolean = false; 
+  errorMsg: string; 
+  // isFollow: boolean = false; 
+  
   commentForm = new FormGroup({
     text: new FormControl(''),
   })
@@ -35,8 +41,6 @@ export class PostComponent implements OnInit {
 
   constructor(private postService: PostService, private authService: AuthService) {
    }
-
-   
 
   ngOnInit(): void {
     // Init to be filled in later
@@ -66,9 +70,6 @@ export class PostComponent implements OnInit {
     
   }
 
-
-
-
   toggleReplyToPost = () => {
     this.replyToPost = !this.replyToPost
   }
@@ -81,7 +82,8 @@ export class PostComponent implements OnInit {
         (response : any) => {
           this.post = response
           this.toggleReplyToPost()
-        }
+        }, 
+        error: (err) => console.log("error")
       )
   }
 
@@ -94,4 +96,9 @@ export class PostComponent implements OnInit {
     $('.numb').toggleClass("heart-active")
     $('.heart').toggleClass("heart-active")*/
   }
+
+  // toggleFollower() {
+  //   this.isFollow = !this.isFollow; 
+  // }
+
 }
