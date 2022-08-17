@@ -10,13 +10,16 @@ import { PostService } from 'src/app/services/post.service';
   styleUrls: ['./post.component.css']
 })
 export class PostComponent implements OnInit {
-
+  @Input('post') post: Post; 
+  replyToPost: boolean = false; 
+  errorMsg: string; 
+  // isFollow: boolean = false; 
+  
   commentForm = new FormGroup({
     text: new FormControl(''),
   })
 
-  @Input('post') post: Post
-  replyToPost: boolean = false
+
 
   constructor(private postService: PostService, private authService: AuthService) { }
 
@@ -30,12 +33,17 @@ export class PostComponent implements OnInit {
   submitReply = (e: any) => {
     e.preventDefault()
     let newComment = new Post(0, this.commentForm.value.text || "", "", this.authService.currentUser, [])
-    this.postService.upsertPost({...this.post, comments: [...this.post.comments, newComment]})
-      .subscribe(
-        (response) => {
-          this.post = response
-          this.toggleReplyToPost()
-        }
-      )
+    this.postService.upsertPost({ ...this.post, comments: [...this.post.comments, newComment] })
+      .subscribe({
+        next: (response) => {
+          this.post = response;
+          this.toggleReplyToPost();
+        },
+        error: (err) => console.log("error")
+      })
   }
+
+  // toggleFollower() {
+  //   this.isFollow = !this.isFollow; 
+  // }
 }
