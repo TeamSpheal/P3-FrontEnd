@@ -56,10 +56,8 @@ export class PostComponent implements OnInit {
         }
         if(this.isActive) {
           let button = document.getElementById('hbutton');
-          button?.style.setProperty('border-color','#F9B9C4');
-          button?.style.setProperty('background','#FBD0D8');
 
-          this.heartContent();
+          // this.heartContent();
         } 
       }
     )
@@ -68,15 +66,15 @@ export class PostComponent implements OnInit {
 
   like(){  
 
-    const button = document.getElementById('hbutton');
+    // const button = document.getElementById('hbutton');
     if(!this.isActive) {
       this.postService.likePost(this.authService.currentUser.id,this.post.id)?.subscribe(
         (      resp: { users: string | any[]; }) => {
           this.likeCount = resp.users.length;
           this.isActive = true;
 
-          button?.style.setProperty('border-color','#F9B9C4');
-          button?.style.setProperty('background','#FBD0D8');
+          // button?.style.setProperty('border-color','#F9B9C4');
+          // button?.style.setProperty('background','#FBD0D8');
         }
       )
     } else {
@@ -85,8 +83,8 @@ export class PostComponent implements OnInit {
           this.likeCount = resp.users.length;
           this.isActive = false;
           
-          button?.style.setProperty('border-color','#EAE2E1');
-          button?.style.setProperty('background','#ededed');
+          // button?.style.setProperty('border-color','#EAE2E1');
+          // button?.style.setProperty('background','#ededed');
         }
       )
     }
@@ -108,13 +106,13 @@ export class PostComponent implements OnInit {
       )
   }
 
-  heartContent() {
-    this.divContent.nativeElement.classList.toggle("heart-active");
-    this.divNumb.nativeElement.classList.toggle("heart-active");
-    this.divHeart.nativeElement.classList.toggle("heart-active");
-    /*$('.content').toggleClass("heart-active")
+  // heartContent() {
+  //   this.divContent.nativeElement.classList.toggle("heart-active");
+  //   this.divNumb.nativeElement.classList.toggle("heart-active");
+  //   this.divHeart.nativeElement.classList.toggle("heart-active");
+  //   /*$('.content').toggleClass("heart-active")
 
-    $('.numb').toggleClass("heart-active")
-    $('.heart').toggleClass("heart-active")*/
-  }
+  //   $('.numb').toggleClass("heart-active")
+  //   $('.heart').toggleClass("heart-active")*/
+  // }
 }
