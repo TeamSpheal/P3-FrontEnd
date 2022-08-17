@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import User from 'src/app/models/User';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import Post from 'src/app/models/Post';
+import User from 'src/app/models/User';
+import { AuthService } from 'src/app/services/auth.service';
+import { PostService } from 'src/app/services/post.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -14,10 +18,18 @@ export class UserProfileComponent implements OnInit {
   usernameDisplay: HTMLParagraphElement;
   usersPage: boolean = false;
   usersPageId: number;
+  postForm = new FormGroup({
+    text: new FormControl(''),
+    imageUrl: new FormControl('')
+  })
+
+  posts: Post[] = [];
+  createPost = false;
 
   constructor(private router: Router) { }
 
   ngOnInit(): void {
+
     this.user = JSON.parse(<string>sessionStorage.getItem("user"));
     this.usersPageId = JSON.parse(<string>sessionStorage.getItem("usersPageId"));
     console.log(this.user);
