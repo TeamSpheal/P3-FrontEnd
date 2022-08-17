@@ -1,8 +1,10 @@
 <p>
-    <mat-toolbar class="spheal">
+    <mat-toolbar class="spheal" class="spheal">
+        <img src="assets/images/4Asset 5@2x.png" width="56px">
         <span [routerLink]="['/post-feed']">Revature Social Media</span>
+        <button [routerLink]="['/search']">search users</button>
         <span class="spacer"></span>
-        <mat-checkbox id="dmToggle" [checked]="checkedStatus" (change)="onChange($event)"> Dark Mode </mat-checkbox>
+        <mat-slide-toggle id="dmToggle" [checked]="checkedStatus" (change)="onChange($event)">{{lightStatus}}</mat-slide-toggle>
         <div id="navLoginDiv">
             <div class="navLogBtn">
                 <button mat-button (click)="login();">Login</button>
@@ -10,7 +12,7 @@
         </div>
         <div id="navUserDiv">
             <div class="navLogBtn">
-                <button mat-button (click)="logout();">Logout</button>
+                <button mat-button (click)="logout();" id="logoutBtn">Logout</button>
             </div>
             <div class="nav-user-img" id="navProfileDiv" [routerLink]="['/user-settings']"></div>
             <div id="navUsernameDiv"></div>
