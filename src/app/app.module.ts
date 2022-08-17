@@ -17,31 +17,33 @@ import { UserInitialsPipe } from './pipes/user-initials.pipe';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SearchComponent } from './components/user-search/user-search.component';
 import { UserSettingsComponent } from './components/user-settings/user-settings.component';
+import { ResetPwComponent } from './components/reset-pw/reset-pw.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    RegisterComponent,
-    PostFeedPageComponent,
-    PostComponent,
-    CommentComponent,
-    UserCardComponent,
-    NavbarComponent,
-    UserInitialsPipe,
+    declarations: [
+        AppComponent,
+        LoginComponent,
+        RegisterComponent,
+        PostFeedPageComponent,
+        PostComponent,
+        CommentComponent,
+        UserCardComponent,
+        NavbarComponent,
+        UserInitialsPipe,
     SearchComponent,
-    UserSettingsComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    BrowserAnimationsModule,
-    AngularMaterialModule,
-    FormsModule,
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+        UserSettingsComponent,
+        ResetPwComponent,
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        ReactiveFormsModule,
+        BrowserAnimationsModule,
+        AngularMaterialModule,
+        FormsModule,
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
