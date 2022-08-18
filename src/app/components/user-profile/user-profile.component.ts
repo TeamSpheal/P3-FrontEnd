@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import Post from 'src/app/models/Post';
@@ -18,6 +19,8 @@ export class UserProfileComponent implements OnInit {
   usernameDisplay: HTMLParagraphElement;
   usersPage: boolean = false;
   usersPageId: number;
+  sub: any;
+  route: ActivatedRoute;
   postForm = new FormGroup({
     text: new FormControl(''),
     imageUrl: new FormControl('')
@@ -30,6 +33,10 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.sub = this.route.params.subscribe(params => {
+      this.usersPageId = +params['id'];
+    })
+
     this.user = JSON.parse(<string>sessionStorage.getItem("user"));
     //this.usersPageId = JSON.parse(<string>sessionStorage.getItem("usersPageId"));
     console.log(this.user);
@@ -38,7 +45,7 @@ export class UserProfileComponent implements OnInit {
 
     if (this.usersPageId == undefined) {
       alert("We could not find this user! You're now being redirected.")
-      this.router.navigate(["post-feed"]);
+      //this.router.navigate(["post-feed"]);
     } else {
       this.profileImg.style.backgroundImage = "URL('" + this.user.profileImg + "')";
       this.usernameDisplay.innerHTML = this.user.username;
@@ -53,8 +60,9 @@ export class UserProfileComponent implements OnInit {
 
 	openPopover(): void {
         this.windowRef = <Window> window.open(
-			'http://localhost:8080/', //change to window settings, probably router [user-settings]
-			'_blank', //probably opens new tab, possibly remove
+          //add no opener safety feature
+			'router [user-settings]', //change to window settings, probably router [user-settings]
+			//'_blank', //probably opens new tab, possibly remove
 			'toolbar=0,menubar=0,width=500,height=500', // see https://developer.mozilla.org/en-US/docs/Web/API/Window/open#Window_features for a full list of features and what they do
 		)
 	}
