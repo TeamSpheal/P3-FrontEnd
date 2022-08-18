@@ -17,6 +17,7 @@ import { UserInitialsPipe } from './pipes/user-initials.pipe';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SearchComponent } from './components/user-search/user-search.component';
 import { UserSettingsComponent } from './components/user-settings/user-settings.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { FollowComponent } from './components/follow/follow.component';
 
 @NgModule({
@@ -32,6 +33,7 @@ import { FollowComponent } from './components/follow/follow.component';
     UserInitialsPipe,
     SearchComponent,
     UserSettingsComponent,
+    UserProfileComponent,
     FollowComponent,
   ],
   imports: [

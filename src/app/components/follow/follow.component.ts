@@ -16,6 +16,7 @@ export class FollowComponent implements OnInit {
   constructor(private authService: AuthService, private postService: PostService, private userService: UserService) { }
 
   ngOnInit(): void {
+    // To be filled in later.
   }
 
   addFollower() {
