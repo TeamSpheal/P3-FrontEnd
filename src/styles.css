@@ -1,97 +1,222 @@
 /* You can add global styles to this file, and also import other style files */
 
+:root {
+    color-scheme: light;
+    --spheal-color: #4C6CBC;
+    --spheal-font-color: #D1E0FF;
+    --font-color: #424242;
+    --bg-color: #e2e2e2;
+    --secondary-color: #ededed;
+    --input-color: #a6a6a600;
+    --input-font-color: #3F51B5;
+    --caret-color: #4C6CBC;
+}
+
+[data-theme="dark"] {
+    color-scheme: dark;
+    --spheal-color: #4C6CBC;
+    --spheal-font-color: #D1E0FF;
+    --font-color: #e1e1ff;
+    --bg-color: #181818;
+    --secondary-color: #282828;
+    --input-color: #4f4f4f;
+    --input-font-color: #d6d6d6;
+    --caret-color: #D1E0FF;
+}
+
 html,
 body {
-  height: 100%;
+      height: 100%;
 }
+
+
 body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-  min-height: 100vh;
-  background: #e2e2e2;
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    min-height: 100vh;
+    color: var(--font-color);
+    background: var(--bg-color);
 }
+
+.mat-form-field-appearance-legacy .mat-form-field-label {
+    color: var(--input-font-color);
+}
+
+mat-label {
+    color: var(--input-font-color);
+}
+
+.mat-focused .mat-form-field-label {
+    color: var(--input-font-color) !important;
+}
+
+.mat-form-field-ripple {
+    background-color: var(--input-font-color) !important;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline-thick {
+    color: white;
+}
+
+.mat-checkbox-layout .mat-checkbox-label {
+    line-height: 24px;
+    margin-right: 1em;
+    font-size: 1rem;
+}
+
+.mat-checkbox-checked.mat-accent .mat-checkbox-background {
+    background-color: black !important;
+}
+
+.mat-flat-button.mat-warn,
+.mat-raised-button.mat-warn,
+.mat-fab.mat-warn,
+.mat-mini-fab.mat-warn {
+    margin-right: 1em;
+}
+
+.mat-input-element {
+    caret-color: var(--caret-color);
+}
+
+.form {
+    margin-bottom: 1em;
+    background: var(--secondary-color);
+    padding: 1em;
+}
+
+textarea.mat-input-element {
+    color: var(--input-font-color);
+}
+
+.mat-form-field-appearance-fill .mat-form-field-flex {
+    background: var(--input-color);
+}
+
+.mat-card,
+.mat-card-subtitle {
+    background: var(--secondary-color);
+    color: var(--font-color);
+}
+
+.spheal {
+    background-color: var(--spheal-color);
+    color: var(--spheal-font-color);
+}
+
+
 .app-header {
-  justify-content: space-between;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 2;
-  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, .2), 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12);
+      justify-content: space-between;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 2;
+      box-shadow: 0 3px 5px -1px rgba(0, 0, 0, .2), 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12);
 }
+
+
 .login-wrapper {
-  height: 100%;
+      height: 100%;
 }
+
+
 .positronx {
-  text-decoration: none;
-  color: #ffffff;
+      text-decoration: none;
+      color: #ffffff;
 }
+
+.logout {
+    background: #779eff;
+    margin-left: 2em;
+}
+
 .box {
-  position: relative;
-  top: 0;
-  opacity: 1;
-  float: left;
-  padding: 60px 50px 40px 50px;
-  width: 100%;
-  background: #fff;
-  border-radius: 10px;
-  transform: scale(1);
-  -webkit-transform: scale(1);
-  -ms-transform: scale(1);
-  z-index: 5;
-  max-width: 330px;
+    position: relative;
+    top: 0;
+    opacity: 1;
+    float: left;
+    padding: 60px 50px 40px 50px;
+    width: 100%;
+    background: var(--secondary-color);
+    border-radius: 10px;
+    transform: scale(1);
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    z-index: 5;
+    max-width: 330px;
 }
+
+
 .box.back {
-  transform: scale(.95);
-  -webkit-transform: scale(.95);
-  -ms-transform: scale(.95);
-  top: -20px;
-  opacity: .8;
-  z-index: -1;
+      transform: scale(.95);
+      -webkit-transform: scale(.95);
+      -ms-transform: scale(.95);
+      top: -20px;
+      opacity: .8;
+      z-index: -1;
 }
+
+
 .box:before {
-  content: "";
-  width: 100%;
-  height: 30px;
-  border-radius: 10px;
-  position: absolute;
-  top: -10px;
-  background: rgba(255, 255, 255, .6);
-  left: 0;
-  transform: scale(.95);
-  -webkit-transform: scale(.95);
-  -ms-transform: scale(.95);
-  z-index: -1;
+    content: "";
+    width: 100%;
+    height: 30px;
+    border-radius: 10px;
+    position: absolute;
+    top: -10px;
+    background: var(--secondary-color);
+    opacity: 0.6;
+    left: 0;
+    transform: scale(.95);
+    -webkit-transform: scale(.95);
+    -ms-transform: scale(.95);
+    z-index: -1;
 }
+
+
 .login-wrapper .example-form {
-  min-width: 100%;
-  max-width: 300px;
-  width: 100%;
+      min-width: 100%;
+      max-width: 300px;
+      width: 100%;
 }
+
+
 .login-wrapper .example-full-width,
 .login-wrapper .btn-block {
-  width: 100%;
+      width: 100%;
 }
+
+
 .login-wrapper mat-card-header {
-  text-align: center;
-  width: 100%;
-  display: block;
-  font-weight: 700;
+      text-align: center;
+      width: 100%;
+      display: block;
+      font-weight: 700;
 }
+
+
 .login-wrapper mat-card-header mat-card-title {
-  font-size: 30px;
-  margin: 0;
+      font-size: 30px;
+      margin: 0;
 }
+
+
 .login-wrapper .mat-card {
-  padding: 40px 70px 50px;
+      padding: 40px 70px 50px;
 }
+
+
 .login-wrapper .mat-stroked-button {
-  border: 1px solid currentColor;
-  line-height: 54px;
-  background: #FFF7FA;
+    border: 1px solid currentColor;
+    line-height: 54px;
+    background: var(--secondary-color);
+    opacity: 0.8;
 }
+
+
 .login-wrapper .mat-form-field-appearance-legacy .mat-form-field-infix {
-  padding: 0.8375em 0;
+      padding: 0.8375em 0;
 }
 
 .login-rerout-link {
@@ -106,67 +231,96 @@ body {
 }
 
 .user-circle {
-  width:10em;
-  height: 10em;
-  border-radius: 7em;
-      
-  border: 1px solid #888080;
-     
-  margin-bottom: 1em;
-
-  background-image: url('./assets/images/favicon.png');
-  background-size: cover;
+    width: 10em;
+    height: 10em;
+    border-radius: 7em;
+    border: 1px solid #888080;
+    margin-bottom: 1em;
+    background-size: cover;
 }
 
 .user-card {
-  width: 10em;
+  width: 10%;
   text-align: center;
-  margin: 1em;
+  margin: 1%;
 }
 
 .sidebyside {
-  display: inline-block;
-  vertical-align: top;
+      display: inline-block;
+      vertical-align: top;
 }
 
 .post-feed-container {
-  width: 80%;
-  margin-top: 1em;
+    width: 80%;
+    margin-top: 1em;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 
 .full-width {
-  width: 100%
+      width: 100%
 }
 
-.header-image {
-  background-image: url('./assets/images/favicon.png');
-  background-size: cover;
-
-  border: 1px solid #888080;
+.header-image, .nav-user-img {
+    background-size: cover;
+    border: 1px solid #888080;
 }
 
 #post-feed {
-  width: 60%;
+  width: 100%;
   align-content: center;
 }
 
+.post-author {
+    margin-top: 0.6em;
+}
+
+.post-header, .post-content {
+    margin-bottom: 0.3em;
+    border-bottom: solid 0.2em #000000;
+    padding-bottom: 0.3em;
+}
+
 .post-card {
-  margin-bottom: 1em;
+      margin-bottom: 1em;
 }
 
 .form {
-  margin-bottom: 1em;
+      margin-bottom: 1em;
 }
 
 .comment-container {
-  margin-left: 2em;
+      margin-left: 2em;
 }
 
 .comment-reply {
-  cursor: pointer;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.comment-author {
   text-decoration: underline;
 }
 
 .spacer {
   flex: 1 1 auto;
+}
+
+#navUsernameDiv, .navLogBtn {
+    float: right;
+    font-size: 20px;
+    margin-top: 10px;
+    vertical-align: middle;
+}
+
+#navProfileDiv {
+    cursor: pointer;
+    float:right;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+}
+
+#navUsernameDiv {
+    margin-right: 10px;
 }
