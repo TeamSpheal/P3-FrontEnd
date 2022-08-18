@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import Post from 'src/app/models/Post';
 import User from 'src/app/models/User';
+import UserMiniDTO from 'src/app/models/UserMiniDTO';
 import { AuthService } from 'src/app/services/auth.service';
 import { PostService } from 'src/app/services/post.service';
 import { UserService } from 'src/app/services/user.service';
@@ -20,6 +21,8 @@ export class UserProfileComponent implements OnInit, OnDestroy{
   profileImg: HTMLDivElement;
   usernameDisplay: string;
   nameDisplay: string;
+  followers: UserMiniDTO[]
+  followings: UserMiniDTO[]
   usersPage: boolean = false;
   usersPageId: number;
   sub: any;
@@ -44,6 +47,8 @@ export class UserProfileComponent implements OnInit, OnDestroy{
       this.usersPage = true;
       this.usernameDisplay = this.user.username;
       this.nameDisplay = `${this.user.firstName} ${this.user.lastName}`;
+      this.followers = this.user.followers;
+      this.followings = this.user.followings;
       this.profileImg.style.backgroundImage = "URL('" + this.user.profileImg + "')";
     } else {
       //this.user = fetch call to back end to get user details
@@ -53,6 +58,10 @@ export class UserProfileComponent implements OnInit, OnDestroy{
         console.log(this.usernameDisplay);
         this.nameDisplay = `${resp.firstName} ${resp.lastName}`;
         console.log(this.nameDisplay);
+        this.followers = resp.followers;
+        console.log(this.followers);
+        this.followings = resp.followings;
+        console.log(this.followings);
         this.profileImg.style.backgroundImage = "URL('" + resp.profileImg + "')";
       });
     }
