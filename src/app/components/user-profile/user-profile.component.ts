@@ -6,7 +6,6 @@ import User from 'src/app/models/User';
 import { AuthService } from 'src/app/services/auth.service';
 import { PostService } from 'src/app/services/post.service';
 import { UserService } from 'src/app/services/user.service';
-import { __param } from 'tslib';
 
 @Component({
   selector: 'app-user-profile',
@@ -27,7 +26,6 @@ export class UserProfileComponent implements OnInit, OnDestroy{
   constructor(private router: Router, private userService: UserService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    //this.usersPageId = 11;
     this.sub = this.route.params.subscribe(params => {
       this.usersPageId = +params['id'];
       console.log(this.usersPageId);
@@ -56,7 +54,7 @@ export class UserProfileComponent implements OnInit, OnDestroy{
 
   ngOnDestroy(): void {
     console.log('should unsub from params if working');
-    //this.sub.unsubscribe();
+    // Later we will call: this.sub.unsubscribe();
   }
 
 }
