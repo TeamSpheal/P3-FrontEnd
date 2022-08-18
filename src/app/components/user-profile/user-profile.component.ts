@@ -7,7 +7,6 @@ import UserMiniDTO from 'src/app/models/UserMiniDTO';
 import { AuthService } from 'src/app/services/auth.service';
 import { PostService } from 'src/app/services/post.service';
 import { UserService } from 'src/app/services/user.service';
-import { __param } from 'tslib';
 
 @Component({
   selector: 'app-user-profile',
@@ -75,7 +74,7 @@ export class UserProfileComponent implements OnInit, OnDestroy{
 
   ngOnDestroy(): void {
     console.log('should unsub from params if working');
-    //this.sub.unsubscribe();
+    // Later we will call: this.sub.unsubscribe();
   }
 
 }

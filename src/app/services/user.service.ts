@@ -8,7 +8,7 @@ import User from '../models/User';
   providedIn: 'root'
 })
 export class UserService {
-  userUrl: string = `${environment.baseUrl}/user`
+  userUrl = `${environment.baseUrl}/user`
   userUpadatedUrl: string;
 
   constructor(private http: HttpClient) { }
