@@ -10,6 +10,8 @@
       <mat-card-title class="post-author">{{
         post.author.username
       }}</mat-card-title>
+      <!-- Added by follower team -->
+      <app-follow [authorId]="post.author.id"></app-follow>
     </mat-card-header>
     <img
       mat-card-image
@@ -57,10 +59,6 @@
       </button>
       <!-- added by follower team color="{{ isFollow ? 'gray' : 'accent' }}"
         text="{{ isFollow ? 'unfollow' : 'follow' }}" (btnClick)="toggleFollower()" -->
-      <app-follow
-        [authorId]="post.author.id" 
-      ></app-follow>
-
     </mat-card-actions>
 
     <form

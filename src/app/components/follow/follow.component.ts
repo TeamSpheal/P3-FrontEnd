@@ -22,7 +22,7 @@ export class FollowComponent implements OnInit {
   constructor(private authService: AuthService, private postService: PostService, private userService: UserService) { }
 
   ngOnInit(): void {
-    this.default()
+   
   }
 
   
@@ -34,41 +34,63 @@ export class FollowComponent implements OnInit {
     })
   }
 
-  changeBtn() {
-    this.text = "unfollow"; 
-    let btn: HTMLButtonElement = document.getElementById("follow") as HTMLButtonElement; 
-    btn.innerText = this.text; 
-    btn.style.backgroundColor = "gray"; 
-  }
+  // changeBtn() {
+  //   this.text = "unfollow"; 
+  //   let btn: HTMLButtonElement = document.getElementById("follow") as HTMLButtonElement; 
+  //   btn.innerText = this.text; 
+  //   btn.style.backgroundColor = "gray"; 
+  // }
 
-  toggleButton() {
-    if (!this.isFollow) {
-      this.addFollower();
-      this.changeBtn(); 
-    } else {
-      this.default();
-      this.removeFollower();
+  // toggleButton() {
+  //   if (!this.isFollow) {
+  //     this.addFollower();
+  //     this.changeBtn(); 
+  //   } else {
+  //     this.default();
+  //     this.removeFollower();
       
-    }
+  //   }
     
+  // }
+  // removeFollower() {
+  //   throw new Error('Method not implemented.');
+  // }
+
+
+
+  //  called on load
+  // default() {
+  //   let btn: HTMLButtonElement = document.getElementById("follow") as HTMLButtonElement; 
+  //   btn.innerText = this.text; 
+  //   btn.style.backgroundColor = "pink"; 
+  //}
+
+  follow() {
+    const follow = document.getElementById("follow"); 
+    if (!this.isFollow) {
+        this.addFollower();
+        this.isFollow = !this.isFollow;
+      if (this.isFollow) {
+        follow?.style.setProperty("background-color", "#FCB414");
+        this.text = "unfollow"; 
+        follow?.style.setProperty('text', this.text); 
+      } 
+    } else {
+      this.text = 'follow';
+      follow?.style.setProperty("background-color", "white");
+      follow?.style.setProperty('text', this.text);
+      this.isFollow = false; 
+      this.unfollow();
+      
+      }
+    }
+  unfollow() {
+    this.followedId = this.authorId; 
+    this.followerId = this.authService.currentUser.id;
+    this.userService.removeFollower(this.followedId, this.followerId).subscribe((resp) => {
+      console.log(resp)
+    })
   }
-  removeFollower() {
-    throw new Error('Method not implemented.');
-  }
-
-
-
-  // called on load
-  default() {
-    let btn: HTMLButtonElement = document.getElementById("follow") as HTMLButtonElement; 
-    btn.innerText = this.text; 
-    btn.style.backgroundColor = "pink"; 
-  }
-
-
-
-
-
 }
 
 

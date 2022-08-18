@@ -24,20 +24,21 @@ export class PostComponent implements OnInit {
   @ViewChild("heart")
   divHeart: ElementRef;
 
-  @Input('post') post: Post; 
+ 
   replyToPost: boolean = false; 
   errorMsg: string; 
+  users: User[];
+  
+  @Input('post') post: Post
+  @Input() likeCount: number;
+  @Input() isActive: boolean;
   // isFollow: boolean = false; 
   
   commentForm = new FormGroup({
     text: new FormControl(''),
   })
 
-  @Input('post') post: Post
-  users: User[];
-  replyToPost = false
-  @Input() likeCount: number;
-  @Input() isActive: boolean;
+ 
 
   constructor(private postService: PostService, private authService: AuthService) {
    }
@@ -83,7 +84,7 @@ export class PostComponent implements OnInit {
           this.post = response
           this.toggleReplyToPost()
         }, 
-        error: (err) => console.log("error")
+
       )
   }
 
