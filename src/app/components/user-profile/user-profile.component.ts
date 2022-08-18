@@ -19,7 +19,7 @@ export class UserProfileComponent implements OnInit, OnDestroy{
   user: User = {} as User;
   profileImg: HTMLDivElement;
   usernameDisplay: string;
-  usersPage: boolean = false;
+  usersPage = false;
   usersPageId: number;
   sub: any;
   posts: Post[] = [];
