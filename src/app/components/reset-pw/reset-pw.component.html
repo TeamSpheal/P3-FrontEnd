@@ -1,1 +1,46 @@
-<p>reset-pw works!</p>
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+    <mat-card class="box">
+
+      <mat-card-header>
+        <mat-card-title>Reset Password</mat-card-title>
+      </mat-card-header>
+
+      <form class="form" id="emailReset" [formGroup]="emailResetForm" (ngSubmit)="onSubmit($event)">
+        <mat-card-content>
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Email" formControlName="email">
+          </mat-form-field>
+        </mat-card-content>
+        <button mat-stroked-button color="accent" class="btn-block" type="submit">Send Reset Code to Email</button>
+      </form>
+
+      <br><br>
+
+      <form class="form" id="tokenReset" [formGroup]="tokenResetForm" (ngSubmit)="onSubmit($event)">
+        <mat-card-content>
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Enter Code from Email" formControlName="email">
+          </mat-form-field>
+        </mat-card-content>
+        <button mat-stroked-button color="accent" class="btn-block" type="submit">Verify Reset Code</button>
+      </form>
+
+      <br><br>
+
+      <form class="form" id="confirmReset" [formGroup]="confirmResetForm" (ngSubmit)="onSubmit($event)">
+        <mat-card-content>
+          <mat-form-field class="full-width">
+            <input matInput placeholder="New Password" formControlName="email">
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Confirm Password" formControlName="email">
+          </mat-form-field>
+        </mat-card-content>
+        <button mat-stroked-button color="accent" class="btn-block" type="submit">Confirm Reset Password</button>
+      </form>
+
+      <a class="login-rerout-link" [routerLink]="['/login']">Back to Log In</a>
+      <a class="login-rerout-link" [routerLink]="['/register']" style="float: left;">Don't have an account?</a>
+
+    </mat-card>
+  </div>
