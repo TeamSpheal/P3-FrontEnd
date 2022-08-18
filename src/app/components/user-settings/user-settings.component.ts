@@ -67,7 +67,7 @@ export class UserSettingsComponent implements OnInit {
      */
     async updateImage() {
         /*Local Variables*/
-        const updatedUser: User = this.loggedIn;
+        let updatedUser: User = this.loggedIn;
         const newImgURL: string = this.imgUrlText.value;
         let response: User | undefined;
 
@@ -112,8 +112,8 @@ export class UserSettingsComponent implements OnInit {
         const newUN: string = this.usernameText.value;
         const newFN: string = this.fNameText.value;
         const newLN: string = this.lNameText.value;
-        const UNregex = /^[a-zA-Z0-9_\-]+$/;
-        const EMregex = /^[a-z0-9_\-]{1,63}[@][a-z]{1,30}[.][a-z]{2,5}$/i
+        const UNregex = /^[a-zA-Z0-9_-]+$/;
+        const EMregex = /^[a-z0-9_-]{1,63}@[a-z]{1,30}[.][a-z]{2,5}$/i
         let response: User | undefined;
 
         /*Validate Input*/
@@ -164,7 +164,7 @@ export class UserSettingsComponent implements OnInit {
         /*Local Variables*/
         const pass1 = this.newPWText.value;
         const pass2 = this.confirmPWText.value;
-        const PWregex = /^[0-9a-zA-Z\-\.]{4,100}$/
+        const PWregex = /^[0-9a-zA-Z-\.]{4,100}$/
         let response: string | undefined;
 
         /*Validate passwords*/

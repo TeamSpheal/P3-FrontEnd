@@ -48,4 +48,8 @@ export class UserSettingsService {
         /*Return request*/
         return this.http.post(this.userUpdateURL + "/password", JSON.stringify(payload), { headers: environment.headers, withCredentials: environment.withCredentials });
     }
+
+    getResetPWToken(email: string): Observable<any> {
+        return this.http.post(this.userUpdateURL + "/resetPW", JSON.stringify(email), { headers: environment.headers, withCredentials: environment.withCredentials });
+    }
 }
