@@ -3,6 +3,8 @@ import { UserSettingsService } from '../../services/user-settings.service';
 import { HttpResponse } from '@angular/common/http';
 import { UserSettingsComponent } from '../user-settings/user-settings.component';
 import User from '../../models/User';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-reset-pw',
@@ -10,20 +12,53 @@ import User from '../../models/User';
     styleUrls: ['./reset-pw.component.css']
 })
 export class ResetPwComponent implements OnInit {
-    emailText: HTMLInputElement;
-    tokenText: HTMLInputElement;
-    email: string;
-    token: string;
+
+    emailResetForm = new FormGroup({
+        email: new FormControl(''),
+    })
+
+    tokenResetForm = new FormGroup({
+        token: new FormControl(''),
+    })
+
+    confirmResetForm = new FormGroup({
+        newPass: new FormControl(''),
+        confirmPass: new FormControl('')
+    })
+
     resetUser: User;
+
+    resetToken: string;
+
+    emailDiv: HTMLFormElement;
+
+    tokenDiv: HTMLFormElement;
+
+    confirmDiv: HTMLFormElement;
+
+
 
 
     /**
      * A constructor to provide dependencies for the class
      * @param userSettingsService
      */
-    constructor(private userSettingsService: UserSettingsService) { }
+    constructor(private userSettingsService: UserSettingsService, private router:Router) { }
 
     ngOnInit(): void {
+
+
+        this.emailDiv = <HTMLFormElement> document.getElementById('emailReset');
+
+        this.tokenDiv = <HTMLFormElement> document.getElementById('tokenReset');
+
+        this.confirmDiv = <HTMLFormElement> document.getElementById('confirmReset');
+
+
+
+        this.tokenDiv.hidden = true;
+        this.confirmDiv.hidden = true;
+
     }
 
     /**
@@ -32,33 +67,42 @@ export class ResetPwComponent implements OnInit {
      * Also, the token is returned to the front-end to be referenced later
      */
     retrieveResetToken() {
-        //Intialize emailText with HTMLElement
-        //Get the value from the email textbox
         /*Send Request*/
-        this.userSettingsService.getResetPWToken(this.email).subscribe((response: HttpResponse<any>) => {
+
+        console.log("THIS IS BARRY'S MOM: " + <string>this.emailResetForm.value.email);
+
+        this.userSettingsService.getResetPWToken(<string>this.emailResetForm.value.email).subscribe((response: HttpResponse<any>) => {
             /*Retrieve Token from response headers*/
+            //console.log("Hi bArry: " + JSON.stringify(response.body));
+
             sessionStorage.setItem("PWRT", <string>response.headers.get("ResetToken"));
-            this.token = <string>sessionStorage.getItem("PWRT");
-            this.resetUser = JSON.parse(response.body);
+            this.resetToken = <string>sessionStorage.getItem("PWRT");
+            this.resetUser = JSON.parse(JSON.stringify(response.body));
+
+            alert("An email has been sent to you with a token. Be sure to check the spam folder if it is not clearly seen");
+            this.emailDiv.hidden = true;
+            this.tokenDiv.hidden = false;
+
         })
 
-        alert("An email has been sent to you with a token. Be sure to check the spam folder if it is not clearly seen");
-        //Show tokenDiv
     }
 
     testTokenInput() {
-        if (this.tokenText.value == this.token) {
+        if (<string>this.tokenResetForm.value.token == this.resetToken) {
 
-            //Show passwordDiv
+            this.tokenDiv.hidden = true;
+            this.confirmDiv.hidden = false;
+
         } else {
-            //alert
+            alert("The token you entered is invalid");
+
         }
     }
 
     async updatePW() {
         /*Local Variables*/
-        let pass1: string = ""; //= newPWText.value
-        let pass2: string = ""; //= confirmPWText.value
+        let pass1: string = <string>this.confirmResetForm.value.newPass; //= newPWText.value
+        let pass2: string = <string>this.confirmResetForm.value.confirmPass; //= confirmPWText.value
         const PWregex = /^[0-9a-zA-Z-\.]{4,100}$/
         let response: string | undefined;
 
@@ -75,6 +119,9 @@ export class ResetPwComponent implements OnInit {
                         alert(
                             "Your password was updated successfully"
                         );
+
+                        this.router.navigate(["/login"]);
+
                     } else {//Data is undefined, meaning the request failed
                         alert(
                             "The server failed to update your password"
@@ -93,8 +140,8 @@ export class ResetPwComponent implements OnInit {
         }
 
         /*Reseting Textboxes*/
-        //this.newPWText.value = "";
-        //this.confirmPWText.value = "";
+        this.confirmResetForm.value.newPass = "";
+        this.confirmResetForm.value.confirmPass = "";
     }
     
 }
