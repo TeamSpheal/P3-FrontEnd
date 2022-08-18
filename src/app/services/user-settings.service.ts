@@ -10,6 +10,7 @@ import { environment } from '../../environments/environment';
 export class UserSettingsService {
     imageURLInput = "";
     userUpdateURL = `${environment.baseUrl}/user/update`;
+    userURL = `${environment.baseUrl}/user`;
 
     constructor(private http: HttpClient) { }
 
@@ -50,6 +51,7 @@ export class UserSettingsService {
     }
 
     getResetPWToken(email: string): Observable<any> {
-        return this.http.post(this.userUpdateURL + "/resetPW", JSON.stringify(email), { headers: environment.headers, withCredentials: environment.withCredentials });
+        console.log("Barrys is SUper coCOoOL: " + email);
+        return this.http.post(this.userURL + "/resetPW", email, {observe: 'response', headers: environment.headers, withCredentials: environment.withCredentials });
     }
 }
