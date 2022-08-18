@@ -4,22 +4,27 @@
 <!-- check if have to pass in usersPageId variable-->
 <div [ngClass]="['sidebyside', 'profile-container']">
 
-  <section id="profile-header" class="full-width" appearance="fill">
-    <div id="prof-img">
+  <mat-card id="profile-header">
+    <mat-card-header>
       <div class="user-circle" id="user-circle"></div>
-    </div>
-    <div id="prof-info">
-      <article id="prof-username">{{ usernameDisplay }}</article>
-      <article id="fullName">Hannah</article>
-      <article id="postCount">10</article>
-      <article id="followerCount">101</article>
-      <article id="followingCount">109</article>
-    </div>
-    <div id="edit-follow" *ngIf="!usersPage; else editTemplate">
+    </mat-card-header>
+
+    <mat-card-title role="listitem">Username: {{ usernameDisplay}}</mat-card-title>
+
+    <mat-card-content>
+      <mat-list role="list">
+        <mat-list-item role="listitem">Name: {{ nameDisplay }}</mat-list-item>
+        <mat-list-item role="listitem">Post Count:  </mat-list-item>
+        <mat-list-item role="listitem">Followers: {{ followers }}</mat-list-item>
+        <mat-list-item role="listitem">Following: {{ followings }}</mat-list-item>
+      </mat-list>
+    </mat-card-content>
+
+    <div id="edit-follow" *ngIf="!usersPage; else editTemplate" align="end">
       <!-- add onlick func to follow -->
       <button mat-raised-button id="follow">Follow</button>
     </div>
-  </section>
+  </mat-card>
 
   <ng-template #editTemplate>
     <div align="end">

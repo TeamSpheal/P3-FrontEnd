@@ -32,8 +32,9 @@ export class PostService {
     return this.http.put<Post>(`${this.postUnlikeUrl}`, {postId, userId}, {headers: environment.headers, withCredentials: environment.withCredentials})
   }
 
-  getAllPostsByUserID(): Observable<Post[]> {
+  getAllPostsByUserID(userId: number): Observable<Post[]> {
     return this.http.get<Post[]>(`${this.postUrl}`, {headers: environment.headers, withCredentials: environment.withCredentials})
+    //add {userId} btwn url n headers to transfer into backend api
   }
 
   getPost(post: Post): Observable<Post>{
