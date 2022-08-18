@@ -23,11 +23,6 @@ export class UserProfileComponent implements OnInit, OnDestroy{
   usersPageId: number;
   sub: any;
   route: ActivatedRoute;
-  postForm = new FormGroup({
-    text: new FormControl(''),
-    imageUrl: new FormControl('')
-  })
-
   posts: Post[] = [];
 
   constructor(private router: Router) { }
