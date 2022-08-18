@@ -35,6 +35,7 @@ export class SearchComponent implements OnInit{
         let resp = await fetch('http://localhost:8080/search/' + upperCasedNames);
             if(resp.ok){
             this.users = await resp.json();
+            this.users = this.users.reverse()
         
             console.log(this.users);
         }
