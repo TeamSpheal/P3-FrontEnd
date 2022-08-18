@@ -6,6 +6,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { SearchComponent } from './components/user-search/user-search.component';
 import { UserSettingsComponent } from './components/user-settings/user-settings.component'
 import { ResetPwComponent } from './components/reset-pw/reset-pw.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 const routes: Routes = [
     //{ path: "", redirectTo: "/login", pathMatch: "full" },
@@ -17,6 +18,7 @@ const routes: Routes = [
     { path: "post-feed", component: PostFeedPageComponent },
     { path: "user-settings", component: UserSettingsComponent },
     { path: "reset-pw", component: ResetPwComponent },
+    { path: "user-profile/:id", component: UserProfileComponent },
 ];
 
 @NgModule({
