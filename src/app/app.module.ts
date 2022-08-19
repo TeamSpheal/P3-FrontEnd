@@ -18,7 +18,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { UserSettingsComponent } from './components/user-settings/user-settings.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { FollowComponent } from './components/follow/follow.component';
-
+import { SearchComponent } from './components/user-search/user-search.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +33,7 @@ import { FollowComponent } from './components/follow/follow.component';
     UserSettingsComponent,
     UserProfileComponent,
     FollowComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
