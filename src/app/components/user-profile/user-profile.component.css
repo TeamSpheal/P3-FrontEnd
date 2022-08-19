@@ -1,0 +1,57 @@
+.mat-divider {
+    border-top-color: #FCB414;
+}
+
+.profile-header {
+    margin-top: 2em;
+    margin-bottom: 3em;
+}
+
+.profile {
+    box-shadow: 8px 8px 0px #ccc;
+    border: 2px solid #fff;
+    border-radius: 0.3em !important;
+    border: 0;
+    height: 250px;
+    width: 250px;
+}
+
+.profileMargin {
+    width: 70vw;
+    margin: auto;
+}
+
+.profile-stat {
+    color: unset !important;
+}
+
+.topJawn {
+    background-color: #86868654;
+    padding: 2em 2em;
+    margin: 10px 5px;
+    border-radius: 4px;
+}
+
+.topJawn:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.column-left {
+    float: left;
+    width: 300px;
+    padding: 10px;
+}
+
+.column-right {
+    float: left;
+    width: 300px;
+    padding: 10px;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}

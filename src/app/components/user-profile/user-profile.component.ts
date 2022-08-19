@@ -20,8 +20,8 @@ export class UserProfileComponent implements OnInit, OnDestroy{
   profileImg: HTMLDivElement;
   usernameDisplay: string;
   nameDisplay: string;
-  followers: UserMiniDTO[]
-  followings: UserMiniDTO[]
+  followers: UserMiniDTO[];
+  followings: UserMiniDTO[];
   usersPage: boolean = false;
   usersPageId: number;
   sub: any;
