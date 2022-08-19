@@ -43,13 +43,12 @@ export class PostComponent implements OnInit {
 
   ngOnInit(): void {
     if(localStorage.getItem("user")){
-      this.authService.currentUser=JSON.parse(<string>localStorage.getItem("user"));;
+      this.authService.currentUser=JSON.parse(<string>localStorage.getItem("user"));
     }
     this.isLiked();
   }
   
   isLiked(){
-    
     this.postService.getPost(this.post)?.subscribe(
       ( resp : { users: string | any[]; }) => {
         this.likeCount = resp.users.length;

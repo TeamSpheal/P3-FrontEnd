@@ -18,6 +18,7 @@ export class CommonInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     if(localStorage.getItem("JWT")){
       const Auth=<string>localStorage.getItem("JWT");
+      console.log(request.clone({setHeaders: {Auth}}));
       return next.handle(request.clone({setHeaders: {Auth}}));
     }
     return next.handle(request);
