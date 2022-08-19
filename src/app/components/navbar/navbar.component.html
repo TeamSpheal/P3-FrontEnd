@@ -4,18 +4,17 @@
         <span [routerLink]="['/post-feed']">Revature Social Media</span>
         <search-users></search-users>
         <span class="spacer"></span>
-        <mat-slide-toggle align="end" id="dmToggle" [checked]="checkedStatus" (change)="onChange($event)">{{lightStatus}}</mat-slide-toggle>
+        <mat-slide-toggle id="dmToggle" [checked]="checkedStatus" (change)="onChange($event)">{{lightStatus}}</mat-slide-toggle>
         <div id="navLoginDiv">
-            <div class="navLoginBtn">
-                <button color="primary" mat-button (click)="login();">Login</button>
+            <div class="navLogBtn">
+                <button mat-button (click)="login();">Login</button>
             </div>
         </div>
-
         <div id="navUserDiv">
             <div class="navLogBtn">
               <button id="logoutBtn" color="primary" mat-button (click)="logout();">Logout</button>
             </div>
-            <div class="nav-user-img" id="navProfileDiv" [routerLink]="['/user-profile', loggedIn.id]"></div>
+            <div class="nav-user-img" id="navProfileDiv" [routerLink]="['/user-settings']"></div>
             <div id="navUsernameDiv"></div>
         </div>
     </mat-toolbar>
