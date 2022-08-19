@@ -69,6 +69,15 @@ mat-card {
     outline: none;
     width: 300px;
     margin-left: 1em;
+    transition: all .5s ease;
+}
+
+.navSearchInp:hover {
+    background: #edededc8;
+}
+
+.navSearchInp:focus {
+    background: #edededdf;
 }
 
 .searchNav {
