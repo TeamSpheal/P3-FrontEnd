@@ -22,7 +22,7 @@ export class UserProfileComponent implements OnInit, OnDestroy{
   nameDisplay: string;
   followers: UserMiniDTO[];
   followings: UserMiniDTO[];
-  usersPage: boolean = false;
+  usersPage = false;
   usersPageId: number;
   sub: any;
   posts: Post[] = [];
