@@ -8,7 +8,6 @@ import { environment } from '../../environments/environment';
     providedIn: 'root'
 })
 export class UserSettingsService {
-    imageURLInput = "";
     userUpdateURL = `${environment.baseUrl}/user/update`;
     userURL = `${environment.baseUrl}/user`;
 
