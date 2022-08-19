@@ -11,6 +11,7 @@
     --input-color: #f9f4f49d;
     --input-font-color: #424242;
     --caret-color: #F26925;
+    --search-color: rgb(132 132 133 / 51%);
 }
 
 [data-theme="dark"] {
@@ -24,6 +25,7 @@
     --input-color: #4f4f4f;
     --input-font-color: #d6d6d6;
     --caret-color: #D1E0FF;
+    --search-color: rgb(64 64 64 / 76%);
 }
 
 html,

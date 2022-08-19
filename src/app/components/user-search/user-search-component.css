@@ -20,6 +20,7 @@
     cursor: pointer;
     width: 95%;
     margin-bottom: -0.5em;
+    opacity: 0.9;
 }
 
 .mat-card:not([class*=mat-elevation-z]) {
@@ -33,10 +34,10 @@
 }
 
 .searchOverlay {
-    width: 422px;
+    width: 500px;
     height: auto;
     max-height: 60vh;
-    background-color: rgb(132 132 133 / 51%);
+    background: var(--search-color);
     position: absolute;
     top: 64px;
     margin: auto;
@@ -83,7 +84,6 @@ mat-card {
 .searchNav {
     color: #ffffff;
     display: none;
-    margin-left: 1em;
 }
 
 .searchIcn {
