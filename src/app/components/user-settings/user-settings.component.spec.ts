@@ -23,9 +23,9 @@ describe('UserSettingsComponent', () => {
 
     it('should set a value to loggedIn if sessionStorage is not null', async () => {
         /*Local Variables*/
-        let mockUser: User = new User(1, 'testuser@gmail.com', 'Test', 'User',
+        const mockUser: User = new User(1, 'testuser@gmail.com', 'Test', 'User',
             'TestUser1', 'assets/images/favicon.png', [], []);
-        let mockJSON: string = JSON.stringify(mockUser);
+        const mockJSON: string = JSON.stringify(mockUser);
 
         /*Mocks*/
         spyOn(sessionStorage, 'getItem').and.returnValue(mockJSON);
