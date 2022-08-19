@@ -328,14 +328,10 @@ mat-divider {
 
 .post-header,
 .post-content {
+    margin: 1em;
     margin-bottom: 0.3em;
     border-bottom: solid 0.1em #dadadadf;
     padding-bottom: 0.3em;
-    margin: 1em;
-}
-
-mat-divider {
-    background: unset;
 }
 
 .post-card {
