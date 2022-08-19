@@ -101,8 +101,8 @@ export class ResetPwComponent implements OnInit {
 
     async updatePW() {
         /*Local Variables*/
-        let pass1: string = <string>this.confirmResetForm.value.newPass; //= newPWText.value
-        let pass2: string = <string>this.confirmResetForm.value.confirmPass; //= confirmPWText.value
+        const pass1: string = <string>this.confirmResetForm.value.newPass; //= newPWText.value
+        const pass2: string = <string>this.confirmResetForm.value.confirmPass; //= confirmPWText.value
         const PWregex = /^[0-9a-zA-Z-\.]{4,100}$/
         let response: string | undefined;
 

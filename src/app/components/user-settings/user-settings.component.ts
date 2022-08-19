@@ -67,7 +67,7 @@ export class UserSettingsComponent implements OnInit {
      */
     async updateImage() {
         /*Local Variables*/
-        let updatedUser: User = this.loggedIn;
+        const updatedUser: User = this.loggedIn;
         const newImgURL: string = this.imgUrlText.value;
         let response: User | undefined;
 
