@@ -26,12 +26,10 @@ export class PostService {
   }
 
   likePost(userId: number, postId: number): Observable<Post>{
- 
     return this.http.put<Post>(`${this.postLikeUrl}`, {postId , userId} , {headers: environment.headers, withCredentials: environment.withCredentials})
   }
 
   unlikePost(userId: number, postId: number): Observable<Post>{
-
   return this.http.put<Post>(`${this.postUnlikeUrl}`, {postId, userId}, {headers: environment.headers, withCredentials: environment.withCredentials})
 
   }

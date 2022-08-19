@@ -42,7 +42,9 @@ export class PostComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
+    if(localStorage.getItem("user")){
+      this.authService.currentUser=JSON.parse(<string>localStorage.getItem("user"));;
+    }
     this.isLiked();
   }
   
@@ -62,7 +64,6 @@ export class PostComponent implements OnInit {
           }
         }
         if(this.isActive) {
-
           // this.heartContent();
         } 
       }
@@ -79,7 +80,6 @@ export class PostComponent implements OnInit {
           this.isActive = true;
           button?.style.setProperty('color','#ef773b');
           button?.style.setProperty('background','#FCB414');
-          // button?.style.setProperty('background','#FBD0D8');
         }
       )
     } else {
@@ -89,8 +89,6 @@ export class PostComponent implements OnInit {
           this.isActive = false;
           button?.style.setProperty('color','#ef773b');
           button?.style.setProperty('background','transparent');
-          // button?.style.setProperty('border-color','#EAE2E1');
-          // button?.style.setProperty('background','#ededed');
         }
       )
     }
@@ -102,7 +100,7 @@ export class PostComponent implements OnInit {
 
   submitReply = (e: any) => {
     e.preventDefault()
-    const newComment = new Post(0, this.commentForm.value.text || "", "", JSON.parse(<string>sessionStorage.getItem("user")), [],[])
+    const newComment = new Post(0, this.commentForm.value.text || "", "", JSON.parse(<string>localStorage.getItem("user")), [],[])
     this.postService.upsertPost({...this.post, comments: [...this.post.comments, newComment]})
       .subscribe(
         (response : any) => {
@@ -111,14 +109,4 @@ export class PostComponent implements OnInit {
         }
       )
   }
-
-  // heartContent() {
-  //   this.divContent.nativeElement.classList.toggle("heart-active");
-  //   this.divNumb.nativeElement.classList.toggle("heart-active");
-  //   this.divHeart.nativeElement.classList.toggle("heart-active");
-  //   /*$('.content').toggleClass("heart-active")
-
-  //   $('.numb').toggleClass("heart-active")
-  //   $('.heart').toggleClass("heart-active")*/
-  // }
 }
