@@ -19,6 +19,7 @@ import { UserSettingsComponent } from './components/user-settings/user-settings.
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { FollowComponent } from './components/follow/follow.component';
 import { ResetPwComponent } from './components/reset-pw/reset-pw.component';
+import { SearchComponent } from './components/user-search/user-search.component';
 
 @NgModule({
     declarations: [
@@ -31,7 +32,7 @@ import { ResetPwComponent } from './components/reset-pw/reset-pw.component';
         UserCardComponent,
         NavbarComponent,
         UserInitialsPipe,
-        SearchComponent,
+        SearchComponent, 
         UserSettingsComponent,
         ResetPwComponent,
         UserProfileComponent,
