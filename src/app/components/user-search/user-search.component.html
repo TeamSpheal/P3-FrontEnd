@@ -21,7 +21,7 @@
                     </mat-card-header>
 
                     <mat-card-actions align="end">
-                        <button color="primary" [routerLink]="['/user-settings']" mat-button>Profile</button>
+                        <button [routerLink]="['/user-profile', user.id]" mat-button>Go to Profile</button>
                     </mat-card-actions>
                 </mat-card>
                 <br>
