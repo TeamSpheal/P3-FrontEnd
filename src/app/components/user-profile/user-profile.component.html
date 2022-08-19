@@ -2,44 +2,57 @@
 
 <!-- check if have to pass in usersPage variable-->
 <!-- check if have to pass in usersPageId variable-->
-<div fxLayout="row" fxLayoutAlign="space-between">
+<div fxLayout="row" fxLayoutAlign="space-between" class="profileMargin">
 
-  <mat-card id="profile-header" fxFlex="30">
-    <mat-card-header>
-      <div class="user-circle" id="user-circle"></div>
-    </mat-card-header>
+    <mat-card id="profile-header" class="profile-header" fxFlex="30">
 
-    <mat-card-title role="listitem">Username: {{ usernameDisplay}}</mat-card-title>
-    
-    <mat-divider></mat-divider>
+        <div class="topJawn row">
 
-    <mat-card-content>
-      <mat-list role="list">
-        <mat-list-item role="listitem">Name: {{ nameDisplay }}</mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item role="listitem">Post Count: </mat-list-item>
-        <mat-list-item role="listitem">Followers: </mat-list-item>
-        <mat-list-item role="listitem">Following: </mat-list-item>
-      </mat-list>
-    </mat-card-content>
 
-    <div id="edit-follow" *ngIf="!usersPage; else editTemplate">
-      <!-- add onlick func to follow -->
-      <button mat-raised-button id="follow">Follow</button>
+            <div class="column-left">
+
+                <mat-card-header>
+                    <div class="user-circle profile" id="user-circle"></div>
+                </mat-card-header>
+
+            </div>
+
+
+            <div class="column-right">
+
+                <mat-card-title role="listitem">
+                    {{ nameDisplay }} <small>({{ usernameDisplay }})</small>
+                </mat-card-title>
+                <mat-card-content>
+                    <mat-list role="list">
+                        <mat-list-item role="listitem" class="profile-stat">0 posts</mat-list-item>
+                        <mat-list-item role="listitem" class="profile-stat">0 followers</mat-list-item>
+                        <mat-list-item role="listitem" class="profile-stat">0 following</mat-list-item>
+                    </mat-list>
+                </mat-card-content>
+                <div id="edit-follow" *ngIf="!usersPage; else editTemplate">
+                    <!-- add onlick func to follow -->
+                    <button mat-raised-button id="follow">Follow</button>
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </mat-card>
+
+    <ng-template #editTemplate>
+        <div>
+            <!-- route to user-settings page -->
+            <button mat-raised-button color="warn" [routerLink]="['/user-settings']">Edit</button>
+        </div>
+    </ng-template>
+    <h1>{{ nameDisplay }}'s Feed</h1>
+    <div id="prof-post-feed" *ngFor="let post of posts" width="half">
+        <app-post [post]="post"></app-post>
     </div>
-  </mat-card>
 
-  <ng-template #editTemplate>
-    <div>
-      <!-- route to user-settings page -->
-      <button mat-raised-button color="warn" [routerLink]="['/user-settings']">Edit</button>
-    </div>
-  </ng-template>
 
-  <div id="prof-post-feed" *ngFor="let post of posts" width="half">
-      <app-post [post]="post"></app-post>
-  </div>
-
-  
 
 </div>
