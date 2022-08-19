@@ -1,4 +1,3 @@
-import { style } from '@angular/animations';
 import { ListKeyManager } from '@angular/cdk/a11y';
 import { ElementRef } from '@angular/core';
 import { ViewChild } from '@angular/core';
