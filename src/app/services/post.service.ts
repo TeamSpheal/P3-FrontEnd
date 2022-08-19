@@ -36,11 +36,12 @@ export class PostService {
 
   }
 
-  getPost( post: Post): Observable<Post>{
- 
-    return this.http.get<Post>(`${this.postGetLikesUrl}/${post.id}`, {headers: environment.headers, withCredentials: environment.withCredentials})
+  getAllPostsByUserID(): Observable<Post[]> {
+    return this.http.get<Post[]>(`${this.postUrl}`, {headers: environment.headers, withCredentials: environment.withCredentials})
   }
 
-  
+  getPost(post: Post): Observable<Post>{
+    return this.http.get<Post>(`${this.postGetLikesUrl}/${post}`, {headers: environment.headers, withCredentials: environment.withCredentials})
+  }
 
 }
