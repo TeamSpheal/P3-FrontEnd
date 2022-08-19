@@ -82,6 +82,7 @@ mat-card {
     margin-bottom: -5.8px;
     margin-left: -32px;
     color: rgba(0, 0, 0, 0.451);
+    cursor: pointer;
 }
 
 
