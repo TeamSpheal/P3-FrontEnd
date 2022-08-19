@@ -29,16 +29,14 @@ export class PostComponent implements OnInit {
 
   @Input('post') post: Post
   users: User[];
-  replyToPost: boolean = false
+  replyToPost = false
   @Input() likeCount: number;
   @Input() isActive: boolean;
 
-  constructor(private postService: PostService, private authService: AuthService) {
-   }
-
-   
+  constructor(private postService: PostService, private authService: AuthService) {}
 
   ngOnInit(): void {
+    // Init to be filled in later
   }
 
   like(){  
@@ -48,8 +46,8 @@ export class PostComponent implements OnInit {
       }
     )
 		this.isActive = !this.isActive;
-    let content = document.getElementById('content');
-    let heart = document.getElementById('heart');
+    const content = document.getElementById('content');
+    const heart = document.getElementById('heart');
 
     if(!this.isActive)
     {content?.style.setProperty('background-color', 'white')
@@ -65,16 +63,13 @@ export class PostComponent implements OnInit {
     
   }
 
-
-
-
   toggleReplyToPost = () => {
     this.replyToPost = !this.replyToPost
   }
 
   submitReply = (e: any) => {
     e.preventDefault()
-    let newComment = new Post(0, this.commentForm.value.text || "", "", JSON.parse(<string>sessionStorage.getItem("user")), [],[])
+    const newComment = new Post(0, this.commentForm.value.text || "", "", JSON.parse(<string>sessionStorage.getItem("user")), [],[])
     this.postService.upsertPost({...this.post, comments: [...this.post.comments, newComment]})
       .subscribe(
         (response : any) => {

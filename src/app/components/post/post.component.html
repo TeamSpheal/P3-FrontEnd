@@ -1,51 +1,79 @@
 <div class="post-card">
-    <mat-card>
-        <mat-card-header class="post-header">
-            <div mat-card-avatar class="header-image" *ngIf="post.author.profileImg" style="background-image: URL('{{post.author.profileImg}}')"></div>
-            <mat-card-title class="post-author">{{post.author.username}}</mat-card-title>
-        </mat-card-header>
-        <img mat-card-image *ngIf="post.imageUrl" src="{{ post.imageUrl }}" alt="Post Image">
-        <mat-card-content>
-            <p class="post-content">
-                {{post.text}}
-            </p>
-            <p>Comments:</p>
-            <div *ngFor="let comment of post.comments" class="comment-container">
-                <mat-divider></mat-divider>
-                <app-comment [comment]="comment"></app-comment>
-            </div>
-        </mat-card-content>
-        <mat-card-actions align="end">
+  <mat-card>
+    <mat-card-header class="post-header">
+      <div
+        mat-card-avatar
+        class="header-image"
+        *ngIf="post.author.profileImg"
+        style="background-image: URL('{{ post.author.profileImg }}')"
+      ></div>
+      <mat-card-title class="post-author">{{
+        post.author.username
+      }}</mat-card-title>
+    </mat-card-header>
+    <img
+      mat-card-image
+      *ngIf="post.imageUrl"
+      src="{{ post.imageUrl }}"
+      alt="Post Image"
+    />
+    <mat-card-content>
+      <p class="post-content">
+        {{ post.text }}
+      </p>
+      <p>Comments:</p>
+      <div *ngFor="let comment of post.comments" class="comment-container">
+        <mat-divider></mat-divider>
+        <app-comment [comment]="comment"></app-comment>
+      </div>
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <!--
+    <button class="likeBtn" mat-icon-button color="primary" (click)="like()" matBadge="1" matBadgePosition="after" matBadgeColor="accent">
+                <mat-icon>thumb_up</mat-icon>
+          </button>
+-->
 
-              <div id="left">
-                <div id="heartone">
-                    <div id="heart"></div>
-                </div>
-                <div id ="hearttwo">
-                    <div id="heart2"></div>
-                </div>
-            </div> 
+      <div id="left">
+        <div id="heartone">
+          <div id="heart"></div>
+        </div>
+        <div id="hearttwo">
+          <div id="heart2"></div>
+        </div>
+      </div>
 
-                <div class="heart-btn" [class.highlight]="isActive" (click)="like()">
-                    <div class="content" (click)="heartContent($event)" #content></div>
-                  <div id="content">
-                    <span class="heart" #heart></span>
-                    <span class="text">Like</span>
-                    <span class="numb" #numb>{{likeCount}}</span>
-                  </div>
-                </div>
-           
-                 <button mat-raised-button color="primary" (click)="toggleReplyToPost()">Reply</button>
-        </mat-card-actions>
-        <form class="form" *ngIf="replyToPost" [formGroup]="commentForm" (ngSubmit)="submitReply($event)">
-            <mat-form-field class="full-width" appearance="fill">
-                <mat-label>Make a Post</mat-label>
-                <textarea matInput autofocus formControlName="text"></textarea>
-            </mat-form-field>
-            <div align="end">
-                <button mat-raised-button color="warn" (click)="toggleReplyToPost()">Cancel</button>
-                <button mat-raised-button color="primary" type="submit">Post</button>
-            </div>
-        </form>
-    </mat-card>
+      <div class="heart-btn" [class.highlight]="isActive" (click)="like()">
+        <div class="content" (click)="heartContent($event)" #content></div>
+        <div id="content">
+          <span class="heart" #heart></span>
+          <span class="text">Like</span>
+          <span class="numb" #numb>{{ likeCount }}</span>
+        </div>
+      </div>
+
+      <button mat-raised-button color="primary" (click)="toggleReplyToPost()">
+        Reply
+      </button>
+      <!-- <app-follow [authorId]="post.author.id"></app-follow> -->
+    </mat-card-actions>
+
+    <form
+      class="form"
+      *ngIf="replyToPost"
+      [formGroup]="commentForm"
+      (ngSubmit)="submitReply($event)"
+    >
+      <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Make a Post</mat-label>
+        <textarea matInput autofocus formControlName="text"></textarea>
+      </mat-form-field>
+      <div align="end">
+        <button mat-raised-button color="warn" (click)="toggleReplyToPost()">
+          Cancel
+        </button>
+        <button mat-raised-button color="primary" type="submit">Post</button>
+      </div>
+    </form>
+  </mat-card>
 </div>

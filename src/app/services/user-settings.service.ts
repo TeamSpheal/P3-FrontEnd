@@ -1,43 +1,40 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import User from '../models/User';
+import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 @Injectable({
     providedIn: 'root'
 })
 export class UserSettingsService {
-    imageURLInput: string = "";
-    userUpdateURL: string = `${environment.baseUrl}/user`;
+    imageURLInput = "";
+    userUpdateURL = `${environment.baseUrl}/user/update`;
 
     constructor(private http: HttpClient) { }
 
-    // When user clicks the top update button, the image URL changes to
-    // set their pfp with a new one.
-    updateImage(currentUser: User) {
-        let response: string | undefined = undefined;
-        const res = this.http.post(this.userUpdateURL, currentUser, { headers: environment.headers });
-        res.subscribe((data: any) => {
-            response = JSON.stringify(data);
-        });
-        return response;
+    /**Updates the user's stored image based on the given user object
+     * @param currentUser
+     */
+    updateImage(currentUser: User): Observable<any> {
+        /*Return request*/
+        return this.http.post(this.userUpdateURL + "/profile", currentUser, { headers: environment.headers });
     }
 
-    // When user clicks the middle update button, their current information changes
-    // to new information.
-    updateProfile(updatedUser: User): string | undefined {
-        let response: string | undefined = undefined;
-        const res = this.http.post(this.userUpdateURL, updatedUser, { headers: environment.headers });
-        res.subscribe((data: any) => {
-            response = JSON.stringify(data);
-        });
-        return response;
+    /**Updates the user's personal details based on the given user object
+     * @param updatedUser
+     */
+    updateProfile(updatedUser: User): Observable<any> {
+        /*Return request*/
+        return this.http.post(this.userUpdateURL + "/profile", JSON.stringify(updatedUser), { headers: environment.headers });
     }
 
-    // When user clicks the bottom update button, their current password changes to
-    // new password through authentication and validation.
-    updatePassword(newPW: string, currentUser: User): string | undefined {
-        let response: string | undefined = undefined;
+    /**Updates the user's password based on the given password and user object 
+     * @param newPW
+     * @param currentUser
+     */
+    updatePassword(newPW: string, currentUser: User): Observable<any> {
+        /*Construct body of request*/
         const payload = {
             id: currentUser.id,
             firstName: currentUser.firstName,
@@ -48,10 +45,7 @@ export class UserSettingsService {
             profileImg: currentUser.profileImg
         };
 
-        const res = this.http.post(this.userUpdateURL, payload, { headers: environment.headers });
-        res.subscribe((data: any) => {
-            response = JSON.stringify(data);
-        });
-        return response;
+        /*Return request*/
+        return this.http.post(this.userUpdateURL + "/password", JSON.stringify(payload), { headers: environment.headers, withCredentials: environment.withCredentials });
     }
 }

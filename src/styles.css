@@ -2,20 +2,22 @@
 
 :root {
     color-scheme: light;
-    --spheal-color: #4C6CBC;
-    --spheal-font-color: #D1E0FF;
+    --rev-color: #ef773b;
+    --rev-font-color: #D1E0FF;
+    --rev-secondary: #FCB414;
     --font-color: #424242;
     --bg-color: #e2e2e2;
     --secondary-color: #ededed;
-    --input-color: #a6a6a600;
-    --input-font-color: #3F51B5;
-    --caret-color: #4C6CBC;
+    --input-color: #f9f4f49d;
+    --input-font-color: #424242;
+    --caret-color: #F26925;
 }
 
 [data-theme="dark"] {
     color-scheme: dark;
-    --spheal-color: #4C6CBC;
-    --spheal-font-color: #D1E0FF;
+    --rev-color: #ef773b;
+    --rev-font-color: #D1E0FF;
+    --rev-secondary: #FCB414;
     --font-color: #e1e1ff;
     --bg-color: #181818;
     --secondary-color: #282828;
@@ -26,9 +28,8 @@
 
 html,
 body {
-      height: 100%;
+    height: 100%;
 }
-
 
 body {
     margin: 0;
@@ -36,6 +37,20 @@ body {
     min-height: 100vh;
     color: var(--font-color);
     background: var(--bg-color);
+}
+
+.mat-flat-button.mat-primary,
+.mat-raised-button.mat-primary,
+.mat-fab.mat-primary,
+.mat-mini-fab.mat-primary {
+    background-color: var(--rev-color);
+}
+
+.mat-flat-button.mat-warn,
+.mat-raised-button.mat-warn,
+.mat-fab.mat-warn,
+.mat-mini-fab.mat-warn {
+    background-color: var(--rev-secondary);
 }
 
 .mat-form-field-appearance-legacy .mat-form-field-label {
@@ -58,14 +73,22 @@ mat-label {
     color: white;
 }
 
-.mat-checkbox-layout .mat-checkbox-label {
+mat-slide-toggle {
     line-height: 24px;
-    margin-right: 1em;
+    margin-right: 2em;
     font-size: 1rem;
 }
 
-.mat-checkbox-checked.mat-accent .mat-checkbox-background {
-    background-color: black !important;
+.mat-slide-toggle.mat-checked .mat-ripple-element {
+    background-color: #000000;
+}
+
+.mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+    background-color: rgb(0 0 0 / 54%);
+}
+
+.mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+    background-color: #000;
 }
 
 .mat-flat-button.mat-warn,
@@ -77,6 +100,14 @@ mat-label {
 
 .mat-input-element {
     caret-color: var(--caret-color);
+}
+
+.formPost {
+    width: 50vw;
+    background: var(--secondary-color);
+    padding: 1em;
+    margin: auto;
+    margin-bottom: 2em;
 }
 
 .form {
@@ -100,35 +131,31 @@ textarea.mat-input-element {
 }
 
 .spheal {
-    background-color: var(--spheal-color);
-    color: var(--spheal-font-color);
+    background-color: var(--rev-color);
+    color: var(--rev-font-color);
 }
-
 
 .app-header {
-      justify-content: space-between;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 2;
-      box-shadow: 0 3px 5px -1px rgba(0, 0, 0, .2), 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12);
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    box-shadow: 0 3px 5px -1px rgba(0, 0, 0, .2), 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12);
 }
-
 
 .login-wrapper {
-      height: 100%;
+    height: 100%;
 }
-
 
 .positronx {
-      text-decoration: none;
-      color: #ffffff;
+    text-decoration: none;
+    color: #ffffff;
 }
 
-.logout {
-    background: #779eff;
-    margin-left: 2em;
+mat-divider {
+    background: var(--input-font-color);
 }
 
 .box {
@@ -147,16 +174,25 @@ textarea.mat-input-element {
     max-width: 330px;
 }
 
-
-.box.back {
-      transform: scale(.95);
-      -webkit-transform: scale(.95);
-      -ms-transform: scale(.95);
-      top: -20px;
-      opacity: .8;
-      z-index: -1;
+.comment-reply {
+    cursor: pointer;
+    color: var(--rev-secondary);
+    text-decoration: none;
+    margin: 0.3em;
 }
 
+.likeBtn {
+    margin-right: 2em;
+}
+
+.box.back {
+    transform: scale(.95);
+    -webkit-transform: scale(.95);
+    -ms-transform: scale(.95);
+    top: -20px;
+    opacity: .8;
+    z-index: -1;
+}
 
 .box:before {
     content: "";
@@ -174,38 +210,32 @@ textarea.mat-input-element {
     z-index: -1;
 }
 
-
 .login-wrapper .example-form {
-      min-width: 100%;
-      max-width: 300px;
-      width: 100%;
+    min-width: 100%;
+    max-width: 300px;
+    width: 100%;
 }
-
 
 .login-wrapper .example-full-width,
 .login-wrapper .btn-block {
-      width: 100%;
+    width: 100%;
 }
-
 
 .login-wrapper mat-card-header {
-      text-align: center;
-      width: 100%;
-      display: block;
-      font-weight: 700;
+    text-align: center;
+    width: 100%;
+    display: block;
+    font-weight: 700;
 }
-
 
 .login-wrapper mat-card-header mat-card-title {
-      font-size: 30px;
-      margin: 0;
+    font-size: 30px;
+    margin: 0;
 }
-
 
 .login-wrapper .mat-card {
-      padding: 40px 70px 50px;
+    padding: 40px 70px 50px;
 }
-
 
 .login-wrapper .mat-stroked-button {
     border: 1px solid currentColor;
@@ -214,9 +244,8 @@ textarea.mat-input-element {
     opacity: 0.8;
 }
 
-
 .login-wrapper .mat-form-field-appearance-legacy .mat-form-field-infix {
-      padding: 0.8375em 0;
+    padding: 0.8375em 0;
 }
 
 .login-rerout-link {
@@ -240,14 +269,14 @@ textarea.mat-input-element {
 }
 
 .user-card {
-  width: 10%;
-  text-align: center;
-  margin: 1%;
+    width: 10%;
+    text-align: center;
+    margin: 1%;
 }
 
 .sidebyside {
-      display: inline-block;
-      vertical-align: top;
+    display: inline-block;
+    vertical-align: top;
 }
 
 .post-feed-container {
@@ -258,64 +287,80 @@ textarea.mat-input-element {
 }
 
 .full-width {
-      width: 100%
+    width: 100%
 }
 
-.header-image, .nav-user-img {
+.header-image,
+.nav-user-img {
     background-size: cover;
     border: 1px solid #888080;
 }
 
+.mat-button.mat-primary,
+.mat-icon-button.mat-primary,
+.mat-stroked-button.mat-primary {
+    background-color: var(--rev-secondary);
+    color: var(--rev-color);
+    margin-right: 1.4em;
+}
+
 #post-feed {
-  width: 100%;
-  align-content: center;
+    width: 50vw;
+    margin: auto;
+    align-content: center;
 }
 
 .post-author {
     margin-top: 0.6em;
 }
 
-.post-header, .post-content {
+.navLoginBtn {
+    float: right;
+    font-size: 20px;
+    margin-top: unset !important;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+.post-header,
+.post-content {
     margin-bottom: 0.3em;
     border-bottom: solid 0.2em #000000;
     padding-bottom: 0.3em;
 }
 
 .post-card {
-      margin-bottom: 1em;
+    margin-bottom: 1em;
 }
 
 .form {
-      margin-bottom: 1em;
+    margin-bottom: 1em;
 }
 
 .comment-container {
-      margin-left: 2em;
-}
-
-.comment-reply {
-    cursor: pointer;
-    text-decoration: underline;
+    margin-left: 2em;
 }
 
 .comment-author {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 
 .spacer {
-  flex: 1 1 auto;
+    flex: 1 1 auto;
 }
 
-#navUsernameDiv, .navLogBtn {
+#navUsernameDiv,
+.navLogBtn {
     float: right;
     font-size: 20px;
     margin-top: 10px;
+    margin-left: 10px;
     vertical-align: middle;
 }
 
 #navProfileDiv {
     cursor: pointer;
-    float:right;
+    float: right;
     width: 50px;
     height: 50px;
     border-radius: 25px;
@@ -323,4 +368,9 @@ textarea.mat-input-element {
 
 #navUsernameDiv {
     margin-right: 10px;
+}
+
+.mat-badge-accent .mat-badge-content {
+    background: #474C55;
+    color: #fff;
 }
