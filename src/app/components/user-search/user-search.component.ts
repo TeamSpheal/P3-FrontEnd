@@ -31,6 +31,7 @@ export class SearchComponent implements OnInit{
         const close = document.getElementById('closeBtn');
         overlay?.style.setProperty('display','none');
         close?.style.setProperty('display','none');
+        this.input = "";
       }
 
     async getUsers() {
