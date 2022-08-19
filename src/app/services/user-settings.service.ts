@@ -8,8 +8,8 @@ import { environment } from '../../environments/environment';
     providedIn: 'root'
 })
 export class UserSettingsService {
-    imageURLInput: string = "";
-    userUpdateURL: string = `${environment.baseUrl}/user/update`;
+    imageURLInput = "";
+    userUpdateURL = `${environment.baseUrl}/user/update`;
 
     constructor(private http: HttpClient) { }
 
