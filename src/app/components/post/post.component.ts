@@ -53,7 +53,7 @@ export class PostComponent implements OnInit {
     this.postService.getPost(this.post)?.subscribe(
       ( resp : { users: string | any[]; }) => {
         this.likeCount = resp.users.length;
-        for (var likedUsers of resp.users) {
+        for (let likedUsers of resp.users) {
 
           if (likedUsers.id == this.authService.currentUser.id) {
             this.isActive = true;
