@@ -12,18 +12,19 @@
     margin: auto;
     overflow-y: auto;
     position: relative;
-    max-height: 60vh;
-    margin-right: 1em;
+    max-height: 422px;
 }
 
 .Users li {
     list-style-type: none;
     cursor: pointer;
     width: 95%;
+    margin-bottom: -0.5em;
 }
 
 .mat-card:not([class*=mat-elevation-z]) {
     transition: .2s all ease;
+    margin-right: 1em;
 }
 
 .mat-card:not([class*=mat-elevation-z]):hover {
@@ -32,7 +33,7 @@
 }
 
 .searchOverlay {
-    width: 55vw;
+    width: 422px;
     height: auto;
     max-height: 60vh;
     background-color: rgb(132 132 133 / 51%);
@@ -42,12 +43,19 @@
     margin-left: 1em;
     z-index: 1;
     display: none;
-    padding: 1em;
     border-bottom-left-radius: 0.5em;
     border-bottom-right-radius: 0.5em;
     box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.34);
     backdrop-filter: blur(10px);
     animation: searchAnim .5s ease 0s 1 normal forwards;
+}
+
+.mat-card-header .mat-card-title {
+    font-size: 18px;
+}
+
+mat-card {
+    margin-bottom: 0;
 }
 
 .navSearchInp {
