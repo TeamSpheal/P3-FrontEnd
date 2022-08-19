@@ -2,29 +2,29 @@
 
 :root {
     color-scheme: light;
-    --rev-color: #ef773b;
-    --rev-font-color: #D1E0FF;
-    --rev-secondary: #FCB414;
-    --font-color: #424242;
-    --bg-color: #e2e2e2;
-    --secondary-color: #ededed;
+    --rev-color: #ef773bdf;
+    --rev-font-color: #D1E0FFdf;
+    --rev-secondary: #FCB414df;
+    --font-color: #424242df;
+    --bg-color: #e2e2e2df;
+    --secondary-color: #edededdf;
     --input-color: #f9f4f49d;
-    --input-font-color: #424242;
-    --caret-color: #F26925;
-    --search-color: rgb(132 132 133 / 51%);
+    --input-font-color: #424242df;
+    --caret-color: #F26925df;
+    --search-color: rgb(188 188 188 / 63%);
 }
 
 [data-theme="dark"] {
     color-scheme: dark;
-    --rev-color: #ef773b;
-    --rev-font-color: #D1E0FF;
-    --rev-secondary: #FCB414;
-    --font-color: #e1e1ff;
-    --bg-color: #181818;
-    --secondary-color: #282828;
-    --input-color: #4f4f4f;
+    --rev-color: #ef773bdf;
+    --rev-font-color: #D1E0FFdf;
+    --rev-secondary: #FCB414df;
+    --font-color: #e1e1ffdf;
+    --bg-color: #181818df;
+    --secondary-color: #282828df;
+    --input-color: #4f4f4fdf;
     --input-font-color: #d6d6d6;
-    --caret-color: #D1E0FF;
+    --caret-color: #D1E0FFdf;
     --search-color: rgb(64 64 64 / 76%);
 }
 
@@ -110,6 +110,8 @@ mat-slide-toggle {
     padding: 1em;
     margin: auto;
     margin-bottom: 2em;
+    border-radius: 0.5em;
+    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
 }
 
 .form {

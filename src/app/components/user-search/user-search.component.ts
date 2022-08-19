@@ -13,8 +13,6 @@ export class SearchComponent implements OnInit{
 
     constructor() {}
 
-
-
     ngOnInit(): void {
         this.getUsers();
     }
@@ -35,9 +33,8 @@ export class SearchComponent implements OnInit{
       }
 
     async getUsers() {
-        const input = this.input.split(" ");
+    const input = this.input.split(" ");
 
-     
     if(this.input){
 
         let upperCasedNames = input.map((name) => { 
