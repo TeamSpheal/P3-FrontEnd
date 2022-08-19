@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -10,7 +10,7 @@ import User from 'src/app/models/User';
     templateUrl: './navbar.component.html',
     styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, OnChanges {
 
     lightStatus: string;
     checkedStatus: boolean;
@@ -77,6 +77,20 @@ export class NavbarComponent implements OnInit {
           this.lightStatus = "Light"
           document.documentElement.setAttribute('data-theme', 'light');
           localStorage.setItem('theme', 'light')
+        }
+    }
+
+    ngOnChanges() {
+        this.loggedIn = JSON.parse(<string>sessionStorage.getItem("user"));
+        console.log(this.loggedIn);
+        if (this.loggedIn == undefined) {
+            this.navUserDiv.hidden = true;
+            this.navLoginDiv.hidden = false;
+        } else {
+            this.navUserDiv.hidden = false;
+            this.navLoginDiv.hidden = true;
+            this.navProfileDiv.style.backgroundImage = "URL('" + this.loggedIn.profileImg + "')";
+            this.navUsernameDiv.innerHTML = this.loggedIn.username;
         }
     }
 } 
