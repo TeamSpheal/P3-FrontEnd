@@ -29,11 +29,9 @@ export class LoginComponent implements OnInit {
       this.authService.login(this.loginForm.value.email || "", this.loginForm.value.password || "")
       .subscribe(
           (response: HttpResponse<any>) => {
-            console.log(response);
             this.authService.currentUser = response.body
-            sessionStorage.setItem("user", JSON.stringify(response.body));
-            sessionStorage.setItem("JWT", <string>response.headers.get("Auth"));
-            environment.headers.Auth = <string>sessionStorage.getItem("JWT");
+            localStorage.setItem("user", JSON.stringify(response.body));
+            localStorage.setItem("JWT", <string>response.headers.get("Auth"));
             this.router.navigate(['post-feed'])
         }
       )
