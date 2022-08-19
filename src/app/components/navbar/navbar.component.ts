@@ -77,6 +77,5 @@ export class NavbarComponent implements OnInit {
           document.documentElement.setAttribute('data-theme', 'light');
           localStorage.setItem('theme', 'light')
         }
-      } 
-
-}
+    }
+} 
