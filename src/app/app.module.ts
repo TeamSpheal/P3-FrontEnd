@@ -32,7 +32,7 @@ import { SearchComponent } from './components/user-search/user-search.component'
         UserCardComponent,
         NavbarComponent,
         UserInitialsPipe,
-        SearchComponent, 
+        SearchComponent,
         UserSettingsComponent,
         ResetPwComponent,
         UserProfileComponent,
