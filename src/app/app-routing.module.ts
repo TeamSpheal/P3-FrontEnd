@@ -15,7 +15,6 @@ const routes: Routes = [
     { path: "register", component: RegisterComponent },
     { path: "post-feed", component: PostFeedPageComponent },
     { path: "search", component: SearchComponent },
-    { path: "post-feed", component: PostFeedPageComponent },
     { path: "user-settings", component: UserSettingsComponent },
     { path: "reset-pw", component: ResetPwComponent },
     { path: "user-profile/:id", component: UserProfileComponent },

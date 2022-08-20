@@ -16,7 +16,7 @@ export class UserCardComponent implements OnInit {
   constructor(private authService: AuthService) { }
 
     ngOnInit(): void {
-        this.user = JSON.parse(<string>sessionStorage.getItem("user"));
+        this.user = JSON.parse(<string>localStorage.getItem("user"));
         console.log(this.user);
         this.profileImg = <HTMLDivElement>document.getElementById("user-circle");
         this.usernameDisplay = <HTMLParagraphElement>document.getElementById("p-username");

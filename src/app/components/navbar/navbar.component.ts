@@ -42,8 +42,7 @@ export class NavbarComponent implements OnInit {
             
         }
 
-        this.loggedIn = JSON.parse(<string>sessionStorage.getItem("user"));
-        console.log(this.loggedIn);
+        this.loggedIn = JSON.parse(<string>localStorage.getItem("user"));
         if (this.loggedIn == undefined) {
             this.navUserDiv.hidden = true;
             this.navLoginDiv.hidden = false;
