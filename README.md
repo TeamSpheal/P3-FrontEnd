@@ -1,6 +1,6 @@
 # Project 3 - RevaSphere Social Media Website (Front-End)
 
-![RevaSphere Logo](/assets/images/revasphere-logo.png)
+![RevaSphere Logo](src/assets/images/revasphere-logo.png)
 
 This social media website project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.6.
 
