@@ -101,7 +101,7 @@ describe('ResetPwComponent', () => {
         /*Local Variables*/
         // A vaild password must be between 4 and 100 characters and not contain invalid characters
         // Side Note: Yes, these requirements are very insecure
-        const mockPW: string = "hey";
+        const mockPW = "hey";
 
         /*Mocks*/
         spyOn(document, 'getElementById').and.returnValue(document.createElement("input"))
@@ -119,8 +119,8 @@ describe('ResetPwComponent', () => {
     it('updatePW: should alert user of non-matching passwords', async () => {
         /*Local Variables*/
         // Passwords must match
-        const mockPW1: string = "hello-there";
-        const mockPW2: string = "general-kenobi";
+        const mockPW1 = "hello-there";
+        const mockPW2 = "general-kenobi";
 
         /*Mocks*/
         spyOn(document, 'getElementById').and.returnValue(document.createElement("input"))
