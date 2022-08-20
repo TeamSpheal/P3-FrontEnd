@@ -3,6 +3,7 @@ import { UserSettingsComponent } from './user-settings.component';
 import User from '../../models/User';
 import { UserSettingsService } from '../../services/user-settings.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { of, from } from 'rxjs';
 
 describe('UserSettingsComponent', () => {
     /*Suite Variables*/
@@ -73,7 +74,7 @@ describe('UserSettingsComponent', () => {
         expect(window.alert).toHaveBeenCalledWith("Please limit your image url to 255 characters or less");
     });
 
-    it('updateImage: should not alert user when input is valid', async () => {
+    it('updateImage: should alert user of request failure', async () => {
         /*Local Variables*/
         //This string is exactly 255 characters long
         const mockImgURL: string = "http://randomimagegenerator.com/fakeurl/image/arbitraryidforfakeimage/"
@@ -81,15 +82,43 @@ describe('UserSettingsComponent', () => {
             + "587htgqp9e203gnvksrhbgkaegpbveriuabgvakwujrgnqiaebvnbrtiung45wieurgvnqwp3geiurgnnvtiughhttp";
 
         /*Mocks*/
+        spyOn(userSettingsService, 'updateProfile').and.callFake(() => {
+            return from(of(undefined));
+        });
+        spyOn(window, 'alert');
         userSettComp.imgUrlText = document.createElement("input");
         userSettComp.imgUrlText.value = mockImgURL;
-        spyOn(window, 'alert');
+        userSettComp.loggedIn = mockUser;
 
         /*Function*/
         userSettComp.updateImage();
 
         /*Test*/
-        expect(window.alert).not.toHaveBeenCalled();
+        expect(window.alert).toHaveBeenCalledWith("The server failed to update your profile image");
+    });
+
+    it('updateImage: should alert user of request success', async () => {
+        /*Local Variables*/
+        //This string is exactly 255 characters long
+        const mockImgURL: string = "http://randomimagegenerator.com/fakeurl/image/arbitraryidforfakeimage/"
+            + "GtH675rfgtifnre948gnrkfjdvnw4uigbkreu5n4g985gbnlasdkhgb5iugbelkg85gu8skjgb3qp438bgtubiwerj4p3e"
+            + "587htgqp9e203gnvksrhbgkaegpbveriuabgvakwujrgnqiaebvnbrtiung45wieurgvnqwp3geiurgnnvtiughhttp";
+
+        /*Mocks*/
+        spyOn(userSettingsService, 'updateProfile').and.callFake(() => {
+            return from(of(JSON.stringify(mockUser)));
+        });
+        spyOn(window, 'alert');
+        spyOn(userSettComp, 'displayInfo').and.callFake(() => { /*Do Nothing*/ })
+        userSettComp.imgUrlText = document.createElement("input");
+        userSettComp.imgUrlText.value = mockImgURL;
+        userSettComp.loggedIn = mockUser;
+
+        /*Function*/
+        userSettComp.updateImage();
+
+        /*Test*/
+        expect(window.alert).toHaveBeenCalledWith("Your profile image was updated successfully");
     });
 
     it('updateProfile: should alert user of invalid username', async () => {
@@ -136,14 +165,16 @@ describe('UserSettingsComponent', () => {
         expect(window.alert).toHaveBeenCalledWith("The email you entered is invalid. Please try again");
     });
 
-    it('updateProfile: should not alert user when input is valid', async () => {
+    it('updateProfile: should alert user of request failure', async () => {
         /*Local Variables*/
         const mockUN: string = "Random_1";
-        // A vaild email must contain '@' and '.' in specific places and cannot contain invalid characters
         const mockEM: string = "rand0M_Ema1l@gmail.com";
 
         /*Mocks*/
-        spyOn(document, 'getElementById').and.returnValue(document.createElement("input"))
+        spyOn(userSettingsService, 'updateProfile').and.callFake(() => {
+            return from(of(undefined));
+        });
+        spyOn(window, 'alert');
         userSettComp.usernameText = document.createElement("input");
         userSettComp.emailText = document.createElement("input");
         userSettComp.fNameText = document.createElement("input");
@@ -151,13 +182,38 @@ describe('UserSettingsComponent', () => {
         userSettComp.usernameText.value = mockUN;
         userSettComp.emailText.value = mockEM;
         userSettComp.loggedIn = mockUser;
-        spyOn(window, 'alert');
 
         /*Function*/
         await userSettComp.updateProfile();
 
         /*Test*/
-        expect(window.alert).not.toHaveBeenCalled();
+        expect(window.alert).toHaveBeenCalledWith("The server failed to update your profile");
+    });
+
+    it('updateProfile: should alert user of request success', async () => {
+        /*Local Variables*/
+        const mockUN: string = "Random_1";
+        const mockEM: string = "rand0M_Ema1l@gmail.com";
+
+        /*Mocks*/
+        spyOn(userSettingsService, 'updateProfile').and.callFake(() => {
+            return from(of(JSON.stringify(mockUser)));
+        });
+        spyOn(window, 'alert');
+        spyOn(userSettComp, 'displayInfo').and.callFake(() => { /*Do Nothing*/ })
+        userSettComp.usernameText = document.createElement("input");
+        userSettComp.emailText = document.createElement("input");
+        userSettComp.fNameText = document.createElement("input");
+        userSettComp.lNameText = document.createElement("input");
+        userSettComp.usernameText.value = mockUN;
+        userSettComp.emailText.value = mockEM;
+        userSettComp.loggedIn = mockUser;
+
+        /*Function*/
+        await userSettComp.updateProfile();
+
+        /*Test*/
+        expect(window.alert).toHaveBeenCalledWith("Your information was updated successfully");
     });
 
     it('updatePassword: should alert user of invalid password', async () => {
@@ -202,24 +258,52 @@ describe('UserSettingsComponent', () => {
         expect(window.alert).toHaveBeenCalledWith("Passwords must match. Please try again");
     });
 
-    it('updatePassword: should not alert user when input is valid', async () => {
+    it('updatePassword: should alert user of request failure', async () => {
         /*Local Variables*/
-        const mockPW: string = "echo";
+        const mockPW = "password";
 
         /*Mocks*/
-        spyOn(document, 'getElementById').and.returnValue(document.createElement("input"))
+        spyOn(userSettingsService, 'updatePassword').and.callFake(() => {
+            return from(of(undefined));
+        });
+        spyOn(window, 'alert');
         userSettComp.newPWText = document.createElement("input");
         userSettComp.confirmPWText = document.createElement("input");
         userSettComp.newPWText.value = mockPW;
         userSettComp.confirmPWText.value = mockPW;
-        userSettComp.loggedIn = mockUser;
-        spyOn(window, 'alert');
+
 
         /*Function*/
         await userSettComp.updatePassword();
 
         /*Test*/
-        expect(window.alert).not.toHaveBeenCalled();
+        expect(window.alert).toHaveBeenCalledWith("The server failed to update your password");
+    });
+
+    it('updatePW: should alert user of request success', async () => {
+        /*Local Variables*/
+        const mockPWReq: Response = new Response("success", {
+            status: 200,
+            statusText: 'OK'
+        });
+        const mockPW = "password";
+
+        /*Mocks*/
+        spyOn(userSettingsService, 'updatePassword').and.callFake(() => {
+            return from(of(mockPWReq));
+        });
+        spyOn(window, 'alert');
+        userSettComp.newPWText = document.createElement("input");
+        userSettComp.confirmPWText = document.createElement("input");
+        userSettComp.newPWText.value = mockPW;
+        userSettComp.confirmPWText.value = mockPW;
+
+
+        /*Function*/
+        await userSettComp.updatePassword();
+
+        /*Test*/
+        expect(window.alert).toHaveBeenCalledWith("Your password was updated successfully");
     });
 
     it('displayInfo: should input data without any errors', async () => {

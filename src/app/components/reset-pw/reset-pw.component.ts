@@ -12,7 +12,14 @@ import { Router } from '@angular/router';
     styleUrls: ['./reset-pw.component.css']
 })
 export class ResetPwComponent implements OnInit {
+    /*Class Variables*/
+    resetUser: User;
+    resetToken: string;
+    emailDiv: HTMLFormElement;
+    tokenDiv: HTMLFormElement;
+    confirmDiv: HTMLFormElement;
 
+    /*Form Groups*/
     emailResetForm = new FormGroup({
         email: new FormControl(''),
     })
@@ -26,39 +33,20 @@ export class ResetPwComponent implements OnInit {
         confirmPass: new FormControl('')
     })
 
-    resetUser: User;
-
-    resetToken: string;
-
-    emailDiv: HTMLFormElement;
-
-    tokenDiv: HTMLFormElement;
-
-    confirmDiv: HTMLFormElement;
-
-
-
-
     /**
      * A constructor to provide dependencies for the class
      * @param userSettingsService
      */
-    constructor(private userSettingsService: UserSettingsService, private router:Router) { }
+    constructor(private userSettingsService: UserSettingsService, private router: Router) { }
 
+    /**Upon initialization, assigns values to class variables and hide the necessary div elements 
+     */
     ngOnInit(): void {
-
-
-        this.emailDiv = <HTMLFormElement> document.getElementById('emailReset');
-
-        this.tokenDiv = <HTMLFormElement> document.getElementById('tokenReset');
-
-        this.confirmDiv = <HTMLFormElement> document.getElementById('confirmReset');
-
-
-
+        this.emailDiv = <HTMLFormElement>document.getElementById('emailReset');
+        this.tokenDiv = <HTMLFormElement>document.getElementById('tokenReset');
+        this.confirmDiv = <HTMLFormElement>document.getElementById('confirmReset');
         this.tokenDiv.hidden = true;
         this.confirmDiv.hidden = true;
-
     }
 
     /**
@@ -68,18 +56,16 @@ export class ResetPwComponent implements OnInit {
      */
     retrieveResetToken() {
         /*Send Request*/
-
-        console.log("THIS IS BARRY'S MOM: " + <string>this.emailResetForm.value.email);
-
         this.userSettingsService.getResetPWToken(<string>this.emailResetForm.value.email).subscribe((response: HttpResponse<any>) => {
             /*Retrieve Token from response headers*/
-            //console.log("Hi bArry: " + JSON.stringify(response.body));
-
             sessionStorage.setItem("PWRT", <string>response.headers.get("ResetToken"));
             this.resetToken = <string>sessionStorage.getItem("PWRT");
             this.resetUser = JSON.parse(JSON.stringify(response.body));
 
+            /*Alert user*/
             alert("An email has been sent to you with a token. Be sure to check the spam folder if it is not clearly seen");
+
+            /*Show the next div element*/
             this.emailDiv.hidden = true;
             this.tokenDiv.hidden = false;
 
@@ -87,18 +73,20 @@ export class ResetPwComponent implements OnInit {
 
     }
 
+    /**Compares the user's input for the token to the previously retrieved token and adjusts accordingly
+     */
     testTokenInput() {
-        if (<string>this.tokenResetForm.value.token == this.resetToken) {
-
+        if (<string>this.tokenResetForm.value.token == this.resetToken) {//Token input matches what was retrieved front the request header
+            /*Show next div element*/
             this.tokenDiv.hidden = true;
             this.confirmDiv.hidden = false;
-
-        } else {
+        } else {//Token input does not match
             alert("The token you entered is invalid");
-
         }
     }
 
+    /**Validates user's input and then sends it to the service to be uploaded
+    */
     async updatePW() {
         /*Local Variables*/
         const pass1: string = <string>this.confirmResetForm.value.newPass; //= newPWText.value
@@ -112,7 +100,9 @@ export class ResetPwComponent implements OnInit {
                 //Send Request
                 await this.userSettingsService.updatePassword(pass1, this.resetUser).subscribe((data: any) => {
                     //Parse Data
-                    response = JSON.stringify(data);
+                    if (data != undefined) {
+                        response = JSON.stringify(data);
+                    }
 
                     //Process Data
                     if (response != undefined) {//Data is defined
@@ -143,5 +133,5 @@ export class ResetPwComponent implements OnInit {
         this.confirmResetForm.value.newPass = "";
         this.confirmResetForm.value.confirmPass = "";
     }
-    
+
 }

@@ -37,8 +37,8 @@ describe('UserSettingsService', () => {
     it('updatePassword: should return the observable', async () => {
         expect(userSettServ.updatePassword("password", mockUser)).toBeTruthy();
     });
-
-    it('getResetToken: should return the observable', async () => {
+    
+    it('getResetPWToken: should return the observable', async () => {
         expect(userSettServ.getResetPWToken("email")).toBeTruthy();
     });
 });

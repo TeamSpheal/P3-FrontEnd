@@ -61,7 +61,7 @@ export class UserSettingsComponent implements OnInit {
         }
     }
 
-    
+
     /**When user clicks the update button, the image URL changes to
      * set their pfp with a new one.
      */
@@ -71,7 +71,7 @@ export class UserSettingsComponent implements OnInit {
         const newImgURL: string = this.imgUrlText.value;
         let response: User | undefined;
 
-    /*Validate Data*/
+        /*Validate Data*/
         if (newImgURL.length <= 255) {//Image URL is 255 characters or less
             /*Setup User Object*/
             updatedUser.profileImg = newImgURL;
@@ -79,7 +79,9 @@ export class UserSettingsComponent implements OnInit {
             /*Send request*/
             await this.userSettingsService.updateProfile(updatedUser).subscribe((data: any) => {
                 //Parse data
-                response = JSON.parse(JSON.stringify(data));
+                if (data != undefined) {
+                    response = JSON.parse(JSON.stringify(data));
+                }
 
                 //Process data
                 if (response != undefined) { //Data is defined. The return from the response should contain a user object
@@ -126,7 +128,9 @@ export class UserSettingsComponent implements OnInit {
                 //Send Request
                 await this.userSettingsService.updateProfile(updatedUser).subscribe((data: any) => {
                     //Parse Data
-                    response = JSON.parse(data);
+                    if (data != undefined) {
+                        response = JSON.parse(data);
+                    }
 
                     //Process Data
                     if (response != undefined) { //Data is defined. The return from the response should contain a user object
@@ -173,7 +177,9 @@ export class UserSettingsComponent implements OnInit {
                 //Send Request
                 await this.userSettingsService.updatePassword(pass1, this.loggedIn).subscribe((data: any) => {
                     //Parse Data
-                    response = JSON.stringify(data);
+                    if (data != undefined) {
+                        response = JSON.stringify(data);
+                    }
 
                     //Process Data
                     if (response != undefined) {//Data is defined
