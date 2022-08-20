@@ -56,9 +56,9 @@ describe('UserSettingsComponent', () => {
     it('updateImage: should alert user of invalid image URL', async () => {
         /*Local Variables*/
         //This string is exactly 256 characters long
-        const mockImgURL: string = "http://randomimagegenerator.com/fakeurl/image/arbitraryidforfakeimage/"
+        const mockImgURL: string = "http2://randomimagegenerator.com/fakeurl/image/arbitraryidforfakeimage/"
             + "GtH675rfgtifnre948gnrkfjdvnw4uigbkreu5n4g985gbnlasdkhgb5iugbelkg85gu8skjgb3qp438bgtubiwerj4p3e"
-            + "587htgqp9e203gnvksrhbgkaegpbveriuabgvakwujrgnqiaebvnbrtiung45wieurgvnqwp3geiurgnnvtiughhttyp";
+            + "587htgqp9e203gnvksrhbgkaegpbveriuabgvakwujrgnqiaebvnbrtiung45wieurgvnqwp3geiurgnnvtiughhtty";
         const mockUrlLength: number = mockImgURL.length
 
         /*Mocks*/
@@ -77,9 +77,9 @@ describe('UserSettingsComponent', () => {
     it('updateImage: should alert user of request failure', async () => {
         /*Local Variables*/
         //This string is exactly 255 characters long
-        const mockImgURL: string = "http://randomimagegenerator.com/fakeurl/image/arbitraryidforfakeimage/"
+        const mockImgURL: string = "https://randomimagegenerator.com/fakeurl/image/arbitraryidforfakeimage/"
             + "GtH675rfgtifnre948gnrkfjdvnw4uigbkreu5n4g985gbnlasdkhgb5iugbelkg85gu8skjgb3qp438bgtubiwerj4p3e"
-            + "587htgqp9e203gnvksrhbgkaegpbveriuabgvakwujrgnqiaebvnbrtiung45wieurgvnqwp3geiurgnnvtiughhttp";
+            + "587htgqp9e203gnvksrhbgkaegpbveriuabgvakwujrgnqiaebvnbrtiung45wieurgvnqwp3geiurgnnvtiughhtt";
 
         /*Mocks*/
         spyOn(userSettingsService, 'updateProfile').and.callFake(() => {
@@ -100,9 +100,9 @@ describe('UserSettingsComponent', () => {
     it('updateImage: should alert user of request success', async () => {
         /*Local Variables*/
         //This string is exactly 255 characters long
-        const mockImgURL: string = "http://randomimagegenerator.com/fakeurl/image/arbitraryidforfakeimage/"
+        const mockImgURL: string = "https://randomimagegenerator.com/fakeurl/image/arbitraryidforfakeimage/"
             + "GtH675rfgtifnre948gnrkfjdvnw4uigbkreu5n4g985gbnlasdkhgb5iugbelkg85gu8skjgb3qp438bgtubiwerj4p3e"
-            + "587htgqp9e203gnvksrhbgkaegpbveriuabgvakwujrgnqiaebvnbrtiung45wieurgvnqwp3geiurgnnvtiughhttp";
+            + "587htgqp9e203gnvksrhbgkaegpbveriuabgvakwujrgnqiaebvnbrtiung45wieurgvnqwp3geiurgnnvtiughhtt";
 
         /*Mocks*/
         spyOn(userSettingsService, 'updateProfile').and.callFake(() => {
