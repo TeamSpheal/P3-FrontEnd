@@ -12,7 +12,7 @@ export default class User {
 
 
     constructor(id: number, email: string, firstName: string, lastName: string, username: string, profileImg: string,
-        followers: UserMiniDTO[], followings: UserMiniDTO[]) {
+        followers: UserMiniDTO[], followings: UserMiniDTO[]) { // NOSONAR
         this.id = id
         this.email = email
         this.firstName = firstName
