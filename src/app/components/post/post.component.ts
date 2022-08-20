@@ -35,7 +35,7 @@ export class PostComponent implements OnInit {
   
   @Input() likeCount: number;
   @Input() isActive: boolean;
-  @Input() isNotActive: boolean = false;
+  @Input() isNotActive = false;
 
   constructor(private postService: PostService, private authService: AuthService) {
   }
@@ -51,7 +51,7 @@ export class PostComponent implements OnInit {
     this.postService.getPost(this.post)?.subscribe(
       ( resp : { users: string | any[]; }) => {
         this.likeCount = resp.users.length;
-        for (let likedUsers of resp.users) {
+        for (const likedUsers of resp.users) {
 
           if (likedUsers.id == this.authService.currentUser.id) {
             this.isActive = true;
@@ -91,10 +91,6 @@ export class PostComponent implements OnInit {
       )
     }
   } 
-
-
-
-
   toggleReplyToPost = () => {
     this.replyToPost = !this.replyToPost
   }
