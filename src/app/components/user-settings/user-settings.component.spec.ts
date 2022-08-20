@@ -2,10 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { UserSettingsComponent } from './user-settings.component';
 import User from '../../models/User';
 import { UserSettingsService } from '../../services/user-settings.service';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { from, of } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('UserSettingsComponent', () => {
     /*Suite Variables*/
@@ -13,7 +10,6 @@ describe('UserSettingsComponent', () => {
         'TestUser1', 'assets/images/favicon.png', [], []);
     let userSettComp: UserSettingsComponent;
     let userSettingsService: UserSettingsService;
-    let httpTestingController: HttpTestingController;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -23,7 +19,6 @@ describe('UserSettingsComponent', () => {
         })
         userSettComp = TestBed.inject(UserSettingsComponent);
         userSettingsService = TestBed.inject(UserSettingsService);
-        httpTestingController = TestBed.inject(HttpTestingController);
     });
 
     it('Component: should create', () => {
