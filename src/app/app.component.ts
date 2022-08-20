@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+//import { NavbarComponent } from './components/navbar/navbar.component';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'social-media-angular';
+  //nav = NavbarComponent;
+
+
 }

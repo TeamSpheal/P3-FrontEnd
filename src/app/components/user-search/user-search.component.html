@@ -1,6 +1,6 @@
 <div id="searchContainer">
     <input type="text" [(ngModel)]="input" (keydown.enter)="getUsers()" class="navSearchInp">
-    <mat-icon class="searchIcn" id="searchIcn">search</mat-icon>
+    <mat-icon (click)="getUsers()" class="searchIcn" id="searchIcn">search</mat-icon>
     <button id="closeBtn" class="searchNav" (click)="hideSearch()" mat-icon-button>
         <mat-icon>clear</mat-icon>
     </button>

@@ -18,8 +18,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { UserSettingsComponent } from './components/user-settings/user-settings.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { FollowComponent } from './components/follow/follow.component';
-import { SearchComponent } from './components/user-search/user-search.component';
 import { ResetPwComponent } from './components/reset-pw/reset-pw.component';
+import { SearchComponent } from './components/user-search/user-search.component';
 
 @NgModule({
     declarations: [

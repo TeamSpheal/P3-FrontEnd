@@ -31,7 +31,7 @@ export class ResetPwComponent implements OnInit {
         newPass: new FormControl(''),
         confirmPass: new FormControl('')
     })
-
+    
     /**
      * A constructor to provide dependencies for the class
      * @param userSettingsService
@@ -60,7 +60,7 @@ export class ResetPwComponent implements OnInit {
             sessionStorage.setItem("PWRT", <string>response.headers.get("ResetToken"));
             this.resetToken = <string>sessionStorage.getItem("PWRT");
             this.resetUser = JSON.parse(JSON.stringify(response.body));
-
+            
             /*Alert user*/
             alert("An email has been sent to you with a token. Be sure to check the spam folder if it is not clearly seen");
 
@@ -132,5 +132,4 @@ export class ResetPwComponent implements OnInit {
         this.confirmResetForm.value.newPass = "";
         this.confirmResetForm.value.confirmPass = "";
     }
-
 }

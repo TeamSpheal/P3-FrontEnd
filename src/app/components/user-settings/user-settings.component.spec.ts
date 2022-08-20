@@ -36,7 +36,7 @@ describe('UserSettingsComponent', () => {
 
         /*Function*/
         userSettComp.ngOnInit();
-
+        
         /*Test*/
         expect(userSettComp.loggedIn).toBeTruthy();
     });
