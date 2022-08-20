@@ -3,7 +3,6 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { UserSettingsService } from './user-settings.service';
 import { HttpClient } from '@angular/common/http';
 import User from '../models/User';
-import { of } from 'rxjs'
 
 describe('UserSettingsService', () => {
     /*Suite Variables*/
@@ -18,8 +17,6 @@ describe('UserSettingsService', () => {
             imports: [HttpClientTestingModule]
         })
         userSettServ = TestBed.inject(UserSettingsService);
-        http = TestBed.inject(HttpClient);
-        httpCtrl = TestBed.inject(HttpTestingController);
     });
 
     it('Service: should be created', () => {

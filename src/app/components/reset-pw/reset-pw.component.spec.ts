@@ -1,9 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { from, of } from 'rxjs'
 import { ResetPwComponent } from './reset-pw.component';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { UserSettingsService } from '../../services/user-settings.service';
-import { HttpClient, HttpResponse } from '@angular/common/http';
 
 describe('ResetPwComponent', () => {
     let resetPWComp: ResetPwComponent;
@@ -52,7 +51,7 @@ describe('ResetPwComponent', () => {
         resetPWComp.tokenDiv = document.createElement("form");
 
         /*Function*/
-        await resetPWComp.retrieveResetToken();
+        resetPWComp.retrieveResetToken();
 
         /*Test*/
         expect(resetPWComp.resetToken).toBeTruthy();
