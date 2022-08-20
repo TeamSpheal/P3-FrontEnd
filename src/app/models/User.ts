@@ -11,8 +11,8 @@ export default class User {
     followings: UserMiniDTO[]
 
 
-    constructor(id: number, email: string, firstName: string, lastName: string, username: string, profileImg: string,
-        followers: UserMiniDTO[], followings: UserMiniDTO[]) { // NOSONAR
+    constructor(id: number, email: string, firstName: string, lastName: string, username: string, profileImg: string, // NOSONAR
+        followers: UserMiniDTO[], followings: UserMiniDTO[]) { 
         this.id = id
         this.email = email
         this.firstName = firstName
