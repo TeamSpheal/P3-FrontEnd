@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserSettingsService } from '../../services/user-settings.service';
 import { HttpResponse } from '@angular/common/http';
-import { UserSettingsComponent } from '../user-settings/user-settings.component';
 import User from '../../models/User';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
