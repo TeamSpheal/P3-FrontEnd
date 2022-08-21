@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { LoginComponent } from './login.component';
 import { AuthService } from '../../services/auth.service';
-import { from, of } from 'rxjs'
+import { from, of } from 'rxjs';
 import User from '../../models/User';
 import { HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -22,7 +22,7 @@ describe('LoginComponent', () => {
         router = TestBed.inject(Router);
     });
 
-    it('should create', () => {
+    it('Component: should create', () => {
         expect(loginComp).toBeTruthy();
     });
 
