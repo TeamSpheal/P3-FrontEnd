@@ -6,7 +6,6 @@ import { PostService } from '../../services/post.service';
 import User from '../../models/User';
 import { from, of } from 'rxjs';
 import Post from '../../models/Post';
-import { EventEmitter } from '@angular/core';
 
 describe('PostComponent', () => {
     /*Suite Variables*/
