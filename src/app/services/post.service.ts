@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -13,7 +13,6 @@ export class PostService {
   postGetLikesUrl = `${environment.baseUrl}/post`
   postLikeUrl = `${environment.baseUrl}/post/like`
   postUnlikeUrl = `${environment.baseUrl}/post/unlike`
-  userPostUrl = `${environment.baseUrl}/post/get`
 
   constructor(private http: HttpClient) { }
 
@@ -38,7 +37,11 @@ export class PostService {
   }
 
   getPost(post: Post): Observable<Post>{
-    return this.http.get<Post>(`${this.postGetLikesUrl}/${post}`, {headers: environment.headers, withCredentials: environment.withCredentials})
+    return this.http.get<Post>(`${this.postGetLikesUrl}/${post.id}`, {headers: environment.headers, withCredentials: environment.withCredentials})
+  }
+
+  getPostsByUsers(id : number): Observable<Post[]> {
+    return this.http.get<Post[]>(`${this.followingPostsUrl}/${id}`, {headers: environment.headers, withCredentials: environment.withCredentials} )
   }
 
 }

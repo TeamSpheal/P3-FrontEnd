@@ -8,12 +8,8 @@ import { Component, OnInit } from "@angular/core";
 })
 
 export class SearchComponent implements OnInit{
-    input: string = '';
+    input = '';
     users: any;
-
-    constructor() {}
-
-
 
     ngOnInit(): void {
         this.getUsers();
@@ -31,22 +27,22 @@ export class SearchComponent implements OnInit{
         const close = document.getElementById('closeBtn');
         overlay?.style.setProperty('display','none');
         close?.style.setProperty('display','none');
+        this.input = "";
       }
 
     async getUsers() {
-        const input = this.input.split(" ");
+    const input = this.input.split(" ");
 
-     
     if(this.input){
 
-        let upperCasedNames = input.map((name) => { 
+        const upperCasedNames = input.map((name) => { 
             return name[0].toUpperCase() + name.substring(1); 
         }).join(" ").replace(/ /g,"_");
    
        console.log(upperCasedNames)
        console.log('FETCH: http://localhost:8080/search/' + upperCasedNames );
 
-        let resp = await fetch('http://localhost:8080/search/' + upperCasedNames);
+        const resp = await fetch('http://localhost:8080/search/' + upperCasedNames);
             if(resp.ok){
             this.users = await resp.json();
             this.users = this.users.reverse()
@@ -54,6 +50,8 @@ export class SearchComponent implements OnInit{
             console.log(this.users);
         }
         this.showSearch();
+    }else{
+        this.hideSearch();
     }
 }
 }

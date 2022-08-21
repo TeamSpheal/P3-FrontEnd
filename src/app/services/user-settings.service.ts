@@ -8,7 +8,6 @@ import { environment } from '../../environments/environment';
     providedIn: 'root'
 })
 export class UserSettingsService {
-    imageURLInput = "";
     userUpdateURL = `${environment.baseUrl}/user/update`;
     userURL = `${environment.baseUrl}/user`;
 
@@ -51,7 +50,6 @@ export class UserSettingsService {
     }
 
     getResetPWToken(email: string): Observable<any> {
-        console.log("Barrys is SUper coCOoOL: " + email);
         return this.http.post(this.userURL + "/resetPW", email, {observe: 'response', headers: environment.headers, withCredentials: environment.withCredentials });
     }
 }

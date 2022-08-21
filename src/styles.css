@@ -2,28 +2,30 @@
 
 :root {
     color-scheme: light;
-    --rev-color: #ef773b;
-    --rev-font-color: #D1E0FF;
-    --rev-secondary: #FCB414;
-    --font-color: #424242;
-    --bg-color: #e2e2e2;
-    --secondary-color: #ededed;
+    --rev-color: #ef773bdf;
+    --rev-font-color: #D1E0FFdf;
+    --rev-secondary: #FCB414df;
+    --font-color: #424242df;
+    --bg-color: #e2e2e2df;
+    --secondary-color: #edededdf;
     --input-color: #f9f4f49d;
-    --input-font-color: #424242;
-    --caret-color: #F26925;
+    --input-font-color: #424242df;
+    --caret-color: #F26925df;
+    --search-color: rgb(188 188 188 / 63%);
 }
 
 [data-theme="dark"] {
     color-scheme: dark;
-    --rev-color: #ef773b;
-    --rev-font-color: #D1E0FF;
-    --rev-secondary: #FCB414;
-    --font-color: #e1e1ff;
-    --bg-color: #181818;
-    --secondary-color: #282828;
-    --input-color: #4f4f4f;
+    --rev-color: #ef773bdf;
+    --rev-font-color: #D1E0FFdf;
+    --rev-secondary: #FCB414df;
+    --font-color: #e1e1ffdf;
+    --bg-color: #181818df;
+    --secondary-color: #282828df;
+    --input-color: #4f4f4fdf;
     --input-font-color: #d6d6d6;
-    --caret-color: #D1E0FF;
+    --caret-color: #D1E0FFdf;
+    --search-color: rgb(64 64 64 / 76%);
 }
 
 html,
@@ -37,20 +39,6 @@ body {
     min-height: 100vh;
     color: var(--font-color);
     background: var(--bg-color);
-}
-
-.mat-flat-button.mat-primary,
-.mat-raised-button.mat-primary,
-.mat-fab.mat-primary,
-.mat-mini-fab.mat-primary {
-    background-color: var(--rev-color);
-}
-
-.mat-flat-button.mat-warn,
-.mat-raised-button.mat-warn,
-.mat-fab.mat-warn,
-.mat-mini-fab.mat-warn {
-    background-color: var(--rev-secondary);
 }
 
 .mat-form-field-appearance-legacy .mat-form-field-label {
@@ -101,13 +89,14 @@ mat-slide-toggle {
 .mat-input-element {
     caret-color: var(--caret-color);
 }
-
 .formPost {
     width: 50vw;
     background: var(--secondary-color);
     padding: 1em;
     margin: auto;
     margin-bottom: 2em;
+    border-radius: 0.5em;
+    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
 }
 
 .form {
@@ -131,8 +120,8 @@ textarea.mat-input-element {
 }
 
 .spheal {
-    background-color: var(--rev-color);
-    color: var(--rev-font-color);
+    background-color: var(--spheal-color);
+    color: var(--spheal-font-color);
 }
 
 .app-header {
@@ -154,8 +143,9 @@ textarea.mat-input-element {
     color: #ffffff;
 }
 
-mat-divider {
-    background: var(--input-font-color);
+.logout {
+    background: #779eff;
+    margin-left: 2em;
 }
 
 .box {
@@ -172,17 +162,6 @@ mat-divider {
     -ms-transform: scale(1);
     z-index: 5;
     max-width: 330px;
-}
-
-.comment-reply {
-    cursor: pointer;
-    color: var(--rev-secondary);
-    text-decoration: none;
-    margin: 0.3em;
-}
-
-.likeBtn {
-    margin-right: 2em;
 }
 
 .box.back {
@@ -300,13 +279,12 @@ mat-divider {
 .mat-icon-button.mat-primary,
 .mat-stroked-button.mat-primary {
     background-color: var(--rev-secondary);
-    color: var(--rev-color);
+    color: #fff;
     margin-right: 1.4em;
 }
 
 #post-feed {
-    width: 50vw;
-    margin: auto;
+    width: 100%;
     align-content: center;
 }
 
@@ -314,18 +292,11 @@ mat-divider {
     margin-top: 0.6em;
 }
 
-.navLoginBtn {
-    float: right;
-    font-size: 20px;
-    margin-top: unset !important;
-    margin-left: 10px;
-    vertical-align: middle;
-}
-
 .post-header,
 .post-content {
+    margin: 1em;
     margin-bottom: 0.3em;
-    border-bottom: solid 0.2em #000000;
+    border-bottom: solid 0.1em #dadadadf;
     padding-bottom: 0.3em;
 }
 
@@ -333,12 +304,13 @@ mat-divider {
     margin-bottom: 1em;
 }
 
-.form {
-    margin-bottom: 1em;
-}
-
 .comment-container {
     margin-left: 2em;
+}
+
+.comment-reply {
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 .comment-author {
@@ -354,7 +326,6 @@ mat-divider {
     float: right;
     font-size: 20px;
     margin-top: 10px;
-    margin-left: 10px;
     vertical-align: middle;
 }
 
@@ -370,7 +341,12 @@ mat-divider {
     margin-right: 10px;
 }
 
+.mat-card>.mat-card-actions:last-child {
+    margin-bottom: unset !important;
+    padding-bottom: 0;
+}
+
 .mat-badge-accent .mat-badge-content {
-    background: #474C55;
+    background: #ef773b;
     color: #fff;
 }

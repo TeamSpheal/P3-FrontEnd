@@ -21,9 +21,8 @@ export class AuthService {
 
   logout(): void{
       this.http.post(`${this.authUrl}/logout`, null).subscribe();
-      sessionStorage.removeItem("user");
-      sessionStorage.removeItem("JWT");
-      environment.headers.Auth = "";
+      localStorage.removeItem("user");
+      localStorage.removeItem("JWT");
   }
 
   register(firstName: string, lastName: string, email: string, password: string, username: string): Observable<any> {
