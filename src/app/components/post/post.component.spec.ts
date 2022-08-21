@@ -7,7 +7,7 @@ import User from '../../models/User';
 import { from, of } from 'rxjs';
 import Post from '../../models/Post';
 
-fdescribe('PostComponent', () => {
+describe('PostComponent', () => {
     /*Suite Variables*/
     const mockUser: User = new User(1, 'testuser@gmail.com', 'Test', 'User',
         'TestUser1', 'assets/images/favicon.png', [], []);
