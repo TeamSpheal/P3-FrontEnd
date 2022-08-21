@@ -33,6 +33,7 @@ describe('RegisterComponent', () => {
         const mockResp: HttpResponse<any> = new HttpResponse({
             body: JSON.stringify(mockUser)
         });
+        const event = new InputEvent("submit")
 
         /*Mocks*/
         spyOn(authServ, 'register').and.callFake(() => {

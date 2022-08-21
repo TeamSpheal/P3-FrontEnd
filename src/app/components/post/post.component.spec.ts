@@ -6,6 +6,7 @@ import { PostService } from '../../services/post.service';
 import User from '../../models/User';
 import { from, of } from 'rxjs';
 import Post from '../../models/Post';
+import { EventEmitter } from '@angular/core';
 
 describe('PostComponent', () => {
     /*Suite Variables*/
@@ -143,6 +144,9 @@ describe('PostComponent', () => {
     });
 
     it('submitReply: should set isActive to false and call upsert method in post service', () => {
+        /*Local Variables*/
+        const event = new InputEvent("submit");
+
         /*Mocks*/
         spyOn(localStorage, 'getItem').and.returnValue(JSON.stringify(mockUser));
         spyOn(postServ, 'upsertPost').and.callFake(() => {

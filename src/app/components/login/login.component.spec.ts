@@ -37,6 +37,7 @@ describe('LoginComponent', () => {
             body: JSON.stringify(mockUser),
             headers: mockHeaders
         });
+        const event = new InputEvent("submit")
 
         /*Mocks*/
         spyOn(authServ, 'login').and.callFake(() => {
