@@ -18,7 +18,7 @@ describe('PostService', () => {
         postServ = TestBed.inject(PostService);
     });
 
-    it('should be created', () => {
+    it('Service: should be created', () => {
         expect(postServ).toBeTruthy();
     });
 
