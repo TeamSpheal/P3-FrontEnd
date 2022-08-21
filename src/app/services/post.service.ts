@@ -13,6 +13,7 @@ export class PostService {
   postGetLikesUrl = `${environment.baseUrl}/post`
   postLikeUrl = `${environment.baseUrl}/post/like`
   postUnlikeUrl = `${environment.baseUrl}/post/unlike`
+  userPostUrl = `${environment.baseUrl}/post/get`
 
   constructor(private http: HttpClient) { }
 
@@ -33,7 +34,7 @@ export class PostService {
   }
 
   getAllPostsByUserID(userId: number): Observable<Post[]> {
-    return this.http.get<Post[]>(`${this.postUrl}`, {headers: environment.headers, withCredentials: environment.withCredentials})
+    return this.http.get<Post[]>(`${this.userPostUrl}/${userId}`, {headers: environment.headers, withCredentials: environment.withCredentials})
   }
 
   getPost(post: Post): Observable<Post>{
