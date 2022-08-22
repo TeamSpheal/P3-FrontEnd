@@ -14,7 +14,7 @@ phases:
     commands:
       - npm i -g @angular/cli
       - npm install --force
-      - ng test --karma-config=karma.con.codebuild.js --no-watch --code-coverage
+      - ng test --karma-config=karma.conf.codebuild.js --no-watch --code-coverage
   build:
     commands:
       - ng build
