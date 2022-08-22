@@ -17,12 +17,6 @@
                 <app-comment [comment]="comment"></app-comment>
             </div>
         </mat-card-content>
-        <mat-card-actions align="end">
-            <button id="hbutton" mat-raised-button color="primary" (click)="toggleReplyToPost()">Reply</button>
-            <button id="likeBtn-{{post.id}}" class="btnIcon" mat-icon-button color="primary" (click)="like()" matBadge="{{likeCount}}" matBadgePosition="after" matBadgeColor="accent">
-                <mat-icon>thumb_up</mat-icon>
-          </button>
-        </mat-card-actions>
         <form class="form" *ngIf="replyToPost" [formGroup]="commentForm" (ngSubmit)="submitReply($event)">
             <mat-form-field class="full-width" appearance="fill">
                 <mat-label>Make a Post</mat-label>
@@ -33,5 +27,13 @@
                 <button mat-raised-button color="primary" type="submit">Post</button>
             </div>
         </form>
+        <mat-card-actions align="end">
+
+            <button id="hbutton" mat-raised-button color="primary" (click)="toggleReplyToPost()">Reply</button>
+            <button id="likeBtn-{{post.id}}" class="btnIcon" mat-icon-button color="primary" (click)="like()" matBadge="{{likeCount}}" matBadgePosition="after" matBadgeColor="accent">
+                <mat-icon>thumb_up</mat-icon>
+          </button>
+        </mat-card-actions>
+
     </mat-card>
 </div>
