@@ -130,6 +130,11 @@ textarea.mat-input-element {
     color: var(--font-color);
 }
 
+.mat-card>.mat-card-actions:last-child {
+    margin-bottom: unset !important;
+    padding-bottom: 0;
+}
+
 .spheal {
     background-color: var(--rev-color);
     color: var(--rev-font-color);
