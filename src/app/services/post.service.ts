@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from  'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import Post from '../models/Post';
+import { FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +17,8 @@ export class PostService {
   postUnlikeUrl = `${environment.baseUrl}/post/unlike`
   userPostUrl = `${environment.baseUrl}/post/get`
   followingPostsUrl = `${environment.baseUrl}/post/following`
+  imageUrl = `${environment.baseUrl}/user/image-upload`
+  uploadForm: FormGroup;
 
   constructor(private http: HttpClient) { }
 
@@ -44,6 +48,15 @@ export class PostService {
 
   getPostsByUsers(id : number): Observable<Post[]> {
     return this.http.get<Post[]>(`${this.followingPostsUrl}/${id}`, {headers: environment.headers, withCredentials: environment.withCredentials} )
+  }
+
+  public uploadImage(file: File): Observable<string> {
+    let formParams = new FormData();
+    formParams.append('image', file);
+    return this.http.post<string>(`${this.imageUrl}`, formParams, {
+      headers: {
+        'Access-Control-Allow-Origin': 'http://localhost:4200'
+    }});
   }
 
 }
