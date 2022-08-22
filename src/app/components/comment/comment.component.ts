@@ -16,11 +16,12 @@ export class CommentComponent implements OnInit {
   })
 
   @Input('comment') inputComment: Post;
-  replyToComment: boolean = false
+  replyToComment = false
 
   constructor(private postService: PostService, private authService: AuthService) { }
 
   ngOnInit(): void {
+    // Init to be filled in later
   }
 
   toggleReplyToComment = () => {
@@ -29,10 +30,10 @@ export class CommentComponent implements OnInit {
 
   submitReply = (e: any) => {
     e.preventDefault()
-    let newComment = new Post(0, this.commentForm.value.text || "", "", this.authService.currentUser, [], [])
+    const newComment = new Post(0, this.commentForm.value.text || "", "", this.authService.currentUser, [], [])
     this.postService.upsertPost({...this.inputComment, comments: [...this.inputComment.comments, newComment]})
       .subscribe(
-        (response) => {
+        (response : any) => {
           this.inputComment = response
           this.toggleReplyToComment()
         }

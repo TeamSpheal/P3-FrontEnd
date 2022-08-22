@@ -19,16 +19,27 @@ export class PostFeedPageComponent implements OnInit {
   })
 
   posts: Post[] = [];
-  createPost:boolean = false;
+  createPost = false;
 
   constructor(private postService: PostService, private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.postService.getAllPosts().subscribe(
-      (response : any) => {
-        this.posts = response
-      }
-    )
+    const userStorage = localStorage.getItem("user");
+    const parsed = JSON.parse(<string>userStorage);
+    console.log(parsed.followers)
+    if (parsed.followers[0]){
+      this.postService.getPostsByUsers(parsed.id).subscribe(
+        (response : any) => {
+          this.posts = response
+        }
+      )
+    } else {
+      this.postService.getAllPosts().subscribe(
+        (response : any) => {
+          this.posts = response
+        }
+      )
+    }
   }
 
   toggleCreatePost = () => {

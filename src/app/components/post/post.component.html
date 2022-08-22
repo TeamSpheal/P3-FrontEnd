@@ -16,26 +16,10 @@
             </div>
         </mat-card-content>
         <mat-card-actions align="end">
-
-              <div id="left">
-                <div id="heartone">
-                    <div id="heart"></div>
-                </div>
-                <div id ="hearttwo">
-                    <div id="heart2"></div>
-                </div>
-            </div> 
-
-                <div class="heart-btn" [class.highlight]="isActive" (click)="like()">
-                    <div class="content" (click)="heartContent($event)" #content></div>
-                  <div id="content">
-                    <span class="heart" #heart></span>
-                    <span class="text">Like</span>
-                    <span class="numb" #numb>{{likeCount}}</span>
-                  </div>
-                </div>
-           
-                 <button mat-raised-button color="primary" (click)="toggleReplyToPost()">Reply</button>
+            <button id="hbutton" mat-raised-button color="primary" (click)="toggleReplyToPost()">Reply</button>
+            <button id="likeBtn-{{post.id}}" class="btnIcon" mat-icon-button color="primary" (click)="like()" matBadge="{{likeCount}}" matBadgePosition="after" matBadgeColor="accent">
+                <mat-icon>thumb_up</mat-icon>
+          </button>
         </mat-card-actions>
         <form class="form" *ngIf="replyToPost" [formGroup]="commentForm" (ngSubmit)="submitReply($event)">
             <mat-form-field class="full-width" appearance="fill">

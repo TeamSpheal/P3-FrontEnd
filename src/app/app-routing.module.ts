@@ -5,20 +5,23 @@ import { PostFeedPageComponent } from './components/post-feed-page/post-feed-pag
 import { RegisterComponent } from './components/register/register.component';
 import { SearchComponent } from './components/user-search/user-search.component';
 import { UserSettingsComponent } from './components/user-settings/user-settings.component'
+import { ResetPwComponent } from './components/reset-pw/reset-pw.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 const routes: Routes = [
-  //{ path: "", redirectTo: "/login", pathMatch: "full" },
-  { path: "", redirectTo: "/post-feed", pathMatch: "full" },
-  { path: "login", component: LoginComponent },
-  { path: "register", component: RegisterComponent },
-  { path: "post-feed", component: PostFeedPageComponent},
-  { path: "search", component: SearchComponent},
-  { path: "post-feed", component: PostFeedPageComponent },
-  { path: "user-settings", component: UserSettingsComponent },
+    //{ path: "", redirectTo: "/login", pathMatch: "full" },
+    { path: "", redirectTo: "/post-feed", pathMatch: "full" },
+    { path: "login", component: LoginComponent },
+    { path: "register", component: RegisterComponent },
+    { path: "post-feed", component: PostFeedPageComponent },
+    { path: "search", component: SearchComponent },
+    { path: "user-settings", component: UserSettingsComponent },
+    { path: "reset-pw", component: ResetPwComponent },
+    { path: "user-profile/:id", component: UserProfileComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
 })
 export class AppRoutingModule { }

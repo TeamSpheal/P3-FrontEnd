@@ -4,21 +4,28 @@
 }
 
 .searchInp {
-    width: 100%;
+    padding: 0;
+    margin: 0.5em;
 }
 
 .listContainer {
-    width: 50vw;
     margin: auto;
+    overflow-y: auto;
+    position: relative;
+    max-height: 422px;
 }
 
 .Users li {
     list-style-type: none;
     cursor: pointer;
+    width: 95%;
+    margin-bottom: -0.5em;
+    opacity: 0.9;
 }
 
 .mat-card:not([class*=mat-elevation-z]) {
     transition: .2s all ease;
+    margin-right: 1em;
 }
 
 .mat-card:not([class*=mat-elevation-z]):hover {
@@ -26,6 +33,97 @@
     box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.34);
 }
 
-.Users {
-    margin-left: -2.86em;
+.searchOverlay {
+    width: 500px;
+    height: auto;
+    max-height: 60vh;
+    background: var(--search-color);
+    position: absolute;
+    top: 64px;
+    margin: auto;
+    margin-left: 1em;
+    z-index: 1;
+    display: none;
+    border-bottom-left-radius: 0.5em;
+    border-bottom-right-radius: 0.5em;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.34);
+    backdrop-filter: blur(10px);
+    animation: searchAnim .5s ease 0s 1 normal forwards;
+}
+
+.mat-card-header .mat-card-title {
+    font-size: 18px;
+}
+
+mat-card {
+    margin-bottom: 0;
+}
+
+.navSearchInp {
+    padding: 0.6em;
+    font-size: large;
+    border: #FCB414 1px solid;
+    color: rgba(0, 0, 0, 0.579);
+    font-weight: 500;
+    border-radius: 0.5em;
+    background-color: #edededaa;
+    outline: none;
+    width: 300px;
+    margin-left: 1em;
+    transition: all .5s ease;
+}
+
+.navSearchInp:hover {
+    background: #edededc8;
+}
+
+.navSearchInp:focus {
+    background: #edededdf;
+}
+
+.searchNav {
+    color: #efefef;
+    display: none;
+}
+
+.searchIcn {
+    position: relative;
+    margin-bottom: -5.8px;
+    margin-left: -32px;
+    color: rgba(0, 0, 0, 0.451);
+    cursor: pointer;
+}
+
+
+/* width */
+
+ ::-webkit-scrollbar {
+    width: 10px;
+}
+
+ ::-webkit-scrollbar-track {
+    background: #4d4c4c;
+    border-radius: 0.8rem;
+}
+
+ ::-webkit-scrollbar-thumb {
+    background: #90908f;
+    border-radius: 0.8rem;
+}
+
+ ::-webkit-scrollbar-thumb:hover {
+    background: #717171;
+}
+
+@keyframes searchAnim {
+    0% {
+        opacity: 0;
+        transform: rotateX(-100deg);
+        transform-origin: top;
+    }
+    100% {
+        opacity: 1;
+        transform: rotateX(0deg);
+        transform-origin: top;
+    }
 }
