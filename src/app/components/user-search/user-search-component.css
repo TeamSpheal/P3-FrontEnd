@@ -1,0 +1,31 @@
+.searchContainer {
+    width: 50vw;
+    margin: auto;
+}
+
+.searchInp {
+    width: 100%;
+}
+
+.listContainer {
+    width: 50vw;
+    margin: auto;
+}
+
+.Users li {
+    list-style-type: none;
+    cursor: pointer;
+}
+
+.mat-card:not([class*=mat-elevation-z]) {
+    transition: .2s all ease;
+}
+
+.mat-card:not([class*=mat-elevation-z]):hover {
+    transform: scale(1.01);
+    box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.34);
+}
+
+.Users {
+    margin-left: -2.86em;
+}
