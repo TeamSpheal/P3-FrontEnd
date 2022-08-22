@@ -1,3 +1,4 @@
+import { TestBed } from '@angular/core/testing';
 import { UserSettingsComponent } from './user-settings.component';
 import User from '../../models/User';
 import { UserSettingsService } from '../../services/user-settings.service';
