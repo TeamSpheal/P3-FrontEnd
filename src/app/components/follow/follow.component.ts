@@ -25,6 +25,7 @@ export class FollowComponent implements OnInit {
     this.followedId = this.authorId;
     this.followerId = this.authService.currentUser.id;
     this.isFollow = this.userService.isFollowing(this.followedId, this.followerId);
+    console.log('follow component on init running');
 
     //if user is following target profile
     if(this.isFollow) {
@@ -40,9 +41,7 @@ export class FollowComponent implements OnInit {
     console.log('follow log');
     console.log(this.authService.currentUser.id);
     this.followerId = this.authService.currentUser.id;
-    this.userService.addFollower(this.followedId, this.followerId).subscribe((resp) => {
-      console.log(resp)
-    })
+    this.userService.addFollower(this.followedId, this.followerId);
   }
 
   changeBtn() {

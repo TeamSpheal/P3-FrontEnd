@@ -19,7 +19,7 @@ export class UserProfileComponent implements OnInit, OnDestroy{
   usernameDisplay: string;
   nameDisplay: string;
   followers: UserMiniDTO[];
-  followings: UserMiniDTO[];
+  following: UserMiniDTO[];
   usersPage = false;
   usersPageId: number;
   sub: any;
@@ -46,7 +46,7 @@ export class UserProfileComponent implements OnInit, OnDestroy{
       this.usernameDisplay = this.user.username;
       this.nameDisplay = `${this.user.firstName} ${this.user.lastName}`;
       this.followers = this.user.followers;
-      this.followings = this.user.followings;
+      this.following = this.user.following;
       this.profileImg.style.backgroundImage = "URL('" + this.user.profileImg + "')";
     } else {
       //this.user = fetch call to back end to get user details
@@ -56,7 +56,7 @@ export class UserProfileComponent implements OnInit, OnDestroy{
         this.followers = resp.followers;
         console.log('user service was called');
         console.log(this.followers.length + 'followers length');
-        this.followings = resp.followings;
+        this.following = resp.following;
         //console.log(this.followings.length + 'followings length');
         this.profileImg.style.backgroundImage = "URL('" + resp.profileImg + "')";
       });

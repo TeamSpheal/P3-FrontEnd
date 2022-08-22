@@ -123,7 +123,7 @@ export class UserSettingsComponent implements OnInit {
         if (UNregex.test(newUN)) {//Username is valid
             //Validate email
             if (EMregex.test(newEmail)) {//Email is valid
-                updatedUser = new User(this.loggedIn.id, newEmail, newFN, newLN, newUN, this.loggedIn.profileImg, this.loggedIn.followers, this.loggedIn.followings);
+                updatedUser = new User(this.loggedIn.id, newEmail, newFN, newLN, newUN, this.loggedIn.profileImg, this.loggedIn.followers, this.loggedIn.following);
 
                 //Send Request
                 await this.userSettingsService.updateProfile(updatedUser).subscribe((data: any) => {
