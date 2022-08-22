@@ -13,7 +13,8 @@ export class PostService {
   postGetLikesUrl = `${environment.baseUrl}/post`
   postLikeUrl = `${environment.baseUrl}/post/like`
   postUnlikeUrl = `${environment.baseUrl}/post/unlike`
-  userPostUrl = `${environment.baseUrl}/get`
+  userPostUrl = `${environment.baseUrl}/post/get`
+  followingPostsUrl = `${environment.baseUrl}/post/following`
 
   constructor(private http: HttpClient) { }
 
