@@ -63,7 +63,7 @@ export class UserProfileComponent implements OnInit, OnDestroy{
       });
     }
     
-    this.postService.getUsersPosts(this.usersPageId).subscribe(
+    this.postService.getAllPostsByUserID(this.usersPageId).subscribe(
       (response : any) => {
         this.posts = response
       }
