@@ -6,12 +6,14 @@
         </mat-card-header>
         <img mat-card-image *ngIf="post.imageUrl" src="{{ post.imageUrl }}" alt="Post Image">
         <mat-card-content>
-            <p class="post-content">
+            <p class="post-content commentBlock">
                 {{post.text}}
             </p>
-            <p>Comments:</p>
+            <p style="font-weight:500;font-size:1.2rem;margin:1em;">
+                <span style="margin-left:-15px;margin-top:1em;margin-bottom:1.5em;display:block;opacity:0.8;">Comments</span>
+            </p>
             <div *ngFor="let comment of post.comments" class="comment-container">
-                <mat-divider></mat-divider>
+                <mat-divider class="comment-divider"></mat-divider>
                 <app-comment [comment]="comment"></app-comment>
             </div>
         </mat-card-content>

@@ -8,7 +8,7 @@
     --font-color: #424242;
     --bg-color: #e2e2e2;
     --secondary-color: #ededed;
-    --input-color: #f9f4f49d;
+    --input-color: #e2e2e2;
     --input-font-color: #424242;
     --caret-color: #F26925;
 }
@@ -322,11 +322,16 @@ mat-divider {
     vertical-align: middle;
 }
 
-.post-header,
-.post-content {
-    margin-bottom: 0.3em;
-    border-bottom: solid 0.2em #000000;
-    padding-bottom: 0.3em;
+.post-header {
+    margin-bottom: 1.5em;
+    border-bottom: solid 0.2em #7d7d7d5f;
+    border-radius: 0.5rem;
+    padding: 1em;
+}
+
+.comment-divider {
+    background: unset;
+    margin: 0.5em;
 }
 
 .post-card {
@@ -342,7 +347,15 @@ mat-divider {
 }
 
 .comment-author {
-    text-decoration: underline;
+    margin: 0.3em;
+    font-weight: 500;
+}
+
+.commentBlock {
+    border-bottom: solid 0.2em #7d7d7d5f;
+    border-radius: 0.5rem;
+    padding-bottom: 1.5em;
+    padding-left: 1em;
 }
 
 .spacer {
@@ -373,4 +386,28 @@ mat-divider {
 .mat-badge-accent .mat-badge-content {
     background: #ef773b;
     color: #fff;
+}
+
+.posting {
+    width: 50vw;
+    margin: auto;
+    margin-bottom: 1em;
+    border-radius: 4px;
+    box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+}
+
+.format {
+    width: 52vw;
+    margin: auto;
+    margin-bottom: 1em;
+    animation: expand .5s ease 0s 1 normal forwards;
+}
+
+@keyframes expand {
+    0% {
+        transform: scale(0.98);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
