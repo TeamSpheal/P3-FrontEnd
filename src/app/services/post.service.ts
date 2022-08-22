@@ -46,8 +46,12 @@ export class PostService {
     return this.http.get<Post>(`${this.postGetLikesUrl}/${post.id}`, {headers: environment.headers, withCredentials: environment.withCredentials})
   }
 
-  getPostsByUsers(id : number): Observable<Post[]> {
+  getFollowingPostFeed(id : number): Observable<Post[]> {
     return this.http.get<Post[]>(`${this.followingPostsUrl}/${id}`, {headers: environment.headers, withCredentials: environment.withCredentials} )
+  }
+
+  getUsersPosts(id : number): Observable<Post[]> {
+    return this.http.get<Post[]>(`${this.userPostUrl}/${id}`, {headers: environment.headers, withCredentials: environment.withCredentials} )
   }
 
   public uploadImage(file: File): Observable<string> {
