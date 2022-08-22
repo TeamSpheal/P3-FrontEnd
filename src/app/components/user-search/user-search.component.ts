@@ -33,6 +33,8 @@ export class SearchComponent implements OnInit{
     async getUsers() {
     const input = this.input.split(" ");
 
+    console.log('Hello :) ' + this.input);
+
     if(this.input){
 
         const upperCasedNames = input.map((name) => { 
@@ -41,15 +43,15 @@ export class SearchComponent implements OnInit{
    
        console.log(upperCasedNames)
        console.log('FETCH: http://localhost:8080/search/' + upperCasedNames );
-
+       this.showSearch();
         const resp = await fetch('http://localhost:8080/search/' + upperCasedNames);
-            if(resp.ok){
+        if(resp.ok){
             this.users = await resp.json();
             this.users = this.users.reverse()
         
             console.log(this.users);
         }
-        this.showSearch();
+        console.log('dylan is cool');
     }else{
         this.hideSearch();
     }
