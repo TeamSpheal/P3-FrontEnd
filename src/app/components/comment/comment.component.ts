@@ -39,4 +39,8 @@ export class CommentComponent implements OnInit {
         }
       )
   }
+  toggleReplyToPost = () => {
+    this.replyToComment = !this.replyToComment;
+  }
+
 }
