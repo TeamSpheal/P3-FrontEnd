@@ -18,6 +18,11 @@ export class UserService {
     return this.http.post(`${this.userUpadatedUrl}`, {headers: environment.headers, withCredentials: environment.withCredentials})
   }
 
+  removeFollower(followedId: number, followerId: number): Observable<any> {
+    this.userUpadatedUrl = `${this.userUrl}/${followedId}/unfollow/${followerId}`; 
+    return this.http.delete(this.userUpadatedUrl, { headers: environment.headers, withCredentials: environment.withCredentials });
+  }
+
   getUserById(id: number): Observable<any> {
     return this.http.get<User>(`${this.userUrl}/${id}`, { headers: environment.headers, withCredentials: environment.withCredentials });
   }

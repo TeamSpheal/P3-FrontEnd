@@ -21,7 +21,7 @@
                 </mat-card-content>
                 <div id="edit-follow" *ngIf="!usersPage; else editTemplate">
                     <!-- add onlick func to follow -->
-                    <button mat-raised-button color="warn" id="follow">Follow</button>
+                    <app-follow [authorId]="usersPageId"></app-follow>
                 </div>
             </div>
         </div>

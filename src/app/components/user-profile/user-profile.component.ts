@@ -28,10 +28,12 @@ export class UserProfileComponent implements OnInit, OnDestroy{
   constructor(private router: Router, private userService: UserService, private postService: PostService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    //gets id from param
     this.sub = this.route.params.subscribe(params => {
       this.usersPageId = +params['id'];
       console.log(this.usersPageId);
     })
+    //gets id from logged in user
     this.user = JSON.parse(<string>localStorage.getItem("user"));
     console.log(this.user.id);
     this.profileImg = <HTMLDivElement>document.getElementById("user-circle");
@@ -55,7 +57,7 @@ export class UserProfileComponent implements OnInit, OnDestroy{
         console.log('user service was called');
         console.log(this.followers.length + 'followers length');
         this.followings = resp.followings;
-        console.log(this.followings.length + 'followings length');
+        //console.log(this.followings.length + 'followings length');
         this.profileImg.style.backgroundImage = "URL('" + resp.profileImg + "')";
       });
     }

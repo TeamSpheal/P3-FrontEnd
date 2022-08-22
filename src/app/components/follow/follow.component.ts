@@ -26,7 +26,10 @@ export class FollowComponent implements OnInit {
 
   
   addFollower() {
+    console.log(this.authorId + 'author id for follow');
     this.followedId = this.authorId; 
+    console.log('follow log');
+    console.log(this.authService.currentUser.id);
     this.followerId = this.authService.currentUser.id;
     this.userService.addFollower(this.followedId, this.followerId).subscribe((resp) => {
       console.log(resp)
