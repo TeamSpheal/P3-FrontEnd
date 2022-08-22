@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { UserSettingsComponent } from './user-settings.component';
 import User from '../../models/User';
 import { UserSettingsService } from '../../services/user-settings.service';
@@ -56,9 +56,9 @@ describe('UserSettingsComponent', () => {
     it('updateImage: should alert user of invalid image URL', async () => {
         /*Local Variables*/
         //This string is exactly 256 characters long
-        const mockImgURL: string = "http://randomimagegenerator.com/fakeurl/image/arbitraryidforfakeimage/"
+        const mockImgURL: string = "http2://randomimagegenerator.com/fakeurl/image/arbitraryidforfakeimage/"
             + "GtH675rfgtifnre948gnrkfjdvnw4uigbkreu5n4g985gbnlasdkhgb5iugbelkg85gu8skjgb3qp438bgtubiwerj4p3e"
-            + "587htgqp9e203gnvksrhbgkaegpbveriuabgvakwujrgnqiaebvnbrtiung45wieurgvnqwp3geiurgnnvtiughhttyp";
+            + "587htgqp9e203gnvksrhbgkaegpbveriuabgvakwujrgnqiaebvnbrtiung45wieurgvnqwp3geiurgnnvtiughhtty";
         const mockUrlLength: number = mockImgURL.length
 
         /*Mocks*/
@@ -77,9 +77,9 @@ describe('UserSettingsComponent', () => {
     it('updateImage: should alert user of request failure', async () => {
         /*Local Variables*/
         //This string is exactly 255 characters long
-        const mockImgURL: string = "http://randomimagegenerator.com/fakeurl/image/arbitraryidforfakeimage/"
+        const mockImgURL: string = "https://randomimagegenerator.com/fakeurl/image/arbitraryidforfakeimage/"
             + "GtH675rfgtifnre948gnrkfjdvnw4uigbkreu5n4g985gbnlasdkhgb5iugbelkg85gu8skjgb3qp438bgtubiwerj4p3e"
-            + "587htgqp9e203gnvksrhbgkaegpbveriuabgvakwujrgnqiaebvnbrtiung45wieurgvnqwp3geiurgnnvtiughhttp";
+            + "587htgqp9e203gnvksrhbgkaegpbveriuabgvakwujrgnqiaebvnbrtiung45wieurgvnqwp3geiurgnnvtiughhtt";
 
         /*Mocks*/
         spyOn(userSettingsService, 'updateProfile').and.callFake(() => {
@@ -100,9 +100,9 @@ describe('UserSettingsComponent', () => {
     it('updateImage: should alert user of request success', async () => {
         /*Local Variables*/
         //This string is exactly 255 characters long
-        const mockImgURL: string = "http://randomimagegenerator.com/fakeurl/image/arbitraryidforfakeimage/"
+        const mockImgURL: string = "https://randomimagegenerator.com/fakeurl/image/arbitraryidforfakeimage/"
             + "GtH675rfgtifnre948gnrkfjdvnw4uigbkreu5n4g985gbnlasdkhgb5iugbelkg85gu8skjgb3qp438bgtubiwerj4p3e"
-            + "587htgqp9e203gnvksrhbgkaegpbveriuabgvakwujrgnqiaebvnbrtiung45wieurgvnqwp3geiurgnnvtiughhttp";
+            + "587htgqp9e203gnvksrhbgkaegpbveriuabgvakwujrgnqiaebvnbrtiung45wieurgvnqwp3geiurgnnvtiughhtt";
 
         /*Mocks*/
         spyOn(userSettingsService, 'updateProfile').and.callFake(() => {
@@ -124,7 +124,7 @@ describe('UserSettingsComponent', () => {
     it('updateProfile: should alert user of invalid username', async () => {
         /*Local Variables*/
         // '@', '(', ')', and '#' are all invalid characters
-        const mockUN: string = "R@nD()M#1";
+        const mockUN = "R@nD()M#1";
 
         /*Mocks*/
         spyOn(document, 'getElementById').and.returnValue(document.createElement("input"))
@@ -144,9 +144,9 @@ describe('UserSettingsComponent', () => {
 
     it('updateProfile: should alert user of invalid email', async () => {
         /*Local Variables*/
-        const mockUN: string = "Random_1";
+        const mockUN = "Random_1";
         // A vaild email must contain '@' and '.' in specific places and cannot contain invalid characters
-        const mockEM: string = "randomem*i|ATgmailDOTc{}m";
+        const mockEM = "randomem*i|ATgmailDOTc{}m";
 
         /*Mocks*/
         userSettComp.usernameText = document.createElement("input");
@@ -167,8 +167,8 @@ describe('UserSettingsComponent', () => {
 
     it('updateProfile: should alert user of request failure', async () => {
         /*Local Variables*/
-        const mockUN: string = "Random_1";
-        const mockEM: string = "rand0M_Ema1l@gmail.com";
+        const mockUN = "Random_1";
+        const mockEM = "rand0M_Ema1l@gmail.com";
 
         /*Mocks*/
         spyOn(userSettingsService, 'updateProfile').and.callFake(() => {
@@ -192,8 +192,8 @@ describe('UserSettingsComponent', () => {
 
     it('updateProfile: should alert user of request success', async () => {
         /*Local Variables*/
-        const mockUN: string = "Random_1";
-        const mockEM: string = "rand0M_Ema1l@gmail.com";
+        const mockUN = "Random_1";
+        const mockEM = "rand0M_Ema1l@gmail.com";
 
         /*Mocks*/
         spyOn(userSettingsService, 'updateProfile').and.callFake(() => {
@@ -220,7 +220,7 @@ describe('UserSettingsComponent', () => {
         /*Local Variables*/
         // A vaild password must be between 4 and 100 characters and not contain invalid characters
         // Side Note: Yes, these requirements are very insecure
-        const mockPW: string = "hey";
+        const mockPW = "hey";
 
         /*Mocks*/
         spyOn(document, 'getElementById').and.returnValue(document.createElement("input"))
@@ -240,8 +240,8 @@ describe('UserSettingsComponent', () => {
     it('updatePassword: should alert user of non-matching passwords', async () => {
         /*Local Variables*/
         // Passwords must match
-        const mockPW1: string = "hello-there";
-        const mockPW2: string = "general-kenobi";
+        const mockPW1 = "hello-there";
+        const mockPW2 = "general-kenobi";
 
         /*Mocks*/
         spyOn(document, 'getElementById').and.returnValue(document.createElement("input"))

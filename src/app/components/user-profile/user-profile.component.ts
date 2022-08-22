@@ -1,10 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import Post from 'src/app/models/Post';
 import User from 'src/app/models/User';
 import UserMiniDTO from 'src/app/models/UserMiniDTO';
-import { AuthService } from 'src/app/services/auth.service';
 import { PostService } from 'src/app/services/post.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -67,6 +65,7 @@ export class UserProfileComponent implements OnInit, OnDestroy{
     
     this.postService.getAllPostsByUserID(this.usersPageId).subscribe(
       (response : any) => {
+        console.log(response)
         this.posts = response
       }
     )

@@ -1,9 +1,5 @@
-import { ListKeyManager } from '@angular/cdk/a11y';
-import { ElementRef } from '@angular/core';
-import { ViewChild } from '@angular/core';
-import { Component, Input, OnInit } from '@angular/core';
+import { ElementRef, ViewChild, Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { distinctUntilKeyChanged } from 'rxjs';
 import Post from 'src/app/models/Post';
 import User from 'src/app/models/User';
 import { AuthService } from 'src/app/services/auth.service';
@@ -61,9 +57,6 @@ export class PostComponent implements OnInit {
             
           }
         }
-        if(this.isActive) {
-          // this.heartContent();
-        } 
       }
     )
 
