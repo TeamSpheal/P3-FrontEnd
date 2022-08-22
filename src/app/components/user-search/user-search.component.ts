@@ -54,4 +54,5 @@ export class SearchComponent implements OnInit{
         this.hideSearch();
     }
 }
+
 }

@@ -11,7 +11,7 @@ import { PostService } from 'src/app/services/post.service';
   styleUrls: ['./post.component.css']
 })
 export class PostComponent implements OnInit {
-  
+  isComments: boolean = false;
   @ViewChild("content")
   divContent: ElementRef;
 

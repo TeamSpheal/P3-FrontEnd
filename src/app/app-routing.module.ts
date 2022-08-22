@@ -17,11 +17,12 @@ const routes: Routes = [
     { path: "search", component: SearchComponent },
     { path: "user-settings", component: UserSettingsComponent },
     { path: "reset-pw", component: ResetPwComponent },
+
     { path: "user-profile/:id", component: UserProfileComponent },
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
+    imports: [RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'})],
     exports: [RouterModule]
 })
 export class AppRoutingModule { }
