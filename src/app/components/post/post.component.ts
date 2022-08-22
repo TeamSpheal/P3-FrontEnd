@@ -1,3 +1,4 @@
+import { ThisReceiver } from '@angular/compiler';
 import { ElementRef, ViewChild, Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import Post from 'src/app/models/Post';
@@ -32,6 +33,7 @@ export class PostComponent implements OnInit {
   @Input() likeCount: number;
   @Input() isActive: boolean;
   @Input() isNotActive = false;
+
 
   constructor(private postService: PostService, private authService: AuthService) {
   }
@@ -90,7 +92,7 @@ export class PostComponent implements OnInit {
 
   submitReply = (e: any) => {
     e.preventDefault()
-    const newComment = new Post(0, this.commentForm.value.text || "", "", JSON.parse(<string>localStorage.getItem("user")), [],[])
+    const newComment = new Post(0, this.commentForm.value.text || "", "", JSON.parse(<string>localStorage.getItem("user")), [],[], new Date());
     this.postService.upsertPost({...this.post, comments: [...this.post.comments, newComment]})
       .subscribe(
         (response : any) => {
