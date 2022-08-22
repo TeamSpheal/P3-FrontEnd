@@ -26,9 +26,8 @@ export class PostFeedPageComponent implements OnInit {
   ngOnInit(): void {
     const userStorage = localStorage.getItem("user");
     const parsed = JSON.parse(<string>userStorage);
-    console.log(parsed.followers)
-    if (parsed.followers[0]){
-      this.postService.getPostsByUsers(parsed.id).subscribe(
+    if (parsed.following[0]){
+      this.postService.getFollowingPostFeed(parsed.id).subscribe(
         (response : any) => {
           this.posts = response
         }
@@ -48,7 +47,7 @@ export class PostFeedPageComponent implements OnInit {
 
   submitPost = (e: any) => {
     e.preventDefault();
-    this.postService.upsertPost(new Post(0, this.postForm.value.text || "", this.postForm.value.imageUrl || "", this.authService.currentUser, [], []))
+    this.postService.upsertPost(new Post(0, this.postForm.value.text || "", this.postForm.value.imageUrl || "", this.authService.currentUser, [], [], new Date()))
       .subscribe(
         (response : any) => {
           this.posts = [response, ...this.posts]
