@@ -9,6 +9,7 @@
             <p class="post-content">
                 {{post.text}}
             </p>
+            {{post.createdDate | date: 'short'}}
             <p>Comments:</p>
             <div *ngFor="let comment of post.comments" class="comment-container">
                 <mat-divider></mat-divider>
