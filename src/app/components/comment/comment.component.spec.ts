@@ -1,8 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { TestBed } from '@angular/core/testing';
 import { CommentComponent } from './comment.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { PostComponent } from '../post/post.component';
 import { AuthService } from '../../services/auth.service';
 import { PostService } from '../../services/post.service';
 import Post from '../../models/Post';
