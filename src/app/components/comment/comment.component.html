@@ -1,7 +1,6 @@
 <p class="comment-author">{{inputComment.author.username}}</p><button id="hbutton" mat-raised-button color="primary" (click)="toggleReplyToComment()">Reply</button>
 <p>
     {{inputComment.text}} {{inputComment.createdDate | date:'short'}}
-<<<<<<< HEAD
 </p>
 <div *ngFor="let comment of inputComment.comments" class="comment-container">
     <mat-divider></mat-divider>
