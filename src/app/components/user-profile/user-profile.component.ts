@@ -24,7 +24,7 @@ export class UserProfileComponent implements OnInit, OnDestroy{
   usersPageId: number;
   sub: any;
   posts: Post[] = [];
-
+  postCount = 0;
   constructor(private router: Router, private userService: UserService, private postService: PostService, private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -66,13 +66,14 @@ export class UserProfileComponent implements OnInit, OnDestroy{
       (response : any) => {
         console.log(response)
         this.posts = response
+        this.postCount = this.posts.length;
       }
     )
   }
 
   ngOnDestroy(): void {
-    console.log('should unsub from params if working');
-    // Later we will call: this.sub.unsubscribe();
+    //console.log('should unsub from params if working');
+    this.sub.unsubscribe();
   }
 
 }

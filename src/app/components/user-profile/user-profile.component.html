@@ -1,6 +1,5 @@
 <app-navbar></app-navbar>
-<!-- check if have to pass in usersPage variable-->
-<!-- check if have to pass in usersPageId variable-->
+
 <div fxLayout="row" fxLayoutAlign="space-between" class="profileMargin">
     <mat-card id="profile-header" class="profile-header" fxFlex="30">
         <div class="topJawn row">
@@ -15,7 +14,7 @@
                 </mat-card-title>
                 <mat-card-content>
                     <mat-list role="list">
-                        <mat-list-item role="listitem" class="profile-stat">0 posts</mat-list-item>
+                        <mat-list-item role="listitem" class="profile-stat">{{ postCount }} posts</mat-list-item>
                         <mat-list-item role="listitem" class="profile-stat">0 followers</mat-list-item>
                         <mat-list-item role="listitem" class="profile-stat">0 following</mat-list-item>
                     </mat-list>
@@ -30,7 +29,7 @@
     <ng-template #editTemplate>
         <div>
             <!-- route to user-settings page -->
-            <button mat-raised-button color="warn" [routerLink]="['/user-settings']">Edit</button>
+            <button mat-raised-button [routerLink]="['/user-settings']">Edit</button>
         </div>
     </ng-template>
     <h1>{{ nameDisplay }}'s Feed</h1>
