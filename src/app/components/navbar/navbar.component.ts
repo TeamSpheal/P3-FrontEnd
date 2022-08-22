@@ -42,8 +42,7 @@ export class NavbarComponent implements OnInit {
             
         }
 
-        this.loggedIn = JSON.parse(<string>sessionStorage.getItem("user"));
-        console.log(this.loggedIn);
+        this.loggedIn = JSON.parse(<string>localStorage.getItem("user"));
         if (this.loggedIn == undefined) {
             this.navUserDiv.hidden = true;
             this.navLoginDiv.hidden = false;
@@ -53,10 +52,6 @@ export class NavbarComponent implements OnInit {
             this.navProfileDiv.style.backgroundImage = "URL('" + this.loggedIn.profileImg + "')";
             this.navUsernameDiv.innerHTML = this.loggedIn.username;
         }
-    }
-
-    ngOnDestroy() {
-        this.authService.logout();
     }
 
     logout() {
@@ -82,6 +77,5 @@ export class NavbarComponent implements OnInit {
           document.documentElement.setAttribute('data-theme', 'light');
           localStorage.setItem('theme', 'light')
         }
-      } 
-
-}
+    }
+} 

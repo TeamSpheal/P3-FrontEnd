@@ -1,7 +1,8 @@
 <p>
     <mat-toolbar class="spheal" class="spheal">
+        <img src="assets/images/revasphere-logo-white.png" width="56px" alt="Revasphere Logo">
         <span [routerLink]="['/post-feed']">Revature Social Media</span>
-        <button [routerLink]="['/search']">search users</button>
+        <search-users></search-users>
         <span class="spacer"></span>
         <mat-slide-toggle id="dmToggle" [checked]="checkedStatus" (change)="onChange($event)">{{lightStatus}}</mat-slide-toggle>
         <div id="navLoginDiv">
@@ -11,9 +12,9 @@
         </div>
         <div id="navUserDiv">
             <div class="navLogBtn">
-                <button mat-button (click)="logout();">Logout</button>
+              <button id="logoutBtn" color="primary" mat-button (click)="logout();">Logout</button>
             </div>
-            <div class="nav-user-img" id="navProfileDiv" [routerLink]="['/user-settings']"></div>
+            <div class="nav-user-img" id="navProfileDiv" [routerLink]="['/user-profile', loggedIn.id]"></div>
             <div id="navUsernameDiv"></div>
         </div>
     </mat-toolbar>
