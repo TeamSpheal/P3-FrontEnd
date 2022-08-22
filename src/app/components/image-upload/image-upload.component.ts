@@ -3,6 +3,7 @@ import { HttpEventType, HttpErrorResponse } from '@angular/common/http';
 import { of } from 'rxjs';  
 import { catchError, map } from 'rxjs/operators';
 import { PostService } from 'src/app/services/post.service';
+import { PostFeedPageComponent } from '../post-feed-page/post-feed-page.component';
 
 @Component({
   selector: 'app-image-upload',
@@ -13,7 +14,8 @@ export class ImageUploadComponent {
   file: File;
  
   constructor(
-    private postService: PostService
+    private postService: PostService,
+    private postFeedPage: PostFeedPageComponent
   ){ }
   
   onFilechange(event: any) {
@@ -23,7 +25,8 @@ export class ImageUploadComponent {
   
   upload() {
     if (this.file) {
-      this.postService.uploadImage(this.file).subscribe(resp => {
+      this.postService.uploadImage(this.file).subscribe((resp: any) => {
+        this.postFeedPage.postForm.patchValue({imageUrl: <string>resp.url});
         console.log(resp);
         alert("Uploaded");
       })
