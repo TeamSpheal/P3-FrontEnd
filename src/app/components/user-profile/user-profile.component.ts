@@ -24,16 +24,17 @@ export class UserProfileComponent implements OnInit, OnDestroy{
   usersPageId: number;
   sub: any;
   posts: Post[] = [];
-
+  postCount = 0;
   constructor(private router: Router, private userService: UserService, private postService: PostService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    //gets id from param
     this.sub = this.route.params.subscribe(params => {
       this.usersPageId = +params['id'];
       console.log(this.usersPageId);
     })
-    console.log(this.usersPageId);
-    this.user = JSON.parse(<string>sessionStorage.getItem("user"));
+    //gets id from logged in user
+    this.user = JSON.parse(<string>localStorage.getItem("user"));
     console.log(this.user.id);
     this.profileImg = <HTMLDivElement>document.getElementById("user-circle");
     
@@ -50,29 +51,29 @@ export class UserProfileComponent implements OnInit, OnDestroy{
     } else {
       //this.user = fetch call to back end to get user details
       this.userService.getUserById(this.usersPageId)?.subscribe((resp: any ) => {
-        console.log(resp);
         this.usernameDisplay = resp.username;
-        console.log(this.usernameDisplay);
         this.nameDisplay = `${resp.firstName} ${resp.lastName}`;
-        console.log(this.nameDisplay);
         this.followers = resp.followers;
-        console.log(this.followers);
+        console.log('user service was called');
+        console.log(this.followers.length + 'followers length');
         this.followings = resp.followings;
-        console.log(this.followings);
+        //console.log(this.followings.length + 'followings length');
         this.profileImg.style.backgroundImage = "URL('" + resp.profileImg + "')";
       });
     }
     
     this.postService.getAllPostsByUserID(this.usersPageId).subscribe(
       (response : any) => {
+        console.log(response)
         this.posts = response
+        this.postCount = this.posts.length;
       }
     )
   }
 
   ngOnDestroy(): void {
-    console.log('should unsub from params if working');
-    // Later we will call: this.sub.unsubscribe();
+    //console.log('should unsub from params if working');
+    this.sub.unsubscribe();
   }
 
 }

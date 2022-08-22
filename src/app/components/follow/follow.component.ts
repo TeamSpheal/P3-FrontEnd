@@ -22,23 +22,34 @@ export class FollowComponent implements OnInit {
   constructor(private authService: AuthService, private postService: PostService, private userService: UserService) { }
 
   ngOnInit(): void {
+    this.followedId = this.authorId;
+    this.followerId = this.authService.currentUser.id;
+    this.isFollow = this.userService.isFollowing(this.followedId, this.followerId);
+
+    //if user is following target profile
+    if(this.isFollow) {
+      //show unfollow btn
+      this.changeBtn();
+    }
   }
 
   
   addFollower() {
+    console.log(this.authorId + 'author id for follow');
     this.followedId = this.authorId; 
+    console.log('follow log');
+    console.log(this.authService.currentUser.id);
     this.followerId = this.authService.currentUser.id;
     this.userService.addFollower(this.followedId, this.followerId).subscribe((resp) => {
       console.log(resp)
     })
   }
-
-  // changeBtn() {
-  //   this.text = "unfollow"; 
-  //   let btn: HTMLButtonElement = document.getElementById("follow") as HTMLButtonElement; 
-  //   btn.innerText = this.text; 
-  //   btn.style.backgroundColor = "gray"; 
-  // }
+  changeBtn() {
+    this.text = "unfollow"; 
+    let btn: HTMLButtonElement = document.getElementById("follow") as HTMLButtonElement; 
+    btn.innerText = this.text; 
+    btn.style.backgroundColor = "#FCB414DF"; 
+  }
 
   // toggleButton() {
   //   if (!this.isFollow) {
@@ -80,7 +91,6 @@ export class FollowComponent implements OnInit {
       follow?.style.setProperty('text', this.text);
       this.isFollow = false; 
       this.unfollow();
-      
       }
     }
   unfollow() {
@@ -91,3 +101,6 @@ export class FollowComponent implements OnInit {
     })
   }
 }
+
+
+

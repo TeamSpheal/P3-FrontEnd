@@ -46,4 +46,8 @@ export class PostService {
     return this.http.get<Post[]>(`${this.followingPostsUrl}/${id}`, {headers: environment.headers, withCredentials: environment.withCredentials} )
   }
 
+  getFollowingPostFeed(id : number): Observable<Post[]> {
+    return this.http.get<Post[]>(`${this.followingPostsUrl}/${id}`, {headers: environment.headers, withCredentials: environment.withCredentials} )
+  }
+
 }

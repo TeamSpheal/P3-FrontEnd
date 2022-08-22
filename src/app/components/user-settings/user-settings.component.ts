@@ -44,9 +44,9 @@ export class UserSettingsComponent implements OnInit {
         this.confirmPWText = <HTMLInputElement>document.getElementById("confirmPWText");
 
         /*Event Listeners*/
-        this.logoutBtn?.addEventListener("click", this.redirect()); this.loggedIn = JSON.parse(<string>sessionStorage.getItem("user"));
+        this.logoutBtn?.addEventListener("click", this.redirect()); this.loggedIn = JSON.parse(<string>localStorage.getItem("user"));
 
-        console.log(sessionStorage.getItem("user"))
+        console.log(localStorage.getItem("user"))
 
         /*Populating Page with data*/
         if (this.loggedIn == undefined) {//No user is logged in

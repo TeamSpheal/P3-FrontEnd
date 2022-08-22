@@ -99,18 +99,8 @@ export class PostComponent implements OnInit {
         (response : any) => {
           this.post = response
           this.toggleReplyToPost()
-        }, 
-
+        }
       )
-  }
-
-  heartContent(event: any) {
-    this.divContent.nativeElement.classList.toggle("heart-active");
-    this.divNumb.nativeElement.classList.toggle("heart-active");
-    this.divHeart.nativeElement.classList.toggle("heart-active");
-    /*$('.content').toggleClass("heart-active")
-    $('.numb').toggleClass("heart-active")
-    $('.heart').toggleClass("heart-active")*/
   }
 
   // toggleFollower() {
