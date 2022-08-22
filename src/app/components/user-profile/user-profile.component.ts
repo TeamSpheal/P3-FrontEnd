@@ -49,15 +49,13 @@ export class UserProfileComponent implements OnInit, OnDestroy{
     } else {
       //this.user = fetch call to back end to get user details
       this.userService.getUserById(this.usersPageId)?.subscribe((resp: any ) => {
-        console.log(resp);
         this.usernameDisplay = resp.username;
-        console.log(this.usernameDisplay);
         this.nameDisplay = `${resp.firstName} ${resp.lastName}`;
-        console.log(this.nameDisplay);
         this.followers = resp.followers;
-        console.log(this.followers);
+        console.log('user service was called');
+        console.log(this.followers.length + 'followers length');
         this.followings = resp.followings;
-        console.log(this.followings);
+        console.log(this.followings.length + 'followings length');
         this.profileImg.style.backgroundImage = "URL('" + resp.profileImg + "')";
       });
     }
