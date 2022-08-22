@@ -304,10 +304,6 @@ textarea.mat-input-element {
     margin-bottom: 1em;
 }
 
-.form {
-    margin-bottom: 1em;
-}
-
 .comment-container {
     margin-left: 2em;
 }
@@ -343,12 +339,6 @@ textarea.mat-input-element {
 
 #navUsernameDiv {
     margin-right: 10px;
-}
-
-.mat-button.mat-primary,
-.mat-icon-button.mat-primary,
-.mat-stroked-button.mat-primary {
-    margin-right: 1.2em;
 }
 
 .mat-card>.mat-card-actions:last-child {
