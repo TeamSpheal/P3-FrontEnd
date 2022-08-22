@@ -1,9 +1,5 @@
-import { ListKeyManager } from '@angular/cdk/a11y';
-import { ElementRef } from '@angular/core';
-import { ViewChild } from '@angular/core';
-import { Component, Input, OnInit } from '@angular/core';
+import { ElementRef, ViewChild, Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { distinctUntilKeyChanged } from 'rxjs';
 import Post from 'src/app/models/Post';
 import User from 'src/app/models/User';
 import { AuthService } from 'src/app/services/auth.service';
@@ -35,7 +31,7 @@ export class PostComponent implements OnInit {
   
   @Input() likeCount: number;
   @Input() isActive: boolean;
-  @Input() isNotActive: boolean = false;
+  @Input() isNotActive = false;
 
   constructor(private postService: PostService, private authService: AuthService) {
   }
@@ -51,7 +47,7 @@ export class PostComponent implements OnInit {
     this.postService.getPost(this.post)?.subscribe(
       ( resp : { users: string | any[]; }) => {
         this.likeCount = resp.users.length;
-        for (let likedUsers of resp.users) {
+        for (const likedUsers of resp.users) {
 
           if (likedUsers.id == this.authService.currentUser.id) {
             this.isActive = true;
@@ -61,9 +57,6 @@ export class PostComponent implements OnInit {
             
           }
         }
-        if(this.isActive) {
-          // this.heartContent();
-        } 
       }
     )
 
@@ -91,10 +84,6 @@ export class PostComponent implements OnInit {
       )
     }
   } 
-
-
-
-
   toggleReplyToPost = () => {
     this.replyToPost = !this.replyToPost
   }

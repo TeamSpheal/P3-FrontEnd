@@ -41,20 +41,6 @@ body {
     background: var(--bg-color);
 }
 
-.mat-flat-button.mat-primary,
-.mat-raised-button.mat-primary,
-.mat-fab.mat-primary,
-.mat-mini-fab.mat-primary {
-    background-color: var(--rev-color);
-}
-
-.mat-flat-button.mat-warn,
-.mat-raised-button.mat-warn,
-.mat-fab.mat-warn,
-.mat-mini-fab.mat-warn {
-    background-color: var(--rev-secondary);
-}
-
 .mat-form-field-appearance-legacy .mat-form-field-label {
     color: var(--input-font-color);
 }
@@ -103,7 +89,6 @@ mat-slide-toggle {
 .mat-input-element {
     caret-color: var(--caret-color);
 }
-
 .formPost {
     width: 50vw;
     background: var(--secondary-color);
@@ -135,8 +120,8 @@ textarea.mat-input-element {
 }
 
 .spheal {
-    background-color: var(--rev-color);
-    color: var(--rev-font-color);
+    background-color: var(--spheal-color);
+    color: var(--spheal-font-color);
 }
 
 .app-header {
@@ -158,8 +143,9 @@ textarea.mat-input-element {
     color: #ffffff;
 }
 
-mat-divider {
-    background: var(--input-font-color);
+.logout {
+    background: #779eff;
+    margin-left: 2em;
 }
 
 .box {
@@ -176,17 +162,6 @@ mat-divider {
     -ms-transform: scale(1);
     z-index: 5;
     max-width: 330px;
-}
-
-.comment-reply {
-    cursor: pointer;
-    color: var(--rev-secondary);
-    text-decoration: none;
-    margin: 0.3em;
-}
-
-.likeBtn {
-    margin-right: 2em;
 }
 
 .box.back {
@@ -309,21 +284,12 @@ mat-divider {
 }
 
 #post-feed {
-    width: 50vw;
-    margin: auto;
+    width: 100%;
     align-content: center;
 }
 
 .post-author {
     margin-top: 0.6em;
-}
-
-.navLoginBtn {
-    float: right;
-    font-size: 20px;
-    margin-top: unset !important;
-    margin-left: 10px;
-    vertical-align: middle;
 }
 
 .post-header,
@@ -338,12 +304,13 @@ mat-divider {
     margin-bottom: 1em;
 }
 
-.form {
-    margin-bottom: 1em;
-}
-
 .comment-container {
     margin-left: 2em;
+}
+
+.comment-reply {
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 .comment-author {
@@ -359,7 +326,6 @@ mat-divider {
     float: right;
     font-size: 20px;
     margin-top: 10px;
-    margin-left: 10px;
     vertical-align: middle;
 }
 
@@ -373,12 +339,6 @@ mat-divider {
 
 #navUsernameDiv {
     margin-right: 10px;
-}
-
-.mat-button.mat-primary,
-.mat-icon-button.mat-primary,
-.mat-stroked-button.mat-primary {
-    margin-right: 1.2em;
 }
 
 .mat-card>.mat-card-actions:last-child {

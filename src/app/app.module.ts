@@ -18,33 +18,36 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { UserSettingsComponent } from './components/user-settings/user-settings.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { FollowComponent } from './components/follow/follow.component';
+import { ResetPwComponent } from './components/reset-pw/reset-pw.component';
 import { SearchComponent } from './components/user-search/user-search.component';
+
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    RegisterComponent,
-    PostFeedPageComponent,
-    PostComponent,
-    CommentComponent,
-    UserCardComponent,
-    NavbarComponent,
-    UserInitialsPipe,
-    UserSettingsComponent,
-    UserProfileComponent,
-    FollowComponent,
-    SearchComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    BrowserAnimationsModule,
-    AngularMaterialModule,
-    FormsModule,
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        LoginComponent,
+        RegisterComponent,
+        PostFeedPageComponent,
+        PostComponent,
+        CommentComponent,
+        UserCardComponent,
+        NavbarComponent,
+        UserInitialsPipe,
+        SearchComponent,
+        UserSettingsComponent,
+        ResetPwComponent,
+        UserProfileComponent,
+        FollowComponent,
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        ReactiveFormsModule,
+        BrowserAnimationsModule,
+        AngularMaterialModule,
+        FormsModule,
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
