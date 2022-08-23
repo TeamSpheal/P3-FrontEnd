@@ -6,9 +6,13 @@
     <p>
         {{inputComment.text}}
     </p>
+    <button id="likeBtn-{{inputComment.id}}" class="btnIcon" mat-icon-button color="primary" (click)="like()" matBadge="{{likeCount}}" matBadgePosition="after" matBadgeColor="accent">
+        <mat-icon>thumb_up</mat-icon>
+  </button>
     <div *ngFor="let comment of inputComment.comments" class="comment-container">
         <app-comment [comment]="comment"></app-comment>
     </div>
+
     <form class="form" *ngIf="replyToComment" [formGroup]="commentForm" (ngSubmit)="submitReply($event)">
         <mat-form-field class="full-width" appearance="fill">
             <mat-label>Make a Post</mat-label>
@@ -18,6 +22,7 @@
             <button mat-raised-button color="warn" (click)="toggleReplyToComment()">Cancel</button>
             <button mat-raised-button color="primary" type="submit">Post</button>
         </div>
+
 
     </form>
 </div>
