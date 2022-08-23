@@ -30,7 +30,7 @@ export class PostComponent implements OnInit {
   users: User[];
   
   @Input('post') post: Post
-  @Input() likeCount: number;
+  @Input() likeCount: string;
   @Input() isActive: boolean;
   @Input() isNotActive = false;
   
@@ -48,16 +48,13 @@ export class PostComponent implements OnInit {
     }
     //this.isLiked();
 
-    this.likeCount = this.post.users.length;
+    this.likeCount = Intl.NumberFormat('en-US', {
+      notation:"compact",
+      maximumFractionDigits:1}).format(this.post.users.length);
 
   }
   
   isLiked(){
-
-    
-
-
-
     const curUser = new UserMiniDTO(this.authService.currentUser.id,
                                     this.authService.currentUser.username,
                                     this.authService.currentUser.profileImg);
@@ -66,41 +63,16 @@ export class PostComponent implements OnInit {
 
     const button = document.getElementById('likeBtn-' + this.post.id);
 
-
-    
-    //console.log('likeBtn-' + this.post.id);
-    //console.log(this.divBtn);
-
     if ( likedIds.includes(curUser.id) ){
       this.isActive = true;
       
       button?.style.setProperty('color','#ef773b');
       button?.style.setProperty('background','#FCB414');
-
-      //console.log(button?.style.getPropertyValue('background'));
     }
     else {
       this.isActive = false;
       button?.style.setProperty('background','transparent');
     }
-
-    // this.postService.getPost(this.post)?.subscribe(
-    //   ( resp : { users: string | any[]; }) => {
-    //     //this.likeCount = resp.users.length;
-    //     this.likeCount = this.post.users.length;
-    //     for (const likedUsers of resp.users) {
-
-    //       if (likedUsers.id == this.authService.currentUser.id) {
-    //         this.isActive = true;
-    //         const button = document.getElementById('likeBtn-' + this.post.id);
-    //         button?.style.setProperty('color','#ef773b');
-    //         button?.style.setProperty('background','#FCB414');
-            
-    //       }
-    //     }
-    //   }
-    // )
-
   }
 
   ngAfterViewInit() {
@@ -115,23 +87,27 @@ export class PostComponent implements OnInit {
     if(!this.isActive) {
       this.postService.likePost(this.authService.currentUser.id,this.post.id)?.subscribe(
         (      resp: { users: string | any[]; }) => {
-          this.likeCount = resp.users.length;
+          this.likeCount = Intl.NumberFormat('en-US', {
+            notation:"compact",
+            maximumFractionDigits:1}).format(resp.users.length)
+          });
           this.isActive = true;
           button?.style.setProperty('color','#ef773b');
           button?.style.setProperty('background','#FCB414');
-        }
-      )
     } else {
+      
       this.postService.unlikePost(this.authService.currentUser.id, this.post.id)?.subscribe(
         (      resp: { users: string | any[]; }) => {
-          this.likeCount = resp.users.length;
+          this.likeCount = Intl.NumberFormat('en-US', {
+            notation:"compact",
+            maximumFractionDigits:1}).format(resp.users.length)
+          });
           this.isActive = false;
           button?.style.setProperty('color','#ef773b');
           button?.style.setProperty('background','transparent');
         }
-      )
     }
-  }
+  
 
 
 
