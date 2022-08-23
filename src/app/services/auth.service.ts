@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import User from '../models/User';
-import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +10,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 export class AuthService {
   authUrl = `${environment.baseUrl}/auth`;
   currentUser: User;
-  _snackBar: MatSnackBar
-  
+
   constructor(private http: HttpClient) { }
 
   login(email: string, password: string): Observable<HttpResponse<User>> {
@@ -20,7 +18,6 @@ export class AuthService {
     return this.http.post<User>(`${this.authUrl}/login`, payload, {observe: 'response', headers: environment.headers, withCredentials: environment.withCredentials})
     .pipe(
       catchError((err) => {
-        this.infoMessage('Email or password is invalid!', 'Close')
         return throwError(err);
       })
     );
@@ -36,14 +33,10 @@ export class AuthService {
     return this.http.post<any>(`${this.authUrl}/register`, payload, {headers: environment.headers})
     .pipe(
       catchError((err) => {
-        this.infoMessage('All fields are required', 'Close')
         return throwError(err);
       })
     );
   }
 
-  infoMessage(message: string, action: string) {
-    this._snackBar.open(message, action);
-  }
   
 }

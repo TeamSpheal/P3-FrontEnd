@@ -6,7 +6,6 @@ import User from 'src/app/models/User';
 import UserMiniDTO from 'src/app/models/UserMiniDTO';
 import { AuthService } from 'src/app/services/auth.service';
 import { PostService } from 'src/app/services/post.service';
-import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-post',
@@ -28,7 +27,7 @@ export class PostComponent implements OnInit {
   replyToPost = false; 
   errorMsg: string; 
   users: User[];
-  _snackBar: MatSnackBar
+  
   @Input('post') post: Post
   @Input() likeCount: number;
   @Input() isActive: boolean;
@@ -160,7 +159,7 @@ export class PostComponent implements OnInit {
 
       )
     } else {
-      this.infoMessage('A message is required to post a comment', 'Close')
+      console.log("error")
       this.replyToPost = false;
     }
   }
@@ -171,9 +170,6 @@ export class PostComponent implements OnInit {
     this.divHeart.nativeElement.classList.toggle("heart-active");
   }
 
-  infoMessage(message: string, action: string) {
-    this._snackBar.open(message, action);
-  }
 }
 function e(e: any, any: any) {
   throw new Error('Function not implemented.');

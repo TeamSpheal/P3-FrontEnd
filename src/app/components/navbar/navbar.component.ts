@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Optional } from '@angular/core';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import User from 'src/app/models/User';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
     selector: 'app-navbar',
@@ -19,7 +20,7 @@ export class NavbarComponent implements OnInit {
     navProfileDiv: HTMLDivElement;
     loggedIn: User;
 
-    constructor(private authService: AuthService, private router: Router) { }
+    constructor(private authService: AuthService, private router: Router, @Optional() public _snackBar: MatSnackBar) { }
 
     ngOnInit(): void {
         this.navUserDiv = <HTMLDivElement>document.getElementById("navUserDiv");
