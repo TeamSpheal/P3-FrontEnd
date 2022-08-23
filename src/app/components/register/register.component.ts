@@ -29,14 +29,13 @@ export class RegisterComponent implements OnInit {
   onSubmit(e: any): void {
     e.preventDefault()
 
-    console.log("CLICKED REGISTER");
     const profaneCheck:boolean = this.dirtyCheck.isDirty(this.registerForm.value.username);
-    console.log("DIRTY CHECK: " + profaneCheck);
-
     const profaneCheck2:boolean = this.dirtyCheck.isDirty(this.registerForm.value.email);
+    const profaneCheck3:boolean = this.dirtyCheck.isDirty(this.registerForm.value.firstName);
+    const profaneCheck4:boolean = this.dirtyCheck.isDirty(this.registerForm.value.lastName);
 
-    if(profaneCheck || profaneCheck2){
-      alert("Username/Email is forbidden, try again");
+    if(profaneCheck || profaneCheck2 || profaneCheck3 || profaneCheck4){
+      alert("Username/Email/Name is forbidden, try again");
     }
     else{
     this.authService.register(this.registerForm.value.firstName || "", this.registerForm.value.lastName || "", this.registerForm.value.email || "", this.registerForm.value.password || "", this.registerForm.value.username || "")
