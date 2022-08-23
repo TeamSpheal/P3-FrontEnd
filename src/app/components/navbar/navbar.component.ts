@@ -26,7 +26,6 @@ export class NavbarComponent implements OnInit {
 
         this.navLoginDiv = <HTMLDivElement>document.getElementById("navLoginDiv");
         this.navUsernameDiv = <HTMLDivElement>document.getElementById("navUsernameDiv");
-        //this.navProfileDiv = <HTMLDivElement>document.getElementById("navProfileDiv");
         const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
 
         if (currentTheme) {

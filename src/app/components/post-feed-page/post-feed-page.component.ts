@@ -33,7 +33,6 @@ export class PostFeedPageComponent implements OnInit {
 
     if (this.loggedIn == undefined) {
       this.router.navigate(['login']);
-      console.log("in if: " + this.loggedIn);
   }
 
     const userStorage = localStorage.getItem("user");

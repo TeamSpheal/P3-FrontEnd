@@ -38,7 +38,6 @@ export class UserProfileComponent implements OnInit {
 
     if (this.loggedIn == undefined) {
         this.router.navigate(['login']);
-        console.log("in if: " + this.loggedIn);
     }
 
     //gets id from param

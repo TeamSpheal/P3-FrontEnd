@@ -51,7 +51,6 @@ export class UserSettingsComponent implements OnInit {
 
         if (this.checkloggedIn == undefined) {
             this.router.navigate(['login']);
-            console.log("in if: " + this.loggedIn);
         }
 
         /*Assign Values to Variables*/
