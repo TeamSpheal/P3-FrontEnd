@@ -1,6 +1,6 @@
 # Deploying the Application
 
-The application can currently be built locally for testing or with AWS
+The front-end application can currently be built locally for testing or with AWS
 CodePipeline.
 
 ## Local Deployment
@@ -35,12 +35,14 @@ That application can be viewed in a web browser at
 
 ## Automated Deployment
 
-The application currently supports automated deployment to an S3 bucket
+The application can also be deployed to an S3 bucket
 with AWS CodePipeline. As above, this requires a running instance of the
 P3-BackEnd.
 
 #### Initial steps
-1) Configure an S3 bucket and configure it to serve as a static website.
+1) Create an S3 bucket and configure it to serve as a static website. If you're
+   not familiar with that process, the necessary steps are covered
+   [here](https://docs.aws.amazon.com/AmazonS3/latest/userguide/HostingWebsiteOnS3Setup.html).
 2) Edit the file src\environments\environment.prod.ts
     - Change "baseUrl" to be the URL of the running backend instance.
     - Change the value for the Access-Control-Allow-Origin in the headers
@@ -49,19 +51,30 @@ P3-BackEnd.
 #### Deployment
 1) Configure an AWS CodeBuild project 
 	- Set this repo as the source.
-	- You can use the following for the buildspec file
+	- Most of the options can be left with their default values.
+	- The buildspec option should be left as "Use buildspec file" to make the 
+	  build process use the steps specified in the file "buildspec.yml" in this
+	  repo.
+	- Currently, this file looks like this:
 		```
 		version: 0.2
-
+		env:
+		  variables:
+			CHROME_BIN: "/usr/bin/google-chrome-stable"
 		phases:
 		  install:
 			commands:
 			  - curl -fsSL https://dev.nodesource.com/setup_16.x | sudo -E bash -
 			  - yum install gcc-c++ make
+			  - wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+			  - yum install -y ./google-chrome-stable_current_x86_64.rpm
 		  pre_build:
+			on-failure: ABORT
 			commands:
 			  - npm i -g @angular/cli
 			  - npm install --force
+			  - npm update
+			  - ng test --karma-config=karma.conf.codebuild.js --no-watch --code-coverage
 		  build:
 			commands:
 			  - ng build
