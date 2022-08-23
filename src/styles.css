@@ -55,6 +55,7 @@ body {
 .mat-fab.mat-warn,
 .mat-mini-fab.mat-warn {
     background-color: var(--rev-secondary);
+    margin-right: 1em;
 }
 
 .mat-form-field-appearance-legacy .mat-form-field-label {
@@ -85,13 +86,6 @@ mat-label {
 
 .mat-checkbox-checked.mat-accent .mat-checkbox-background {
     background-color: black !important;
-}
-
-.mat-flat-button.mat-warn,
-.mat-raised-button.mat-warn,
-.mat-fab.mat-warn,
-.mat-mini-fab.mat-warn {
-    margin-right: 1em;
 }
 
 .mat-input-element {
@@ -336,10 +330,6 @@ mat-divider {
 
 .post-card {
     animation: loadin .5s ease 0s 1 normal forwards;
-    margin-bottom: 1em;
-}
-
-.form {
     margin-bottom: 1em;
 }
 

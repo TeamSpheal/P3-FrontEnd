@@ -1,4 +1,3 @@
-import { ThisReceiver } from '@angular/compiler';
 import { ElementRef, ViewChild, Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import Post from 'src/app/models/Post';
