@@ -14,18 +14,18 @@ export class NavbarComponent implements OnInit {
 
     lightStatus: string;
     checkedStatus: boolean;
-    navUserDiv: HTMLDivElement;
-    navLoginDiv: HTMLDivElement;
-    navUsernameDiv: HTMLDivElement;
-    navProfileDiv: HTMLDivElement;
+    //navUserDiv: HTMLDivElement | any;
+    navLoginDiv: HTMLDivElement | any;
+    navUsernameDiv: HTMLDivElement | any;
+    navProfileDiv: HTMLDivElement | any;
     loggedIn: User;
 
     constructor(private authService: AuthService, private router: Router) { }
 
     ngOnInit(): void {
-        this.navUserDiv = <HTMLDivElement>document.getElementById("navUserDiv");
+
         this.navLoginDiv = <HTMLDivElement>document.getElementById("navLoginDiv");
-        this.navUsernameDiv = <HTMLDivElement>document.getElementById("navUsernameDiv")
+        this.navUsernameDiv = <HTMLDivElement>document.getElementById("navUsernameDiv");
         this.navProfileDiv = <HTMLDivElement>document.getElementById("navProfileDiv");
         const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
 
@@ -43,21 +43,14 @@ export class NavbarComponent implements OnInit {
         }
 
         this.loggedIn = JSON.parse(<string>localStorage.getItem("user"));
-        if (this.loggedIn == undefined) {
-            this.navUserDiv.hidden = true;
-            this.navLoginDiv.hidden = false;
-        } else {
-            this.navUserDiv.hidden = false;
-            this.navLoginDiv.hidden = true;
-            this.navProfileDiv.style.backgroundImage = "URL('" + this.loggedIn.profileImg + "')";
-            console.log(this.navProfileDiv.style.backgroundImage);
-            this.navUsernameDiv.innerHTML = this.loggedIn.username;
-        }
+
+        if (!this.loggedIn) {
+            this.logout();
+        } 
+        
     }
 
     logout() {
-        this.navUserDiv.hidden = true;
-        this.navLoginDiv.hidden = false;
         this.navProfileDiv.style.backgroundImage = "";
         this.navUsernameDiv.innerHTML = "";
         this.authService.logout();

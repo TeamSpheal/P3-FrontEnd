@@ -4,6 +4,7 @@ import User from '../../models/User';
 import { UserSettingsService } from '../../services/user-settings.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { of, from } from 'rxjs';
+import { TestBed } from '@angular/core/testing';
 
 describe('UserSettingsComponent', () => {
     /*Suite Variables*/
@@ -44,7 +45,11 @@ describe('UserSettingsComponent', () => {
     it('ngOnInit: should not set a value to loggedIn if localStorage is null', async () => {
         /*Mocks*/
         spyOn(localStorage, 'getItem').and.returnValue(null);
+<<<<<<< HEAD
+        spyOn(document, 'getElementById').and.returnValue(document.createElement("input"));
+=======
         spyOn(document, 'getElementById').and.returnValue(document.createElement("img"));
+>>>>>>> 3120428278e1fe813b67468563cb681ad22a3414
 
         /*Function*/
         userSettComp.ngOnInit();
