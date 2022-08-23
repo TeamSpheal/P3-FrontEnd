@@ -30,7 +30,7 @@ export class UserProfileComponent implements OnInit {
     postCount = 0;
     loggedIn: User;
     constructor(private router: Router, private userService: UserService, private postService: PostService, private route: ActivatedRoute) { }
-
+    
   ngOnInit() {
     
     //checks if the user is logged in, if not it routes to the log in page

@@ -3,6 +3,7 @@ import User from '../../models/User';
 import { Router } from '@angular/router';
 import { UserSettingsService } from '../../services/user-settings.service';
 import { FormGroup, FormControl } from '@angular/forms';
+import { PostService } from 'src/app/services/post.service';
 
 @Component({
     selector: 'app-user-settings',
@@ -15,6 +16,7 @@ export class UserSettingsComponent implements OnInit {
     profileImg: HTMLImageElement;
     loggedIn: User;
     checkloggedIn: User;
+    file: File; // For image upload
 
     /*Form Groups*/
     userImageForm = new FormGroup({
@@ -38,7 +40,7 @@ export class UserSettingsComponent implements OnInit {
      * @param userSettingsService
      * @param router
      */
-    constructor(private userSettingsService: UserSettingsService, private router: Router) { }
+    constructor(private postService: PostService, private userSettingsService: UserSettingsService, private router: Router) { }
 
     /**Upon initialization, assigns values to class variables, links event listeners, and populates textboxes
      */
@@ -97,7 +99,7 @@ export class UserSettingsComponent implements OnInit {
             updatedUser.profileImg = newImgURL;
 
             /*Send request*/
-            await this.userSettingsService.updateProfile(updatedUser).subscribe((data: any) => {
+            this.userSettingsService.updateProfile(updatedUser).subscribe((data: any) => {
                 //Parse data
                 if (data != undefined) {
                     response = JSON.parse(JSON.stringify(data));
@@ -146,7 +148,7 @@ export class UserSettingsComponent implements OnInit {
                 updatedUser = new User(this.loggedIn.id, newEmail, newFN, newLN, newUN, this.loggedIn.profileImg, this.loggedIn.followers, this.loggedIn.following);
 
                 //Send Request
-                await this.userSettingsService.updateProfile(updatedUser).subscribe((data: any) => {
+                this.userSettingsService.updateProfile(updatedUser).subscribe((data: any) => {
                     //Parse Data
                     if (data != undefined) {
                         response = JSON.parse(JSON.stringify(data));
@@ -195,7 +197,7 @@ export class UserSettingsComponent implements OnInit {
         if (PWregex.test(pass1)) {//Password is valid
             if (pass1 == pass2) {//Passwords match
                 //Send Request
-                await this.userSettingsService.updatePassword(pass1, this.loggedIn).subscribe((data: any) => {
+                this.userSettingsService.updatePassword(pass1, this.loggedIn).subscribe((data: any) => {
                     //Parse Data
                     if (data != undefined) {
                         response = JSON.stringify(data);
@@ -257,5 +259,23 @@ export class UserSettingsComponent implements OnInit {
             newPW: "",
             confirmPW: ""
         });
+    }
+
+    onFilechange(event: any) {
+        console.log(event.target.files[0])
+        this.file = event.target.files[0];
+      }
+      
+    upload() {
+        if (this.file) {
+            this.postService.uploadImage(this.file).subscribe((resp: any) => {
+            const url = <string>resp.url;
+            this.userImageForm.patchValue({imageURL: url});
+            this.profileImg.src = url;
+            alert("Uploaded");
+            })
+        } else {
+            alert("Please select a file first")
+        }
     }
 }

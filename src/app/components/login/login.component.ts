@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { HttpResponse } from '@angular/common/http';
@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
             localStorage.setItem("user", JSON.stringify(response.body));
             localStorage.setItem("JWT", <string>response.headers.get("Auth"));
             this.router.navigate(['post-feed'])
-        }
+        }       
       )
   }
 
