@@ -55,7 +55,6 @@ export class SearchComponent implements OnInit{
         
             console.log(this.users);
         }
-        //this.showSearch();
     }else{
         this.hideSearch();
     }

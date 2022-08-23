@@ -6,9 +6,11 @@ phases:
       - curl -fsSL https://dev.nodesource.com/setup_16.x | sudo -E bash -
       - yum install gcc-c++ make
   pre_build:
+    on-failure: ABORT
     commands:
       - npm i -g @angular/cli
       - npm install --force
+      - ng test --no-watch --code-coverage
   build:
     commands:
       - ng build

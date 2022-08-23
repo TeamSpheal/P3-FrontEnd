@@ -1,3 +1,4 @@
+import { TestBed } from '@angular/core/testing';
 import { UserSettingsComponent } from './user-settings.component';
 import User from '../../models/User';
 import { UserSettingsService } from '../../services/user-settings.service';
@@ -44,7 +45,11 @@ describe('UserSettingsComponent', () => {
     it('ngOnInit: should not set a value to loggedIn if localStorage is null', async () => {
         /*Mocks*/
         spyOn(localStorage, 'getItem').and.returnValue(null);
+<<<<<<< HEAD
         spyOn(document, 'getElementById').and.returnValue(document.createElement("input"));
+=======
+        spyOn(document, 'getElementById').and.returnValue(document.createElement("img"));
+>>>>>>> 3120428278e1fe813b67468563cb681ad22a3414
 
         /*Function*/
         userSettComp.ngOnInit();
@@ -62,8 +67,7 @@ describe('UserSettingsComponent', () => {
         const mockUrlLength: number = mockImgURL.length
 
         /*Mocks*/
-        userSettComp.imgUrlText = document.createElement("input");
-        userSettComp.imgUrlText.value = mockImgURL;
+        userSettComp.userImageForm.value.imageURL = mockImgURL;
         spyOn(window, 'alert');
 
         /*Function*/
@@ -86,8 +90,7 @@ describe('UserSettingsComponent', () => {
             return from(of(undefined));
         });
         spyOn(window, 'alert');
-        userSettComp.imgUrlText = document.createElement("input");
-        userSettComp.imgUrlText.value = mockImgURL;
+        userSettComp.userImageForm.value.imageURL = mockImgURL;
         userSettComp.loggedIn = mockUser;
 
         /*Function*/
@@ -110,8 +113,7 @@ describe('UserSettingsComponent', () => {
         });
         spyOn(window, 'alert');
         spyOn(userSettComp, 'displayInfo').and.callFake(() => { /*Do Nothing*/ })
-        userSettComp.imgUrlText = document.createElement("input");
-        userSettComp.imgUrlText.value = mockImgURL;
+        userSettComp.userImageForm.value.imageURL = mockImgURL;
         userSettComp.loggedIn = mockUser;
 
         /*Function*/
@@ -128,11 +130,10 @@ describe('UserSettingsComponent', () => {
 
         /*Mocks*/
         spyOn(document, 'getElementById').and.returnValue(document.createElement("input"))
-        userSettComp.usernameText = document.createElement("input");
-        userSettComp.emailText = document.createElement("input");
-        userSettComp.fNameText = document.createElement("input");
-        userSettComp.lNameText = document.createElement("input");
-        userSettComp.usernameText.value = mockUN;
+        userSettComp.userDetailsForm.value.username = mockUN;
+        userSettComp.userDetailsForm.value.email = "";
+        userSettComp.userDetailsForm.value.firstName = "";
+        userSettComp.userDetailsForm.value.lastName = "";
         spyOn(window, 'alert');
 
         /*Function*/
@@ -149,12 +150,10 @@ describe('UserSettingsComponent', () => {
         const mockEM = "randomem*i|ATgmailDOTc{}m";
 
         /*Mocks*/
-        userSettComp.usernameText = document.createElement("input");
-        userSettComp.emailText = document.createElement("input");
-        userSettComp.fNameText = document.createElement("input");
-        userSettComp.lNameText = document.createElement("input");
-        userSettComp.usernameText.value = mockUN;
-        userSettComp.emailText.value = mockEM;
+        userSettComp.userDetailsForm.value.username = mockUN;
+        userSettComp.userDetailsForm.value.email = mockEM;
+        userSettComp.userDetailsForm.value.firstName = "";
+        userSettComp.userDetailsForm.value.lastName = "";
         spyOn(document, 'getElementById').and.returnValue(document.createElement("input"))
         spyOn(window, 'alert');
 
@@ -175,12 +174,8 @@ describe('UserSettingsComponent', () => {
             return from(of(undefined));
         });
         spyOn(window, 'alert');
-        userSettComp.usernameText = document.createElement("input");
-        userSettComp.emailText = document.createElement("input");
-        userSettComp.fNameText = document.createElement("input");
-        userSettComp.lNameText = document.createElement("input");
-        userSettComp.usernameText.value = mockUN;
-        userSettComp.emailText.value = mockEM;
+        userSettComp.userDetailsForm.value.username = mockUN;
+        userSettComp.userDetailsForm.value.email = mockEM;
         userSettComp.loggedIn = mockUser;
 
         /*Function*/
@@ -201,12 +196,10 @@ describe('UserSettingsComponent', () => {
         });
         spyOn(window, 'alert');
         spyOn(userSettComp, 'displayInfo').and.callFake(() => { /*Do Nothing*/ })
-        userSettComp.usernameText = document.createElement("input");
-        userSettComp.emailText = document.createElement("input");
-        userSettComp.fNameText = document.createElement("input");
-        userSettComp.lNameText = document.createElement("input");
-        userSettComp.usernameText.value = mockUN;
-        userSettComp.emailText.value = mockEM;
+        userSettComp.userDetailsForm.value.username = mockUN;
+        userSettComp.userDetailsForm.value.email = mockEM;
+        userSettComp.userDetailsForm.value.firstName = "";
+        userSettComp.userDetailsForm.value.lastName = "";
         userSettComp.loggedIn = mockUser;
 
         /*Function*/
@@ -224,10 +217,8 @@ describe('UserSettingsComponent', () => {
 
         /*Mocks*/
         spyOn(document, 'getElementById').and.returnValue(document.createElement("input"))
-        userSettComp.newPWText = document.createElement("input");
-        userSettComp.confirmPWText = document.createElement("input");
-        userSettComp.newPWText.value = mockPW;
-        userSettComp.confirmPWText.value = mockPW;
+        userSettComp.userPasswordForm.value.newPW = mockPW;
+        userSettComp.userPasswordForm.value.confirmPW = mockPW;
         spyOn(window, 'alert');
 
         /*Function*/
@@ -245,10 +236,8 @@ describe('UserSettingsComponent', () => {
 
         /*Mocks*/
         spyOn(document, 'getElementById').and.returnValue(document.createElement("input"))
-        userSettComp.newPWText = document.createElement("input");
-        userSettComp.confirmPWText = document.createElement("input");
-        userSettComp.newPWText.value = mockPW1;
-        userSettComp.confirmPWText.value = mockPW2;
+        userSettComp.userPasswordForm.value.newPW = mockPW1;
+        userSettComp.userPasswordForm.value.confirmPW = mockPW2;
         spyOn(window, 'alert');
 
         /*Function*/
@@ -267,10 +256,8 @@ describe('UserSettingsComponent', () => {
             return from(of(undefined));
         });
         spyOn(window, 'alert');
-        userSettComp.newPWText = document.createElement("input");
-        userSettComp.confirmPWText = document.createElement("input");
-        userSettComp.newPWText.value = mockPW;
-        userSettComp.confirmPWText.value = mockPW;
+        userSettComp.userPasswordForm.value.newPW = mockPW;
+        userSettComp.userPasswordForm.value.confirmPW = mockPW;
 
 
         /*Function*/
@@ -293,10 +280,8 @@ describe('UserSettingsComponent', () => {
             return from(of(mockPWReq));
         });
         spyOn(window, 'alert');
-        userSettComp.newPWText = document.createElement("input");
-        userSettComp.confirmPWText = document.createElement("input");
-        userSettComp.newPWText.value = mockPW;
-        userSettComp.confirmPWText.value = mockPW;
+        userSettComp.userPasswordForm.value.newPW = mockPW;
+        userSettComp.userPasswordForm.value.confirmPW = mockPW;
 
 
         /*Function*/
@@ -309,25 +294,18 @@ describe('UserSettingsComponent', () => {
     it('displayInfo: should input data without any errors', async () => {
         /*Mocks*/
         userSettComp.profileImg = document.createElement("img");
-        userSettComp.imgUrlText = document.createElement("input");
-        userSettComp.usernameText = document.createElement("input");
-        userSettComp.emailText = document.createElement("input");
-        userSettComp.fNameText = document.createElement("input");
-        userSettComp.lNameText = document.createElement("input");
-        userSettComp.newPWText = document.createElement("input");
-        userSettComp.confirmPWText = document.createElement("input");
 
         /*Function*/
         userSettComp.displayInfo(mockUser);
 
         /*Test*/
         expect(userSettComp.profileImg.src).toBeTruthy
-        expect(userSettComp.imgUrlText.value).toBeTruthy;
-        expect(userSettComp.usernameText.value).toBeTruthy;
-        expect(userSettComp.emailText.value).toBeTruthy;
-        expect(userSettComp.fNameText.value).toBeTruthy;
-        expect(userSettComp.lNameText.value).toBeTruthy;
-        expect(userSettComp.newPWText.value).toBe("");
-        expect(userSettComp.confirmPWText.value).toBe("");
+        expect(userSettComp.userImageForm.value.imageURL).toBeTruthy;
+        expect(userSettComp.userDetailsForm.value.username).toBeTruthy;
+        expect(userSettComp.userDetailsForm.value.email).toBeTruthy;
+        expect(userSettComp.userDetailsForm.value.firstName).toBeTruthy;
+        expect(userSettComp.userDetailsForm.value.lastName).toBeTruthy;
+        expect(userSettComp.userPasswordForm.value.newPW).toBe("");
+        expect(userSettComp.userPasswordForm.value.confirmPW).toBe("");
     });
 });

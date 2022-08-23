@@ -42,7 +42,9 @@ export class UserSettingsService {
             email: currentUser.email,
             password: newPW,
             username: currentUser.username,
-            profileImg: currentUser.profileImg
+            profileImg: currentUser.profileImg,
+            followers: [],
+            following: []
         };
 
         /*Return request*/
