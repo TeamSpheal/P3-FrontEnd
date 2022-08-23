@@ -110,7 +110,7 @@ export class PostComponent implements OnInit {
   }
 
 
-  like(){  
+  async like(){  
     const button = document.getElementById('likeBtn-' + this.post.id);
 
     if(!this.isActive) {

@@ -177,10 +177,6 @@ mat-divider {
     margin: 0.3em;
 }
 
-.likeBtn {
-    margin-right: 2em;
-}
-
 .box.back {
     transform: scale(.95);
     -webkit-transform: scale(.95);
@@ -380,7 +376,8 @@ mat-divider {
 .comment-author {
     margin: 0.3em;
     font-weight: 500;
-    color: var(--font-color-secondary)
+    color: var(--font-color-secondary);
+    margin-top: -23px !important;
 }
 
 .commentBlock {
@@ -445,6 +442,10 @@ mat-divider {
     margin-right: 1.3em;
 }
 
+.replyContainer {
+    margin-bottom: 20px;
+}
+
 .replyBtn {
     float: right;
     cursor: pointer;
@@ -455,6 +456,19 @@ mat-divider {
 }
 
 .replyBtn:hover {
+    opacity: 0.8
+}
+
+.likeBtn {
+    float: right;
+    cursor: pointer;
+    transition: all ease .2s;
+    margin-right: 1em;
+    display: block;
+    margin-bottom: 1em;
+}
+
+.likeBtn:hover {
     opacity: 0.8
 }
 
