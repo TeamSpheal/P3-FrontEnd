@@ -11,7 +11,6 @@ import { PostService } from 'src/app/services/post.service';
   styleUrls: ['./post.component.css']
 })
 export class PostComponent implements OnInit {
-  
   @ViewChild("content")
   divContent: ElementRef;
 
@@ -21,17 +20,20 @@ export class PostComponent implements OnInit {
   @ViewChild("heart")
   divHeart: ElementRef;
 
-  commentForm = new FormGroup({
-    text: new FormControl(''),
-  })
-
-  @Input('post') post: Post
+ 
+  replyToPost = false; 
+  errorMsg: string; 
   users: User[];
-  replyToPost = false
   
+  @Input('post') post: Post
   @Input() likeCount: number;
   @Input() isActive: boolean;
   @Input() isNotActive = false;
+  // isFollow: boolean = false; 
+  
+  commentForm = new FormGroup({
+    text: new FormControl(''),
+  })
 
 
   constructor(private postService: PostService, private authService: AuthService) {
@@ -84,7 +86,8 @@ export class PostComponent implements OnInit {
         }
       )
     }
-  } 
+  }
+
   toggleReplyToPost = () => {
     this.replyToPost = !this.replyToPost
   }
@@ -97,7 +100,14 @@ export class PostComponent implements OnInit {
         (response : any) => {
           this.post = response
           this.toggleReplyToPost()
-        }
+        }, 
+
       )
+  }
+
+  heartContent() {
+    this.divContent.nativeElement.classList.toggle("heart-active");
+    this.divNumb.nativeElement.classList.toggle("heart-active");
+    this.divHeart.nativeElement.classList.toggle("heart-active");
   }
 }

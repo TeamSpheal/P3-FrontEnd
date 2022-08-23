@@ -16,7 +16,7 @@ describe('UserProfileComponent', () => {
   } as ActivatedRoute;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
+    TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, RouterTestingModule],
       declarations: [ UserProfileComponent ],
       providers: [UserProfileComponent, {provide: ActivatedRoute, useValue: fakeActivatedRoute}]

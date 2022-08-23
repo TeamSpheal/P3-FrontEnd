@@ -61,5 +61,4 @@ export class PostService {
         'Access-Control-Allow-Origin': 'http://localhost:4200'
     }});
   }
-
 }

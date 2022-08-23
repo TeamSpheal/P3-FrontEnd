@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import User from '../../models/User';
 import { Router } from '@angular/router';
 import { UserSettingsService } from '../../services/user-settings.service';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
     selector: 'app-user-settings',
@@ -11,16 +12,25 @@ import { UserSettingsService } from '../../services/user-settings.service';
 export class UserSettingsComponent implements OnInit {
     /*Class Variables*/
     logoutBtn: HTMLButtonElement | null;
-    userSettingsDiv: HTMLDivElement;
     profileImg: HTMLImageElement;
-    imgUrlText: HTMLInputElement;
-    usernameText: HTMLInputElement;
-    emailText: HTMLInputElement;
-    fNameText: HTMLInputElement;
-    lNameText: HTMLInputElement;
-    newPWText: HTMLInputElement;
-    confirmPWText: HTMLInputElement;
     loggedIn: User;
+
+    /*Form Groups*/
+    userImageForm = new FormGroup({
+        imageURL: new FormControl('')
+    })
+
+    userDetailsForm = new FormGroup({
+        firstName: new FormControl(''),
+        lastName: new FormControl(''),
+        email: new FormControl(''),
+        username: new FormControl('')
+    })
+
+    userPasswordForm = new FormGroup({
+        newPW: new FormControl(''),
+        confirmPW: new FormControl('')
+    })
 
     /**
      * A constructor to provide dependencies for the class
@@ -35,27 +45,27 @@ export class UserSettingsComponent implements OnInit {
         /*Assign Values to Variables*/
         this.logoutBtn = <HTMLButtonElement>document.getElementById("logoutBtn");
         this.profileImg = <HTMLImageElement>document.getElementById("profileImg");
-        this.imgUrlText = <HTMLInputElement>document.getElementById("imgUrlText");
-        this.usernameText = <HTMLInputElement>document.getElementById("usernameText");
-        this.emailText = <HTMLInputElement>document.getElementById("emailText");
-        this.fNameText = <HTMLInputElement>document.getElementById("fNameText");
-        this.lNameText = <HTMLInputElement>document.getElementById("lNameText");
-        this.newPWText = <HTMLInputElement>document.getElementById("newPWText");
-        this.confirmPWText = <HTMLInputElement>document.getElementById("confirmPWText");
 
         /*Event Listeners*/
+        this.loggedIn = JSON.parse(<string>localStorage.getItem("user"));
         this.logoutBtn?.addEventListener("click", this.redirect()); this.loggedIn = JSON.parse(<string>localStorage.getItem("user"));
-
-        console.log(localStorage.getItem("user"))
 
         /*Populating Page with data*/
         if (this.loggedIn == undefined) {//No user is logged in
             this.profileImg.src = "https://th.bing.com/th/id/OIP.61ajO7xnq1UZK2GVzHymEQAAAA?w=145&h=150&c=7&r=0&o=5&pid=1.7";
-            this.imgUrlText.value = "";
-            this.usernameText.value = "";
-            this.emailText.value = "";
-            this.fNameText.value = "";
-            this.lNameText.value = "";
+            this.userImageForm.patchValue({
+                imageURL: "images/spheal.png"
+            });
+            this.userDetailsForm.patchValue({
+                firstName: "",
+                lastName: "",
+                email: "",
+                username: ""
+            });
+            this.userPasswordForm.patchValue({
+                newPW: "",
+                confirmPW: ""
+            });
         } else {//User is logged in
             this.displayInfo(this.loggedIn)
         }
@@ -68,7 +78,7 @@ export class UserSettingsComponent implements OnInit {
     async updateImage() {
         /*Local Variables*/
         const updatedUser: User = this.loggedIn;
-        const newImgURL: string = this.imgUrlText.value;
+        const newImgURL: string = <string>this.userImageForm.value.imageURL;
         let response: User | undefined;
 
         /*Validate Data*/
@@ -110,10 +120,10 @@ export class UserSettingsComponent implements OnInit {
     async updateProfile() {
         /*Local Variables*/
         let updatedUser: User;
-        const newEmail: string = this.emailText.value;
-        const newUN: string = this.usernameText.value;
-        const newFN: string = this.fNameText.value;
-        const newLN: string = this.lNameText.value;
+        const newEmail: string = <string>this.userDetailsForm.value.email;
+        const newUN: string = <string>this.userDetailsForm.value.username;
+        const newFN: string = <string>this.userDetailsForm.value.firstName;
+        const newLN: string = <string>this.userDetailsForm.value.lastName;
         const UNregex = /^[a-zA-Z0-9_-]+$/;
         const EMregex = /^[a-z0-9_-]{1,63}@[a-z]{1,30}[.][a-z]{2,5}$/i
         let response: User | undefined;
@@ -129,7 +139,7 @@ export class UserSettingsComponent implements OnInit {
                 await this.userSettingsService.updateProfile(updatedUser).subscribe((data: any) => {
                     //Parse Data
                     if (data != undefined) {
-                        response = JSON.parse(data);
+                        response = JSON.parse(JSON.stringify(data));
                     }
 
                     //Process Data
@@ -166,8 +176,8 @@ export class UserSettingsComponent implements OnInit {
     */
     async updatePassword() {
         /*Local Variables*/
-        const pass1 = this.newPWText.value;
-        const pass2 = this.confirmPWText.value;
+        const pass1 = <string>this.userPasswordForm.value.newPW;
+        const pass2 = <string>this.userPasswordForm.value.confirmPW;
         const PWregex = /^[0-9a-zA-Z-\.]{4,100}$/
         let response: string | undefined;
 
@@ -203,9 +213,11 @@ export class UserSettingsComponent implements OnInit {
             );
         }
 
-        /*Reseting Textboxes*/
-        this.newPWText.value = "";
-        this.confirmPWText.value = "";
+    /*Reseting Textboxes*/
+        this.userPasswordForm.patchValue({
+            newPW: "",
+            confirmPW: ""
+        });
     }
 
     /**Redirects the user to the post-feed component if they logout
@@ -220,13 +232,20 @@ export class UserSettingsComponent implements OnInit {
      * @param displayUser
      */
     displayInfo(displayUser: User) {
+        console.log("DisplayUser: " + JSON.stringify(displayUser))
         this.profileImg.src = displayUser.profileImg;
-        this.imgUrlText.value = displayUser.profileImg;
-        this.usernameText.value = displayUser.username;
-        this.emailText.value = displayUser.email;
-        this.fNameText.value = displayUser.firstName;
-        this.lNameText.value = displayUser.lastName;
-        this.newPWText.value = "";
-        this.confirmPWText.value = "";
+        this.userImageForm.patchValue({
+            imageURL: displayUser.profileImg
+        });
+        this.userDetailsForm.patchValue({
+            firstName: displayUser.firstName,
+            lastName: displayUser.lastName,
+            email: displayUser.email,
+            username: displayUser.username
+        });
+        this.userPasswordForm.patchValue({
+            newPW: "",
+            confirmPW: ""
+        });
     }
 }
