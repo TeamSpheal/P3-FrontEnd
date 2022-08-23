@@ -10,7 +10,6 @@
                 {{post.text}}
             </p>
 
-            <p *ngIf="post.comments.length > 0" class="commentTitle">Comments</p>
             <div *ngFor="let comment of post.comments" class="comment-container">
                 <app-comment [comment]="comment"></app-comment>
             </div>
