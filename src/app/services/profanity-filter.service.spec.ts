@@ -17,10 +17,9 @@ describe('ProfanityFilterService', () => {
     it('cleanText: should replace text', () => {
         /*Local Variables*/
         const input = "fluff";
-        let output: string;
 
         /*Function*/
-        output = <string>service.cleanText(input);
+        const output = <string>service.cleanText(input);
 
         /*Test*/
         expect(input).not.toBe(output);
@@ -29,10 +28,9 @@ describe('ProfanityFilterService', () => {
     it('cleanText: should not replace text', () => {
         /*Local Variables*/
         const input = "hello";
-        let output: string;
 
         /*Function*/
-        output = <string>service.cleanText(input);
+        const output = <string>service.cleanText(input);
 
         /*Test*/
         expect(input).toBe(output);
