@@ -1,6 +1,8 @@
 import {Component, OnInit, Optional } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import Post from 'src/app/models/Post';
+import User from 'src/app/models/User';
 import { AuthService } from 'src/app/services/auth.service';
 import { PostService } from 'src/app/services/post.service';
 import { ProfanityFilterService } from 'src/app/services/profanity-filter.service';
@@ -17,12 +19,22 @@ export class PostFeedPageComponent implements OnInit {
     imageUrl: new FormControl('')
   })
 
+  loggedIn: User;
+
   posts: Post[] = [];
   createPost = false;
 
-  constructor(private postService: PostService, private authService: AuthService, private profanityService: ProfanityFilterService) { }
+  constructor(private postService: PostService, private authService: AuthService, private router: Router, private profanityService: ProfanityFilterService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { 
+
+    //checks if the user is logged in, if not it routes to the log in page
+    this.loggedIn = JSON.parse(<string>localStorage.getItem("user"));
+
+    if (this.loggedIn == undefined) {
+      this.router.navigate(['login']);
+  }
+
     const userStorage = localStorage.getItem("user");
     const parsed = JSON.parse(<string>userStorage);
     console.log(parsed.followers)

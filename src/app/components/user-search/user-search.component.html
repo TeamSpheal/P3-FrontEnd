@@ -13,7 +13,7 @@
     <div class="listContainer" ng-controller="info">
         <ul class="Users">
             <li *ngFor="let user of users">
-                <mat-card>
+                <mat-card [routerLink]="['/user-profile', user.id]" (click)="reloadCurrentPage()">
 
                     <mat-card-header>
                         <img mat-card-avatar src={{user.profileImg}} alt="Users profile image">
