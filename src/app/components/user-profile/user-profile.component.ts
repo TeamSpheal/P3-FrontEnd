@@ -36,15 +36,9 @@ export class UserProfileComponent implements OnInit {
       this.usersPageId = +params['id'];
       localStorage.setItem("usersPageId", this.usersPageId.toString());
     })
-<<<<<<< HEAD
-    console.log(this.usersPageId);
-    this.user = JSON.parse(<string>localStorage.getItem("user"));
-    console.log(this.user.id);
-=======
 
     //gets id from logged in user
     this.user = JSON.parse(<string>localStorage.getItem("user"));
->>>>>>> 3120428278e1fe813b67468563cb681ad22a3414
     this.profileImg = <HTMLDivElement>document.getElementById("user-circle");
     
     if (this.usersPageId == undefined) {

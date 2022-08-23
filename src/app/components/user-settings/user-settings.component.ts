@@ -47,14 +47,8 @@ export class UserSettingsComponent implements OnInit {
         this.profileImg = <HTMLImageElement>document.getElementById("profileImg");
 
         /*Event Listeners*/
-<<<<<<< HEAD
-        this.logoutBtn?.addEventListener("click", this.redirect()); this.loggedIn = JSON.parse(<string>localStorage.getItem("user"));
-
-        console.log(localStorage.getItem("user"))
-=======
         this.loggedIn = JSON.parse(<string>localStorage.getItem("user"));
         this.logoutBtn?.addEventListener("click", this.redirect()); this.loggedIn = JSON.parse(<string>localStorage.getItem("user"));
->>>>>>> 3120428278e1fe813b67468563cb681ad22a3414
 
         /*Populating Page with data*/
         if (this.loggedIn == undefined) {//No user is logged in
