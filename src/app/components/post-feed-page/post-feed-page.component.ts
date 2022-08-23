@@ -1,4 +1,4 @@
-import {Component, OnInit, Optional } from '@angular/core';
+import {Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import Post from 'src/app/models/Post';
 import { AuthService } from 'src/app/services/auth.service';
