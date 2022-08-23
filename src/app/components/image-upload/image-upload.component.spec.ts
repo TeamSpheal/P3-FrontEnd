@@ -8,8 +8,6 @@ import { from, of } from 'rxjs';
 describe('ImageUploadComponent', () => {
   let imgUplComp: ImageUploadComponent;
   let postServ: PostService;
-  const event = new InputEvent('file');
-  const mockImg = 'file';
 
   beforeEach(async () => {
       await TestBed.configureTestingModule({
