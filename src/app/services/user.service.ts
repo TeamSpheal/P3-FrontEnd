@@ -9,11 +9,11 @@ import UserMiniDTO from '../models/UserMiniDTO';
     providedIn: 'root'
 })
 export class UserService {
-    userUrl: string = `${environment.baseUrl}/user`
+    userUrl = `${environment.baseUrl}/user`
     userUpdatedUrl: string;
     isFollowResp: UserMiniDTO[];
-    isFollow: boolean = false;
-    user: User = JSON.parse(<string>localStorage.getItem("user"));
+    isFollow = false;
+    user = JSON.parse(<string>localStorage.getItem("user"));
 
     constructor(private http: HttpClient) { }
 
@@ -29,8 +29,8 @@ export class UserService {
     }
 
     isFollowing(viewingUser: UserMiniDTO): boolean {
-        let loggedIn = JSON.parse(<string>localStorage.getItem("user"));
-        let followingList = loggedIn.following as UserMiniDTO[];
+        const loggedIn = JSON.parse(<string>localStorage.getItem("user"));
+        const followingList = loggedIn.following as UserMiniDTO[];
         for (let i = 0; i < followingList.length && !this.isFollow; i++) {
             if (followingList[i].id == viewingUser.id) {
                 this.isFollow = true;

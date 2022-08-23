@@ -47,15 +47,15 @@ export class UserProfileComponent implements OnInit {
             this.usersPage = true;
             this.usernameDisplay = this.user.username;
             this.nameDisplay = `${this.user.firstName} ${this.user.lastName}`;
-            this.followers = this.user.followers as UserMiniDTO[];
-            this.following = this.user.following as UserMiniDTO[];
+            this.followers = this.user.followers;
+            this.following = this.user.following;
             this.followerCount = this.followers.length;
             this.followingCount = this.following.length;
             this.profileImg.style.backgroundImage = "URL('" + this.user.profileImg + "')";
         } else {
             //this.user = fetch call to back end to get user details
-            await this.userService.getUserById(this.usersPageId)?.subscribe((resp: any) => {
-                console.log("Response: " + JSON.stringify(resp))
+            this.userService.getUserById(this.usersPageId)?.subscribe((resp: any) => {
+                console.log("Response: " + JSON.stringify(resp));
                 this.usernameDisplay = resp.username;
                 this.nameDisplay = `${resp.firstName} ${resp.lastName}`;
                 this.followers = resp.followers;
