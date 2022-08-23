@@ -363,6 +363,7 @@ mat-divider {
     float: left;
     text-align: left;
     margin-top: 2em;
+    font-weight: 100;
     color: var(--font-color-secondary);
 }
 
