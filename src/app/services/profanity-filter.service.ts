@@ -21,7 +21,7 @@ export class ProfanityFilterService {
 
   isDirty(toClean:string | null | undefined){
 
-    let dirtyCheck:boolean = false;
+    let dirtyCheck = false;
 
     const theText:string | null | undefined = toClean;
     const theTextAfter: string | null | undefined = this.cleanText(theText);

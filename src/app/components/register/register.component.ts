@@ -30,10 +30,10 @@ export class RegisterComponent implements OnInit {
     e.preventDefault()
 
     console.log("CLICKED REGISTER");
-    let profaneCheck:boolean = this.dirtyCheck.isDirty(this.registerForm.value.username);
+    const profaneCheck:boolean = this.dirtyCheck.isDirty(this.registerForm.value.username);
     console.log("DIRTY CHECK: " + profaneCheck);
 
-    let profaneCheck2:boolean = this.dirtyCheck.isDirty(this.registerForm.value.email);
+    const profaneCheck2:boolean = this.dirtyCheck.isDirty(this.registerForm.value.email);
 
     if(profaneCheck || profaneCheck2){
       alert("Username/Email is forbidden, try again");
