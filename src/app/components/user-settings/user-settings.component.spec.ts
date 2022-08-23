@@ -44,7 +44,7 @@ describe('UserSettingsComponent', () => {
     it('ngOnInit: should not set a value to loggedIn if localStorage is null', async () => {
         /*Mocks*/
         spyOn(localStorage, 'getItem').and.returnValue(null);
-        spyOn(document, 'getElementById').and.returnValue(document.createElement("input"));
+        spyOn(document, 'getElementById').and.returnValue(document.createElement("img"));
 
         /*Function*/
         userSettComp.ngOnInit();
