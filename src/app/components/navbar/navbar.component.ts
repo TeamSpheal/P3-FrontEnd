@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import User from 'src/app/models/User';
 

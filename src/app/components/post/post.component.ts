@@ -28,7 +28,7 @@ export class PostComponent implements OnInit {
   replyToPost = false; 
   errorMsg: string; 
   users: User[];
-  
+  _snackBar: MatSnackBar
   @Input('post') post: Post
   @Input() likeCount: number;
   @Input() isActive: boolean;
@@ -39,7 +39,7 @@ export class PostComponent implements OnInit {
   })
 
 
-  constructor(private postService: PostService, private authService: AuthService, private _snackBar: MatSnackBar) {
+  constructor(private postService: PostService, private authService: AuthService) {
   }
 
   ngOnInit(): void {
@@ -140,8 +140,10 @@ export class PostComponent implements OnInit {
   toggleReplyAndPost = () => {
     this.replyToPost = !this.replyToPost
 
-    if(!this.replyToPost){
+    if(!this.replyToPost && this.commentForm.value.text){
       this.submitReply(event);
+    }else{
+      console.log("no comment")
     }
   }
 
@@ -158,7 +160,7 @@ export class PostComponent implements OnInit {
 
       )
     } else {
-      this.infoMessage('A message is required', 'Close')
+      this.infoMessage('A message is required to post a comment', 'Close')
       this.replyToPost = false;
     }
   }
