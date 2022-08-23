@@ -87,7 +87,7 @@ export class UserSettingsComponent implements OnInit {
                 if (response != undefined) { //Data is defined. The return from the response should contain a user object
                     this.loggedIn.profileImg = response.profileImg;
                     this.displayInfo(this.loggedIn);
-                    sessionStorage.setItem("user", JSON.stringify(this.loggedIn));
+                    localStorage.setItem("user", JSON.stringify(this.loggedIn));
                     alert(
                         "Your profile image was updated successfully"
                     );
@@ -139,7 +139,7 @@ export class UserSettingsComponent implements OnInit {
                         this.loggedIn.firstName = response.firstName;
                         this.loggedIn.lastName = response.lastName;
                         this.displayInfo(this.loggedIn);
-                        sessionStorage.setItem("user", JSON.stringify(this.loggedIn));
+                        localStorage.setItem("user", JSON.stringify(this.loggedIn));
                         alert(
                             "Your information was updated successfully"
                         );

@@ -2,30 +2,32 @@
 
 :root {
     color-scheme: light;
-    --rev-color: #ef773bdf;
-    --rev-font-color: #D1E0FFdf;
-    --rev-secondary: #FCB414df;
-    --font-color: #424242df;
-    --bg-color: #e2e2e2df;
-    --secondary-color: #edededdf;
-    --input-color: #f9f4f49d;
-    --input-font-color: #424242df;
-    --caret-color: #F26925df;
-    --search-color: rgb(188 188 188 / 63%);
+    --rev-color: #ef773bdb;
+    --rev-font-color: #D1E0FFdb;
+    --rev-secondary: #FCB414db;
+    --font-color: #424242db;
+    --bg-color: #e2e2e2db;
+    --secondary-color: #edededdb;
+    --input-color: #e2e2e2db;
+    --input-font-color: #424242db;
+    --caret-color: #F26925db;
+    --search-color: rgba(220, 219, 219, 0.63);
+    --comment-bg: rgba(222, 222, 222, 0.63);
 }
 
 [data-theme="dark"] {
     color-scheme: dark;
-    --rev-color: #ef773bdf;
-    --rev-font-color: #D1E0FFdf;
-    --rev-secondary: #FCB414df;
-    --font-color: #e1e1ffdf;
-    --bg-color: #181818df;
-    --secondary-color: #282828df;
-    --input-color: #4f4f4fdf;
+    --rev-color: #ef773b;
+    --rev-font-color: #D1E0FF;
+    --rev-secondary: #FCB414;
+    --font-color: #e1e1ff;
+    --bg-color: #181818;
+    --secondary-color: #282828;
+    --input-color: #4f4f4f;
     --input-font-color: #d6d6d6;
-    --caret-color: #D1E0FFdf;
+    --caret-color: #D1E0FF;
     --search-color: rgb(64 64 64 / 76%);
+    --comment-bg: rgba(93, 93, 93, 0.63);
 }
 
 html,
@@ -39,6 +41,21 @@ body {
     min-height: 100vh;
     color: var(--font-color);
     background: var(--bg-color);
+}
+
+.mat-flat-button.mat-primary,
+.mat-raised-button.mat-primary,
+.mat-fab.mat-primary,
+.mat-mini-fab.mat-primary {
+    background-color: var(--rev-color);
+}
+
+.mat-flat-button.mat-warn,
+.mat-raised-button.mat-warn,
+.mat-fab.mat-warn,
+.mat-mini-fab.mat-warn {
+    background-color: var(--rev-secondary);
+    margin-right: 1em;
 }
 
 .mat-form-field-appearance-legacy .mat-form-field-label {
@@ -61,42 +78,26 @@ mat-label {
     color: white;
 }
 
-mat-slide-toggle {
+.mat-checkbox-layout .mat-checkbox-label {
     line-height: 24px;
-    margin-right: 2em;
+    margin-right: 1em;
     font-size: 1rem;
 }
 
-.mat-slide-toggle.mat-checked .mat-ripple-element {
-    background-color: #000000;
-}
-
-.mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
-    background-color: rgb(0 0 0 / 54%);
-}
-
-.mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
-    background-color: #000;
-}
-
-.mat-flat-button.mat-warn,
-.mat-raised-button.mat-warn,
-.mat-fab.mat-warn,
-.mat-mini-fab.mat-warn {
-    margin-right: 1em;
+.mat-checkbox-checked.mat-accent .mat-checkbox-background {
+    background-color: black !important;
 }
 
 .mat-input-element {
     caret-color: var(--caret-color);
 }
+
 .formPost {
     width: 50vw;
     background: var(--secondary-color);
     padding: 1em;
     margin: auto;
     margin-bottom: 2em;
-    border-radius: 0.5em;
-    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
 }
 
 .form {
@@ -119,9 +120,14 @@ textarea.mat-input-element {
     color: var(--font-color);
 }
 
+.mat-card>.mat-card-actions:last-child {
+    margin-bottom: unset !important;
+    padding-bottom: 0;
+}
+
 .spheal {
-    background-color: var(--spheal-color);
-    color: var(--spheal-font-color);
+    background-color: var(--rev-color);
+    color: var(--rev-font-color);
 }
 
 .app-header {
@@ -143,9 +149,8 @@ textarea.mat-input-element {
     color: #ffffff;
 }
 
-.logout {
-    background: #779eff;
-    margin-left: 2em;
+mat-divider {
+    background: var(--input-font-color);
 }
 
 .box {
@@ -162,6 +167,17 @@ textarea.mat-input-element {
     -ms-transform: scale(1);
     z-index: 5;
     max-width: 330px;
+}
+
+.comment-reply {
+    cursor: pointer;
+    color: var(--rev-secondary);
+    text-decoration: none;
+    margin: 0.3em;
+}
+
+.likeBtn {
+    margin-right: 2em;
 }
 
 .box.back {
@@ -248,9 +264,9 @@ textarea.mat-input-element {
 }
 
 .user-card {
-    width: 10%;
-    text-align: center;
-    margin: 1%;
+  width: 10%;
+  text-align: center;
+  margin: 1%;
 }
 
 .sidebyside {
@@ -269,8 +285,7 @@ textarea.mat-input-element {
     width: 100%
 }
 
-.header-image,
-.nav-user-img {
+.header-image, .nav-user-img {
     background-size: cover;
     border: 1px solid #888080;
 }
@@ -279,12 +294,13 @@ textarea.mat-input-element {
 .mat-icon-button.mat-primary,
 .mat-stroked-button.mat-primary {
     background-color: var(--rev-secondary);
-    color: #fff;
+    color: var(--rev-color);
     margin-right: 1.4em;
 }
 
 #post-feed {
-    width: 100%;
+    width: 50vw;
+    margin: auto;
     align-content: center;
 }
 
@@ -292,46 +308,81 @@ textarea.mat-input-element {
     margin-top: 0.6em;
 }
 
-.post-header,
-.post-content {
-    margin: 1em;
-    margin-bottom: 0.3em;
-    border-bottom: solid 0.1em #dadadadf;
-    padding-bottom: 0.3em;
+.navLoginBtn {
+    float: right;
+    font-size: 20px;
+    margin-top: unset !important;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+.post-header {
+    margin-bottom: 1.5em;
+    border-bottom: solid 0.2em #7d7d7d5f;
+    border-radius: 0.5rem;
+    padding: 1em;
+}
+
+.comment-divider {
+    background: unset;
+    margin: 0.5em;
 }
 
 .post-card {
+    animation: loadin .5s ease 0s 1 normal forwards;
     margin-bottom: 1em;
+}
+
+.each-comment {
+    padding: 1em;
+    background: var(--comment-bg);
+    transition: all ease .2s;
+    border-radius: 4px;
+}
+
+.each-comment:hover {
+    filter: brightness(105%);
 }
 
 .comment-container {
     margin-left: 2em;
+    padding: 1em;
 }
 
-.comment-reply {
-    cursor: pointer;
-    text-decoration: underline;
+.commentTitle {
+    margin-left: -25px;
+    font-weight: 500;
+    font-size: 1rem;
+    display: block;
+    padding: 1em;
 }
 
 .comment-author {
-    text-decoration: underline;
+    margin: 0.3em;
+    font-weight: 500;
+}
+
+.commentBlock {
+    border-bottom: solid 1.3px #7d7d7d5f;
+    padding-bottom: 2.5em;
+    padding-left: 1em;
 }
 
 .spacer {
-    flex: 1 1 auto;
+  flex: 1 1 auto;
 }
 
-#navUsernameDiv,
-.navLogBtn {
+#navUsernameDiv, .navLogBtn {
     float: right;
     font-size: 20px;
     margin-top: 10px;
+    margin-left: 10px;
     vertical-align: middle;
 }
 
 #navProfileDiv {
     cursor: pointer;
-    float: right;
+    float:right;
     width: 50px;
     height: 50px;
     border-radius: 25px;
@@ -341,12 +392,70 @@ textarea.mat-input-element {
     margin-right: 10px;
 }
 
-.mat-card>.mat-card-actions:last-child {
-    margin-bottom: unset !important;
-    padding-bottom: 0;
-}
-
 .mat-badge-accent .mat-badge-content {
     background: #ef773b;
     color: #fff;
+}
+
+.mat-divider {
+    margin-top: 1em !important;
+}
+
+.posting {
+    width: 45vw;
+    margin: auto;
+    margin-bottom: 1em;
+    border-radius: 4px;
+    box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+}
+
+.format {
+    width: 45vw;
+    margin: auto;
+    margin-bottom: 1em;
+    animation: expand .5s ease 0s 1 normal forwards;
+    border-radius: 4px;
+    box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+}
+
+#hbutton {
+    float: right;
+}
+
+.replyBtn {
+    float: right;
+    cursor: pointer;
+    transition: all ease .2s;
+    margin-right: 1em;
+    display: block;
+    margin-bottom: 1em
+}
+
+.replyBtn:hover {
+    opacity: 0.8
+}
+
+.commentTimestamp {
+    font-weight: 100;
+    margin-left: 0.5em;
+}
+
+@keyframes expand {
+    0% {
+        transform: scale(0.999);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes loadin {
+    0% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

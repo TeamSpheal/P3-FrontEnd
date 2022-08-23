@@ -33,7 +33,7 @@ export class UserProfileComponent implements OnInit, OnDestroy{
       this.usersPageId = +params['id'];
       console.log(this.usersPageId);
     })
-    //gets id from logged in user
+    
     this.user = JSON.parse(<string>localStorage.getItem("user"));
     console.log(this.user.id);
     this.profileImg = <HTMLDivElement>document.getElementById("user-circle");
@@ -62,7 +62,7 @@ export class UserProfileComponent implements OnInit, OnDestroy{
       });
     }
     
-    this.postService.getAllPostsByUserID(this.usersPageId).subscribe(
+    this.postService.getUsersPosts(this.usersPageId).subscribe(
       (response : any) => {
         console.log(response)
         this.posts = response
