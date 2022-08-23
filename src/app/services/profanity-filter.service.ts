@@ -11,7 +11,7 @@ export class ProfanityFilterService {
 
     if(cleanedText){
 
-        const re = /arse|arsehead|arsehole|ass|asshole|bastard|bitch|bloody|bollocks|bugger|biscuit|bullshit|boobs|cock|cunt|chink|coon|damn|dick|dyke|fucker|frigger|fuck|fluff|fag|goddamn|godsdamn|holy shit|horseshit|kike|motherfucker|motherfucking|nigga|nigra|nigger|piss|prick|pussy|penis|shit|shite|slut|son of a bitch|son of a whore|twat|vagina|wanker/gi;
+        const re = /arse|arsehead|arsehole|ass|asshole|bastard|bitch|bloody|bollocks|bugger|biscuit|bullshit|boobs|cock|cunt|chink|coon|damn|dick|dyke|fucker|frigger|fuck|fluff|fag|goddamn|godsdamn|holy shit|horseshit|kike|motherfucker|motherfucking|nigga|nigra|nigger|piss|prick|pussy|penis|shit|shite|slut|son of a bitch|son of a whore|twat|vagina|wanker/gi; //NOSONAR
         cleanedText = cleanedText.replace(re,'***');
     }
 
