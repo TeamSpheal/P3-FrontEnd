@@ -4,3 +4,11 @@
     color: #ef773b;
     background: transparent;
 }
+
+#postHeader:hover{
+    cursor: pointer;
+}
+
+#postAuthor:hover{
+    cursor: pointer;
+}

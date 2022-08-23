@@ -1,19 +1,19 @@
 <mat-toolbar class="spheal">
-    <img src="assets/images/revasphere-logo-white.png" width="56px" alt="Revasphere Logo">
-    <span [routerLink]="['/post-feed']">Revature Social Media</span>
+    <div id="revasphereLogo">
+        <img src="assets/images/revasphere-logo-white.png" width="56px" alt="Revasphere Logo" [routerLink]="['/post-feed']">
+    </div>
     <search-users></search-users>
     <span class="spacer"></span>
     <mat-slide-toggle id="dmToggle" [checked]="checkedStatus" (change)="onChange($event)">{{lightStatus}}</mat-slide-toggle>
     <div id="navLoginDiv">
         <div class="navLogBtn">
-            <button mat-button (click)="login();">Login</button>
         </div>
     </div>
     <div id="navUserDiv">
         <div class="navLogBtn">
             <button id="logoutBtn" color="primary" mat-button (click)="logout();">Logout</button>
         </div>
-        <div class="nav-user-img" id="navProfileDiv" [routerLink]="['/user-profile', loggedIn.id]"></div>
-        <div id="navUsernameDiv"></div>
+        <img alt="profile image" class="nav-user-img" id="navProfileDiv" [routerLink]="['/user-profile', loggedIn.id]" src="{{loggedIn.profileImg}}">
+        <div id="navUsernameDiv" [routerLink]="['/user-profile', loggedIn.id]">{{loggedIn.username}}</div>
     </div>
 </mat-toolbar>
