@@ -7,30 +7,38 @@ import { PostService } from 'src/app/services/post.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
-  selector: 'app-user-profile',
-  templateUrl: './user-profile.component.html',
-  styleUrls: ['./user-profile.component.css']
+    selector: 'app-user-profile',
+    templateUrl: './user-profile.component.html',
+    styleUrls: ['./user-profile.component.css']
 })
 
 export class UserProfileComponent implements OnInit {
 
-  user: User = {} as User;
-  userMiniDTO: UserMiniDTO;
-  profileImg: HTMLDivElement;
-  usernameDisplay: string;
-  nameDisplay: string;
-  followers: UserMiniDTO[];
-  following: UserMiniDTO[];
-  followerCount: number;
-  followingCount: number;
-  usersPage = false;
-  usersPageId: number;
-  sub: any;
-  posts: Post[] = [];
-  postCount = 0;
-  @Input() text: string = 'Follow';
+    user: User = {} as User;
+    userMiniDTO: UserMiniDTO;
+    profileImg: HTMLDivElement;
+    usernameDisplay: string;
+    nameDisplay: string;
+    followers: UserMiniDTO[];
+    following: UserMiniDTO[];
+    followerCount: number;
+    followingCount: number;
+    usersPage = false;
+    usersPageId: number;
+    sub: any;
+    posts: Post[] = [];
+    postCount = 0;
+    constructor(private router: Router, private userService: UserService, private postService: PostService, private route: ActivatedRoute) { }
 
-  constructor(private router: Router, private userService: UserService, private postService: PostService, private route: ActivatedRoute) { }
+    async ngOnInit() {
+        //gets id from param
+        this.sub = this.route.params.subscribe(params => {
+            this.usersPageId = +params['id'];
+            localStorage.setItem("usersPageId", this.usersPageId.toString())
+        })
+        //gets id from logged in user
+        this.user = JSON.parse(<string>localStorage.getItem("user"));
+        this.profileImg = <HTMLDivElement>document.getElementById("user-circle");
 
   ngOnInit() {
     //gets id from param

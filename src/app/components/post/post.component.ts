@@ -20,8 +20,7 @@ export class PostComponent implements OnInit {
   @ViewChild("heart")
   divHeart: ElementRef;
 
- 
-  replyToPost: boolean = false; 
+  replyToPost = false; 
   errorMsg: string; 
   users: User[];
   
@@ -105,17 +104,9 @@ export class PostComponent implements OnInit {
       )
   }
 
-  heartContent(event: any) {
+  heartContent() {
     this.divContent.nativeElement.classList.toggle("heart-active");
     this.divNumb.nativeElement.classList.toggle("heart-active");
     this.divHeart.nativeElement.classList.toggle("heart-active");
-    /*$('.content').toggleClass("heart-active")
-
-    $('.numb').toggleClass("heart-active")
-    $('.heart').toggleClass("heart-active")*/
   }
-
-  // toggleFollower() {
-  //   this.isFollow = !this.isFollow; 
-  // }
 }

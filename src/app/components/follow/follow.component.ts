@@ -3,6 +3,7 @@ import { UserService } from 'src/app/services/user.service';
 import UserMiniDTO from '../../models/UserMiniDTO';
 import User from '../../models/User';
 import { UserProfileComponent } from '../user-profile/user-profile.component';
+
 @Component({
     selector: 'app-follow',
     templateUrl: './follow.component.html',
@@ -19,12 +20,14 @@ export class FollowComponent implements OnInit {
     @Input() viewingId: number;
     @Input() color!: string;
     @Input() text = 'Follow';
+
     /**
      * A constructor to provide dependencies for the class
      * @param userService
      * @param userProfComp
      */
     constructor(private userProfComp: UserProfileComponent, private userService: UserService) { }
+
     /**Upon initialization, retrieves viewingUser from local storage
      * and determines whether that user is being followed by the logged in user
      */
@@ -51,6 +54,7 @@ export class FollowComponent implements OnInit {
             this.addToFollowing();
         }
     }
+
     /**Adds the viewed user to the logged in user's list of followings
      * and changes the following state if the operation is successful
      */
@@ -62,6 +66,7 @@ export class FollowComponent implements OnInit {
             if (data != undefined) {
                 response = JSON.parse(JSON.stringify(data));
             }
+
             //Process data
             if (response != undefined) { //Data is defined. The return from the response should contain a user object
                 this.isFollow = !this.isFollow;
@@ -80,6 +85,7 @@ export class FollowComponent implements OnInit {
             }
         });
     }
+
     /**Removes the viewed user from the logged in user's list of followings
      * and changes the following state if the operation is successful
      */
@@ -109,6 +115,7 @@ export class FollowComponent implements OnInit {
             }
         })
     }
+
     /**Changes the styling of followBtn based on the following state
      */
     changeBtn() {
