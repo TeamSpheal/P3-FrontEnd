@@ -14,14 +14,14 @@ export class CommentComponent implements OnInit {
   commentForm = new FormGroup({
     text: new FormControl(''),
   })
-
+  _snackBar: MatSnackBar
   @Input('comment') inputComment: Post;
   replyToComment = false
   @Input() likeCount: number;
   @Input() isActive: boolean;
   @Input() isNotActive = false;
 
-  constructor(private postService: PostService, private authService: AuthService, private _snackBar: MatSnackBar) { }
+  constructor(private postService: PostService, private authService: AuthService) { }
 
   ngOnInit(): void {
     if(localStorage.getItem("user")){

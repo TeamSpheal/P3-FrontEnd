@@ -11,8 +11,9 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 export class AuthService {
   authUrl = `${environment.baseUrl}/auth`;
   currentUser: User;
-
-  constructor(private http: HttpClient, private _snackBar: MatSnackBar) { }
+  _snackBar: MatSnackBar
+  
+  constructor(private http: HttpClient) { }
 
   login(email: string, password: string): Observable<HttpResponse<User>> {
     const payload = {email:email, password:password};

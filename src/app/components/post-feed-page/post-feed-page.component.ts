@@ -19,8 +19,9 @@ export class PostFeedPageComponent implements OnInit {
 
   posts: Post[] = [];
   createPost = false;
-
-  constructor(private postService: PostService, private authService: AuthService, private _snackBar: MatSnackBar) { }
+  _snackBar: MatSnackBar
+  
+  constructor(private postService: PostService, private authService: AuthService) { }
 
   ngOnInit(): void {
     const userStorage = localStorage.getItem("user");

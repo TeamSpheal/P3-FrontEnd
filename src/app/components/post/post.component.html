@@ -25,7 +25,7 @@
         </form>
         <div class="postTime">{{post.createdDate | date: 'short'}}</div>
         <mat-card-actions align="end">
-            <button id="hbutton" mat-raised-button color="primary" (click)="toggleReplyToPost();">Comment</button>
+            <button id="hbutton" mat-raised-button color="primary" (click)="toggleReplyAndPost();">Comment</button>
             <button id="likeBtn-{{post.id}}" class="btnIcon" mat-icon-button color="primary" (click)="like()" matBadge="{{likeCount}}" matBadgePosition="after" matBadgeColor="accent">
                 <mat-icon>thumb_up</mat-icon>
           </button>
