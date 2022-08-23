@@ -1,7 +1,6 @@
-import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import Post from 'src/app/models/Post';
-import User from 'src/app/models/User';
 import { AuthService } from 'src/app/services/auth.service';
 import { PostService } from 'src/app/services/post.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
@@ -13,8 +12,6 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 })
 
 export class PostFeedPageComponent implements OnInit {
-  message: String | null;
-  action: String | null;
   postForm = new FormGroup({
     text: new FormControl(''),
     imageUrl: new FormControl('')
