@@ -3,7 +3,6 @@ import { FormControl, FormGroup } from '@angular/forms';
 import Post from 'src/app/models/Post';
 import { AuthService } from 'src/app/services/auth.service';
 import { PostService } from 'src/app/services/post.service';
-import {MatSnackBar} from '@angular/material/snack-bar';
 import UserMiniDTO from 'src/app/models/UserMiniDTO';
 @Component({
   selector: 'app-comment',
@@ -14,7 +13,7 @@ export class CommentComponent implements OnInit {
   commentForm = new FormGroup({
     text: new FormControl(''),
   })
-  _snackBar: MatSnackBar
+
   @Input('comment') inputComment: Post;
   replyToComment = false
   @Input() likeCount: number;
@@ -102,7 +101,7 @@ export class CommentComponent implements OnInit {
           }
         )
     } else {
-      this.infoMessage('A message is required', 'Close')
+      console.log("error")
       this.replyToComment = false;
     }
   }
@@ -110,8 +109,5 @@ export class CommentComponent implements OnInit {
     this.replyToComment = !this.replyToComment;
   }
 
-  infoMessage(message: string, action: string) {
-    this._snackBar.open(message, action);
-  }
 
 }
