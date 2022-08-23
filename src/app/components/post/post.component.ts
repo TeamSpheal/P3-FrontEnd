@@ -6,7 +6,8 @@ import User from 'src/app/models/User';
 import UserMiniDTO from 'src/app/models/UserMiniDTO';
 import { AuthService } from 'src/app/services/auth.service';
 import { PostService } from 'src/app/services/post.service';
- 
+import {MatSnackBar} from '@angular/material/snack-bar';
+
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
@@ -38,7 +39,7 @@ export class PostComponent implements OnInit {
   })
 
 
-  constructor(private postService: PostService, private authService: AuthService) {
+  constructor(private postService: PostService, private authService: AuthService, private _snackBar: MatSnackBar) {
   }
 
   ngOnInit(): void {
@@ -132,23 +133,34 @@ export class PostComponent implements OnInit {
     }
   }
 
-
-
   toggleReplyToPost = () => {
     this.replyToPost = !this.replyToPost
   }
 
+  toggleReplyAndPost = () => {
+    this.replyToPost = !this.replyToPost
+
+    if(!this.replyToPost){
+      this.submitReply(event);
+    }
+  }
+
   submitReply = (e: any) => {
     e.preventDefault()
-    const newComment = new Post(0, this.commentForm.value.text || "", "", JSON.parse(<string>localStorage.getItem("user")), [],[], new Date());
-    this.postService.upsertPost({...this.post, comments: [...this.post.comments, newComment]})
-      .subscribe(
-        (response : any) => {
-          this.post = response
-          this.toggleReplyToPost()
-        }, 
+    if(this.commentForm.value.text) {
+      const newComment = new Post(0, this.commentForm.value.text || "", "", JSON.parse(<string>localStorage.getItem("user")), [],[], new Date());
+      this.postService.upsertPost({...this.post, comments: [...this.post.comments, newComment]})
+        .subscribe(
+          (response : any) => {
+            this.post = response
+            this.toggleReplyToPost()
+          }, 
 
       )
+    } else {
+      this.infoMessage('A message is required', 'Close')
+      this.replyToPost = false;
+    }
   }
 
   heartContent() {
@@ -156,4 +168,12 @@ export class PostComponent implements OnInit {
     this.divNumb.nativeElement.classList.toggle("heart-active");
     this.divHeart.nativeElement.classList.toggle("heart-active");
   }
+
+  infoMessage(message: string, action: string) {
+    this._snackBar.open(message, action);
+  }
 }
+function e(e: any, any: any) {
+  throw new Error('Function not implemented.');
+}
+
