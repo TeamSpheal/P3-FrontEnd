@@ -5,6 +5,7 @@ import { PostService } from 'src/app/services/post.service';
 import { UserService } from 'src/app/services/user.service';
 import UserMiniDTO from '../../models/UserMiniDTO';
 import User from '../../models/User';
+import { UserProfileComponent } from '../user-profile/user-profile.component';
 
 @Component({
     selector: 'app-follow',
@@ -26,9 +27,9 @@ export class FollowComponent implements OnInit {
     /**
      * A constructor to provide dependencies for the class
      * @param userService
-     * @param authService
+     * @param userProfComp
      */
-    constructor(private authService: AuthService, private postService: PostService, private userService: UserService) { }
+    constructor(private userProfComp: UserProfileComponent, private userService: UserService) { }
 
     /**Upon initialization, retrieves viewingUser from local storage 
      * and determines whether that user is being followed by the logged in user
@@ -40,10 +41,6 @@ export class FollowComponent implements OnInit {
         this.isFollow = this.userService.isFollowing(this.viewingUser);
         this.followBtn = <HTMLButtonElement>document.getElementById("follow");
         this.followingList = this.loggedIn.following as UserMiniDTO[];
-
-        console.log('ViewUser: ' + JSON.stringify(this.viewingUser));
-        console.log('LIUser: ' + JSON.stringify(this.loggedIn));
-        console.log('LIUser Following: ' + JSON.stringify(this.followingList));
 
         //change button to match isFollow
         this.changeBtn();
@@ -82,6 +79,7 @@ export class FollowComponent implements OnInit {
                 this.followingList.push(this.viewingUser);
                 this.loggedIn.following = this.followingList;
                 localStorage.setItem("user", JSON.stringify(this.loggedIn));
+                this.userProfComp.followerCount += 1;
                 alert(
                     "You haved successfully followed this user!"
                 );
@@ -112,6 +110,8 @@ export class FollowComponent implements OnInit {
                 this.followingList.splice(removeIdx);
                 this.loggedIn.following = this.followingList;
                 localStorage.setItem("user", JSON.stringify(this.loggedIn));
+                this.userProfComp.followerCount -= 1;
+
                 this.changeBtn();
                 alert(
                     "You haved successfully unfollowed this user!"

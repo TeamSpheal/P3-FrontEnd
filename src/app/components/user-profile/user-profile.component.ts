@@ -30,7 +30,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     postCount = 0;
     constructor(private router: Router, private userService: UserService, private postService: PostService, private route: ActivatedRoute) { }
 
-    ngOnInit() {
+    async ngOnInit() {
         //gets id from param
         this.sub = this.route.params.subscribe(params => {
             this.usersPageId = +params['id'];
@@ -47,32 +47,26 @@ export class UserProfileComponent implements OnInit, OnDestroy {
             this.usersPage = true;
             this.usernameDisplay = this.user.username;
             this.nameDisplay = `${this.user.firstName} ${this.user.lastName}`;
-            this.followers = this.user.followers;
-            this.following = this.user.following;
+            this.followers = this.user.followers as UserMiniDTO[];
+            this.following = this.user.following as UserMiniDTO[];
+            this.followerCount = this.followers.length;
+            this.followingCount = this.following.length;
             this.profileImg.style.backgroundImage = "URL('" + this.user.profileImg + "')";
         } else {
             //this.user = fetch call to back end to get user details
-            this.userService.getUserById(this.usersPageId)?.subscribe((resp: any) => {
+            await this.userService.getUserById(this.usersPageId)?.subscribe((resp: any) => {
+                console.log("Response: " + JSON.stringify(resp))
                 this.usernameDisplay = resp.username;
                 this.nameDisplay = `${resp.firstName} ${resp.lastName}`;
-                this.followers = resp.followers;
-                this.following = resp.following;
+                this.followers = resp.followers as UserMiniDTO[];
+                this.following = resp.following as UserMiniDTO[];
                 //console.log(this.followings.length + 'followings length');
                 this.profileImg.style.backgroundImage = "URL('" + resp.profileImg + "')";
                 this.userMiniDTO = new UserMiniDTO(resp.id, resp.username, resp.profileImg);
                 localStorage.setItem("viewingUser", JSON.stringify(this.userMiniDTO));
+                this.followerCount = this.followers.length;
+                this.followingCount = this.following.length;
             });
-        }
-
-        if (this.followers) {
-            this.followerCount = this.followers.length;
-        } else {
-            this.followerCount = 0;
-        }
-        if (this.following) {
-            this.followingCount = this.following.length;
-        } else {
-            this.followingCount = 0;
         }
 
         this.postService.getAllPostsByUserID(this.usersPageId).subscribe(
