@@ -14,8 +14,7 @@ export class LoginComponent implements OnInit {
   loginForm = new FormGroup({
     email: new FormControl(''),
     password: new FormControl('')
-  })
-  
+  })  
 
   constructor(private authService: AuthService, private router: Router) { }
 

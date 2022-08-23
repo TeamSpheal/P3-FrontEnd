@@ -62,7 +62,7 @@ export class UserService {
 
     return(this.isFollow);
   }
-
+  
   getUserById(id: number): Observable<any> {
     return this.http.get<User>(`${this.userUrl}/${id}`, { headers: environment.headers, withCredentials: environment.withCredentials });
   }
