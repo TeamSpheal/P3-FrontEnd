@@ -61,9 +61,4 @@ export class PostService {
         'Access-Control-Allow-Origin': 'http://localhost:4200'
     }});
   }
-
-  getFollowingPostFeed(id : number): Observable<Post[]> {
-    return this.http.get<Post[]>(`${this.followingPostsUrl}/${id}`, {headers: environment.headers, withCredentials: environment.withCredentials} )
-  }
-
 }
