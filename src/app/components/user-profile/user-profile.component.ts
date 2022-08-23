@@ -12,7 +12,7 @@ import { UserService } from 'src/app/services/user.service';
     styleUrls: ['./user-profile.component.css']
 })
 
-export class UserProfileComponent implements OnInit, OnDestroy {
+export class UserProfileComponent implements OnInit {
 
     user: User = {} as User;
     userMiniDTO: UserMiniDTO;
@@ -75,10 +75,6 @@ export class UserProfileComponent implements OnInit, OnDestroy {
                 this.postCount = this.posts.length;
             }
         )
-    }
-
-    ngOnDestroy(): void {
-        this.sub.unsubscribe();
     }
 
 }
