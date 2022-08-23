@@ -1,0 +1,32 @@
+<div id="searchContainer">
+    <input type="text" [(ngModel)]="input" (keydown.enter)="getUsers()" class="navSearchInp">
+    <mat-icon (click)="getUsers()" class="searchIcn" id="searchIcn">search</mat-icon>
+    <button id="closeBtn" class="searchNav" (click)="hideSearch()" mat-icon-button>
+        <mat-icon>clear</mat-icon>
+    </button>
+
+</div>
+
+
+<div class="searchOverlay" id="search">
+
+    <div class="listContainer" ng-controller="info">
+        <ul class="Users">
+            <li *ngFor="let user of users">
+                <mat-card>
+
+                    <mat-card-header>
+                        <img mat-card-avatar src={{user.profileImg}} alt="Users profile image">
+                        <mat-card-title>{{user.firstName}} {{user.lastName}}</mat-card-title>
+                    </mat-card-header>
+
+                    <mat-card-actions align="end">
+                        <button [routerLink]="['/user-profile', user.id]" mat-button>Go to Profile</button>
+                    </mat-card-actions>
+                </mat-card>
+                <br>
+            </li>
+        </ul>
+    </div>
+
+</div>

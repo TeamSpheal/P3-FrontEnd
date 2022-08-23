@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { ElementRef, ViewChild, Component, Input, OnInit } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
 import Post from 'src/app/models/Post';
+import User from 'src/app/models/User';
 import { AuthService } from 'src/app/services/auth.service';
 import { PostService } from 'src/app/services/post.service';
 
@@ -10,29 +11,90 @@ import { PostService } from 'src/app/services/post.service';
   styleUrls: ['./post.component.css']
 })
 export class PostComponent implements OnInit {
+  
+  @ViewChild("content")
+  divContent: ElementRef;
+
+  @ViewChild("numb")
+  divNumb: ElementRef;
+
+  @ViewChild("heart")
+  divHeart: ElementRef;
 
   commentForm = new FormGroup({
     text: new FormControl(''),
   })
 
   @Input('post') post: Post
-  replyToPost: boolean = false
+  users: User[];
+  replyToPost = false
+  
+  @Input() likeCount: number;
+  @Input() isActive: boolean;
+  @Input() isNotActive = false;
 
-  constructor(private postService: PostService, private authService: AuthService) { }
 
-  ngOnInit(): void {
+  constructor(private postService: PostService, private authService: AuthService) {
   }
 
+  ngOnInit(): void {
+    if(localStorage.getItem("user")){
+      this.authService.currentUser=JSON.parse(<string>localStorage.getItem("user"));
+    }
+    this.isLiked();
+  }
+  
+  isLiked(){
+    this.postService.getPost(this.post)?.subscribe(
+      ( resp : { users: string | any[]; }) => {
+        this.likeCount = resp.users.length;
+        for (const likedUsers of resp.users) {
+
+          if (likedUsers.id == this.authService.currentUser.id) {
+            this.isActive = true;
+            const button = document.getElementById('likeBtn-' + this.post.id);
+            button?.style.setProperty('color','#ef773b');
+            button?.style.setProperty('background','#FCB414');
+            
+          }
+        }
+      }
+    )
+
+  }
+
+  like(){  
+    const button = document.getElementById('likeBtn-' + this.post.id);
+    if(!this.isActive) {
+      this.postService.likePost(this.authService.currentUser.id,this.post.id)?.subscribe(
+        (      resp: { users: string | any[]; }) => {
+          this.likeCount = resp.users.length;
+          this.isActive = true;
+          button?.style.setProperty('color','#ef773b');
+          button?.style.setProperty('background','#FCB414');
+        }
+      )
+    } else {
+      this.postService.unlikePost(this.authService.currentUser.id, this.post.id)?.subscribe(
+        (      resp: { users: string | any[]; }) => {
+          this.likeCount = resp.users.length;
+          this.isActive = false;
+          button?.style.setProperty('color','#ef773b');
+          button?.style.setProperty('background','transparent');
+        }
+      )
+    }
+  } 
   toggleReplyToPost = () => {
     this.replyToPost = !this.replyToPost
   }
 
   submitReply = (e: any) => {
     e.preventDefault()
-    let newComment = new Post(0, this.commentForm.value.text || "", "", this.authService.currentUser, [])
+    const newComment = new Post(0, this.commentForm.value.text || "", "", JSON.parse(<string>localStorage.getItem("user")), [],[], new Date());
     this.postService.upsertPost({...this.post, comments: [...this.post.comments, newComment]})
       .subscribe(
-        (response) => {
+        (response : any) => {
           this.post = response
           this.toggleReplyToPost()
         }

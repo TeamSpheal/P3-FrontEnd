@@ -1,0 +1,44 @@
+<div id="userSettingsDiv">
+    <div class="divUserSettings" id="userDetailsDiv">
+        <div class="divUserImg" id="userProfileImg">
+            <img id="profileImg" src="https://th.bing.com/th/id/OIP.61ajO7xnq1UZK2GVzHymEQAAAA?w=145&h=150&c=7&r=0&o=5&pid=1.7" alt="Your profile picture" width="250" height="250">
+            <label class="labelUserSettings" id="imgUrlLabel" for="imgUrlText">Image URL:</label>
+            <input class="textUserSettings" id="imgUrlText" type="text" placeholder="images/spheal.png">
+        </div>
+        <div class="divUserButton" id="userUpdateImgDiv">
+            <button (click) ="updateImage()" class="buttonUserSettings" id="userUpdateImgBtn" type="submit">Update</button>
+        </div>
+        <div class="divUserDetails" id="usernameDiv">
+            <label class="labelUserSettings" id="usernameLabel" for="usernameText">Username:</label>
+            <input class="textUserSettings" id="usernameText" type="text" placeholder="Anonymous">
+        </div>
+        <div class="divUserDetails" id="emailDiv">
+            <label class="labelUserSettings" id="emailLabel" for="emailText">Email:</label>
+            <input class="textUserSettings" id="emailText" type="text" placeholder="anon@gmail.com">
+        </div>
+        <div class="divUserDetails" id="fNameDiv">
+            <label class="labelUserSettings" id="fNameLabel" for="fNameText">First Name:</label>
+            <input class="textUserSettings" id="fNameText" type="text" placeholder="Anony">
+        </div>
+        <div class="divUserDetails" id="lNameDiv">
+            <label class="labelUserSettings" id="lNameLabel" for="lNameText">Last Name:</label>
+            <input class="textUserSettings" id="lNameText" type="text" placeholder="Mous">
+        </div>
+        <div class="divUserButton" id="userUpdateInfoDiv">
+            <button (click) ="updateProfile()" class="buttonUserSettings" id="userUpdateInfoBtn" type="submit">Update</button>
+        </div>
+        <div class="divUserDetails" id="passwordDiv">
+            <div class="divPassword" id="newPWDiv">
+                <label class="labelUserSettings" id="newPWLabel" for="newPWText">New Password:</label>
+                <input class="textUserSettings" id="newPWText" type="password">
+            </div>
+            <div class="divPassword" id="confirmPW">
+                <label class="labelUserSettings" id="confirmPWLabel" for="newPWText">Confirm Password:</label>
+                <input class="textUserSettings" id="confirmPWText" type="password">
+            </div>
+        </div>
+        <div class="divUserButton" id="userUpdatePWDiv">
+            <button (click) = "updatePassword()" class="buttonUserSettings" id="userUpdatePWBtn" type="submit">Update</button>
+        </div>
+    </div>
+</div>

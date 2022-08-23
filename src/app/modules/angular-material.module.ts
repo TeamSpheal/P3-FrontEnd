@@ -32,6 +32,9 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { CommonInterceptor } from '../common.interceptor';
 
 const materialModules = [
     MatAutocompleteModule,
@@ -64,7 +67,8 @@ const materialModules = [
     MatGridListModule,
     MatRadioModule,
     MatDatepickerModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatSlideToggleModule
   ];
   @NgModule({
     imports: [
@@ -74,5 +78,10 @@ const materialModules = [
     exports: [
       ...materialModules
     ],
+    providers:[{
+      provide: HTTP_INTERCEPTORS,
+      useClass: CommonInterceptor,
+      multi: true
+    }]
   })
   export class AngularMaterialModule { }
