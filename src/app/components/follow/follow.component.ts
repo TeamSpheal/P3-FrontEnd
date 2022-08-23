@@ -15,13 +15,13 @@ export class FollowComponent implements OnInit {
 /*Class Variables*/
     loggedIn: User;
     loggedInId!: number;
-    isFollow: boolean = false;
+    isFollow = false;
     viewingUser!: UserMiniDTO;
     followBtn: HTMLButtonElement;
     followingList: UserMiniDTO[];
     @Input() viewingId: number;
     @Input() color!: string;
-    @Input() text: string = 'Follow';
+    @Input() text = 'Follow';
 
     /**
      * A constructor to provide dependencies for the class
@@ -103,9 +103,8 @@ export class FollowComponent implements OnInit {
 
             //Process data
             if (response != undefined) { //Data is defined. The return from the response should contain a user object
-                let removeIdx: number;
                 this.isFollow = !this.isFollow;
-                removeIdx = this.followingList.findIndex((element) => element.id = this.viewingId)
+                const removeIdx = this.followingList.findIndex((element) => element.id = this.viewingId)
                 this.followingList.splice(removeIdx);
                 this.loggedIn.following = this.followingList;
                 localStorage.setItem("user", JSON.stringify(this.loggedIn));

@@ -21,7 +21,7 @@ export class PostComponent implements OnInit {
   divHeart: ElementRef;
 
  
-  replyToPost: boolean = false; 
+  replyToPost = false; 
   errorMsg: string; 
   users: User[];
   
