@@ -42,8 +42,6 @@ describe('UserProfileComponent', () => {
         route.params = of({ 'id': '1' });
     });
 
-
-
     it('Component: should create', () => {
         expect(userProfComp).toBeTruthy();
     });

@@ -18,7 +18,7 @@
 [Contact](#contact)
 
 ### Description
-A blockchain social media application, in which a User can create an account, follow users whose posts they want to see on their feed, and make their own posts. Every user also has a profile which displays that user's statistics, allows the current user to follow another user, or allows the current user to edit their profile settings when on their own page. A user can also like a post, leave a comment on a post, or reply to a previous comment. Users can also toggle dark mode, and their choice will be persisted after logging out. If a user forgets their password, they can request a reset via email.
+A blockchain social media application, in which a User can create an account, follow users whose posts they want to see on their feed, and make their own posts. Every user also has a profile which displays that user's statistics, allows the current user to follow another user, or allows the current user to edit their profile settings when on their own page. The user can create a post, which can include an image, and will be screened prior to publishing by our custom profanity filter. A user can also like a post, leave a comment on a post, or reply to a previous comment. Users can also toggle dark mode, and their choice will be persisted after logging out. If a user forgets their password, they can request a reset via email.
 
 ### Links
 Github Link: https://github.com/TeamSpheal
