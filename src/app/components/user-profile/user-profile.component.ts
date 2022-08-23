@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import Post from 'src/app/models/Post';
 import User from 'src/app/models/User';
@@ -19,12 +19,16 @@ export class UserProfileComponent implements OnInit, OnDestroy{
   usernameDisplay: string;
   nameDisplay: string;
   followers: UserMiniDTO[];
+  followerCount: number;
   following: UserMiniDTO[];
+  followingCount: number;
   usersPage = false;
   usersPageId: number;
   sub: any;
   posts: Post[] = [];
   postCount = 0;
+  @Input() text: string = 'Follow';
+
   constructor(private router: Router, private userService: UserService, private postService: PostService, private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -33,7 +37,7 @@ export class UserProfileComponent implements OnInit, OnDestroy{
       this.usersPageId = +params['id'];
       console.log(this.usersPageId);
     })
-    
+
     this.user = JSON.parse(<string>localStorage.getItem("user"));
     console.log(this.user.id);
     this.profileImg = <HTMLDivElement>document.getElementById("user-circle");
@@ -45,20 +49,28 @@ export class UserProfileComponent implements OnInit, OnDestroy{
       this.usersPage = true;
       this.usernameDisplay = this.user.username;
       this.nameDisplay = `${this.user.firstName} ${this.user.lastName}`;
-      this.followers = this.user.followers;
-      this.following = this.user.following;
+      this.followerCount = this.user.followers.length;
+      this.followingCount = this.user.following.length;
       this.profileImg.style.backgroundImage = "URL('" + this.user.profileImg + "')";
     } else {
       //this.user = fetch call to back end to get user details
       this.userService.getUserById(this.usersPageId)?.subscribe((resp: any ) => {
         this.usernameDisplay = resp.username;
         this.nameDisplay = `${resp.firstName} ${resp.lastName}`;
-        this.followers = resp.followers;
-        console.log('user service was called');
-        console.log(this.followers.length + 'followers length');
-        this.following = resp.following;
-        //console.log(this.followings.length + 'followings length');
+        console.log('current profiles followers');
+        console.log(resp.followers)
+        this.followerCount = resp.followers.length;
+        console.log('accounts the current profile is following');
+        console.log(resp.following);
+        this.followingCount = resp.following.length;
         this.profileImg.style.backgroundImage = "URL('" + resp.profileImg + "')";
+
+        if(resp.followers.includes(this.user.id)){
+          console.log('contains id!');
+          this.changeBtn();
+        } else {
+          console.log('does not contain id!');
+        }
       });
     }
     
@@ -74,6 +86,13 @@ export class UserProfileComponent implements OnInit, OnDestroy{
   ngOnDestroy(): void {
     //console.log('should unsub from params if working');
     this.sub.unsubscribe();
+  }
+
+  changeBtn() {
+    this.text = "unfollow"; 
+    let btn: HTMLButtonElement = document.getElementById("follow") as HTMLButtonElement; 
+    btn.innerText = this.text; 
+    btn.style.backgroundColor = "#FCB414DF"; 
   }
 
 }
