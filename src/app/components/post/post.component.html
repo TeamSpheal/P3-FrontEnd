@@ -12,15 +12,16 @@
 
             <p *ngIf="post.comments.length > 0" class="commentTitle">Comments</p>
             <div *ngFor="let comment of post.comments" class="comment-container">
-                <mat-divider class="comment-divider"></mat-divider>
                 <app-comment [comment]="comment"></app-comment>
             </div>
         </mat-card-content>
         <form class="form" *ngIf="replyToPost" [formGroup]="commentForm">
             <mat-form-field class="full-width" appearance="fill">
+                <span (click)="toggleReplyToPost()" class="fa-duotone fa-rectangle-xmark cancelComment"></span>
                 <mat-label>Make a Post</mat-label>
                 <textarea matInput autofocus formControlName="text" (keydown.enter)="submitReply($event)"></textarea>
             </mat-form-field>
+
 
         </form>
         <div class="postTime">{{post.createdDate | date: 'short'}}</div>

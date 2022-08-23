@@ -7,7 +7,6 @@
         {{inputComment.text}}
     </p>
     <div *ngFor="let comment of inputComment.comments" class="comment-container">
-        <mat-divider class="comment-divider"></mat-divider>
         <app-comment [comment]="comment"></app-comment>
     </div>
     <form class="form" *ngIf="replyToComment" [formGroup]="commentForm" (ngSubmit)="submitReply($event)">
