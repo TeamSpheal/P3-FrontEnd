@@ -327,8 +327,8 @@ mat-divider {
 
 .post-header {
     margin-bottom: 1.5em;
-    border-bottom: solid 0.2em #7d7d7d5f;
-    border-radius: 0.5rem;
+    border-bottom: solid 0.1em #7d7d7d5f;
+    border-radius: 0.3rem;
     padding: 1em;
 }
 
@@ -386,7 +386,6 @@ mat-divider {
 }
 
 .commentBlock {
-    border-bottom: solid 1.3px #7d7d7d5f;
     padding-bottom: 1.5em;
     padding-left: 1em;
 }
