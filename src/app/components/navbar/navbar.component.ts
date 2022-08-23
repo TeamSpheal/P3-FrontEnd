@@ -14,7 +14,7 @@ export class NavbarComponent implements OnInit {
 
     lightStatus: string;
     checkedStatus: boolean;
-    //navUserDiv: HTMLDivElement | any;
+    navUserDiv: HTMLDivElement | any;
     navLoginDiv: HTMLDivElement | any;
     navUsernameDiv: HTMLDivElement | any;
     navProfileDiv: HTMLDivElement | any;
@@ -43,9 +43,11 @@ export class NavbarComponent implements OnInit {
         }
 
         this.loggedIn = JSON.parse(<string>localStorage.getItem("user"));
+        console.log("before if: " + this.loggedIn);
 
-        if (!this.loggedIn) {
-            this.logout();
+        if (this.loggedIn == undefined) {
+            this.router.navigate(['login']);
+            console.log(this.loggedIn);
         } 
         
     }
