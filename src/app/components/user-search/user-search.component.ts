@@ -30,6 +30,9 @@ export class SearchComponent implements OnInit{
         this.input = "";
       }
 
+      reloadCurrentPage() {
+        setTimeout(function() {window.location.reload()}, 100);
+      }
     async getUsers() {
     const input = this.input.split(" ");
 

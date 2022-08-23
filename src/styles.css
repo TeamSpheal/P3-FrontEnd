@@ -6,6 +6,7 @@
     --rev-font-color: #D1E0FFdb;
     --rev-secondary: #FCB414db;
     --font-color: #424242db;
+    --font-color-secondary: #323232db;
     --bg-color: #e2e2e2db;
     --secondary-color: #edededdb;
     --input-color: #e2e2e2db;
@@ -17,17 +18,19 @@
 
 [data-theme="dark"] {
     color-scheme: dark;
-    --rev-color: #ef773b;
-    --rev-font-color: #D1E0FF;
-    --rev-secondary: #FCB414;
-    --font-color: #e1e1ff;
-    --bg-color: #181818;
-    --secondary-color: #282828;
-    --input-color: #4f4f4f;
-    --input-font-color: #d6d6d6;
-    --caret-color: #D1E0FF;
+    --rev-color: #ef773bdb;
+    --rev-font-color: #D1E0FFdb;
+    --rev-secondary: #FCB414db;
+    --font-color: #e1e1ffdb;
+    --font-color-secondary: #323232db;
+    --bg-color: #181818db;
+    --secondary-color: #282828db;
+    --input-color: #4f4f4fdb;
+    --input-font-color: #d6d6d6db;
+    --font-color-secondary: #e6e6e6db;
+    --caret-color: #D1E0FFdb;
     --search-color: rgb(64 64 64 / 76%);
-    --comment-bg: rgba(93, 93, 93, 0.63);
+    --comment-bg: rgba(60, 60, 60, 0.63);
 }
 
 html,
@@ -311,6 +314,7 @@ mat-divider {
 
 .post-author {
     margin-top: 0.6em;
+    color: var(--font-color-secondary);
 }
 
 .navLoginBtn {
@@ -357,6 +361,14 @@ mat-divider {
     padding-right: 0;
 }
 
+.postTime {
+    position: relative;
+    float: left;
+    text-align: left;
+    margin-top: 2em;
+    color: var(--font-color-secondary);
+}
+
 .commentTitle {
     margin-left: -25px;
     font-weight: 500;
@@ -364,16 +376,18 @@ mat-divider {
     display: block;
     padding: 1em;
     padding-bottom: 0;
+    color: var(--font-color-secondary)
 }
 
 .comment-author {
     margin: 0.3em;
     font-weight: 500;
+    color: var(--font-color-secondary)
 }
 
 .commentBlock {
     border-bottom: solid 1.3px #7d7d7d5f;
-    padding-bottom: 2.5em;
+    padding-bottom: 1.5em;
     padding-left: 1em;
 }
 
