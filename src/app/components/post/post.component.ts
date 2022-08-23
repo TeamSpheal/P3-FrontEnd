@@ -1,7 +1,6 @@
 import { ElementRef, ViewChild, Component, Input, OnInit, AfterViewInit } from '@angular/core';
 import { __core_private_testing_placeholder__ } from '@angular/core/testing';
 import { FormGroup, FormControl } from '@angular/forms';
-import { throwError } from 'rxjs';
 import Post from 'src/app/models/Post';
 import User from 'src/app/models/User';
 import UserMiniDTO from 'src/app/models/UserMiniDTO';
@@ -15,8 +14,6 @@ import {MatSnackBar} from '@angular/material/snack-bar';
   styleUrls: ['./post.component.css']
 })
 export class PostComponent implements OnInit {
-  message: String | null;
-  action: String | null;
   @ViewChild("content")
   divContent: ElementRef;
 

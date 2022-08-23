@@ -3,14 +3,13 @@ import { FormControl, FormGroup } from '@angular/forms';
 import Post from 'src/app/models/Post';
 import { AuthService } from 'src/app/services/auth.service';
 import { PostService } from 'src/app/services/post.service';
-
+import {MatSnackBar} from '@angular/material/snack-bar';
 @Component({
   selector: 'app-comment',
   templateUrl: './comment.component.html',
   styleUrls: ['./comment.component.css']
 })
 export class CommentComponent implements OnInit {
-
   commentForm = new FormGroup({
     text: new FormControl(''),
   })
@@ -18,7 +17,7 @@ export class CommentComponent implements OnInit {
   @Input('comment') inputComment: Post;
   replyToComment = false
 
-  constructor(private postService: PostService, private authService: AuthService) { }
+  constructor(private postService: PostService, private authService: AuthService, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     // Init to be filled in later
@@ -40,11 +39,16 @@ export class CommentComponent implements OnInit {
           }
         )
     } else {
-      
+      this.infoMessage('A message is required', 'Close')
+      this.replyToComment = false;
     }
   }
   toggleReplyToPost = () => {
     this.replyToComment = !this.replyToComment;
+  }
+
+  infoMessage(message: string, action: string) {
+    this._snackBar.open(message, action);
   }
 
 }

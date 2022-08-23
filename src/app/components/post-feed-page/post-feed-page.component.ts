@@ -13,7 +13,8 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 })
 
 export class PostFeedPageComponent implements OnInit {
-
+  message: String | null;
+  action: String | null;
   postForm = new FormGroup({
     text: new FormControl(''),
     imageUrl: new FormControl('')

@@ -9,8 +9,6 @@ import {MatSnackBar} from '@angular/material/snack-bar';
   providedIn: 'root'
 })
 export class AuthService {
-  message: String | null;
-  action: String | null;
   authUrl = `${environment.baseUrl}/auth`;
   currentUser: User;
 
