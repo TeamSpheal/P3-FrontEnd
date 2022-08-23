@@ -54,7 +54,7 @@ export class PostService {
   }
 
   public uploadImage(file: File): Observable<string> {
-    let formParams = new FormData();
+    const formParams = new FormData();
     formParams.append('image', file);
     return this.http.post<string>(`${this.imageUrl}`, formParams, {
       headers: {
