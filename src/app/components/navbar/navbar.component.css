@@ -1,0 +1,8 @@
+#RevasphereLogo {
+    height: auto;
+    width: auto;
+}
+
+#RevasphereLogo:hover {
+    cursor: pointer;
+}
