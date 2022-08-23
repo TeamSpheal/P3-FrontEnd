@@ -4,7 +4,7 @@ import { TestBed } from "@angular/core/testing";
 import User from "src/app/models/User";
 import { SearchComponent } from './user-search.component'
 
-fdescribe('SearchComponent', () => {
+describe('SearchComponent', () => {
 
     let searchComp:SearchComponent;
     const mockResponse = new Response(null);
