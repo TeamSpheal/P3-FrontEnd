@@ -68,7 +68,7 @@ mat-card {
     border-radius: 0.5em;
     background-color: #edededaa;
     outline: none;
-    width: 300px;
+    width: 230px;
     margin-left: 1em;
     transition: all .5s ease;
 }
@@ -79,6 +79,7 @@ mat-card {
 
 .navSearchInp:focus {
     background: #edededdf;
+    width: 275px;
 }
 
 .searchNav {

@@ -2,15 +2,17 @@
 
 :root {
     color-scheme: light;
-    --rev-color: #ef773b;
-    --rev-font-color: #D1E0FF;
-    --rev-secondary: #FCB414;
-    --font-color: #424242;
-    --bg-color: #e2e2e2;
-    --secondary-color: #ededed;
-    --input-color: #e2e2e2;
-    --input-font-color: #424242;
-    --caret-color: #F26925;
+    --rev-color: #ef773bdb;
+    --rev-font-color: #D1E0FFdb;
+    --rev-secondary: #FCB414db;
+    --font-color: #424242db;
+    --bg-color: #e2e2e2db;
+    --secondary-color: #edededdb;
+    --input-color: #e2e2e2db;
+    --input-font-color: #424242db;
+    --caret-color: #F26925db;
+    --search-color: rgba(220, 219, 219, 0.63);
+    --comment-bg: rgba(222, 222, 222, 0.63);
 }
 
 [data-theme="dark"] {
@@ -24,6 +26,8 @@
     --input-color: #4f4f4f;
     --input-font-color: #d6d6d6;
     --caret-color: #D1E0FF;
+    --search-color: rgb(64 64 64 / 76%);
+    --comment-bg: rgba(93, 93, 93, 0.63);
 }
 
 html,
@@ -51,6 +55,7 @@ body {
 .mat-fab.mat-warn,
 .mat-mini-fab.mat-warn {
     background-color: var(--rev-secondary);
+    margin-right: 1em;
 }
 
 .mat-form-field-appearance-legacy .mat-form-field-label {
@@ -81,13 +86,6 @@ mat-label {
 
 .mat-checkbox-checked.mat-accent .mat-checkbox-background {
     background-color: black !important;
-}
-
-.mat-flat-button.mat-warn,
-.mat-raised-button.mat-warn,
-.mat-fab.mat-warn,
-.mat-mini-fab.mat-warn {
-    margin-right: 1em;
 }
 
 .mat-input-element {
@@ -130,6 +128,10 @@ textarea.mat-input-element {
 .spheal {
     background-color: var(--rev-color);
     color: var(--rev-font-color);
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    box-shadow: 0px -1px 17px 0px rgba(0, 0, 0, 0.41);
 }
 
 .app-header {
@@ -266,9 +268,9 @@ mat-divider {
 }
 
 .user-card {
-  width: 10%;
-  text-align: center;
-  margin: 1%;
+    width: 10%;
+    text-align: center;
+    margin: 1%;
 }
 
 .sidebyside {
@@ -287,7 +289,8 @@ mat-divider {
     width: 100%
 }
 
-.header-image, .nav-user-img {
+.header-image,
+.nav-user-img {
     background-size: cover;
     border: 1px solid #888080;
 }
@@ -335,16 +338,32 @@ mat-divider {
     margin-bottom: 1em;
 }
 
-.form {
-    margin-bottom: 1em;
+.each-comment {
+    padding: 1em;
+    padding-right: 0;
+    margin-right: 0;
+    background: var(--comment-bg);
+    transition: all ease .2s;
+    border-radius: 4px;
 }
 
-.form {
-    margin-bottom: 1em;
+.each-comment:hover {
+    filter: brightness(105%);
 }
 
 .comment-container {
     margin-left: 2em;
+    padding: 1em;
+    padding-right: 0;
+}
+
+.commentTitle {
+    margin-left: -25px;
+    font-weight: 500;
+    font-size: 1rem;
+    display: block;
+    padding: 1em;
+    padding-bottom: 0;
 }
 
 .comment-author {
@@ -353,17 +372,17 @@ mat-divider {
 }
 
 .commentBlock {
-    border-bottom: solid 0.2em #7d7d7d5f;
-    border-radius: 0.5rem;
-    padding-bottom: 1.5em;
+    border-bottom: solid 1.3px #7d7d7d5f;
+    padding-bottom: 2.5em;
     padding-left: 1em;
 }
 
 .spacer {
-  flex: 1 1 auto;
+    flex: 1 1 auto;
 }
 
-#navUsernameDiv, .navLogBtn {
+#navUsernameDiv,
+.navLogBtn {
     float: right;
     font-size: 20px;
     margin-top: 10px;
@@ -373,7 +392,7 @@ mat-divider {
 
 #navProfileDiv {
     cursor: pointer;
-    float:right;
+    float: right;
     width: 50px;
     height: 50px;
     border-radius: 25px;
@@ -388,8 +407,12 @@ mat-divider {
     color: #fff;
 }
 
+.mat-divider {
+    margin-top: 1em !important;
+}
+
 .posting {
-    width: 50vw;
+    width: 45vw;
     margin: auto;
     margin-bottom: 1em;
     border-radius: 4px;
@@ -397,15 +420,57 @@ mat-divider {
 }
 
 .format {
-    width: 52vw;
+    width: 45vw;
     margin: auto;
     margin-bottom: 1em;
     animation: expand .5s ease 0s 1 normal forwards;
+    border-radius: 4px;
+    box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+}
+
+#hbutton {
+    float: right;
+}
+
+.replyBtn {
+    float: right;
+    cursor: pointer;
+    transition: all ease .2s;
+    margin-right: 1em;
+    display: block;
+    margin-bottom: 1em
+}
+
+.replyBtn:hover {
+    opacity: 0.8
+}
+
+.commentTimestamp {
+    font-weight: 100;
+    margin-left: 0.5em;
+}
+
+mat-slide-toggle {
+    line-height: 24px;
+    margin-right: 2em;
+    font-size: 1rem;
+}
+
+.mat-slide-toggle.mat-checked .mat-ripple-element {
+    background-color: #000000;
+}
+
+.mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+    background-color: rgb(0 0 0 / 54%);
+}
+
+.mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+    background-color: #000;
 }
 
 @keyframes expand {
     0% {
-        transform: scale(0.98);
+        transform: scale(0.999);
     }
     100% {
         transform: scale(1);

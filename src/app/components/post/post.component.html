@@ -1,18 +1,26 @@
 <div class="post-card">
     <mat-card>
         <mat-card-header class="post-header">
-            <div mat-card-avatar class="header-image" *ngIf="post.author.profileImg" style="background-image: URL('{{post.author.profileImg}}')"></div>
-            <mat-card-title class="post-author">{{post.author.username}}</mat-card-title>
-        </mat-card-header>
-        <img mat-card-image *ngIf="post.imageUrl" src="{{ post.imageUrl }}" alt="Post Image">
+            <div
+              mat-card-avatar
+              class="header-image"
+              *ngIf="post.author.profileImg"
+              style="background-image: URL('{{ post.author.profileImg }}')"
+            ></div>
+            <mat-card-title class="post-author">{{ post.author.username }}</mat-card-title>
+          </mat-card-header>
+          <img
+            mat-card-image
+            *ngIf="post.imageUrl"
+            src="{{ post.imageUrl }}"
+            alt="Post Image"
+          />
         <mat-card-content>
             <p class="post-content commentBlock">
                 {{post.text}}
             </p>
             {{post.createdDate | date: 'short'}}
-            <p style="font-weight:500;font-size:1.2rem;margin:1em;">
-                <span style="margin-left:-15px;margin-top:1em;margin-bottom:1.5em;display:block;opacity:0.8;">Comments</span>
-            </p>
+            <p *ngIf="post.comments.length > 0" class="commentTitle">Comments</p>
             <div *ngFor="let comment of post.comments" class="comment-container">
                 <mat-divider class="comment-divider"></mat-divider>
                 <app-comment [comment]="comment"></app-comment>
@@ -30,7 +38,7 @@
         </form>
         <mat-card-actions align="end">
 
-            <button id="hbutton" mat-raised-button color="primary" (click)="toggleReplyToPost()">Reply</button>
+            <button id="hbutton" mat-raised-button color="primary" (click)="toggleReplyToPost()">Comment</button>
             <button id="likeBtn-{{post.id}}" class="btnIcon" mat-icon-button color="primary" (click)="like()" matBadge="{{likeCount}}" matBadgePosition="after" matBadgeColor="accent">
                 <mat-icon>thumb_up</mat-icon>
           </button>
