@@ -1,106 +1,125 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import Post from 'src/app/models/Post';
-import { AuthService } from 'src/app/services/auth.service';
-import { PostService } from 'src/app/services/post.service'; 
+import { Component, Input, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
-
+import UserMiniDTO from '../../models/UserMiniDTO';
+import User from '../../models/User';
+import { UserProfileComponent } from '../user-profile/user-profile.component';
 @Component({
-  selector: 'app-follow',
-  templateUrl: './follow.component.html',
-  styleUrls: ['./follow.component.css']
+    selector: 'app-follow',
+    templateUrl: './follow.component.html',
+    styleUrls: ['./follow.component.css']
 })
 export class FollowComponent implements OnInit {
-  followerId!: number;
-  followedId!: number; 
-  isFollow: boolean = false;
-  @Input() authorId!: number; 
-  @Input() color!: string; 
-  @Input() text: string = 'Follow';
-
-
-
-  constructor(private authService: AuthService, private postService: PostService, private userService: UserService) { }
-
-  ngOnInit(): void {
-    this.followedId = this.authorId;
-    this.followerId = this.authService.currentUser.id;
-    this.isFollow = this.userService.isFollowing(this.followedId, this.followerId);
-    console.log('follow component on init running');
-
-    //if user is following target profile
-    if(this.isFollow) {
-      //show unfollow btn
-      this.changeBtn();
+/*Class Variables*/
+    loggedIn: User;
+    loggedInId!: number;
+    isFollow = false;
+    viewingUser!: UserMiniDTO;
+    followBtn: HTMLButtonElement;
+    followingList: UserMiniDTO[];
+    @Input() viewingId: number;
+    @Input() color!: string;
+    @Input() text = 'Follow';
+    /**
+     * A constructor to provide dependencies for the class
+     * @param userService
+     * @param userProfComp
+     */
+    constructor(private userProfComp: UserProfileComponent, private userService: UserService) { }
+    /**Upon initialization, retrieves viewingUser from local storage
+     * and determines whether that user is being followed by the logged in user
+     */
+    ngOnInit(): void {
+        this.viewingUser = JSON.parse(<string>localStorage.getItem("viewingUser"));
+        this.loggedIn = JSON.parse(<string>localStorage.getItem("user"));
+        this.loggedInId = this.loggedIn.id;
+        this.isFollow = this.userService.isFollowing(this.viewingUser);
+        this.followBtn = <HTMLButtonElement>document.getElementById("follow");
+        this.followingList = this.loggedIn.following;
+        //change button to match isFollow
+        this.changeBtn();
     }
-  }
-
-  
-  addFollower() {
-    console.log(this.authorId + 'author id for follow');
-    this.followedId = this.authorId; 
-    console.log('follow log');
-    console.log(this.authService.currentUser.id);
-    this.followerId = this.authService.currentUser.id;
-    this.userService.addFollower(this.followedId, this.followerId);
-  }
-
-  changeBtn() {
-    this.text = "unfollow"; 
-    let btn: HTMLButtonElement = document.getElementById("follow") as HTMLButtonElement; 
-    btn.innerText = this.text; 
-    btn.style.backgroundColor = "#FCB414DF"; 
-  }
-
-  // toggleButton() {
-  //   if (!this.isFollow) {
-  //     this.addFollower();
-  //     this.changeBtn(); 
-  //   } else {
-  //     this.default();
-  //     this.removeFollower();
-      
-  //   }
-    
-  // }
-  // removeFollower() {
-  //   throw new Error('Method not implemented.');
-  // }
-
-
-
-  //  called on load
-  // default() {
-  //   let btn: HTMLButtonElement = document.getElementById("follow") as HTMLButtonElement; 
-  //   btn.innerText = this.text; 
-  //   btn.style.backgroundColor = "pink"; 
-  //}
-
-  follow() {
-    const follow = document.getElementById("follow"); 
-    if (!this.isFollow) {
-        this.addFollower();
-        this.isFollow = !this.isFollow;
-      if (this.isFollow) {
-        follow?.style.setProperty("background-color", "#FCB414");
-        this.text = "unfollow"; 
-        follow?.style.setProperty('text', this.text); 
-      } 
-    } else {
-      this.text = 'follow';
-      follow?.style.setProperty("background-color", "white");
-      follow?.style.setProperty('text', this.text);
-      this.isFollow = false; 
-      this.unfollow();
-      }
+    /**
+     * Changes the following state based on whether the logged in user
+     * is or not already following the viewed user
+     * @param event
+     */
+    changeFollowState(event: any) {
+        event.preventDefault();
+        if (this.isFollow) {
+            this.removeFromFollowing();
+        } else {
+            this.addToFollowing();
+        }
     }
-  unfollow() {
-    this.followedId = this.authorId; 
-    this.followerId = this.authService.currentUser.id;
-    this.userService.removeFollower(this.followedId, this.followerId).subscribe((resp) => {
-      console.log(resp)
-    })
-  }
+    /**Adds the viewed user to the logged in user's list of followings
+     * and changes the following state if the operation is successful
+     */
+    addToFollowing() {
+        let response: any | undefined;
+        this.userService.addFollower(this.loggedInId, this.viewingId).subscribe((data: any) => {
+            console.log("addFollowResp: " + data);
+            //Parse data
+            if (data != undefined) {
+                response = JSON.parse(JSON.stringify(data));
+            }
+            //Process data
+            if (response != undefined) { //Data is defined. The return from the response should contain a user object
+                this.isFollow = !this.isFollow;
+                this.changeBtn();
+                this.followingList.push(this.viewingUser);
+                this.loggedIn.following = this.followingList;
+                localStorage.setItem("user", JSON.stringify(this.loggedIn));
+                this.userProfComp.followerCount += 1;
+                alert(
+                    "You haved successfully followed this user!"
+                );
+            } else { //Data is undefined, meaning the request failed
+                alert(
+                    "The server failed to follow this user"
+                );
+            }
+        });
+    }
+    /**Removes the viewed user from the logged in user's list of followings
+     * and changes the following state if the operation is successful
+     */
+    removeFromFollowing() {
+        let response: any | undefined;
+        this.userService.removeFollower(this.loggedInId, this.viewingId).subscribe((data: any) => {
+            //Parse data
+            if (data != undefined) {
+                response = JSON.parse(JSON.stringify(data));
+            }
+            //Process data
+            if (response != undefined) { //Data is defined. The return from the response should contain a user object
+                this.isFollow = !this.isFollow;
+                const removeIdx = this.followingList.findIndex((element) => element.id = this.viewingId)
+                this.followingList.splice(removeIdx);
+                this.loggedIn.following = this.followingList;
+                localStorage.setItem("user", JSON.stringify(this.loggedIn));
+                this.userProfComp.followerCount -= 1;
+                this.changeBtn();
+                alert(
+                    "You haved successfully unfollowed this user!"
+                );
+            } else { //Data is undefined, meaning the request failed
+                alert(
+                    "The server failed to unfollow this user"
+                );
+            }
+        })
+    }
+    /**Changes the styling of followBtn based on the following state
+     */
+    changeBtn() {
+        if (this.isFollow) {
+            this.text = "unfollow";
+            this.followBtn.style.setProperty("innerText", this.text);
+            this.followBtn.style.setProperty ("backgroundColor", "#FCB414DF");
+        } else {
+            this.text = 'follow';
+            this.followBtn.style.setProperty("background-color", "white");
+            this.followBtn.style.setProperty('text', this.text);
+        }
+    }
 }
-
-
-
