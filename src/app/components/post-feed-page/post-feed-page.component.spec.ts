@@ -89,6 +89,7 @@ describe('PostFeedPageComponent', () => {
         postFeedComp.posts = [mockPost];
         postFeedComp.createPost = true;
         authServ.currentUser = mockUser;
+        postFeedComp.postForm.value.text = "non empty text";
 
         /*Function*/
         postFeedComp.submitPost(event);
