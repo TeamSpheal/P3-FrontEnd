@@ -29,7 +29,7 @@ export class UserProfileComponent implements OnInit {
     posts: Post[] = [];
     postCount = 0;
     constructor(private router: Router, private userService: UserService, private postService: PostService, private route: ActivatedRoute) { }
-
+    
   ngOnInit() {
     //gets id from param
     this.sub = this.route.params.subscribe(params => {
