@@ -21,13 +21,13 @@
     --rev-color: #ef773bdb;
     --rev-font-color: #D1E0FFdb;
     --rev-secondary: #FCB414db;
-    --font-color: #e1e1ffdb;
+    --font-color: #ecececdb;
     --font-color-secondary: #323232db;
     --bg-color: #181818db;
     --secondary-color: #282828db;
     --input-color: #4f4f4fdb;
-    --input-font-color: #d6d6d6db;
-    --font-color-secondary: #e6e6e6db;
+    --input-font-color: #e6e6e6db;
+    --font-color-secondary: #cbcbcbdb;
     --caret-color: #D1E0FFdb;
     --search-color: rgb(64 64 64 / 76%);
     --comment-bg: rgba(60, 60, 60, 0.63);
@@ -426,9 +426,9 @@ mat-divider {
 }
 
 .posting {
-    width: 45vw;
+    width: 55vw;
     margin: auto;
-    margin-bottom: 1em;
+    margin-bottom: 2em;
     border-radius: 4px;
     box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
 }
