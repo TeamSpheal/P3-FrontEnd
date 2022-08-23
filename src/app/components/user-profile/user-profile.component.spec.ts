@@ -1,5 +1,5 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { ActivatedRoute, convertToParamMap} from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
@@ -9,7 +9,6 @@ import { of } from 'rxjs';
 
 describe('UserProfileComponent', () => {
   let component: UserProfileComponent;
-  let fixture: ComponentFixture<UserProfileComponent>;
   let route: ActivatedRoute;
 
   const fakeActivatedRoute = {
@@ -20,16 +19,15 @@ describe('UserProfileComponent', () => {
     await TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, RouterTestingModule],
       declarations: [ UserProfileComponent ],
-      providers: [{provide: ActivatedRoute, useValue: fakeActivatedRoute}]
-    })
-    .compileComponents();
+      providers: [UserProfileComponent, {provide: ActivatedRoute, useValue: fakeActivatedRoute}]
+    });
 
+    component = TestBed.inject(UserProfileComponent);
     route = TestBed.inject(ActivatedRoute);
     route.params = of({'id': '1'});
-    fixture = TestBed.createComponent(UserProfileComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
   });
+
+
 
   it('should create', () => {
     expect(component).toBeTruthy();
