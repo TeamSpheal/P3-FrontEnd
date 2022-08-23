@@ -47,9 +47,8 @@ export class UserSettingsComponent implements OnInit {
         this.profileImg = <HTMLImageElement>document.getElementById("profileImg");
 
         /*Event Listeners*/
-        this.logoutBtn?.addEventListener("click", this.redirect());
         this.loggedIn = JSON.parse(<string>localStorage.getItem("user"));
-        console.log(sessionStorage.getItem("user"))
+        this.logoutBtn?.addEventListener("click", this.redirect()); this.loggedIn = JSON.parse(<string>localStorage.getItem("user"));
 
         /*Populating Page with data*/
         if (this.loggedIn == undefined) {//No user is logged in
@@ -134,7 +133,7 @@ export class UserSettingsComponent implements OnInit {
         if (UNregex.test(newUN)) {//Username is valid
             //Validate email
             if (EMregex.test(newEmail)) {//Email is valid
-                updatedUser = new User(this.loggedIn.id, newEmail, newFN, newLN, newUN, this.loggedIn.profileImg, this.loggedIn.followers, this.loggedIn.followings);
+                updatedUser = new User(this.loggedIn.id, newEmail, newFN, newLN, newUN, this.loggedIn.profileImg, this.loggedIn.followers, this.loggedIn.following);
 
                 //Send Request
                 await this.userSettingsService.updateProfile(updatedUser).subscribe((data: any) => {

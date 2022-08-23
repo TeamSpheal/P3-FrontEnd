@@ -1,10 +1,22 @@
 <div class="post-card">
     <mat-card>
         <mat-card-header class="post-header">
-            <div mat-card-avatar class="header-image" *ngIf="post.author.profileImg" style="background-image: URL('{{post.author.profileImg}}')"></div>
-            <mat-card-title class="post-author">{{post.author.username}}</mat-card-title>
-        </mat-card-header>
-        <img mat-card-image *ngIf="post.imageUrl" src="{{ post.imageUrl }}" alt="Post Image">
+            <div
+              mat-card-avatar
+              class="header-image"
+              *ngIf="post.author.profileImg"
+              style="background-image: URL('{{ post.author.profileImg }}')"
+            ></div>
+            <mat-card-title class="post-author">{{ post.author.username }}</mat-card-title>
+            <!-- Added by follower team
+            <app-follow [authorId]="post.author.id"></app-follow> -->
+          </mat-card-header>
+          <img
+            mat-card-image
+            *ngIf="post.imageUrl"
+            src="{{ post.imageUrl }}"
+            alt="Post Image"
+          />
         <mat-card-content>
             <p class="post-content">
                 {{post.text}}
