@@ -31,10 +31,9 @@ export class LoginComponent implements OnInit {
             localStorage.setItem("user", JSON.stringify(response.body));
             localStorage.setItem("JWT", <string>response.headers.get("Auth"));
             this.router.navigate(['post-feed'])
-        }
+        }, err => alert("Email or Password is Wrong!")
       )
   }
-
   register(): void {
     this.router.navigate(['register']);
   }
