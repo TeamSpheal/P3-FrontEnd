@@ -15,13 +15,13 @@
                 <mat-card-content>
                     <mat-list role="list">
                         <mat-list-item role="listitem" class="profile-stat">{{ postCount }} posts</mat-list-item>
-                        <mat-list-item role="listitem" class="profile-stat">0 followers</mat-list-item>
-                        <mat-list-item role="listitem" class="profile-stat">0 following</mat-list-item>
+                        <mat-list-item role="listitem" class="profile-stat">{{followerCount}} followers</mat-list-item>
+                        <mat-list-item role="listitem" class="profile-stat">{{followingCount}} following</mat-list-item>
                     </mat-list>
                 </mat-card-content>
                 <div id="edit-follow" *ngIf="!usersPage; else editTemplate">
                     <!-- add onlick func to follow -->
-                    <app-follow [authorId]="usersPageId"></app-follow>
+                    <app-follow [viewingId]="usersPageId"></app-follow>
                 </div>
             </div>
         </div>
