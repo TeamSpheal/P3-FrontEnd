@@ -1,5 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import Post from 'src/app/models/Post';
+import { Component, Input, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { PostService } from 'src/app/services/post.service';
 import { UserService } from 'src/app/services/user.service';
@@ -39,7 +38,7 @@ export class FollowComponent implements OnInit {
         this.loggedInId = this.loggedIn.id;
         this.isFollow = this.userService.isFollowing(this.viewingUser);
         this.followBtn = <HTMLButtonElement>document.getElementById("follow");
-        this.followingList = this.loggedIn.following as UserMiniDTO[];
+        this.followingList = this.loggedIn.following;
 
         console.log('ViewUser: ' + JSON.stringify(this.viewingUser));
         console.log('LIUser: ' + JSON.stringify(this.loggedIn));
