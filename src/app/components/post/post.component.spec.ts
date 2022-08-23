@@ -12,7 +12,7 @@ describe('PostComponent', () => {
     const mockUser: User = new User(1, 'testuser@gmail.com', 'Test', 'User',
         'TestUser1', 'assets/images/favicon.png', [], []);
     const mockPost: Post = new Post(1, "A mocked post", "",
-        mockUser, [], [mockUser]);
+        mockUser, [], [mockUser], new Date());
     let postComp: PostComponent;
     let postServ: PostService;
     let authServ: AuthService;

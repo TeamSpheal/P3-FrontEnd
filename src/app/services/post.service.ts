@@ -7,7 +7,7 @@ import Post from '../models/Post';
 import { FormGroup } from '@angular/forms';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class PostService {
 
@@ -20,31 +20,31 @@ export class PostService {
   imageUrl = `${environment.baseUrl}/user/image-upload`
   uploadForm: FormGroup;
 
-  constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) { }
 
-  getAllPosts(): Observable<Post[]> {
-    return this.http.get<Post[]>(`${this.postUrl}`, {headers: environment.headers, withCredentials: environment.withCredentials} )
-  }
+    getAllPosts(): Observable<Post[]> {
+        return this.http.get<Post[]>(`${this.postUrl}`, { headers: environment.headers, withCredentials: environment.withCredentials })
+    }
 
-  upsertPost(post: Post): Observable<Post> {
-    return this.http.put<Post>(`${this.postUrl}`, post, {headers: environment.headers, withCredentials: environment.withCredentials})
-  }
+    upsertPost(post: Post): Observable<Post> {
+        return this.http.put<Post>(`${this.postUrl}`, post, { headers: environment.headers, withCredentials: environment.withCredentials })
+    }
 
-  likePost(userId: number, postId: number): Observable<Post>{
-    return this.http.put<Post>(`${this.postLikeUrl}`, {postId , userId} , {headers: environment.headers, withCredentials: environment.withCredentials})
-  }
+    likePost(userId: number, postId: number): Observable<Post> {
+        return this.http.put<Post>(`${this.postLikeUrl}`, { postId, userId }, { headers: environment.headers, withCredentials: environment.withCredentials })
+    }
 
-  unlikePost(userId: number, postId: number): Observable<Post>{
-    return this.http.put<Post>(`${this.postUnlikeUrl}`, {postId, userId}, {headers: environment.headers, withCredentials: environment.withCredentials})
-  }
+    unlikePost(userId: number, postId: number): Observable<Post> {
+        return this.http.put<Post>(`${this.postUnlikeUrl}`, { postId, userId }, { headers: environment.headers, withCredentials: environment.withCredentials })
+    }
 
-  getAllPostsByUserID(userId: number): Observable<Post[]> {
-    return this.http.get<Post[]>(`${this.userPostUrl}/${userId}`, {headers: environment.headers, withCredentials: environment.withCredentials})
-  }
+    getAllPostsByUserID(userId: number): Observable<Post[]> {
+        return this.http.get<Post[]>(`${this.userPostUrl}/${userId}`, { headers: environment.headers, withCredentials: environment.withCredentials })
+    }
 
-  getPost(post: Post): Observable<Post>{
-    return this.http.get<Post>(`${this.postGetLikesUrl}/${post.id}`, {headers: environment.headers, withCredentials: environment.withCredentials})
-  }
+    getPost(post: Post): Observable<Post> {
+        return this.http.get<Post>(`${this.postGetLikesUrl}/${post.id}`, { headers: environment.headers, withCredentials: environment.withCredentials })
+    }
 
   getFollowingPostFeed(id : number): Observable<Post[]> {
     return this.http.get<Post[]>(`${this.followingPostsUrl}/${id}`, {headers: environment.headers, withCredentials: environment.withCredentials} )

@@ -33,7 +33,7 @@ export class UserProfileComponent implements OnInit, OnDestroy{
       console.log(this.usersPageId);
     })
     console.log(this.usersPageId);
-    this.user = JSON.parse(<string>sessionStorage.getItem("user"));
+    this.user = JSON.parse(<string>localStorage.getItem("user"));
     console.log(this.user.id);
     this.profileImg = <HTMLDivElement>document.getElementById("user-circle");
     
@@ -45,7 +45,7 @@ export class UserProfileComponent implements OnInit, OnDestroy{
       this.usernameDisplay = this.user.username;
       this.nameDisplay = `${this.user.firstName} ${this.user.lastName}`;
       this.followers = this.user.followers;
-      this.followings = this.user.followings;
+      this.followings = this.user.following;
       this.profileImg.style.backgroundImage = "URL('" + this.user.profileImg + "')";
     } else {
       //this.user = fetch call to back end to get user details
@@ -65,6 +65,7 @@ export class UserProfileComponent implements OnInit, OnDestroy{
     
     this.postService.getUsersPosts(this.usersPageId).subscribe(
       (response : any) => {
+        console.log(response)
         this.posts = response
       }
     )
