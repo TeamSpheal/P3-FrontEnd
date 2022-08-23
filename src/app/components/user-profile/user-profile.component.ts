@@ -58,9 +58,8 @@ export class UserProfileComponent implements OnInit, OnDestroy {
                 console.log("Response: " + JSON.stringify(resp))
                 this.usernameDisplay = resp.username;
                 this.nameDisplay = `${resp.firstName} ${resp.lastName}`;
-                this.followers = resp.followers as UserMiniDTO[];
-                this.following = resp.following as UserMiniDTO[];
-                //console.log(this.followings.length + 'followings length');
+                this.followers = resp.followers;
+                this.following = resp.following;
                 this.profileImg.style.backgroundImage = "URL('" + resp.profileImg + "')";
                 this.userMiniDTO = new UserMiniDTO(resp.id, resp.username, resp.profileImg);
                 localStorage.setItem("viewingUser", JSON.stringify(this.userMiniDTO));
@@ -79,7 +78,6 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
-        //console.log('should unsub from params if working');
         this.sub.unsubscribe();
     }
 

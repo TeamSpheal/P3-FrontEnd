@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,6 +21,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { FollowComponent } from './components/follow/follow.component';
 import { ResetPwComponent } from './components/reset-pw/reset-pw.component';
 import { SearchComponent } from './components/user-search/user-search.component';
+import { ImageUploadComponent } from './components/image-upload/image-upload.component';
 
 @NgModule({
     declarations: [
@@ -37,6 +39,7 @@ import { SearchComponent } from './components/user-search/user-search.component'
         ResetPwComponent,
         UserProfileComponent,
         FollowComponent,
+        ImageUploadComponent,
     ],
     imports: [
         BrowserModule,
@@ -45,6 +48,7 @@ import { SearchComponent } from './components/user-search/user-search.component'
         ReactiveFormsModule,
         BrowserAnimationsModule,
         AngularMaterialModule,
+        MatProgressBarModule,
         FormsModule,
     ],
     providers: [],
