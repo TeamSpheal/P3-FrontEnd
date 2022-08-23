@@ -20,7 +20,7 @@ export class AuthService {
   }
 
   logout(): void{
-      this.http.post(`${this.authUrl}/logout`, null).subscribe();
+      //this.http.post(`${this.authUrl}/logout`, null).subscribe();
       localStorage.removeItem("user");
       localStorage.removeItem("JWT");
   }

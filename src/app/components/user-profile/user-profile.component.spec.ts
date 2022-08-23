@@ -1,21 +1,33 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { TestBed } from '@angular/core/testing';
+import { ActivatedRoute, convertToParamMap} from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { UserProfileComponent } from './user-profile.component';
 
+import { of } from 'rxjs';
+
 describe('UserProfileComponent', () => {
   let component: UserProfileComponent;
-  let fixture: ComponentFixture<UserProfileComponent>;
+  let route: ActivatedRoute;
+
+  const fakeActivatedRoute = {
+    snapshot: { paramMap: convertToParamMap({'id': '1'}) }
+  } as ActivatedRoute;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ UserProfileComponent ]
-    })
-    .compileComponents();
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule, RouterTestingModule],
+      declarations: [ UserProfileComponent ],
+      providers: [UserProfileComponent, {provide: ActivatedRoute, useValue: fakeActivatedRoute}]
+    });
 
-    fixture = TestBed.createComponent(UserProfileComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    component = TestBed.inject(UserProfileComponent);
+    route = TestBed.inject(ActivatedRoute);
+    route.params = of({'id': '1'});
   });
+
+
 
   it('should create', () => {
     expect(component).toBeTruthy();

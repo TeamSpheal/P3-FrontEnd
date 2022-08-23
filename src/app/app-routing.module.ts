@@ -9,8 +9,8 @@ import { ResetPwComponent } from './components/reset-pw/reset-pw.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 const routes: Routes = [
-    //{ path: "", redirectTo: "/login", pathMatch: "full" },
-    { path: "", redirectTo: "/post-feed", pathMatch: "full" },
+    { path: "", redirectTo: "/login", pathMatch: "full" },
+    // { path: "", redirectTo: "/post-feed", pathMatch: "full" },
     { path: "login", component: LoginComponent },
     { path: "register", component: RegisterComponent },
     { path: "post-feed", component: PostFeedPageComponent },

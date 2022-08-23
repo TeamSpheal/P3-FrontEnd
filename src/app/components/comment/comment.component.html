@@ -1,4 +1,24 @@
-<p class="comment-author">{{inputComment.author.username}}</p>
-<p>
-    {{inputComment.text}} {{inputComment.createdDate | date:'short'}}
-</p>
+<div class="each-comment">
+
+    <p class="comment-author">{{inputComment.author.username}} <span class="commentTimestamp"> {{inputComment.createdDate | date:'short'}}</span></p>
+
+    <span class="replyBtn" (click)="toggleReplyToComment()"><em class="fa-duotone fa-reply-all"></em> Reply</span>
+    <p>
+        {{inputComment.text}}
+    </p>
+    <div *ngFor="let comment of inputComment.comments" class="comment-container">
+        <mat-divider class="comment-divider"></mat-divider>
+        <app-comment [comment]="comment"></app-comment>
+    </div>
+    <form class="form" *ngIf="replyToComment" [formGroup]="commentForm" (ngSubmit)="submitReply($event)">
+        <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Make a Post</mat-label>
+            <textarea matInput autofocus formControlName="text"></textarea>
+        </mat-form-field>
+        <div align="end">
+            <button mat-raised-button color="warn" (click)="toggleReplyToComment()">Cancel</button>
+            <button mat-raised-button color="primary" type="submit">Post</button>
+        </div>
+
+    </form>
+</div>
