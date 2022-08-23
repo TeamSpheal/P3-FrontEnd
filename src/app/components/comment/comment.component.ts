@@ -4,6 +4,7 @@ import Post from 'src/app/models/Post';
 import { AuthService } from 'src/app/services/auth.service';
 import { PostService } from 'src/app/services/post.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import UserMiniDTO from 'src/app/models/UserMiniDTO';
 @Component({
   selector: 'app-comment',
   templateUrl: './comment.component.html',
@@ -16,13 +17,75 @@ export class CommentComponent implements OnInit {
 
   @Input('comment') inputComment: Post;
   replyToComment = false
+  @Input() likeCount: number;
+  @Input() isActive: boolean;
+  @Input() isNotActive = false;
 
   constructor(private postService: PostService, private authService: AuthService, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
+    if(localStorage.getItem("user")){
+      this.authService.currentUser=JSON.parse(<string>localStorage.getItem("user"));
+    }
+    //this.isLiked();
+
+    this.likeCount = this.inputComment.users.length;
     // Init to be filled in later
   }
+  isLiked(){
 
+    const curUser = new UserMiniDTO(this.authService.currentUser.id,
+                                    this.authService.currentUser.username,
+                                    this.authService.currentUser.profileImg);
+
+    const likedIds = this.inputComment.users.map(x =>x.id);
+
+    const button = document.getElementById('likeBtn-' + this.inputComment.id);
+
+
+    if ( likedIds.includes(curUser.id) ){
+      this.isActive = true;
+      
+      button?.style.setProperty('color','#ef773b');
+      button?.style.setProperty('background','#FCB414');
+
+      //console.log(button?.style.getPropertyValue('background'));
+    }
+    else {
+      this.isActive = false;
+      button?.style.setProperty('background','transparent');
+    }
+  }
+
+  ngAfterViewInit() {
+    this.isLiked();
+  }
+
+  like(){  
+    const button = document.getElementById('likeBtn-' + this.inputComment.id);
+
+    if(!this.isActive) {
+      this.postService.likePost(this.authService.currentUser.id,this.inputComment.id)?.subscribe(
+        (      resp: { users: string | any[]; }) => {
+          this.likeCount = resp.users.length;
+          this.isActive = true;
+          button?.style.setProperty('color','#ef773b');
+          button?.style.setProperty('background','#FCB414');
+        }
+      )
+    } else {
+      this.postService.unlikePost(this.authService.currentUser.id, this.inputComment.id)?.subscribe(
+        (      resp: { users: string | any[]; }) => {
+          this.likeCount = resp.users.length;
+          this.isActive = false;
+          button?.style.setProperty('color','#ef773b');
+          button?.style.setProperty('background','transparent');
+        }
+      )
+    }
+  }
+
+  
   toggleReplyToComment = () => {
     this.replyToComment = !this.replyToComment
   }

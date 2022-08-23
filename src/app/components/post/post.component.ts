@@ -137,6 +137,10 @@ export class PostComponent implements OnInit {
 
   toggleReplyToPost = () => {
     this.replyToPost = !this.replyToPost
+
+    if(!this.replyToPost){
+      this.submitReply(event);
+    }
   }
 
   submitReply = (e: any) => {
@@ -167,3 +171,7 @@ export class PostComponent implements OnInit {
     this._snackBar.open(message, action);
   }
 }
+function e(e: any, any: any) {
+  throw new Error('Function not implemented.');
+}
+

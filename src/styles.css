@@ -496,6 +496,23 @@ mat-slide-toggle {
     opacity: 0.8;
 }
 
+.homeBtn {
+    margin-left: 1em;
+    margin-right: 0.3em;
+    border-radius: 6px;
+    padding: 15px;
+    cursor: pointer;
+    transition: background .2s ease;
+}
+
+.homeBtn:hover {
+    background: linear-gradient(162deg, #ff9560 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.homeBtn:active {
+    background: linear-gradient(162deg, #ff8649 0%, rgba(255, 255, 255, 0) 100%);
+}
+
 @keyframes expand {
     0% {
         transform: scale(0.999);
