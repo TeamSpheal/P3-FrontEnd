@@ -14,6 +14,7 @@ export class UserSettingsComponent implements OnInit {
     logoutBtn: HTMLButtonElement | null;
     profileImg: HTMLImageElement;
     loggedIn: User;
+    checkloggedIn: User;
 
     /*Form Groups*/
     userImageForm = new FormGroup({
@@ -42,6 +43,15 @@ export class UserSettingsComponent implements OnInit {
     /**Upon initialization, assigns values to class variables, links event listeners, and populates textboxes
      */
     ngOnInit(): void {
+
+        //checks if the user is logged in, if not it routes to the log in page
+        this.checkloggedIn = JSON.parse(<string>localStorage.getItem("user"));
+
+        if (this.checkloggedIn == undefined) {
+            this.router.navigate(['login']);
+            console.log("in if: " + this.loggedIn);
+        }
+
         /*Assign Values to Variables*/
         this.logoutBtn = <HTMLButtonElement>document.getElementById("logoutBtn");
         this.profileImg = <HTMLImageElement>document.getElementById("profileImg");

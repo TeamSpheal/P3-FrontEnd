@@ -28,9 +28,19 @@ export class UserProfileComponent implements OnInit {
     sub: any;
     posts: Post[] = [];
     postCount = 0;
+    loggedIn: User;
     constructor(private router: Router, private userService: UserService, private postService: PostService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    
+    //checks if the user is logged in, if not it routes to the log in page
+    this.loggedIn = JSON.parse(<string>localStorage.getItem("user"));
+
+    if (this.loggedIn == undefined) {
+        this.router.navigate(['login']);
+        console.log("in if: " + this.loggedIn);
+    }
+
     //gets id from param
     this.sub = this.route.params.subscribe(params => {
       this.usersPageId = +params['id'];

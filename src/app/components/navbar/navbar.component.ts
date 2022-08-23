@@ -26,7 +26,7 @@ export class NavbarComponent implements OnInit {
 
         this.navLoginDiv = <HTMLDivElement>document.getElementById("navLoginDiv");
         this.navUsernameDiv = <HTMLDivElement>document.getElementById("navUsernameDiv");
-        this.navProfileDiv = <HTMLDivElement>document.getElementById("navProfileDiv");
+        //this.navProfileDiv = <HTMLDivElement>document.getElementById("navProfileDiv");
         const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
 
         if (currentTheme) {
@@ -43,18 +43,12 @@ export class NavbarComponent implements OnInit {
         }
 
         this.loggedIn = JSON.parse(<string>localStorage.getItem("user"));
-        console.log("before if: " + this.loggedIn);
-
-        if (this.loggedIn == undefined) {
-            this.router.navigate(['login']);
-            console.log(this.loggedIn);
-        } 
         
     }
 
+
     logout() {
-        this.navProfileDiv.style.backgroundImage = "";
-        this.navUsernameDiv.innerHTML = "";
+
         this.authService.logout();
 
         this.router.navigate(['login']);
