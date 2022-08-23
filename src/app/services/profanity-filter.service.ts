@@ -5,8 +5,6 @@ import { Injectable } from '@angular/core';
 })
 export class ProfanityFilterService {
 
-  constructor() { }
-
   cleanText(toClean:string | null | undefined){
 
     let cleanedText:string | null | undefined = toClean;
