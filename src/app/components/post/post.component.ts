@@ -1,6 +1,7 @@
 import { ElementRef, ViewChild, Component, Input, OnInit, AfterViewInit } from '@angular/core';
 import { __core_private_testing_placeholder__ } from '@angular/core/testing';
 import { FormGroup, FormControl } from '@angular/forms';
+import { throwError } from 'rxjs';
 import Post from 'src/app/models/Post';
 import User from 'src/app/models/User';
 import UserMiniDTO from 'src/app/models/UserMiniDTO';
@@ -140,15 +141,19 @@ export class PostComponent implements OnInit {
 
   submitReply = (e: any) => {
     e.preventDefault()
-    const newComment = new Post(0, this.commentForm.value.text || "", "", JSON.parse(<string>localStorage.getItem("user")), [],[], new Date());
-    this.postService.upsertPost({...this.post, comments: [...this.post.comments, newComment]})
-      .subscribe(
-        (response : any) => {
-          this.post = response
-          this.toggleReplyToPost()
-        }, 
+    if(this.commentForm.value.text) {
+      const newComment = new Post(0, this.commentForm.value.text || "", "", JSON.parse(<string>localStorage.getItem("user")), [],[], new Date());
+      this.postService.upsertPost({...this.post, comments: [...this.post.comments, newComment]})
+        .subscribe(
+          (response : any) => {
+            this.post = response
+            this.toggleReplyToPost()
+          }, 
 
       )
+    } else {
+      console.log('asdfasdf');
+    }
   }
 
   heartContent() {

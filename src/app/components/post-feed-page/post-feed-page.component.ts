@@ -48,12 +48,17 @@ export class PostFeedPageComponent implements OnInit {
 
   submitPost = (e: any) => {
     e.preventDefault();
-    this.postService.upsertPost(new Post(0, this.postForm.value.text || "", this.postForm.value.imageUrl || "", this.authService.currentUser, [], [], new Date()))
-      .subscribe(
-        (response : any) => {
-          this.posts = [response, ...this.posts]
-          this.toggleCreatePost()
-        }
-      )
+    if (this.postForm.value.text) {
+      this.postService.upsertPost(new Post(0, this.postForm.value.text || "", this.postForm.value.imageUrl || "", this.authService.currentUser, [], [], new Date()))
+        .subscribe(
+          (response : any) => {
+            this.posts = [response, ...this.posts]
+            this.toggleCreatePost()
+          }
+        )
+    } else {
+      console.log('asdfasdf');
+      //if post.text is empty
+    }
   }
 }
