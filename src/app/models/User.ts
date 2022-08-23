@@ -8,11 +8,11 @@ export default class User {
     username: string
     profileImg: string
     followers: UserMiniDTO[]
-    followings: UserMiniDTO[]
+    following: UserMiniDTO[]
 
 
     constructor(id: number, email: string, firstName: string, lastName: string, username: string, profileImg: string, // NOSONAR
-        followers: UserMiniDTO[], followings: UserMiniDTO[]) { 
+        followers: UserMiniDTO[], following: UserMiniDTO[]) { 
         this.id = id
         this.email = email
         this.firstName = firstName
@@ -20,6 +20,6 @@ export default class User {
         this.username = username
         this.profileImg = profileImg
         this.followers = followers
-        this.followings = followings
+        this.following = following
     }
 }

@@ -4,6 +4,7 @@ import User from '../../models/User';
 import { UserSettingsService } from '../../services/user-settings.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { of, from } from 'rxjs';
+import { TestBed } from '@angular/core/testing';
 
 describe('UserSettingsComponent', () => {
     /*Suite Variables*/

@@ -9,12 +9,12 @@ import Post from '../models/Post';
 })
 export class PostService {
 
-    postUrl = `${environment.baseUrl}/post`
-    postGetLikesUrl = `${environment.baseUrl}/post`
-    postLikeUrl = `${environment.baseUrl}/post/like`
-    postUnlikeUrl = `${environment.baseUrl}/post/unlike`
-    userPostUrl = `${environment.baseUrl}/get`
-    followingPostsUrl = `${environment.baseUrl}/post/following`
+  postUrl = `${environment.baseUrl}/post`
+  postGetLikesUrl = `${environment.baseUrl}/post`
+  postLikeUrl = `${environment.baseUrl}/post/like`
+  postUnlikeUrl = `${environment.baseUrl}/post/unlike`
+  userPostUrl = `${environment.baseUrl}/post/get`
+  followingPostsUrl = `${environment.baseUrl}/post/following`
 
     constructor(private http: HttpClient) { }
 
@@ -45,5 +45,9 @@ export class PostService {
     getPostsByUsers(id: number): Observable<Post[]> {
         return this.http.get<Post[]>(`${this.followingPostsUrl}/${id}`, { headers: environment.headers, withCredentials: environment.withCredentials })
     }
+
+  getFollowingPostFeed(id : number): Observable<Post[]> {
+    return this.http.get<Post[]>(`${this.followingPostsUrl}/${id}`, {headers: environment.headers, withCredentials: environment.withCredentials} )
+  }
 
 }
