@@ -29,7 +29,6 @@ export class PostComponent implements OnInit {
   @Input() likeCount: number;
   @Input() isActive: boolean;
   @Input() isNotActive = false;
-  // isFollow: boolean = false; 
   
   commentForm = new FormGroup({
     text: new FormControl(''),
