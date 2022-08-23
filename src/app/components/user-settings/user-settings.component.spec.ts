@@ -3,6 +3,7 @@ import User from '../../models/User';
 import { UserSettingsService } from '../../services/user-settings.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { of, from } from 'rxjs';
+import { TestBed } from '@angular/core/testing';
 
 describe('UserSettingsComponent', () => {
     /*Suite Variables*/
@@ -25,12 +26,12 @@ describe('UserSettingsComponent', () => {
         expect(userSettComp).toBeTruthy();
     });
 
-    it('ngOnInit: should set a value to loggedIn if sessionStorage is not null', async () => {
+    it('ngOnInit: should set a value to loggedIn if localStorage is not null', async () => {
         /*Local Variables*/
         const mockJSON: string = JSON.stringify(mockUser);
 
         /*Mocks*/
-        spyOn(sessionStorage, 'getItem').and.returnValue(mockJSON);
+        spyOn(localStorage, 'getItem').and.returnValue(mockJSON);
         spyOn(userSettComp, 'displayInfo').and.callFake(() => {/*Do Nothing*/ })
 
         /*Function*/
@@ -40,9 +41,9 @@ describe('UserSettingsComponent', () => {
         expect(userSettComp.loggedIn).toBeTruthy();
     });
 
-    it('ngOnInit: should not set a value to loggedIn if sessionStorage is null', async () => {
+    it('ngOnInit: should not set a value to loggedIn if localStorage is null', async () => {
         /*Mocks*/
-        spyOn(sessionStorage, 'getItem').and.returnValue(null);
+        spyOn(localStorage, 'getItem').and.returnValue(null);
         spyOn(document, 'getElementById').and.returnValue(document.createElement("input"));
 
         /*Function*/

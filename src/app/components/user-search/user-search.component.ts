@@ -30,6 +30,10 @@ export class SearchComponent implements OnInit{
         this.input = "";
       }
 
+      reloadCurrentPage() {
+        setTimeout(function() {window.location.reload()}, 100);
+      }
+
     async getUsers() {
     const input = this.input.split(" ");
 
@@ -42,6 +46,8 @@ export class SearchComponent implements OnInit{
        console.log(upperCasedNames)
        console.log('FETCH: http://localhost:8080/search/' + upperCasedNames );
 
+       this.showSearch();
+
         const resp = await fetch('http://localhost:8080/search/' + upperCasedNames);
             if(resp.ok){
             this.users = await resp.json();
@@ -49,7 +55,7 @@ export class SearchComponent implements OnInit{
         
             console.log(this.users);
         }
-        this.showSearch();
+        //this.showSearch();
     }else{
         this.hideSearch();
     }

@@ -33,7 +33,7 @@ export class UserProfileComponent implements OnInit, OnDestroy{
       console.log(this.usersPageId);
     })
     console.log(this.usersPageId);
-    this.user = JSON.parse(<string>sessionStorage.getItem("user"));
+    this.user = JSON.parse(<string>localStorage.getItem("user"));
     console.log(this.user.id);
     this.profileImg = <HTMLDivElement>document.getElementById("user-circle");
     
