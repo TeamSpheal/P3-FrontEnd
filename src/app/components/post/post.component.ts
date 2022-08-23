@@ -8,6 +8,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { PostService } from 'src/app/services/post.service';
 import { ProfanityFilterService } from 'src/app/services/profanity-filter.service';
  
+
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
@@ -133,25 +134,38 @@ export class PostComponent implements OnInit {
     }
   }
 
-
-
   toggleReplyToPost = () => {
     this.replyToPost = !this.replyToPost
   }
 
+  toggleReplyAndPost = () => {
+    this.replyToPost = !this.replyToPost
+
+    if(!this.replyToPost && this.commentForm.value.text){
+      this.submitReply(event);
+    }else{
+      console.log("no comment")
+    }
+  }
+
   submitReply = (e: any) => {
     e.preventDefault()
-    //Mike added this line here for profanity filter
-    this.commentForm.value.text = this.profanityService.cleanText(this.commentForm.value.text);
-    const newComment = new Post(0, this.commentForm.value.text || "", "", JSON.parse(<string>localStorage.getItem("user")), [],[], new Date());
-    this.postService.upsertPost({...this.post, comments: [...this.post.comments, newComment]})
-      .subscribe(
-        (response : any) => {
-          this.post = response
-          this.toggleReplyToPost()
-        }, 
+    if(this.commentForm.value.text) {
+      //Mike added this line here for profanity filter
+      this.commentForm.value.text = this.profanityService.cleanText(this.commentForm.value.text);
+      const newComment = new Post(0, this.commentForm.value.text || "", "", JSON.parse(<string>localStorage.getItem("user")), [],[], new Date());
+      this.postService.upsertPost({...this.post, comments: [...this.post.comments, newComment]})
+        .subscribe(
+          (response : any) => {
+            this.post = response
+            this.toggleReplyToPost()
+          }, 
 
       )
+    } else {
+      console.log("error")
+      this.replyToPost = false;
+    }
   }
 
   heartContent() {
@@ -159,4 +173,9 @@ export class PostComponent implements OnInit {
     this.divNumb.nativeElement.classList.toggle("heart-active");
     this.divHeart.nativeElement.classList.toggle("heart-active");
   }
+
 }
+function e(e: any, any: any) {
+  throw new Error('Function not implemented.');
+}
+

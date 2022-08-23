@@ -157,6 +157,7 @@ describe('PostComponent', () => {
         postComp.post = mockPost;
         postComp.replyToPost = true;
         authServ.currentUser = mockUser;
+        postComp.commentForm.value.text = "Non empty text";
 
         /*Function*/
         postComp.submitReply(event);
@@ -166,4 +167,19 @@ describe('PostComponent', () => {
         expect(postComp.toggleReplyToPost).toHaveBeenCalled();
         expect(postComp.replyToPost).toBeFalse();
     });
+
+    it('submitReply: should set replyToPost to false', () => {
+        /*Local Variables*/
+        const event = new InputEvent("submit");
+
+        /*Mocks*/
+        postComp.commentForm.value.text = "";
+
+        /*Function*/
+        postComp.submitReply(event);
+
+        /*Test*/
+        expect(postComp.replyToPost).toBeFalse();
+    });
+
 });
