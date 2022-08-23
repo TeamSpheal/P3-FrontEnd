@@ -60,6 +60,8 @@ export class NavbarComponent implements OnInit {
         this.navProfileDiv.style.backgroundImage = "";
         this.navUsernameDiv.innerHTML = "";
         this.authService.logout();
+
+        this.router.navigate(['login']);
     }
 
     login() {
