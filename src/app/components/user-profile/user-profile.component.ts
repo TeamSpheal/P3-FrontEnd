@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import Post from 'src/app/models/Post';
 import User from 'src/app/models/User';
@@ -30,11 +30,11 @@ export class UserProfileComponent implements OnInit {
     postCount = 0;
     constructor(private router: Router, private userService: UserService, private postService: PostService, private route: ActivatedRoute) { }
 
-    async ngOnInit() {
+    ngOnInit() {
         //gets id from param
         this.sub = this.route.params.subscribe(params => {
             this.usersPageId = +params['id'];
-            localStorage.setItem("usersPageId", this.usersPageId.toString())
+            localStorage.setItem("usersPageId", this.usersPageId.toString());
         })
         //gets id from logged in user
         this.user = JSON.parse(<string>localStorage.getItem("user"));
@@ -55,7 +55,6 @@ export class UserProfileComponent implements OnInit {
         } else {
             //this.user = fetch call to back end to get user details
             this.userService.getUserById(this.usersPageId)?.subscribe((resp: any) => {
-                console.log("Response: " + JSON.stringify(resp));
                 this.usernameDisplay = resp.username;
                 this.nameDisplay = `${resp.firstName} ${resp.lastName}`;
                 this.followers = resp.followers;

@@ -12,7 +12,6 @@ describe('FollowComponent', () => {
     let followComp: FollowComponent;
     let userServ: UserService;
     let userProfComp: UserProfileComponent;
-    let route: ActivatedRoute;
     const mockUser = new User(1, 'testuser@gmail.com', 'Test', 'User',
         'TestUser1', 'assets/images/favicon.png', [], []);
     const mockUserMini = new UserMiniDTO(1, 'TestUser1', 'assets/images/favicon.png');
