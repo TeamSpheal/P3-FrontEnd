@@ -1,7 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { HttpEventType, HttpErrorResponse } from '@angular/common/http';
-import { of } from 'rxjs';  
-import { catchError, map } from 'rxjs/operators';
+import { Component } from '@angular/core';
 import { PostService } from 'src/app/services/post.service';
 import { PostFeedPageComponent } from '../post-feed-page/post-feed-page.component';
 
