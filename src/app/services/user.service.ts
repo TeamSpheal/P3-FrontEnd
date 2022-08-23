@@ -9,11 +9,11 @@ import UserMiniDTO from '../models/UserMiniDTO';
     providedIn: 'root'
 })
 export class UserService {
-  userUrl: string = `${environment.baseUrl}/user`
-  userUpdatedUrl: string;
-  isFollowResp: UserMiniDTO[];
-  isFollow: boolean = false;
-  user: User = JSON.parse(<string>localStorage.getItem("user"));
+    userUrl = `${environment.baseUrl}/user`
+    userUpdatedUrl: string;
+    isFollowResp: UserMiniDTO[];
+    isFollow = false;
+    user = JSON.parse(<string>localStorage.getItem("user"));
 
   constructor(private http: HttpClient) { }
 
