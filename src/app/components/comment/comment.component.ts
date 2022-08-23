@@ -3,7 +3,9 @@ import { FormControl, FormGroup } from '@angular/forms';
 import Post from 'src/app/models/Post';
 import { AuthService } from 'src/app/services/auth.service';
 import { PostService } from 'src/app/services/post.service';
+import { ProfanityFilterService } from 'src/app/services/profanity-filter.service';
 import UserMiniDTO from 'src/app/models/UserMiniDTO';
+
 @Component({
   selector: 'app-comment',
   templateUrl: './comment.component.html',
@@ -20,7 +22,7 @@ export class CommentComponent implements OnInit {
   @Input() isActive: boolean;
   @Input() isNotActive = false;
 
-  constructor(private postService: PostService, private authService: AuthService) { }
+  constructor(private postService: PostService, private authService: AuthService, private profanityService: ProfanityFilterService) { }
 
   ngOnInit(): void {
     if(localStorage.getItem("user")){
@@ -92,6 +94,8 @@ export class CommentComponent implements OnInit {
   submitReply = (e: any) => {
     e.preventDefault()
     if(this.commentForm.value.text) {
+      //Mike added this line here for profanity filter
+      this.commentForm.value.text = this.profanityService.cleanText(this.commentForm.value.text);
       const newComment = new Post(0, this.commentForm.value.text || "", "", this.authService.currentUser, [], [], new Date());
       this.postService.upsertPost({...this.inputComment, comments: [...this.inputComment.comments, newComment]})
         .subscribe(

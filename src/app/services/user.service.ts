@@ -17,15 +17,15 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  addFollower(followedId: number, followerId: number): Observable<any> {
-    this.userUpdatedUrl = `${this.userUrl}/${followedId}/follower/${followerId}`;
+  addFollower(followerId: number, followedId: number): Observable<any> {
+    this.userUpdatedUrl = `${this.userUrl}/${followerId}/follower/${followedId}`;
     return this.http.post(`${this.userUpdatedUrl}`, null,
         { headers: environment.headers, withCredentials: environment.withCredentials })
   }
 
 
-  removeFollower(followedId: number, followerId: number): Observable<any> {
-    this.userUpdatedUrl = `${this.userUrl}/${followedId}/unfollow/${followerId}`; 
+  removeFollower(followerId: number, followedId: number): Observable<any> {
+    this.userUpdatedUrl = `${this.userUrl}/${followerId}/unfollow/${followedId}`; 
     return this.http.delete(this.userUpdatedUrl, { headers: environment.headers, withCredentials: environment.withCredentials });
   }
 
