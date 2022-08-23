@@ -3,18 +3,21 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import Post from '../models/Post';
+import { FormGroup } from '@angular/forms';
 
 @Injectable({
     providedIn: 'root'
 })
 export class PostService {
 
-    postUrl = `${environment.baseUrl}/post`
-    postGetLikesUrl = `${environment.baseUrl}/post`
-    postLikeUrl = `${environment.baseUrl}/post/like`
-    postUnlikeUrl = `${environment.baseUrl}/post/unlike`
-    userPostUrl = `${environment.baseUrl}/get`
-    followingPostsUrl = `${environment.baseUrl}/post/following`
+  postUrl = `${environment.baseUrl}/post`
+  postGetLikesUrl = `${environment.baseUrl}/post`
+  postLikeUrl = `${environment.baseUrl}/post/like`
+  postUnlikeUrl = `${environment.baseUrl}/post/unlike`
+  userPostUrl = `${environment.baseUrl}/post/get`
+  followingPostsUrl = `${environment.baseUrl}/post/following`
+  imageUrl = `${environment.baseUrl}/user/image-upload`
+  uploadForm: FormGroup;
 
     constructor(private http: HttpClient) { }
 
@@ -48,6 +51,15 @@ export class PostService {
 
   getUsersPosts(id : number): Observable<Post[]> {
     return this.http.get<Post[]>(`${this.userPostUrl}/${id}`, {headers: environment.headers, withCredentials: environment.withCredentials} )
+  }
+
+  public uploadImage(file: File): Observable<string> {
+    let formParams = new FormData();
+    formParams.append('image', file);
+    return this.http.post<string>(`${this.imageUrl}`, formParams, {
+      headers: {
+        'Access-Control-Allow-Origin': 'http://localhost:4200'
+    }});
   }
 
 }
