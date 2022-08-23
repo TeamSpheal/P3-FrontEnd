@@ -56,6 +56,7 @@ describe('CommentComponent', () => {
         commComp.inputComment = mockPost;
         commComp.replyToComment = true;
         authServ.currentUser = mockUser;
+        commComp.commentForm.value.text = "Non empty text";
 
         /*Function*/
         commComp.submitReply(event);
@@ -63,6 +64,21 @@ describe('CommentComponent', () => {
         /*Test*/
         expect(postServ.upsertPost).toHaveBeenCalled();
         expect(commComp.toggleReplyToComment).toHaveBeenCalled();
+        expect(commComp.replyToComment).toBeFalse();
+    });
+
+
+    it('submitReply: should set replyToComment to false', () => {
+        /*Local Variables*/
+        const event = new InputEvent("submit");
+
+        /*Mocks*/
+        commComp.commentForm.value.text = "";
+
+        /*Function*/
+        commComp.submitReply(event);
+
+        /*Test*/
         expect(commComp.replyToComment).toBeFalse();
     });
 });
