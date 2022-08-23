@@ -1,4 +1,3 @@
-import { getMultipleValuesInSingleSelectionError } from "@angular/cdk/collections";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { TestBed } from "@angular/core/testing";
 import User from "src/app/models/User";
@@ -7,7 +6,6 @@ import { SearchComponent } from './user-search.component'
 describe('SearchComponent', () => {
 
     let searchComp:SearchComponent;
-    const mockResponse = new Response(null);
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -32,12 +30,12 @@ describe('SearchComponent', () => {
         /*Test*/
         expect(searchComp.getUsers).toHaveBeenCalled();
 
-    });
+    }); 
 
     it('showSearch: should show the Search', () => {
 
         /*Local Variable*/
-        let testDiv = document.createElement('div');
+        const testDiv = document.createElement('div');
 
         /*Mocking*/
         spyOn(document, 'getElementById').and.returnValue(testDiv);
@@ -54,7 +52,7 @@ describe('SearchComponent', () => {
     it('hideSearch: should hide the Search', () => {
 
         /*Local Variable*/
-        let testDiv = document.createElement('div');
+        const testDiv = document.createElement('div');
 
         /*Mocking*/
         spyOn(document, 'getElementById').and.returnValue(testDiv);

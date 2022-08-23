@@ -35,6 +35,7 @@ export class PostComponent implements OnInit {
     text: new FormControl(''),
   })
 
+
   constructor(private postService: PostService, private authService: AuthService) {
   }
 
@@ -93,7 +94,7 @@ export class PostComponent implements OnInit {
 
   submitReply = (e: any) => {
     e.preventDefault()
-    const newComment = new Post(0, this.commentForm.value.text || "", "", JSON.parse(<string>localStorage.getItem("user")), [],[])
+    const newComment = new Post(0, this.commentForm.value.text || "", "", JSON.parse(<string>localStorage.getItem("user")), [],[], new Date());
     this.postService.upsertPost({...this.post, comments: [...this.post.comments, newComment]})
       .subscribe(
         (response : any) => {

@@ -28,11 +28,13 @@
     margin-right: 70px;
 }
 
-#lNameDiv, #userUpdateImgDiv{
+#lNameDiv,
+#userUpdateImgDiv {
     margin-bottom: 10px;
 }
 
-#passwordDiv, #usernameDiv {
+#passwordDiv,
+#usernameDiv {
     border-top: solid 5px #000000;
 }
 

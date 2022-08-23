@@ -26,12 +26,12 @@ describe('UserSettingsComponent', () => {
         expect(userSettComp).toBeTruthy();
     });
 
-    it('ngOnInit: should set a value to loggedIn if sessionStorage is not null', async () => {
+    it('ngOnInit: should set a value to loggedIn if localStorage is not null', async () => {
         /*Local Variables*/
         const mockJSON: string = JSON.stringify(mockUser);
 
         /*Mocks*/
-        spyOn(sessionStorage, 'getItem').and.returnValue(mockJSON);
+        spyOn(localStorage, 'getItem').and.returnValue(mockJSON);
         spyOn(userSettComp, 'displayInfo').and.callFake(() => {/*Do Nothing*/ })
 
         /*Function*/
@@ -41,9 +41,9 @@ describe('UserSettingsComponent', () => {
         expect(userSettComp.loggedIn).toBeTruthy();
     });
 
-    it('ngOnInit: should not set a value to loggedIn if sessionStorage is null', async () => {
+    it('ngOnInit: should not set a value to loggedIn if localStorage is null', async () => {
         /*Mocks*/
-        spyOn(sessionStorage, 'getItem').and.returnValue(null);
+        spyOn(localStorage, 'getItem').and.returnValue(null);
         spyOn(document, 'getElementById').and.returnValue(document.createElement("img"));
 
         /*Function*/

@@ -6,14 +6,15 @@ import { PostService } from '../../services/post.service';
 import { AuthService } from '../../services/auth.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { from, of } from 'rxjs';
+import UserMiniDTO from 'src/app/models/UserMiniDTO';
 
 describe('PostFeedPageComponent', () => {
-    const mockUserFollow: User = new User(2, 'testuser@gmail.com', 'Test', 'User',
-        'TestUser1', 'assets/images/favicon.png', [], []);
+    const mockUserFollow: UserMiniDTO = new UserMiniDTO(2, 'testuser@gmail.com', 'TestUser1', 'assets/images/favicon.png');
+
     const mockUser: User = new User(1, 'testuser@gmail.com', 'Test', 'User',
         'TestUser1', 'assets/images/favicon.png', [], []);
     const mockPost: Post = new Post(1, "A mocked post", "",
-        mockUser, [], [mockUser]);
+        mockUser, [], [mockUser], new Date());
     let postFeedComp: PostFeedPageComponent;
     let postServ: PostService;
     let authServ: AuthService;
@@ -36,11 +37,11 @@ describe('PostFeedPageComponent', () => {
     it('ngOnInit: should call getPostsByUsers in post service', () => {
         /*Local Variables*/
         const mockUserFollowing: User = new User(1, 'testuser@gmail.com', 'Test', 'User',
-            'TestUser1', 'assets/images/favicon.png', [mockUserFollow], []);
+            'TestUser1', 'assets/images/favicon.png', [], [mockUserFollow]);
 
         /*Mocks*/
         spyOn(localStorage, 'getItem').and.returnValue(JSON.stringify(mockUserFollowing));
-        spyOn(postServ, 'getPostsByUsers').and.callFake(() => {
+        spyOn(postServ, 'getFollowingPostFeed').and.callFake(() => {
             return from(of([mockPost]));
         });
 
@@ -48,7 +49,7 @@ describe('PostFeedPageComponent', () => {
         postFeedComp.ngOnInit();
 
         /*Test*/
-        expect(postServ.getPostsByUsers).toHaveBeenCalled();
+        expect(postServ.getFollowingPostFeed).toHaveBeenCalled();
     });
 
     it('ngOnInit: should call getAllPosts in post service', () => {
