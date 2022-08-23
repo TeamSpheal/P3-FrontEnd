@@ -6,6 +6,7 @@ import User from 'src/app/models/User';
 import UserMiniDTO from 'src/app/models/UserMiniDTO';
 import { AuthService } from 'src/app/services/auth.service';
 import { PostService } from 'src/app/services/post.service';
+import { ProfanityFilterService } from 'src/app/services/profanity-filter.service';
  
 @Component({
   selector: 'app-post',
@@ -38,7 +39,7 @@ export class PostComponent implements OnInit {
   })
 
 
-  constructor(private postService: PostService, private authService: AuthService) {
+  constructor(private postService: PostService, private authService: AuthService, private profanityService: ProfanityFilterService) {
   }
 
   ngOnInit(): void {
@@ -140,6 +141,8 @@ export class PostComponent implements OnInit {
 
   submitReply = (e: any) => {
     e.preventDefault()
+    //Mike added this line here for profanity filter
+    this.commentForm.value.text = this.profanityService.cleanText(this.commentForm.value.text);
     const newComment = new Post(0, this.commentForm.value.text || "", "", JSON.parse(<string>localStorage.getItem("user")), [],[], new Date());
     this.postService.upsertPost({...this.post, comments: [...this.post.comments, newComment]})
       .subscribe(
