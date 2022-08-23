@@ -13,7 +13,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { PostFeedPageComponent } from './components/post-feed-page/post-feed-page.component';
 import { PostComponent } from './components/post/post.component';
 import { CommentComponent } from './components/comment/comment.component';
-import { UserCardComponent } from './components/user-card/user-card.component';
 import { UserInitialsPipe } from './pipes/user-initials.pipe';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { UserSettingsComponent } from './components/user-settings/user-settings.component';
@@ -31,7 +30,6 @@ import { ImageUploadComponent } from './components/image-upload/image-upload.com
         PostFeedPageComponent,
         PostComponent,
         CommentComponent,
-        UserCardComponent,
         NavbarComponent,
         UserInitialsPipe,
         SearchComponent,
