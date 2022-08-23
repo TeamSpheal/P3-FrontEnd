@@ -4,6 +4,7 @@ import Post from 'src/app/models/Post';
 import User from 'src/app/models/User';
 import { AuthService } from 'src/app/services/auth.service';
 import { PostService } from 'src/app/services/post.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-post-feed-page',
@@ -21,7 +22,7 @@ export class PostFeedPageComponent implements OnInit {
   posts: Post[] = [];
   createPost = false;
 
-  constructor(private postService: PostService, private authService: AuthService) { }
+  constructor(private postService: PostService, private authService: AuthService, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     const userStorage = localStorage.getItem("user");
@@ -48,7 +49,9 @@ export class PostFeedPageComponent implements OnInit {
 
   submitPost = (e: any) => {
     e.preventDefault();
-    if (this.postForm.value.text) {
+    if (!this.postForm.value.text && !this.postForm.value.imageUrl) {
+      this.infoMessage('Text or an image is required', 'Close')
+    } else {
       this.postService.upsertPost(new Post(0, this.postForm.value.text || "", this.postForm.value.imageUrl || "", this.authService.currentUser, [], [], new Date()))
         .subscribe(
           (response : any) => {
@@ -56,9 +59,11 @@ export class PostFeedPageComponent implements OnInit {
             this.toggleCreatePost()
           }
         )
-    } else {
-      console.log('asdfasdf');
-      //if post.text is empty
     }
+  }
+
+
+  infoMessage(message: string, action: string) {
+    this._snackBar.open(message, action);
   }
 }

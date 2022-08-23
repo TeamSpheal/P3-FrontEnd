@@ -7,13 +7,16 @@ import User from 'src/app/models/User';
 import UserMiniDTO from 'src/app/models/UserMiniDTO';
 import { AuthService } from 'src/app/services/auth.service';
 import { PostService } from 'src/app/services/post.service';
- 
+import {MatSnackBar} from '@angular/material/snack-bar';
+
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.css']
 })
 export class PostComponent implements OnInit {
+  message: String | null;
+  action: String | null;
   @ViewChild("content")
   divContent: ElementRef;
 
@@ -39,7 +42,7 @@ export class PostComponent implements OnInit {
   })
 
 
-  constructor(private postService: PostService, private authService: AuthService) {
+  constructor(private postService: PostService, private authService: AuthService, private _snackBar: MatSnackBar) {
   }
 
   ngOnInit(): void {
@@ -152,7 +155,8 @@ export class PostComponent implements OnInit {
 
       )
     } else {
-      console.log('asdfasdf');
+      this.infoMessage('A message is required', 'Close')
+      this.replyToPost = false;
     }
   }
 
@@ -160,5 +164,9 @@ export class PostComponent implements OnInit {
     this.divContent.nativeElement.classList.toggle("heart-active");
     this.divNumb.nativeElement.classList.toggle("heart-active");
     this.divHeart.nativeElement.classList.toggle("heart-active");
+  }
+
+  infoMessage(message: string, action: string) {
+    this._snackBar.open(message, action);
   }
 }

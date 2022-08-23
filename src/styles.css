@@ -434,9 +434,9 @@ mat-divider {
 }
 
 .format {
-    width: 45vw;
+    width: 55vw;
     margin: auto;
-    margin-bottom: 1em;
+    margin-bottom: 2em;
     animation: expand .5s ease 0s 1 normal forwards;
     border-radius: 4px;
     box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
@@ -480,6 +480,10 @@ mat-slide-toggle {
 
 .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
     background-color: #000;
+}
+
+.mat-simple-snackbar-action {
+    color: var(--rev-secondary) !important;
 }
 
 @keyframes expand {

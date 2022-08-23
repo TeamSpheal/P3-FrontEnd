@@ -1,20 +1,10 @@
 <div class="post-card">
     <mat-card>
         <mat-card-header class="post-header">
-            <div
-              mat-card-avatar
-              class="header-image"
-              *ngIf="post.author.profileImg"
-              style="background-image: URL('{{ post.author.profileImg }}')"
-            ></div>
+            <div mat-card-avatar class="header-image" *ngIf="post.author.profileImg" style="background-image: URL('{{ post.author.profileImg }}')"></div>
             <mat-card-title class="post-author">{{ post.author.username }}</mat-card-title>
-          </mat-card-header>
-          <img
-            mat-card-image
-            *ngIf="post.imageUrl"
-            src="{{ post.imageUrl }}"
-            alt="Post Image"
-          />
+        </mat-card-header>
+        <img mat-card-image *ngIf="post.imageUrl" src="{{ post.imageUrl }}" alt="Post Image" />
         <mat-card-content>
             <p class="post-content commentBlock">
                 {{post.text}}
@@ -26,15 +16,12 @@
                 <app-comment [comment]="comment"></app-comment>
             </div>
         </mat-card-content>
-        <form class="form" *ngIf="replyToPost" [formGroup]="commentForm" (ngSubmit)="submitReply($event)">
+        <form class="form" *ngIf="replyToPost" [formGroup]="commentForm">
             <mat-form-field class="full-width" appearance="fill">
                 <mat-label>Make a Post</mat-label>
-                <textarea matInput autofocus formControlName="text"></textarea>
+                <textarea matInput autofocus formControlName="text" (keydown.enter)="submitReply($event)"></textarea>
             </mat-form-field>
-            <div align="end">
-                <button mat-raised-button color="warn" (click)="toggleReplyToPost()">Cancel</button>
-                <button mat-raised-button color="primary" type="submit">Post</button>
-            </div>
+
         </form>
         <div class="postTime">{{post.createdDate | date: 'short'}}</div>
         <mat-card-actions align="end">
