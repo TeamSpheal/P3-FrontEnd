@@ -93,7 +93,7 @@ export class CommentComponent implements OnInit {
 
     if(this.replyState){
       reply?.style.setProperty('color','#ef773b');
-      
+
     }else{
       reply?.style.setProperty('color','unset');
     }

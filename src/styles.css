@@ -380,7 +380,8 @@ mat-divider {
 .comment-author {
     margin: 0.3em;
     font-weight: 500;
-    color: var(--font-color-secondary)
+    color: var(--font-color-secondary);
+    margin-top: -23px !important;
 }
 
 .commentBlock {
@@ -443,6 +444,10 @@ mat-divider {
 #hbutton {
     float: right;
     margin-right: 1.3em;
+}
+
+.replyContainer {
+    margin-bottom: 20px;
 }
 
 .replyBtn {
