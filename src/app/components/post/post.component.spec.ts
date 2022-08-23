@@ -36,12 +36,13 @@ describe('PostComponent', () => {
         /*Mocks*/
         spyOn(localStorage, 'getItem').and.returnValue(JSON.stringify(mockUser));
         spyOn(postComp, 'isLiked').and.callFake(() => { /*Do Nothing*/ })
+        postComp.post = mockPost;
 
         /*Function*/
         postComp.ngOnInit();
 
         /*Test*/
-        expect(postComp.isLiked).toHaveBeenCalled();
+        expect(postComp.likeCount).toBeTruthy();
         expect(authServ.currentUser).toBeTruthy();
     });
 
@@ -49,12 +50,13 @@ describe('PostComponent', () => {
         /*Mocks*/
         spyOn(localStorage, 'getItem').and.returnValue(null);
         spyOn(postComp, 'isLiked').and.callFake(() => { /*Do Nothing*/ })
+        postComp.post = mockPost;
 
         /*Function*/
         postComp.ngOnInit();
 
         /*Test*/
-        expect(postComp.isLiked).toHaveBeenCalled();
+        expect(postComp.likeCount).toBeTruthy();
         expect(authServ.currentUser).toBeFalsy();
     });
 
