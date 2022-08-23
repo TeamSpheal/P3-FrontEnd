@@ -28,7 +28,7 @@ export class FollowComponent implements OnInit {
      */
     constructor(private userProfComp: UserProfileComponent, private userService: UserService) { }
 
-    /**Upon initialization, retrieves viewingUser from local storage 
+    /**Upon initialization, retrieves viewingUser from local storage
      * and determines whether that user is being followed by the logged in user
      */
     ngOnInit(): void {
@@ -38,13 +38,11 @@ export class FollowComponent implements OnInit {
         this.isFollow = this.userService.isFollowing(this.viewingUser);
         this.followBtn = <HTMLButtonElement>document.getElementById("follow");
         this.followingList = this.loggedIn.following;
-
         //change button to match isFollow
         this.changeBtn();
     }
-
     /**
-     * Changes the following state based on whether the logged in user 
+     * Changes the following state based on whether the logged in user
      * is or not already following the viewed user
      * @param event
      */
@@ -98,7 +96,6 @@ export class FollowComponent implements OnInit {
             if (data != undefined) {
                 response = JSON.parse(JSON.stringify(data));
             }
-
             //Process data
             if (response != undefined) { //Data is defined. The return from the response should contain a user object
                 this.isFollow = !this.isFollow;
@@ -107,7 +104,6 @@ export class FollowComponent implements OnInit {
                 this.loggedIn.following = this.followingList;
                 localStorage.setItem("user", JSON.stringify(this.loggedIn));
                 this.userProfComp.followerCount -= 1;
-
                 this.changeBtn();
                 alert(
                     "You haved successfully unfollowed this user!"
@@ -134,6 +130,3 @@ export class FollowComponent implements OnInit {
         }
     }
 }
-
-
-

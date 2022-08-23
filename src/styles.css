@@ -128,6 +128,10 @@ textarea.mat-input-element {
 .spheal {
     background-color: var(--rev-color);
     color: var(--rev-font-color);
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    box-shadow: 0px -1px 17px 0px rgba(0, 0, 0, 0.41);
 }
 
 .app-header {
@@ -264,9 +268,9 @@ mat-divider {
 }
 
 .user-card {
-  width: 10%;
-  text-align: center;
-  margin: 1%;
+    width: 10%;
+    text-align: center;
+    margin: 1%;
 }
 
 .sidebyside {
@@ -285,7 +289,8 @@ mat-divider {
     width: 100%
 }
 
-.header-image, .nav-user-img {
+.header-image,
+.nav-user-img {
     background-size: cover;
     border: 1px solid #888080;
 }
@@ -335,6 +340,8 @@ mat-divider {
 
 .each-comment {
     padding: 1em;
+    padding-right: 0;
+    margin-right: 0;
     background: var(--comment-bg);
     transition: all ease .2s;
     border-radius: 4px;
@@ -347,6 +354,7 @@ mat-divider {
 .comment-container {
     margin-left: 2em;
     padding: 1em;
+    padding-right: 0;
 }
 
 .commentTitle {
@@ -355,6 +363,7 @@ mat-divider {
     font-size: 1rem;
     display: block;
     padding: 1em;
+    padding-bottom: 0;
 }
 
 .comment-author {
@@ -369,10 +378,11 @@ mat-divider {
 }
 
 .spacer {
-  flex: 1 1 auto;
+    flex: 1 1 auto;
 }
 
-#navUsernameDiv, .navLogBtn {
+#navUsernameDiv,
+.navLogBtn {
     float: right;
     font-size: 20px;
     margin-top: 10px;
@@ -382,7 +392,7 @@ mat-divider {
 
 #navProfileDiv {
     cursor: pointer;
-    float:right;
+    float: right;
     width: 50px;
     height: 50px;
     border-radius: 25px;
@@ -438,6 +448,24 @@ mat-divider {
 .commentTimestamp {
     font-weight: 100;
     margin-left: 0.5em;
+}
+
+mat-slide-toggle {
+    line-height: 24px;
+    margin-right: 2em;
+    font-size: 1rem;
+}
+
+.mat-slide-toggle.mat-checked .mat-ripple-element {
+    background-color: #000000;
+}
+
+.mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+    background-color: rgb(0 0 0 / 54%);
+}
+
+.mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+    background-color: #000;
 }
 
 @keyframes expand {
