@@ -177,10 +177,6 @@ mat-divider {
     margin: 0.3em;
 }
 
-.likeBtn {
-    margin-right: 2em;
-}
-
 .box.back {
     transform: scale(.95);
     -webkit-transform: scale(.95);
@@ -469,7 +465,8 @@ mat-divider {
     transition: all ease .2s;
     margin-right: 1em;
     display: block;
-    margin-bottom: 1em
+    margin-bottom: 1em;
+    margin-right: 2em;
 }
 
 .likeBtn:hover {

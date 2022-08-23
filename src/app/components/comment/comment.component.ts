@@ -17,7 +17,7 @@ export class CommentComponent implements OnInit {
 
   @Input('comment') inputComment: Post;
   replyToComment = false
-  likeState: String = "Like";
+  likeState = "Like";
   @Input() likeCount: number;
   @Input() isActive: boolean;
   @Input() isNotActive = false;
