@@ -1,7 +1,6 @@
-import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {Component, OnInit, Optional } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import Post from 'src/app/models/Post';
-import User from 'src/app/models/User';
 import { AuthService } from 'src/app/services/auth.service';
 import { PostService } from 'src/app/services/post.service';
 
@@ -12,7 +11,6 @@ import { PostService } from 'src/app/services/post.service';
 })
 
 export class PostFeedPageComponent implements OnInit {
-
   postForm = new FormGroup({
     text: new FormControl(''),
     imageUrl: new FormControl('')
@@ -48,12 +46,18 @@ export class PostFeedPageComponent implements OnInit {
 
   submitPost = (e: any) => {
     e.preventDefault();
-    this.postService.upsertPost(new Post(0, this.postForm.value.text || "", this.postForm.value.imageUrl || "", this.authService.currentUser, [], [], new Date()))
-      .subscribe(
-        (response : any) => {
-          this.posts = [response, ...this.posts]
-          this.toggleCreatePost()
-        }
-      )
+    if (!this.postForm.value.text && !this.postForm.value.imageUrl) {
+console.log("error")
+    } else {
+      this.postService.upsertPost(new Post(0, this.postForm.value.text || "", this.postForm.value.imageUrl || "", this.authService.currentUser, [], [], new Date()))
+        .subscribe(
+          (response : any) => {
+            this.posts = [response, ...this.posts]
+            this.toggleCreatePost()
+          }
+        )
+    }
   }
+
+
 }

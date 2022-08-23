@@ -1,6 +1,6 @@
 <mat-toolbar class="spheal">
     <img src="assets/images/revasphere-logo-white.png" width="56px" alt="Revasphere Logo">
-    <span [routerLink]="['/post-feed']">Revature Social Media</span>
+    <span [routerLink]="['/post-feed']" class="homeBtn"><em class="fa-duotone fa-house-blank"></em></span>
     <search-users></search-users>
     <span class="spacer"></span>
     <mat-slide-toggle id="dmToggle" [checked]="checkedStatus" (change)="onChange($event)">{{lightStatus}}</mat-slide-toggle>
