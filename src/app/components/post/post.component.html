@@ -1,13 +1,13 @@
 <div class="post-card">
     <mat-card>
-        <mat-card-header class="post-header">
-            <div
+        <mat-card-header class="post-header" id="postHeader">
+            <div [routerLink]="['/user-profile', post.author.id]"
               mat-card-avatar
               class="header-image"
               *ngIf="post.author.profileImg"
               style="background-image: URL('{{ post.author.profileImg }}')"
             ></div>
-            <mat-card-title class="post-author">{{ post.author.username }}</mat-card-title>
+            <mat-card-title class="post-author" [routerLink]="['/user-profile', post.author.id]" id="postAuthor">{{ post.author.username }}</mat-card-title>
           </mat-card-header>
           <img
             mat-card-image
@@ -19,30 +19,29 @@
             <p class="post-content commentBlock">
                 {{post.text}}
             </p>
-            {{post.createdDate | date: 'short'}}
-            <p *ngIf="post.comments.length > 0" class="commentTitle">Comments</p>
+
             <div *ngFor="let comment of post.comments" class="comment-container">
-                <mat-divider class="comment-divider"></mat-divider>
                 <app-comment [comment]="comment"></app-comment>
             </div>
         </mat-card-content>
-        <form class="form" *ngIf="replyToPost" [formGroup]="commentForm" (ngSubmit)="submitReply($event)">
+        <form class="form" *ngIf="replyToPost" [formGroup]="commentForm">
             <mat-form-field class="full-width" appearance="fill">
+                <span (click)="toggleReplyToPost()" class="fa-duotone fa-rectangle-xmark cancelComment"></span>
                 <mat-label>Make a Post</mat-label>
-                <textarea matInput autofocus formControlName="text"></textarea>
+                <textarea matInput autofocus formControlName="text" (keydown.enter)="submitReply($event)"></textarea>
             </mat-form-field>
-            <div align="end">
-                <button mat-raised-button color="warn" (click)="toggleReplyToPost()">Cancel</button>
-                <button mat-raised-button color="primary" type="submit">Post</button>
-            </div>
-        </form>
-        <mat-card-actions align="end">
 
-            <button id="hbutton" mat-raised-button color="primary" (click)="toggleReplyToPost()">Comment</button>
+
+        </form>
+        <div class="postTime">{{post.createdDate | date: 'short'}}</div>
+        <mat-card-actions align="end">
+            <button id="hbutton" mat-raised-button color="primary" (click)="toggleReplyAndPost();">Comment</button>
             <button id="likeBtn-{{post.id}}" class="btnIcon" mat-icon-button color="primary" (click)="like()" matBadge="{{likeCount}}" matBadgePosition="after" matBadgeColor="accent">
                 <mat-icon>thumb_up</mat-icon>
           </button>
         </mat-card-actions>
+
+
 
     </mat-card>
 </div>

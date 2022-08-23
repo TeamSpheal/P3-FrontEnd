@@ -36,12 +36,13 @@ describe('PostComponent', () => {
         /*Mocks*/
         spyOn(localStorage, 'getItem').and.returnValue(JSON.stringify(mockUser));
         spyOn(postComp, 'isLiked').and.callFake(() => { /*Do Nothing*/ })
+        postComp.post = mockPost;
 
         /*Function*/
         postComp.ngOnInit();
 
         /*Test*/
-        expect(postComp.isLiked).toHaveBeenCalled();
+        expect(postComp.likeCount).toBeTruthy();
         expect(authServ.currentUser).toBeTruthy();
     });
 
@@ -49,12 +50,13 @@ describe('PostComponent', () => {
         /*Mocks*/
         spyOn(localStorage, 'getItem').and.returnValue(null);
         spyOn(postComp, 'isLiked').and.callFake(() => { /*Do Nothing*/ })
+        postComp.post = mockPost;
 
         /*Function*/
         postComp.ngOnInit();
 
         /*Test*/
-        expect(postComp.isLiked).toHaveBeenCalled();
+        expect(postComp.likeCount).toBeTruthy();
         expect(authServ.currentUser).toBeFalsy();
     });
 
@@ -155,6 +157,7 @@ describe('PostComponent', () => {
         postComp.post = mockPost;
         postComp.replyToPost = true;
         authServ.currentUser = mockUser;
+        postComp.commentForm.value.text = "Non empty text";
 
         /*Function*/
         postComp.submitReply(event);
@@ -164,4 +167,19 @@ describe('PostComponent', () => {
         expect(postComp.toggleReplyToPost).toHaveBeenCalled();
         expect(postComp.replyToPost).toBeFalse();
     });
+
+    it('submitReply: should set replyToPost to false', () => {
+        /*Local Variables*/
+        const event = new InputEvent("submit");
+
+        /*Mocks*/
+        postComp.commentForm.value.text = "";
+
+        /*Function*/
+        postComp.submitReply(event);
+
+        /*Test*/
+        expect(postComp.replyToPost).toBeFalse();
+    });
+
 });
