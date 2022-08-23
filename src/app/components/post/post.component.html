@@ -20,8 +20,6 @@
                 <mat-label>Make a Post</mat-label>
                 <textarea matInput autofocus formControlName="text" (keydown.enter)="submitReply($event)"></textarea>
             </mat-form-field>
-
-
         </form>
         <div class="postTime">{{post.createdDate | date: 'short'}}</div>
         <mat-card-actions align="end">

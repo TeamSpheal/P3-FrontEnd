@@ -458,6 +458,19 @@ mat-divider {
     opacity: 0.8
 }
 
+.likeBtn {
+    float: right;
+    cursor: pointer;
+    transition: all ease .2s;
+    margin-right: 1em;
+    display: block;
+    margin-bottom: 1em
+}
+
+.likeBtn:hover {
+    opacity: 0.8
+}
+
 .commentTimestamp {
     font-weight: 100;
     margin-left: 0.5em;

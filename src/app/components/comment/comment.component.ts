@@ -10,12 +10,14 @@ import UserMiniDTO from 'src/app/models/UserMiniDTO';
   styleUrls: ['./comment.component.css']
 })
 export class CommentComponent implements OnInit {
+  replyState: boolean = false;
   commentForm = new FormGroup({
     text: new FormControl(''),
   })
 
   @Input('comment') inputComment: Post;
   replyToComment = false
+  likeState: String = "Like";
   @Input() likeCount: number;
   @Input() isActive: boolean;
   @Input() isNotActive = false;
@@ -39,20 +41,19 @@ export class CommentComponent implements OnInit {
 
     const likedIds = this.inputComment.users.map(x =>x.id);
 
-    const button = document.getElementById('likeBtn-' + this.inputComment.id);
-
-
+    const button = document.getElementById('rlikeBtn-' + this.inputComment.id);
+    
     if ( likedIds.includes(curUser.id) ){
       this.isActive = true;
-      
+      this.likeState = "Liked"
       button?.style.setProperty('color','#ef773b');
-      button?.style.setProperty('background','#FCB414');
 
       //console.log(button?.style.getPropertyValue('background'));
     }
     else {
       this.isActive = false;
-      button?.style.setProperty('background','transparent');
+      this.likeState = "Like"
+      button?.style.setProperty('color','unset');
     }
   }
 
@@ -61,15 +62,15 @@ export class CommentComponent implements OnInit {
   }
 
   like(){  
-    const button = document.getElementById('likeBtn-' + this.inputComment.id);
+    const button = document.getElementById('rlikeBtn-' + this.inputComment.id);
 
     if(!this.isActive) {
       this.postService.likePost(this.authService.currentUser.id,this.inputComment.id)?.subscribe(
         (      resp: { users: string | any[]; }) => {
           this.likeCount = resp.users.length;
           this.isActive = true;
+          this.likeState = "Liked"
           button?.style.setProperty('color','#ef773b');
-          button?.style.setProperty('background','#FCB414');
         }
       )
     } else {
@@ -77,8 +78,8 @@ export class CommentComponent implements OnInit {
         (      resp: { users: string | any[]; }) => {
           this.likeCount = resp.users.length;
           this.isActive = false;
-          button?.style.setProperty('color','#ef773b');
-          button?.style.setProperty('background','transparent');
+          this.likeState = "Like"
+          button?.style.setProperty('color','unset');
         }
       )
     }
@@ -86,7 +87,16 @@ export class CommentComponent implements OnInit {
 
   
   toggleReplyToComment = () => {
+    const reply = document.getElementById('replyBtn-' + this.inputComment.id);
     this.replyToComment = !this.replyToComment
+    this.replyState = !this.replyState
+
+    if(this.replyState){
+      reply?.style.setProperty('color','#ef773b');
+      
+    }else{
+      reply?.style.setProperty('color','unset');
+    }
   }
 
   submitReply = (e: any) => {
@@ -105,9 +115,7 @@ export class CommentComponent implements OnInit {
       this.replyToComment = false;
     }
   }
-  toggleReplyToPost = () => {
-    this.replyToComment = !this.replyToComment;
-  }
+
 
 
 }

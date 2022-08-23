@@ -1,18 +1,12 @@
 <div class="each-comment">
 
     <p class="comment-author">{{inputComment.author.username}} <span class="commentTimestamp"> {{inputComment.createdDate | date:'short'}}</span></p>
+    {{inputComment.text}}
+    <span id="replyBtn-{{inputComment.id}}" class="replyBtn" (click)="toggleReplyToComment()"><em class="fa-duotone fa-reply-all"></em><sup></sup></span>
+    <span id="rlikeBtn-{{inputComment.id}}" class="likeBtn" (click)="like()"><em class="fa-duotone fa-thumbs-up"></em>&nbsp;<sup>{{likeCount}}</sup></span>
 
-    <span class="replyBtn" (click)="toggleReplyToComment()"><em class="fa-duotone fa-reply-all"></em> Reply</span>
-    <p>
-        {{inputComment.text}}
-        <button id="likeBtn-{{inputComment.id}}" class="btnIcon" mat-icon-button color="primary" (click)="like()" matBadge="{{likeCount}}" matBadgePosition="after" matBadgeColor="accent">
-            <mat-icon>thumb_up</mat-icon>
-      </button>
-    </p>
-    <div *ngFor="let comment of inputComment.comments" class="comment-container">
-        <app-comment [comment]="comment"></app-comment>
-    </div>
-    <form class="form" *ngIf="replyToComment" [formGroup]="commentForm" (ngSubmit)="submitReply($event)">
+    <form style="margin-top:1em;" class="form" *ngIf="replyToComment" [formGroup]="commentForm" (ngSubmit)="submitReply($event)">
+
         <mat-form-field class="full-width" appearance="fill">
             <mat-label>Make a Post</mat-label>
             <textarea matInput autofocus formControlName="text"></textarea>
@@ -21,6 +15,8 @@
             <button mat-raised-button color="warn" (click)="toggleReplyToComment()">Cancel</button>
             <button mat-raised-button color="primary" type="submit">Post</button>
         </div>
-
     </form>
+    <div *ngFor="let comment of inputComment.comments" class="comment-container">
+        <app-comment [comment]="comment"></app-comment>
+    </div>
 </div>
