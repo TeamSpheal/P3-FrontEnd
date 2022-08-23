@@ -9,7 +9,7 @@ describe('PostService', () => {
     const mockUser: User = new User(1, 'testuser@gmail.com', 'Test', 'User',
         'TestUser1', 'assets/images/favicon.png', [], []);
     const mockPost: Post = new Post(1, "A mocked post", "",
-        mockUser, [], [mockUser]);
+        mockUser, [], [mockUser], new Date());
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -46,7 +46,7 @@ describe('PostService', () => {
         expect(postServ.getPost(mockPost)).toBeTruthy();
     });
 
-    it('getPostsByUsers: should return the observable', async () => {
-        expect(postServ.getPostsByUsers(1)).toBeTruthy();
+    it('getFollowingPostFeed: should return the observable', async () => {
+        expect(postServ.getFollowingPostFeed(1)).toBeTruthy();
     });
 });

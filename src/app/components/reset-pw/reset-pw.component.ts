@@ -57,8 +57,8 @@ export class ResetPwComponent implements OnInit {
         /*Send Request*/
         this.userSettingsService.getResetPWToken(<string>this.emailResetForm.value.email).subscribe((response: HttpResponse<any>) => {
             /*Retrieve Token from response headers*/
-            sessionStorage.setItem("PWRT", <string>response.headers.get("ResetToken"));
-            this.resetToken = <string>sessionStorage.getItem("PWRT");
+            localStorage.setItem("PWRT", <string>response.headers.get("ResetToken"));
+            this.resetToken = <string>localStorage.getItem("PWRT");
             this.resetUser = JSON.parse(JSON.stringify(response.body));
             
             /*Alert user*/
