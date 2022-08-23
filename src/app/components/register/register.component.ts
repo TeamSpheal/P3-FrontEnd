@@ -29,10 +29,7 @@ export class RegisterComponent implements OnInit {
   onSubmit(e: any): void {
     e.preventDefault()
 
-    console.log("CLICKED REGISTER");
     const profaneCheck:boolean = this.dirtyCheck.isDirty(this.registerForm.value.username);
-    console.log("DIRTY CHECK: " + profaneCheck);
-
     const profaneCheck2:boolean = this.dirtyCheck.isDirty(this.registerForm.value.email);
     const profaneCheck3:boolean = this.dirtyCheck.isDirty(this.registerForm.value.firstName);
     const profaneCheck4:boolean = this.dirtyCheck.isDirty(this.registerForm.value.lastName);

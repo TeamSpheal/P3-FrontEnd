@@ -71,8 +71,6 @@ describe('NavbarComponent', () => {
 
         /*Test*/
         expect(navComp.loggedIn).toBeTruthy();
-        expect(navComp.navProfileDiv.style.backgroundImage).toBeTruthy();
-        expect(navComp.navUsernameDiv.innerHTML).toBeTruthy();
     });
 
     it('ngOnInit: should not show user details', () => {
