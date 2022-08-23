@@ -1,6 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/services/auth.service';
-import { PostService } from 'src/app/services/post.service';
 import { UserService } from 'src/app/services/user.service';
 import UserMiniDTO from '../../models/UserMiniDTO';
 import User from '../../models/User';

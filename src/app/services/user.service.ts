@@ -12,7 +12,7 @@ export class UserService {
     userUrl = `${environment.baseUrl}/user`
     userUpdatedUrl: string;
     isFollowResp: UserMiniDTO[];
-    isFollow: boolean = false;
+    isFollow = false;
     user = JSON.parse(<string>localStorage.getItem("user"));
 
     constructor(private http: HttpClient) { }
