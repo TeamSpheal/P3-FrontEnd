@@ -50,6 +50,7 @@ export class NavbarComponent implements OnInit {
             this.navUserDiv.hidden = false;
             this.navLoginDiv.hidden = true;
             this.navProfileDiv.style.backgroundImage = "URL('" + this.loggedIn.profileImg + "')";
+            console.log(this.navProfileDiv.style.backgroundImage);
             this.navUsernameDiv.innerHTML = this.loggedIn.username;
         }
     }
@@ -62,6 +63,7 @@ export class NavbarComponent implements OnInit {
         this.authService.logout();
 
         this.router.navigate(['login']);
+        localStorage.clear();
     }
 
     login() {

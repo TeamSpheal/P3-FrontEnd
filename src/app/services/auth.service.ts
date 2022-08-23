@@ -26,8 +26,7 @@ export class AuthService {
   }
 
   logout(): void{
-      localStorage.removeItem("user");
-      localStorage.removeItem("JWT");
+      localStorage.clear;
   }
 
   register(firstName: string, lastName: string, email: string, password: string, username: string): Observable<any> {
