@@ -35,6 +35,7 @@ describe('CommentComponent', () => {
     it('toggleReplyToPost: should switch the state of replyToPost', () => {
         /*Mocks*/
         commComp.replyToComment = true;
+        commComp.inputComment = mockPost;
 
         /*Function*/
         commComp.toggleReplyToComment();
