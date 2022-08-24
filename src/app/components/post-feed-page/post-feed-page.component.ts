@@ -59,7 +59,7 @@ export class PostFeedPageComponent implements OnInit {
   submitPost = (e: any) => {
     e.preventDefault();
     if (!this.postForm.value.text && !this.postForm.value.imageUrl) {
-console.log("error")
+      alert("Empty post!");
     } else {
       //Mike added this line here for profanity filter
       this.postForm.value.text = this.profanityService.cleanText(this.postForm.value.text);
