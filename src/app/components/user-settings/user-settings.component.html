@@ -1,43 +1,39 @@
 <div id="userSettingsDiv">
-    <div class="divUserSettings" id="userDetailsDiv">
-        <div class="divUserImg" id="userProfileImg">
-            <img id="profileImg" src="https://th.bing.com/th/id/OIP.61ajO7xnq1UZK2GVzHymEQAAAA?w=145&h=150&c=7&r=0&o=5&pid=1.7" alt="Your profile picture" width="250" height="250">
-            <form class="form" [formGroup]="userImageForm">
-                <mat-card-content>
-                    <mat-form-field class="full-width">
-                        <input matInput placeholder="Image URL" formControlName="imageURL">
-                    </mat-form-field>
-                </mat-card-content>
-                <!-- Image Uploader -->
-                <div class="container">
-                    <div class="row mt-5">
-                      <div class="col-md-4">
+    <div class="divUserImg" id="userProfileImg">
+        <img id="profileImg" src="https://th.bing.com/th/id/OIP.61ajO7xnq1UZK2GVzHymEQAAAA?w=145&h=150&c=7&r=0&o=5&pid=1.7" alt="Your profile picture" width="250" height="250">
+        <form class="form" [formGroup]="userImageForm">
+            <mat-card-content>
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="Image URL" formControlName="imageURL">
+                </mat-form-field>
+            </mat-card-content>
+            <!-- Image Uploader -->
+            <div class="container">
+                <div class="row mt-5">
+                    <div class="col-md-4">
                         <div class="mb-3">
-                          <label for="formFile" class="form-label"></label>
-                          <input
-                            (change)="this.onFilechange($event)"
-                            class="form-control"
-                            type="file"
-                            id="formFile"
-                          />
-                          <button
-                            (click)="this.upload()"
-                            type="button"
-                            class="btn btn-primary mt-3"
-                          >
-                            Upload
-                          </button>
+                            <label for="formFile" class="form-label"></label>
+                            <input (change)="this.onFilechange($event)"
+                                   class="form-control"
+                                   type="file"
+                                   id="formFile" />
+                            <button (click)="this.upload()"
+                                    type="button"
+                                    class="btn btn-primary mt-3">
+                                Upload
+                            </button>
                         </div>
-                      </div>
                     </div>
-                  </div>
-                <!-- Image Uploader -->
-            </form>
-        </div>
-        <div class="divUserButton" id="userUpdateImgDiv">
-            <button (click)="updateImage()" class="buttonUserSettings" id="userUpdateImgBtn" type="submit">Update</button>
-        </div>
-        <form class="form" [formGroup]="userDetailsForm">
+                </div>
+            </div>
+            <!-- Image Uploader -->
+            <div class="divUserButton" id="userUpdateImgDiv">
+                <button (click)="updateImage()" class="buttonUserSettings" id="userUpdateImgBtn" type="submit">Update</button>
+            </div>
+        </form>
+    </div>
+    <div id="userDetailsDiv">
+        <form id="userDetailsForm" class="form" [formGroup]="userDetailsForm">
             <mat-card-content>
                 <mat-form-field class="full-width">
                     <input matInput placeholder="Email" formControlName="email">
@@ -52,22 +48,22 @@
                     <input matInput placeholder="Last Name" formControlName="lastName">
                 </mat-form-field>
             </mat-card-content>
+            <div class="divUserButton" id="userUpdateInfoDiv">
+                <button (click)="updateProfile()" class="buttonUserSettings" id="userUpdateInfoBtn" type="submit">Update</button>
+            </div>
         </form>
-        <div class="divUserButton" id="userUpdateInfoDiv">
-            <button (click)="updateProfile()" class="buttonUserSettings" id="userUpdateInfoBtn" type="submit">Update</button>
-        </div>
-        <form class="form" [formGroup]="userPasswordForm">
+        <form id="userPasswordForm" class="form" [formGroup]="userPasswordForm">
             <mat-card-content>
                 <mat-form-field class="full-width">
-                    <input matInput placeholder="New Password" formControlName="newPW">
+                    <input matInput placeholder="New Password" formControlName="newPW" type="password">
                 </mat-form-field>
                 <mat-form-field class="full-width">
-                    <input matInput placeholder="Confirm Password" formControlName="confirmPW">
+                    <input matInput placeholder="Confirm Password" formControlName="confirmPW" type="password">
                 </mat-form-field>
             </mat-card-content>
+            <div class="divUserButton" id="userUpdatePWDiv">
+                <button (click)="updatePassword()" class="buttonUserSettings" id="userUpdatePWBtn" type="submit">Update</button>
+            </div>
         </form>
-        <div class="divUserButton" id="userUpdatePWDiv">
-            <button (click)="updatePassword()" class="buttonUserSettings" id="userUpdatePWBtn" type="submit">Update</button>
-        </div>
     </div>
 </div>

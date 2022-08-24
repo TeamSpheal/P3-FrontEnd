@@ -17,6 +17,7 @@ export class UserProfileComponent implements OnInit {
     user: User = {} as User;
     userMiniDTO: UserMiniDTO;
     profileImg: HTMLDivElement;
+    userSettDiv: HTMLDivElement;
     usernameDisplay: string;
     nameDisplay: string;
     followers: UserMiniDTO[];
@@ -48,7 +49,8 @@ export class UserProfileComponent implements OnInit {
 
     //gets id from logged in user
     this.user = JSON.parse(<string>localStorage.getItem("user"));
-    this.profileImg = <HTMLDivElement>document.getElementById("user-circle");
+      this.profileImg = <HTMLDivElement>document.getElementById("user-circle");
+      this.userSettDiv = <HTMLDivElement>document.getElementById("userSettApp");
     
     if (this.usersPageId == undefined) {
       alert("We could not find this user! You're now being redirected.")
@@ -84,5 +86,14 @@ export class UserProfileComponent implements OnInit {
         this.postCount = this.posts.length;
       }
     )
-  }
+    }
+
+    showUserSett() {
+        this.userSettDiv.hidden = false;
+    }
+
+    hideUserSett() {
+        this.userSettDiv.hidden = true;
+    }
 }
+

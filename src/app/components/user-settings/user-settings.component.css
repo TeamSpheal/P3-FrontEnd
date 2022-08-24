@@ -1,62 +1,46 @@
 #userSettingsDiv {
-    margin: auto;
-    width: 375px;
-    background: #0094ff25;
-    border: solid 5px #04167c;
+    margin: 10px auto auto auto;
+    width: 94%;
+    background: #d06936f2;
+    border: solid 5px var(--rev-secondary);
     border-radius: 15px;
+    height: 100%;
+    padding: 1% 3% 1% 3%;
 }
 
-.divUserSettings {
-    width: 350px;
-    padding-right: 12.5px;
-    padding-left: 12.5px;
-    padding-top: 25px;
-    padding-bottom: 25px;
+#userProfileImg, #userDetailsDiv {
+    margin-top: 2%;
+    margin-bottom: 2%;
+    width: 45%;
+    height: 96%;
 }
 
-#userProfilePicDiv {
-    height: 275px;
+#userProfileImg, #userDetailsDiv {
+    float: right;
+}
+
+#userProfileImg {
+    float: left;
+}
+
+.form {
+    margin: 0;
 }
 
 #profileImg {
-    margin: auto;
-    width: 200px;
-    height: 200px;
-    border: solid 5px #000000;
-    border-radius: 210px;
-    margin-left: 70px;
-    margin-right: 70px;
-}
-
-#lNameDiv,
-#userUpdateImgDiv {
-    margin-bottom: 10px;
-}
-
-#passwordDiv,
-#usernameDiv {
-    border-top: solid 5px #000000;
-}
-
-.labelUserSettings {
-    float: left;
-    margin-top: 10px;
-}
-
-.textUserSettings {
-    width: 292px;
-    margin-right: 25px;
-    margin-left: 25px;
+    margin: auto 10% 10% 10%;
+    width: 80%;
+    height: 50%;
+    border: solid 5px var(--rev-secondary);
 }
 
 .divUserButton {
-    width: 350px;
-    margin-top: 12.5px;
-    margin-bottom: 10px;
+    margin: 3% 5% auto 5%;
+    width: 90%;
 }
 
 .buttonUserSettings {
-    width: 300px;
-    margin-right: 25px;
-    margin-left: 25px;
+    width: 90%;
+    margin-right: 5%;
+    margin-left: 5%;
 }
