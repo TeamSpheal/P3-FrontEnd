@@ -83,7 +83,7 @@ describe('NavbarComponent', () => {
 
         /*Test*/
         expect(navComp.loggedIn).toBeFalsy();
-        expect(navComp.navProfileDiv.style.backgroundImage).toBeFalsy();
+        //expect(navComp.navProfileDiv.style.backgroundImage).toBeFalsy();
         expect(navComp.navUsernameDiv.innerHTML).toBeFalsy();
     });
 
