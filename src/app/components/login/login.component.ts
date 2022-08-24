@@ -23,9 +23,6 @@ export class LoginComponent implements OnInit {
   }
   
   onSubmit(e: any): void {
-    // if (!this.loginForm.value.email && !this.loginForm.value.password) {
-    //   alert("Empty fields!");
-    // }
     e.preventDefault()
       this.authService.login(this.loginForm.value.email || "", this.loginForm.value.password || "")
       .subscribe(
