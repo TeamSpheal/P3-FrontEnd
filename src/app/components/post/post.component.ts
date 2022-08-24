@@ -1,5 +1,4 @@
-import { ElementRef, ViewChild, Component, Input, OnInit, AfterViewInit } from '@angular/core';
-import { __core_private_testing_placeholder__ } from '@angular/core/testing';
+import { ElementRef, ViewChild, Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import Post from 'src/app/models/Post';
 import User from 'src/app/models/User';
@@ -47,65 +46,29 @@ export class PostComponent implements OnInit {
     if(localStorage.getItem("user")){
       this.authService.currentUser=JSON.parse(<string>localStorage.getItem("user"));
     }
-    //this.isLiked();
-
     this.likeCount = this.post.users.length;
-
   }
   
   isLiked(){
-
-    
-
-
-
     const curUser = new UserMiniDTO(this.authService.currentUser.id,
                                     this.authService.currentUser.username,
                                     this.authService.currentUser.profileImg);
-
     const likedIds = this.post.users.map(x =>x.id);
-
     const button = document.getElementById('likeBtn-' + this.post.id);
-
-
-    
-    //console.log('likeBtn-' + this.post.id);
-    //console.log(this.divBtn);
 
     if ( likedIds.includes(curUser.id) ){
       this.isActive = true;
       
       button?.style.setProperty('color','#ef773b');
       button?.style.setProperty('background','#FCB414');
-
-      //console.log(button?.style.getPropertyValue('background'));
     }
     else {
       this.isActive = false;
       button?.style.setProperty('background','transparent');
     }
-
-    // this.postService.getPost(this.post)?.subscribe(
-    //   ( resp : { users: string | any[]; }) => {
-    //     //this.likeCount = resp.users.length;
-    //     this.likeCount = this.post.users.length;
-    //     for (const likedUsers of resp.users) {
-
-    //       if (likedUsers.id == this.authService.currentUser.id) {
-    //         this.isActive = true;
-    //         const button = document.getElementById('likeBtn-' + this.post.id);
-    //         button?.style.setProperty('color','#ef773b');
-    //         button?.style.setProperty('background','#FCB414');
-            
-    //       }
-    //     }
-    //   }
-    // )
-
   }
 
   ngAfterViewInit() {
-
     this.isLiked();
   }
 
@@ -142,7 +105,7 @@ export class PostComponent implements OnInit {
     this.replyToPost = !this.replyToPost
 
     if(!this.replyToPost && this.commentForm.value.text){
-      this.submitReply(event);
+      this.submitReply(new InputEvent("submit"));
     }else{
       console.log("no comment")
     }
@@ -178,4 +141,3 @@ export class PostComponent implements OnInit {
 function e(e: any, any: any) {
   throw new Error('Function not implemented.');
 }
-
