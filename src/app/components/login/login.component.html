@@ -1,7 +1,8 @@
 <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
   <mat-card class="box">
     <mat-card-header>
-      <mat-card-title>Log in</mat-card-title>
+      <img src="assets/images/revasphere-logo-orange.png" width="128px" alt="Revasphere Logo">
+      <mat-card-title>RevaSphere Login</mat-card-title>
     </mat-card-header>
     <form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit($event)">
       <mat-card-content>
@@ -14,6 +15,7 @@
       </mat-card-content>
       <button mat-stroked-button color="accent" class="btn-block" type="submit">Log in</button>
     </form>
-    <a class="login-rerout-link" [routerLink]="['/register']">Don't have an account?</a>
+    <a class="login-rerout-link" id="pwLink" [routerLink] ="['/reset-pw']">Forgot your password?</a>
+    <a class="login-rerout-link" [routerLink]="['/register']" style="margin-right: 40px;">Don't have an account?</a>
   </mat-card>
 </div>

@@ -1,0 +1,39 @@
+<app-navbar></app-navbar>
+
+<div fxLayout="row" fxLayoutAlign="space-between" class="profileMargin">
+    <mat-card id="profile-header" class="profile-header" fxFlex="30">
+        <div class="topJawn row">
+            <div class="column-left">
+                <mat-card-header>
+                    <div class="user-circle profile" id="user-circle"></div>
+                </mat-card-header>
+            </div>
+            <div class="column-right">
+                <mat-card-title role="listitem">
+                    {{ nameDisplay }} <small>({{ usernameDisplay }})</small>
+                </mat-card-title>
+                <mat-card-content>
+                    <mat-list role="list">
+                        <mat-list-item role="listitem" class="profile-stat">{{ postCount }} posts</mat-list-item>
+                        <mat-list-item role="listitem" class="profile-stat">{{ followerCount }} followers</mat-list-item>
+                        <mat-list-item role="listitem" class="profile-stat">{{ followingCount }} following</mat-list-item>
+                    </mat-list>
+                </mat-card-content>
+                <div id="edit-follow" *ngIf="!usersPage; else editTemplate">
+                    <!-- add onlick func to follow -->
+                    <app-follow [viewingId]="usersPageId"></app-follow>
+                </div>
+            </div>
+        </div>
+    </mat-card>
+    <ng-template #editTemplate>
+        <div>
+            <!-- route to user-settings page -->
+            <button mat-raised-button [routerLink]="['/user-settings']">Edit</button>
+        </div>
+    </ng-template>
+    <h1>{{ nameDisplay }}'s Feed</h1>
+    <div id="prof-post-feed" *ngFor="let post of posts" width="half">
+        <app-post [post]="post"></app-post>
+    </div>
+</div>

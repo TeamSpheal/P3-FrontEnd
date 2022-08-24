@@ -1,14 +1,21 @@
 version: 0.2
-
+env:
+  variables:
+    CHROME_BIN: "/usr/bin/google-chrome-stable"
 phases:
   install:
     commands:
       - curl -fsSL https://dev.nodesource.com/setup_16.x | sudo -E bash -
       - yum install gcc-c++ make
+      - wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+      - yum install -y ./google-chrome-stable_current_x86_64.rpm
   pre_build:
+    on-failure: ABORT
     commands:
       - npm i -g @angular/cli
       - npm install --force
+      - npm update
+      - ng test --karma-config=karma.conf.codebuild.js --no-watch --code-coverage
   build:
     commands:
       - ng build
