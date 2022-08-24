@@ -546,3 +546,11 @@ mat-slide-toggle {
         transform: translateY(0);
     }
 }
+
+#userSettApp {
+    position: fixed;
+    width: 90%;
+    height: 75%;
+    margin: 2% 5% 2% 5%;
+    z-index: 9000;
+}

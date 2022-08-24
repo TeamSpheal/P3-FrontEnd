@@ -1,4 +1,8 @@
 <app-navbar></app-navbar>
+<div id="userSettApp" hidden>
+    <app-user-settings></app-user-settings>
+    <button type="button" id="closeUserSett" (click)="hideUserSett()">X</button>
+</div>
 
 <div fxLayout="row" fxLayoutAlign="space-between" class="profileMargin">
     <mat-card id="profile-header" class="profile-header" fxFlex="30">
@@ -29,7 +33,7 @@
     <ng-template #editTemplate>
         <div>
             <!-- route to user-settings page -->
-            <button mat-raised-button [routerLink]="['/user-settings']">Edit</button>
+            <button mat-raised-button (click)="showUserSett()">Edit</button>
         </div>
     </ng-template>
     <h1>{{ nameDisplay }}'s Feed</h1>

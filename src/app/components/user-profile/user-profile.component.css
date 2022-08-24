@@ -54,3 +54,12 @@
     display: table;
     clear: both;
 }
+
+#closeUserSett {
+    position: fixed;
+    background: #ff0000;
+    border: 2px solid #4d0801;
+    color: #ffffffdb;
+    top: 17%;
+    left: 6.5%;
+}
