@@ -1,0 +1,12 @@
+#revasphereLogo{
+    height:auto;
+    width:auto;
+}
+
+#revasphereLogo:hover{
+    cursor: pointer;
+}
+
+#navUsernameDiv:hover{
+    cursor: pointer;
+}

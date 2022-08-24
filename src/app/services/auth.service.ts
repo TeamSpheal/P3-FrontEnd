@@ -1,6 +1,6 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import User from '../models/User';
 
@@ -8,7 +8,6 @@ import User from '../models/User';
   providedIn: 'root'
 })
 export class AuthService {
-
   authUrl = `${environment.baseUrl}/auth`;
   currentUser: User;
 
@@ -16,17 +15,28 @@ export class AuthService {
 
   login(email: string, password: string): Observable<HttpResponse<User>> {
     const payload = {email:email, password:password};
-    return this.http.post<User>(`${this.authUrl}/login`, payload, {observe: 'response', headers: environment.headers, withCredentials: environment.withCredentials});
+    return this.http.post<User>(`${this.authUrl}/login`, payload, {observe: 'response', headers: environment.headers, withCredentials: environment.withCredentials})
+    .pipe(
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
   }
 
   logout(): void{
-      this.http.post(`${this.authUrl}/logout`, null).subscribe();
       localStorage.removeItem("user");
       localStorage.removeItem("JWT");
   }
 
   register(firstName: string, lastName: string, email: string, password: string, username: string): Observable<any> {
       const payload = { firstName: firstName, lastName: lastName, email: email, password: password, username: username, profileImg: "https://th.bing.com/th/id/OIP.61ajO7xnq1UZK2GVzHymEQAAAA?w=145&h=150&c=7&r=0&o=5&pid=1.7"};
-    return this.http.post<any>(`${this.authUrl}/register`, payload, {headers: environment.headers});
+    return this.http.post<any>(`${this.authUrl}/register`, payload, {headers: environment.headers})
+    .pipe(
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
   }
+
+  
 }

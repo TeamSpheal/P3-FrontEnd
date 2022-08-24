@@ -28,7 +28,7 @@ export class ImageUploadComponent {
         alert("Uploaded");
       })
     } else {
-      alert("Please select a file first")
+      alert("Please select a file first");
     }
   }
 

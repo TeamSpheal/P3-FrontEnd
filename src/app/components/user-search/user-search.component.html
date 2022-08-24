@@ -13,15 +13,16 @@
     <div class="listContainer" ng-controller="info">
         <ul class="Users">
             <li *ngFor="let user of users">
-                <mat-card>
+                <mat-card [routerLink]="['/user-profile', user.id]" (click)="reloadCurrentPage()">
 
                     <mat-card-header>
                         <img mat-card-avatar src={{user.profileImg}} alt="Users profile image">
                         <mat-card-title>{{user.firstName}} {{user.lastName}}</mat-card-title>
+                        <mat-card-subtitle>@{{user.username}}</mat-card-subtitle>
                     </mat-card-header>
 
                     <mat-card-actions align="end">
-                        <button [routerLink]="['/user-profile', user.id]" mat-button>Go to Profile</button>
+                        <button [routerLink]="['/user-profile', user.id]" mat-button (click)="reloadCurrentPage()">Go to Profile</button>
                     </mat-card-actions>
                 </mat-card>
                 <br>

@@ -9,7 +9,7 @@ import { from, of } from 'rxjs';
 import UserMiniDTO from 'src/app/models/UserMiniDTO';
 
 describe('PostFeedPageComponent', () => {
-    const mockUserFollow: UserMiniDTO = new UserMiniDTO(2, 'testuser@gmail.com', 'TestUser1', 'assets/images/favicon.png');
+    const mockUserFollow: UserMiniDTO = new UserMiniDTO(2, 'TestUser1', 'assets/images/favicon.png');
 
     const mockUser: User = new User(1, 'testuser@gmail.com', 'Test', 'User',
         'TestUser1', 'assets/images/favicon.png', [], []);
@@ -37,7 +37,7 @@ describe('PostFeedPageComponent', () => {
     it('ngOnInit: should call getPostsByUsers in post service', () => {
         /*Local Variables*/
         const mockUserFollowing: User = new User(1, 'testuser@gmail.com', 'Test', 'User',
-            'TestUser1', 'assets/images/favicon.png', [], [mockUserFollow]);
+            'TestUser1', 'assets/images/favicon.png', [mockUserFollow], [mockUserFollow]);
 
         /*Mocks*/
         spyOn(localStorage, 'getItem').and.returnValue(JSON.stringify(mockUserFollowing));
@@ -89,6 +89,7 @@ describe('PostFeedPageComponent', () => {
         postFeedComp.posts = [mockPost];
         postFeedComp.createPost = true;
         authServ.currentUser = mockUser;
+        postFeedComp.postForm.value.text = "non empty text";
 
         /*Function*/
         postFeedComp.submitPost(event);
