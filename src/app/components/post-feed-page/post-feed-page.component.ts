@@ -37,8 +37,7 @@ export class PostFeedPageComponent implements OnInit {
 
     const userStorage = localStorage.getItem("user");
     const parsed = JSON.parse(<string>userStorage);
-    console.log(parsed.followers)
-    if (parsed.followers[0]){
+    if (parsed.following.length > 0){
       this.postService.getFollowingPostFeed(parsed.id).subscribe(
         (response : any) => {
           this.posts = response
