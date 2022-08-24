@@ -1,4 +1,4 @@
-# Title: RevaSphere Social Media Website (Front-End)
+# RevaSphere Social Media Website (Front-End)
 ![RevaSphere Logo](src/assets/images/revasphere-logo-orange.png)
 
 ## Table of Contents
