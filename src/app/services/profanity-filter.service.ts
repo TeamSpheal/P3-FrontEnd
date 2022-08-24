@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 
+type cleanTextType = string | null | undefined;
+
 @Injectable({
   providedIn: 'root'
 })
 export class ProfanityFilterService {
 
-  cleanText(toClean:string | null | undefined){
 
-    let cleanedText:string | null | undefined = toClean;
+  cleanText(toClean: cleanTextType){
+
+    let cleanedText: cleanTextType = toClean;
 
     if(cleanedText){
 
@@ -19,12 +22,12 @@ export class ProfanityFilterService {
 
   }
 
-  isDirty(toClean:string | null | undefined){
+  isDirty(toClean: cleanTextType){
 
     let dirtyCheck = false;
 
-    const theText:string | null | undefined = toClean;
-    const theTextAfter: string | null | undefined = this.cleanText(theText);
+    const theText: cleanTextType = toClean;
+    const theTextAfter: cleanTextType = this.cleanText(theText);
 
     if(theText === theTextAfter){
       return dirtyCheck;
