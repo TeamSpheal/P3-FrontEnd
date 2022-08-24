@@ -37,8 +37,7 @@ export class PostFeedPageComponent implements OnInit {
 
     const userStorage = localStorage.getItem("user");
     const parsed = JSON.parse(<string>userStorage);
-    console.log(parsed.followers)
-    if (parsed.followers[0]){
+    if (parsed.following.length > 0){
       this.postService.getFollowingPostFeed(parsed.id).subscribe(
         (response : any) => {
           this.posts = response
@@ -60,7 +59,7 @@ export class PostFeedPageComponent implements OnInit {
   submitPost = (e: any) => {
     e.preventDefault();
     if (!this.postForm.value.text && !this.postForm.value.imageUrl) {
-console.log("error")
+      alert("Empty post!");
     } else {
       //Mike added this line here for profanity filter
       this.postForm.value.text = this.profanityService.cleanText(this.postForm.value.text);

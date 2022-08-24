@@ -99,8 +99,7 @@ export class FollowComponent implements OnInit {
             //Process data
             if (response != undefined) { //Data is defined. The return from the response should contain a user object
                 this.isFollow = !this.isFollow;
-                const removeIdx = this.followingList.findIndex((element) => element.id = this.viewingId)
-                this.followingList.splice(removeIdx);
+                this.followingList = this.followingList.filter((element) => element.id != this.viewingId);
                 this.loggedIn.following = this.followingList;
                 localStorage.setItem("user", JSON.stringify(this.loggedIn));
                 this.userProfComp.followerCount -= 1;

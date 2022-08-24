@@ -56,9 +56,6 @@ export class PostService {
   public uploadImage(file: File): Observable<string> {
     const formParams = new FormData();
     formParams.append('image', file);
-    return this.http.post<string>(`${this.imageUrl}`, formParams, {
-      headers: {
-        'Access-Control-Allow-Origin': 'http://localhost:4200'
-    }});
+    return this.http.post<string>(`${this.imageUrl}`, formParams, {headers: environment.headers, withCredentials: environment.withCredentials});
   }
 }

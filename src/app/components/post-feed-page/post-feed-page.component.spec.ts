@@ -37,7 +37,7 @@ describe('PostFeedPageComponent', () => {
     it('ngOnInit: should call getPostsByUsers in post service', () => {
         /*Local Variables*/
         const mockUserFollowing: User = new User(1, 'testuser@gmail.com', 'Test', 'User',
-            'TestUser1', 'assets/images/favicon.png', [mockUserFollow], []);
+            'TestUser1', 'assets/images/favicon.png', [mockUserFollow], [mockUserFollow]);
 
         /*Mocks*/
         spyOn(localStorage, 'getItem').and.returnValue(JSON.stringify(mockUserFollowing));

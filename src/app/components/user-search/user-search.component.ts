@@ -1,4 +1,4 @@
-
+import { environment } from 'src/environments/environment';
 import { Component, OnInit } from "@angular/core";
 
 @Component({
@@ -8,6 +8,7 @@ import { Component, OnInit } from "@angular/core";
 })
 
 export class SearchComponent implements OnInit{
+    searchUrl = `${environment.baseUrl}/search/`
     input = '';
     users: any;
 
@@ -43,12 +44,9 @@ export class SearchComponent implements OnInit{
             return name[0].toUpperCase() + name.substring(1); 
         }).join(" ").replace(/ /g,"_");
    
-       console.log(upperCasedNames)
-       console.log('FETCH: http://localhost:8080/search/' + upperCasedNames );
-
        this.showSearch();
 
-        const resp = await fetch('http://localhost:8080/search/' + upperCasedNames);
+        const resp = await fetch(`${this.searchUrl}` + upperCasedNames);
             if(resp.ok){
             this.users = await resp.json();
             this.users = this.users.reverse()
